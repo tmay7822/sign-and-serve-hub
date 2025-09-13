@@ -6,13 +6,13 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'General Notary', href: '#general-notary' },
-    { name: 'Loan Signings', href: '#loan-signings' },
-    { name: 'Estate Plans', href: '#estate-plans' },
-    { name: 'Real Estate', href: '#real-estate' },
-    { name: 'Apostille', href: '#apostille' },
-    { name: 'Business Services', href: '#business-services' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'General Notary', href: '/general-notary' },
+    { name: 'Loan Signings', href: '/loan-signings' },
+    { name: 'Estate Plans', href: '/estate-plans' },
+    { name: 'Real Estate', href: '/real-estate' },
+    { name: 'Apostille', href: '/apostille' },
+    { name: 'Business Services', href: '/business-services' },
+    { name: 'FAQ', href: '/faq' },
   ];
 
   return (
@@ -49,8 +49,8 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button variant="cta" size="sm" className="ml-4">
-                Contact Us
+              <Button variant="cta" size="sm" className="ml-4" asChild>
+                <a href="/contact">Contact Us</a>
               </Button>
             </nav>
 
@@ -83,8 +83,8 @@ const Header = () => {
                   </a>
                 ))}
                 <div className="pt-2">
-                  <Button variant="cta" className="w-full">
-                    Contact Us
+                  <Button variant="cta" className="w-full" asChild>
+                    <a href="/contact">Contact Us</a>
                   </Button>
                 </div>
               </nav>
