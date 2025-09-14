@@ -13,6 +13,17 @@ import BusinessServices from "./pages/BusinessServices";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import College18Plus from "./pages/College18Plus";
+import PersonalFamily from "./pages/PersonalFamily";
+import HealthcareNotary from "./pages/HealthcareNotary";
+import RealEstateNotary from "./pages/RealEstateNotary";
+import BusinessBanking from "./pages/BusinessBanking";
+import LegalCourt from "./pages/LegalCourt";
+import InternationalApostille from "./pages/InternationalApostille";
+import VehiclesDMV from "./pages/VehiclesDMV";
+import InsuranceRetirement from "./pages/InsuranceRetirement";
+import WillsTrustsEstates from "./pages/WillsTrustsEstates";
+import OtherNotary from "./pages/OtherNotary";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +43,18 @@ const App = () => (
           <Route path="/business-services" element={<BusinessServices />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Specialized Service Pages */}
+          <Route path="/college-18-plus" element={<College18Plus />} />
+          <Route path="/personal-family" element={<PersonalFamily />} />
+          <Route path="/healthcare-notary" element={<HealthcareNotary />} />
+          <Route path="/real-estate-notary" element={<RealEstateNotary />} />
+          <Route path="/business-banking" element={<BusinessBanking />} />
+          <Route path="/legal-court" element={<LegalCourt />} />
+          <Route path="/international-apostille" element={<InternationalApostille />} />
+          <Route path="/vehicles-dmv" element={<VehiclesDMV />} />
+          <Route path="/insurance-retirement" element={<InsuranceRetirement />} />
+          <Route path="/wills-trusts-estates" element={<WillsTrustsEstates />} />
+          <Route path="/other-notary" element={<OtherNotary />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
