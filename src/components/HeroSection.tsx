@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Phone, FileCheck } from 'lucide-react';
 import heroImage from '@/assets/hero-notary.jpg';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const HeroSection = () => {
   return (
@@ -24,7 +25,7 @@ const HeroSection = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            Mobile Notary & Loan Signing across Cincinnati–Dayton. 
+            Mobile Notary & Loan Signing across {BUSINESS_CONFIG.serviceArea.primary}. 
             Same-day availability, error-free docs, five-star service.
           </p>
 
@@ -42,9 +43,12 @@ const HeroSection = () => {
               variant="outline-white" 
               size="lg" 
               className="text-lg px-8 py-6"
+              asChild
             >
-              <Phone className="mr-2 h-5 w-5" />
-              Call Now
+              <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                <Phone className="mr-2 h-5 w-5" />
+                Call Now
+              </a>
             </Button>
           </div>
 

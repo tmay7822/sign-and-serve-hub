@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, Menu, X } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ const Header = () => {
         <div className="container mx-auto px-4 flex justify-center items-center">
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4" />
-            <span className="font-medium">(513) 555-SIGN</span>
+            <span className="font-medium">{BUSINESS_CONFIG.phone}</span>
           </div>
         </div>
       </div>
@@ -34,7 +35,7 @@ const Header = () => {
             {/* Logo */}
             <div className="flex items-center">
               <div className="font-bold text-xl text-brand-navy">
-                SignRight Mobile Notary
+                {BUSINESS_CONFIG.name}
               </div>
             </div>
 

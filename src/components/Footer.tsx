@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const Footer = () => {
   const serviceLinks = [
@@ -17,23 +18,23 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="font-bold text-xl mb-4">
-              SignRight Mobile Notary
+              {BUSINESS_CONFIG.name}
             </div>
             <p className="text-white/80 mb-6 leading-relaxed">
-              SignRight Mobile Notary provides mobile notary and loan signing services across Cincinnati–Dayton. 
+              {BUSINESS_CONFIG.name} provides mobile notary and loan signing services across {BUSINESS_CONFIG.serviceArea.primary}. 
               Background-checked, insured, and certified, we deliver accurate documents on your schedule with 
               professional excellence and five-star service.
             </p>
             <div className="flex items-center gap-4">
               <a 
-                href="#" 
+                href={BUSINESS_CONFIG.social.facebook} 
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all duration-300"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a 
-                href="#" 
+                href={BUSINESS_CONFIG.social.linkedin} 
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all duration-300"
                 aria-label="LinkedIn"
               >
@@ -65,15 +66,25 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-brand-gold" />
-                <span className="text-white/80">(513) 555-SIGN</span>
+                <a 
+                  href={`tel:${BUSINESS_CONFIG.phone}`}
+                  className="text-white/80 hover:text-brand-gold transition-colors"
+                >
+                  {BUSINESS_CONFIG.phone}
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-brand-gold" />
-                <span className="text-white/80">info@signrightnotary.com</span>
+                <a 
+                  href={`mailto:${BUSINESS_CONFIG.email}`}
+                  className="text-white/80 hover:text-brand-gold transition-colors"
+                >
+                  {BUSINESS_CONFIG.email}
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="h-5 w-5 text-brand-gold" />
-                <span className="text-white/80">Cincinnati–Dayton Area</span>
+                <span className="text-white/80">{BUSINESS_CONFIG.serviceArea.primary} Area</span>
               </div>
             </div>
           </div>
@@ -85,11 +96,10 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <Clock className="h-5 w-5 text-brand-gold mt-0.5" />
                 <div>
-                  <div>Monday - Friday: 8:00 AM - 8:00 PM</div>
-                  <div>Saturday: 9:00 AM - 6:00 PM</div>
-                  <div>Sunday: 10:00 AM - 4:00 PM</div>
+                  <div>Monday - Friday: {BUSINESS_CONFIG.hours.weekdays}</div>
+                  <div>Saturday - Sunday: {BUSINESS_CONFIG.hours.weekends}</div>
                   <div className="mt-2 text-brand-gold font-medium">
-                    Emergency services available 24/7
+                    Emergency services available {BUSINESS_CONFIG.hours.emergency}
                   </div>
                 </div>
               </div>
@@ -100,7 +110,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-white/80 text-sm">
-            © 2024 SignRight Mobile Notary. All rights reserved.
+            © 2024 {BUSINESS_CONFIG.name}. All rights reserved.
           </div>
           <div className="flex items-center gap-6 mt-4 md:mt-0">
             <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
