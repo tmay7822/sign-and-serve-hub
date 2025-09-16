@@ -31,6 +31,13 @@ import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
 import WillsEstatesWarrenMason from "./pages/locations/WillsEstatesWarrenMason";
+import NotaryCincinnati45202 from "./pages/locations/NotaryCincinnati45202";
+import NotaryMason45040 from "./pages/locations/NotaryMason45040";
+import NotaryDayton45402 from "./pages/locations/NotaryDayton45402";
+import NotaryWestChester45069 from "./pages/locations/NotaryWestChester45069";
+import NotarySpringdale45246 from "./pages/locations/NotarySpringdale45246";
+import NotaryKettering45429 from "./pages/locations/NotaryKettering45429";
+import NotaryLebanon45036 from "./pages/locations/NotaryLebanon45036";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +81,14 @@ const App = () => (
           <Route path="/locations/loan-signing-dayton-montgomery" element={<LoanSigningDaytonMontgomery />} />
           <Route path="/locations/general-notary-hamilton-cincinnati" element={<GeneralNotaryHamiltonCincinnati />} />
           <Route path="/locations/wills-estates-warren-mason" element={<WillsEstatesWarrenMason />} />
+          {/* New ZIP Code Specific Pages */}
+          <Route path="/notary-cincinnati-45202" element={<NotaryCincinnati45202 />} />
+          <Route path="/notary-mason-45040" element={<NotaryMason45040 />} />
+          <Route path="/notary-dayton-45402" element={<NotaryDayton45402 />} />
+          <Route path="/notary-west-chester-45069" element={<NotaryWestChester45069 />} />
+          <Route path="/notary-springdale-45246" element={<NotarySpringdale45246 />} />
+          <Route path="/notary-kettering-45429" element={<NotaryKettering45429 />} />
+          <Route path="/notary-lebanon-45036" element={<NotaryLebanon45036 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
