@@ -5,12 +5,14 @@ import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { Home, Clock, Shield, MapPin, DollarSign, FileCheck } from 'lucide-react';
 
+import { BUSINESS_CONFIG } from '@/config/business';
+
 const LoanSignings = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with Service Details Above Fold */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -20,18 +22,46 @@ const LoanSignings = () => {
             <p className="text-xl mb-8 opacity-90">
               Professional loan document signings for buyers, sellers, refinances, HELOCs, and investor transactions across Ohio.
             </p>
+            
+            {/* Service Details Above Fold */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Loan Package Types:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Purchase (Buyer & Seller)</li>
+                  <li>• Refinance (Rate & Term, Cash-Out)</li>
+                  <li>• HELOC & Home Equity Loans</li>
+                  <li>• Investor & Commercial Loans</li>
+                  <li>• Reverse Mortgages</li>
+                  <li>• Loan Modifications</li>
+                </ul>
+              </div>
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">What We Provide:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Same-day and emergency service</li>
+                  <li>• Error-free document execution</li>
+                  <li>• Triple-checked processing</li>
+                  <li>• Professional signing guidance</li>
+                  <li>• Mobile service to your location</li>
+                  <li>• Timely document return</li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary">
                 Get a Free Quote
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
-                Call (513) 555-SIGN
+              <Button size="lg" variant="outline-white">
+                Call {BUSINESS_CONFIG.phone}
               </Button>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Trust Signals - Moved Below */}
       <TrustSignals />
 
       {/* Service Details */}

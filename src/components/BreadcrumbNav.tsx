@@ -35,7 +35,10 @@ const BreadcrumbNav = () => {
       'insurance-retirement': 'Insurance & Retirement',
       'wills-trusts-estates': 'Wills, Trusts & Estates',
       'other-notary': 'Other Notarizations',
-      'blog': 'Blog',
+      'poa-warren-lebanon': 'Power of Attorney Warren County Lebanon',
+      'loan-signing-dayton-montgomery': 'Loan Signing Dayton Montgomery County',
+      'general-notary-hamilton-cincinnati': 'General Notary Hamilton County Cincinnati',
+      'wills-estates-warren-mason': 'Wills Estates Warren County Mason',
     };
     return names[path] || path.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   };

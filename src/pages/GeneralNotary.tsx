@@ -4,6 +4,7 @@ import PopupForm from '@/components/PopupForm';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { FileText, Clock, Shield, MapPin } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const GeneralNotary = () => {
   return (
@@ -52,7 +53,7 @@ const GeneralNotary = () => {
                 Get a Free Quote
               </Button>
               <Button size="lg" variant="outline-white">
-                Call (513) 555-SIGN
+                Call {BUSINESS_CONFIG.phone}
               </Button>
             </div>
           </div>

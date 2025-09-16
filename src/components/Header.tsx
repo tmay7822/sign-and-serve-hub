@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, Menu, X } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
+
+import logoImage from '@/assets/signed-on-time-logo.jpg';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,9 +38,14 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <a href="/" className="font-bold text-xl text-brand-navy hover:text-brand-blue transition-colors">
+              <Link to="/" className="flex items-center gap-3 font-bold text-xl text-brand-navy hover:text-brand-blue transition-colors">
+                <img 
+                  src={logoImage} 
+                  alt={BUSINESS_CONFIG.logo.alt}
+                  className="h-10 w-auto"
+                />
                 {BUSINESS_CONFIG.name}
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}

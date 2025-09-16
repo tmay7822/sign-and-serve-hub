@@ -29,6 +29,8 @@ import OtherNotary from "./pages/OtherNotary";
 import Blog from "./pages/Blog";
 import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
+import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
+import WillsEstatesWarrenMason from "./pages/locations/WillsEstatesWarrenMason";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +68,12 @@ const App = () => (
           {/* Location-Specific Landing Pages */}
           <Route path="/power-of-attorney-warren-county-lebanon" element={<POAWarrenLebanon />} />
           <Route path="/loan-signing-dayton-montgomery-county" element={<LoanSigningDaytonMontgomery />} />
+          <Route path="/general-notary-hamilton-county-cincinnati" element={<GeneralNotaryHamiltonCincinnati />} />
+          <Route path="/wills-estates-warren-county-mason" element={<WillsEstatesWarrenMason />} />
+          <Route path="/locations/poa-warren-lebanon" element={<POAWarrenLebanon />} />
+          <Route path="/locations/loan-signing-dayton-montgomery" element={<LoanSigningDaytonMontgomery />} />
+          <Route path="/locations/general-notary-hamilton-cincinnati" element={<GeneralNotaryHamiltonCincinnati />} />
+          <Route path="/locations/wills-estates-warren-mason" element={<WillsEstatesWarrenMason />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

@@ -3,41 +3,41 @@
 
 export const BUSINESS_CONFIG = {
   // Basic Business Information
-  name: "[BUSINESS_NAME]", // e.g., "SignRight Mobile Notary"
-  tagline: "Signed Right. Signed On Time.", // Your main headline
+  name: "Signed On Time", 
+  tagline: "Your Trusted Mobile Notary Experts", 
   
   // Contact Information
-  phone: "[PHONE_NUMBER]", // e.g., "(513) 555-SIGN"
-  email: "[EMAIL_ADDRESS]", // e.g., "info@signright.com"
-  website: "[WEBSITE_URL]", // e.g., "https://signright.com"
+  phone: "(513) 226-9052", 
+  email: "Terry@SignedOnTime.com", 
+  website: "https://www.SignedOnTime.com", 
   
   // Location & Service Area
   address: {
-    street: "[STREET_ADDRESS]", // e.g., "123 Main Street"
-    city: "[CITY]", // e.g., "Cincinnati"
-    state: "[STATE]", // e.g., "OH"
-    zip: "[ZIP_CODE]", // e.g., "45202"
+    street: "Mobile Service", 
+    city: "Cincinnati", 
+    state: "OH", 
+    zip: "45202", 
   },
   
   // Service Area
   serviceArea: {
-    primary: "[PRIMARY_AREA]", // e.g., "Cincinnati-Dayton"
-    counties: "[COUNTIES_SERVED]", // e.g., "Hamilton, Warren, Montgomery, Butler, Greene, Clinton"
-    radius: "[SERVICE_RADIUS]", // e.g., "50 miles"
+    primary: "Cincinnati-Dayton Metro", 
+    counties: "Hamilton, Warren, Montgomery, Butler, Greene, Clinton", 
+    radius: "50 miles", 
   },
   
   // Business Hours
   hours: {
-    weekdays: "[WEEKDAY_HOURS]", // e.g., "8:00 AM - 8:00 PM"
-    weekends: "[WEEKEND_HOURS]", // e.g., "9:00 AM - 6:00 PM"
-    emergency: "[EMERGENCY_HOURS]", // e.g., "24/7 by appointment"
+    weekdays: "8:00 AM - 8:00 PM", 
+    weekends: "9:00 AM - 6:00 PM", 
+    emergency: "24/7 by appointment", 
   },
   
   // Social Media
   social: {
-    facebook: "[FACEBOOK_URL]", // e.g., "https://facebook.com/signright"
-    linkedin: "[LINKEDIN_URL]", // e.g., "https://linkedin.com/company/signright"
-    google: "[GOOGLE_BUSINESS_URL]", // e.g., "https://g.page/signright"
+    facebook: "https://facebook.com/signedontime", 
+    linkedin: "https://linkedin.com/company/signedontime", 
+    google: "https://g.page/signedontime", 
   },
   
   // Business Credentials
@@ -50,13 +50,13 @@ export const BUSINESS_CONFIG = {
   
   // Logo & Branding
   logo: {
-    url: "[LOGO_URL]", // URL or path to logo
-    alt: "[LOGO_ALT_TEXT]", // Alt text for logo
+    url: "/src/assets/signed-on-time-logo.jpg", 
+    alt: "Signed On Time Mobile Notary Services", 
   },
 
   // Color Theme Options for Whitelabel
   theme: {
-    selected: "professional-blue", // Options: professional-blue, elegant-black-red, warm-gold, fresh-green, modern-purple
+    selected: "signed-red-black", // Options: professional-blue, elegant-black-red, warm-gold, fresh-green, modern-purple, signed-red-black
     options: {
       "professional-blue": {
         name: "Professional Blue",
@@ -112,15 +112,26 @@ export const BUSINESS_CONFIG = {
         brandBlue: "230 80% 55%",
         brandLight: "260 40% 96%",
         brandGold: "43 96% 56%"
+      },
+      "signed-red-black": {
+        name: "Signed On Time Red & Black",
+        primary: "0 0% 15%",         // Deep black
+        primaryForeground: "0 0% 100%",
+        accent: "0 84% 60%",         // Bright red
+        accentForeground: "0 0% 100%",
+        brandNavy: "0 0% 15%",
+        brandBlue: "0 84% 60%",
+        brandLight: "0 0% 97%",
+        brandGold: "43 96% 56%"
       }
     }
   },
   
   // SEO Information
   seo: {
-    metaTitle: "[META_TITLE]", // e.g., "Mobile Notary Services | Cincinnati-Dayton"
-    metaDescription: "[META_DESCRIPTION]", // e.g., "Professional mobile notary and loan signing services..."
-    keywords: "[SEO_KEYWORDS]", // e.g., "mobile notary, loan signing, Cincinnati, Dayton"
+    metaTitle: "Mobile Notary Services | Cincinnati-Dayton | Signed On Time", 
+    metaDescription: "Professional mobile notary and loan signing services throughout Cincinnati, Dayton, and surrounding counties. Same-day service available. Call (513) 226-9052.", 
+    keywords: "mobile notary, loan signing, Cincinnati, Dayton, Hamilton County, Warren County, Montgomery County, Butler County, notary public, power of attorney", 
   }
 };
 
