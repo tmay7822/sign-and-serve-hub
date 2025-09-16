@@ -10,7 +10,7 @@ const BusinessServices = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with Service Details Above Fold */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -20,6 +20,33 @@ const BusinessServices = () => {
             <p className="text-xl mb-8 opacity-90">
               Professional I-9 verification, vendor agreements, and corporate document notarization across Ohio.
             </p>
+            
+            {/* Service Details Above Fold */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Business Documents:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• I-9 Employment Verification</li>
+                  <li>• Corporate Bylaws & Resolutions</li>
+                  <li>• Vendor & Supplier Agreements</li>
+                  <li>• Non-Disclosure Agreements</li>
+                  <li>• Operating Agreements (LLC)</li>
+                  <li>• Employment Contracts</li>
+                </ul>
+              </div>
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Service:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Same-day I-9 appointments</li>
+                  <li>• USCIS-compliant verification</li>
+                  <li>• Mobile to your office location</li>
+                  <li>• Professional document handling</li>
+                  <li>• Flexible business hours</li>
+                  <li>• Bulk signing discounts</li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary">
                 Get a Free Quote
@@ -32,6 +59,7 @@ const BusinessServices = () => {
         </div>
       </section>
 
+      {/* Trust Signals - Moved Below */}
       <TrustSignals />
 
       {/* Service Details */}

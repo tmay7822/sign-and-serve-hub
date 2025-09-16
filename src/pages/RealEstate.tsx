@@ -10,7 +10,7 @@ const RealEstate = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with Service Details Above Fold */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -20,6 +20,33 @@ const RealEstate = () => {
             <p className="text-xl mb-8 opacity-90">
               Professional notarization for deeds, closings, investor documents, and property transfers across Ohio.
             </p>
+            
+            {/* Service Details Above Fold */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Real Estate Documents:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Warranty & Quitclaim Deeds</li>
+                  <li>• Purchase & Sale Agreements</li>
+                  <li>• Assignment Contracts</li>
+                  <li>• Lease Agreements</li>
+                  <li>• Property Disclosure Forms</li>
+                  <li>• Title Transfer Documents</li>
+                </ul>
+              </div>
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Service:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Same-day and emergency service</li>
+                  <li>• Meet at properties or offices</li>
+                  <li>• Investor-friendly scheduling</li>
+                  <li>• Experienced with all documents</li>
+                  <li>• Competitive bulk signing rates</li>
+                  <li>• Weekend closing support</li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary">
                 Get a Free Quote
@@ -32,6 +59,7 @@ const RealEstate = () => {
         </div>
       </section>
 
+      {/* Trust Signals - Moved Below */}
       <TrustSignals />
 
       {/* Service Details */}

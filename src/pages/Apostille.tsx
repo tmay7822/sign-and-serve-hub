@@ -10,7 +10,7 @@ const Apostille = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with Service Details Above Fold */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -20,6 +20,33 @@ const Apostille = () => {
             <p className="text-xl mb-8 opacity-90">
               Document authentication for international use and recognition across Ohio and beyond.
             </p>
+            
+            {/* Service Details Above Fold */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Common Apostille Documents:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Birth & Death Certificates</li>
+                  <li>• Marriage & Divorce Certificates</li>
+                  <li>• Educational Diplomas & Transcripts</li>
+                  <li>• Corporate Documents</li>
+                  <li>• Power of Attorney</li>
+                  <li>• FBI Background Checks</li>
+                </ul>
+              </div>
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Process:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Document eligibility verification</li>
+                  <li>• Professional notarization</li>
+                  <li>• Ohio Secretary of State submission</li>
+                  <li>• Expedited processing available</li>
+                  <li>• 100+ Hague Convention countries</li>
+                  <li>• Complete international compliance</li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary">
                 Get a Free Quote
@@ -32,6 +59,7 @@ const Apostille = () => {
         </div>
       </section>
 
+      {/* Trust Signals - Moved Below */}
       <TrustSignals />
 
       {/* Service Details */}
