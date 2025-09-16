@@ -20,118 +20,91 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'Understanding Power of Attorney Documents: A Complete Guide',
-    excerpt: 'Learn everything you need to know about Power of Attorney documents, when you need them, and how to get them properly notarized.',
-    content: `Power of Attorney (POA) documents are among the most important legal instruments you can have. They allow you to designate someone you trust to make decisions on your behalf when you cannot do so yourself.
-
-## Types of Power of Attorney
-
-**General Power of Attorney:** Gives broad powers to your agent to act on your behalf in financial and legal matters.
-
-**Limited Power of Attorney:** Restricts your agent's authority to specific tasks or time periods.
-
-**Durable Power of Attorney:** Remains valid even if you become incapacitated.
-
-**Medical Power of Attorney:** Specifically for healthcare decisions.
-
-## When Do You Need a POA?
-
-- Planning for future incapacity
-- Managing finances while traveling
-- Real estate transactions
-- Business operations
-- Military deployment
-
-## Getting Your POA Notarized
-
-All Power of Attorney documents must be notarized to be legally valid. Our mobile notary service ensures your documents are executed correctly with proper witness requirements where needed.`,
+    title: 'What to Bring to a Notarization',
+    excerpt: 'A quick checklist for a smooth notarization—IDs, witnesses, signatures, and common mistakes to avoid.',
+    content: 'Getting a document notarized is simple when you know what to bring. Use this short checklist to save time and avoid re-signs.',
     author: 'Professional Notary Team',
     date: '2024-01-15',
-    readTime: '5 min read',
-    category: 'Legal Documents',
-    slug: 'understanding-power-of-attorney-documents'
+    readTime: '4 min read',
+    category: 'General Notary',
+    slug: 'general-notary-what-to-bring'
   },
   {
     id: '2',
-    title: '10 Essential Documents Every College Student Should Have Notarized',
-    excerpt: 'When your child turns 18, you lose legal access to their information. Here are the key documents every college-bound student needs.',
-    content: `The moment your child turns 18, they become a legal adult, and you lose automatic access to their medical, educational, and financial information. Here are the essential notarized documents every college student should have:
-
-## Medical Documents
-1. **HIPAA Authorization** - Allows parents to access medical information
-2. **Medical Power of Attorney** - Authorizes medical decisions in emergencies
-3. **Mental Health Treatment Authorization** - Critical for counseling services
-
-## Educational Documents
-4. **FERPA Release** - Grants access to educational records
-5. **Emergency Contact Authorization** - Ensures schools can contact parents
-
-## Financial Documents
-6. **Limited Financial Power of Attorney** - For banking and financial aid matters
-7. **Emergency Fund Access Authorization**
-
-## Travel and General
-8. **Travel Consent Forms** - For international trips and emergencies
-9. **General Authorization for Emergency Decisions**
-10. **Technology and Social Media Access** - For emergency account access
-
-## Getting These Documents Notarized
-
-We provide mobile notary services directly to college campuses, dorms, and homes. All documents can be prepared and notarized in one convenient appointment.`,
-    author: 'College Planning Specialist',
-    date: '2024-01-10',
-    readTime: '7 min read',
-    category: 'College Planning',
-    slug: 'essential-documents-college-students-notarized'
+    title: 'Mobile Notary vs. Shipping Store—Which Is Better?',
+    excerpt: 'Compare mobile notary vs shipping store. Cost, convenience, privacy, witnesses, and turnaround explained.',
+    content: 'Both options work. The right choice depends on your document and your schedule.',
+    author: 'Professional Notary Team',
+    date: '2024-01-14',
+    readTime: '3 min read',
+    category: 'General Notary',
+    slug: 'mobile-vs-shipping-store'
   },
   {
     id: '3',
-    title: 'Loan Signing Appointments: What to Expect and How to Prepare',
-    excerpt: 'A complete guide to loan signing appointments, from preparation to completion, ensuring a smooth closing process.',
-    content: `Loan signing appointments are a critical step in your real estate transaction. Here's everything you need to know to prepare for a successful signing.
-
-## Before Your Appointment
-
-**Gather Required Documents:**
-- Government-issued photo ID
-- Proof of homeowner's insurance
-- Wire transfer confirmation (if applicable)
-- Any additional documents requested by your lender
-
-**Prepare Your Space:**
-- Ensure good lighting for document review
-- Have a flat surface for signing
-- Keep children and distractions to a minimum
-
-## During the Signing
-
-**Document Review:**
-We'll walk through each document, explaining its purpose without providing legal advice. Take your time to read and understand what you're signing.
-
-**Key Documents Include:**
-- Promissory Note
-- Deed of Trust/Mortgage
-- Closing Disclosure
-- Various affidavits and declarations
-
-**The Process:**
-- Identity verification
-- Document explanation
-- Signature and notarization
-- Initial review for completeness
-
-## After Signing
-
-Documents are typically returned to the title company or lender within hours. Your loan funds will be released according to your state's requirements.
-
-## Questions?
-
-Our experienced loan signing agents are certified and trained to ensure accuracy and completeness. We're here to make your closing as smooth as possible.`,
+    title: 'Simple Guide to HCPOA and Living Will',
+    excerpt: 'Understand Healthcare Power of Attorney and Living Will, who signs, witnesses, and how a mobile notary helps.',
+    content: 'Healthcare decisions matter. Two documents help your family act with clarity.',
+    author: 'Healthcare Notary Specialist',
+    date: '2024-01-13',
+    readTime: '5 min read',
+    category: 'Healthcare',
+    slug: 'hcpoa-living-will-guide'
+  },
+  {
+    id: '4',
+    title: 'Hospital & Care Facility Notarizations—What to Expect',
+    excerpt: 'On-site notarizations in hospitals, rehab, and nursing homes. What to expect, IDs, witnesses, and scheduling.',
+    content: 'We routinely meet patients and families on-site. Here\'s how to keep it smooth.',
+    author: 'Healthcare Notary Specialist',
+    date: '2024-01-12',
+    readTime: '4 min read',
+    category: 'Healthcare',
+    slug: 'hospital-notary-what-to-expect'
+  },
+  {
+    id: '5',
+    title: 'Wills, Trusts & POA—Notary Checklist',
+    excerpt: 'A practical checklist for notarizing estate documents—IDs, witnesses, readiness, and signing tips.',
+    content: 'Estate documents need clean execution. Use this quick checklist.',
+    author: 'Estate Planning Specialist',
+    date: '2024-01-11',
+    readTime: '5 min read',
+    category: 'Estate Planning',
+    slug: 'wills-trusts-poa-checklist'
+  },
+  {
+    id: '6',
+    title: 'What Happens at a Loan Signing?',
+    excerpt: 'Buyer, seller, refi, or HELOC—what to expect at your loan signing. IDs, signatures, scanbacks, and timing.',
+    content: 'Whether you\'re buying, selling, or refinancing, here\'s the basic flow.',
     author: 'Certified Loan Signing Agent',
-    date: '2024-01-05',
-    readTime: '6 min read',
+    date: '2024-01-10',
+    readTime: '4 min read',
     category: 'Real Estate',
-    slug: 'loan-signing-appointments-what-to-expect'
+    slug: 'what-happens-loan-signing'
+  },
+  {
+    id: '7',
+    title: 'How the Apostille Process Works (Plain English)',
+    excerpt: 'From notarization to state authentication—see the simple apostille path for Ohio residents.',
+    content: 'If your document will be used overseas in a Hague-member country, you may need an apostille.',
+    author: 'International Documents Specialist',
+    date: '2024-01-09',
+    readTime: '5 min read',
+    category: 'Apostille',
+    slug: 'how-apostille-works'
+  },
+  {
+    id: '8',
+    title: 'Remote Hire I-9—Simple Steps for Employers & Employees',
+    excerpt: 'Remote hire I-9 support. What employers and employees need, IDs, and quick appointments.',
+    content: 'When teams work hybrid or fully remote, you can appoint an authorized representative to complete Section 2 of the I-9.',
+    author: 'Business Services Specialist',
+    date: '2024-01-08',
+    readTime: '4 min read',
+    category: 'Business Services',
+    slug: 'remote-hire-i9-steps'
   }
 ];
 
