@@ -11,7 +11,7 @@ const EstatePlans = () => {
       <Header />
       
       {/* Hero Section with Service Details Above Fold */}
-      <section className="py-20 bg-gradient-primary text-white">
+      <section className="py-20 bg-brand-light text-brand-navy">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
