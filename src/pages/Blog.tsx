@@ -105,6 +105,116 @@ const blogPosts: BlogPost[] = [
     readTime: '4 min read',
     category: 'Business Services',
     slug: 'remote-hire-i9-steps'
+  },
+  {
+    id: '9',
+    title: 'College 18+ Starter Pack—FERPA, HIPAA & POA Forms',
+    excerpt: 'Essential legal documents every 18+ college student needs. FERPA waivers, HIPAA forms, and POA explained.',
+    content: 'When your child turns 18, certain documents help maintain family access to important information.',
+    author: 'Educational Notary Specialist',
+    date: '2024-01-07',
+    readTime: '5 min read',
+    category: 'College/18+',
+    slug: 'college-18-plus-starter-pack'
+  },
+  {
+    id: '10',
+    title: 'Title Transfer Checklist—Avoid These 7 Mistakes',
+    excerpt: 'Avoid DMV rejections. Use this title transfer checklist: IDs, liens, odometer, signatures, and notarization.',
+    content: 'Get the title done right the first time. Here\'s what causes most rejections.',
+    author: 'Vehicle Notary Specialist',
+    date: '2024-01-06',
+    readTime: '4 min read',
+    category: 'Vehicles/DMV',
+    slug: 'title-transfer-checklist'
+  },
+  {
+    id: '11',
+    title: 'Affidavit vs. Jurat vs. Acknowledgment—Explained',
+    excerpt: 'The difference between affidavits, jurats, and acknowledgments in simple terms. Which do you need?',
+    content: 'These three types of notarizations serve different purposes. Here\'s how to tell them apart.',
+    author: 'Legal Documents Specialist',
+    date: '2024-01-05',
+    readTime: '3 min read',
+    category: 'Legal/Court',
+    slug: 'affidavit-jurat-acknowledgment'
+  },
+  {
+    id: '12',
+    title: 'Beneficiary Change Forms—What to Know',
+    excerpt: 'When to update beneficiaries on 401k, IRA, life insurance. Mobile notary for quick form completion.',
+    content: 'Life changes mean beneficiary updates. Here\'s when and how to handle these important forms.',
+    author: 'Insurance Specialist',
+    date: '2024-01-04',
+    readTime: '4 min read',
+    category: 'Insurance/Retirement',
+    slug: 'beneficiary-change-forms'
+  },
+  {
+    id: '13',
+    title: 'Real Estate Investor Notarizations Made Simple',
+    excerpt: 'Common investor documents—assignments, POAs, deeds, and contracts. Quick mobile service for deal closings.',
+    content: 'Investors need fast, reliable notarization for time-sensitive deals.',
+    author: 'Real Estate Specialist',
+    date: '2024-01-03',
+    readTime: '5 min read',
+    category: 'Business Services',
+    slug: 'investor-notarizations'
+  },
+  {
+    id: '14',
+    title: 'Seller Signing Day—What to Expect & Bring',
+    excerpt: 'Seller signing checklist—what to bring, expect, and sign on closing day. Mobile notary available.',
+    content: 'Congratulations on your sale! Here\'s how to close smoothly.',
+    author: 'Real Estate Closing Agent',
+    date: '2024-01-02',
+    readTime: '4 min read',
+    category: 'Real Estate',
+    slug: 'seller-signing-day'
+  },
+  {
+    id: '15',
+    title: 'Scanback Timing Explained for Borrowers',
+    excerpt: 'When do scanbacks happen after loan signings? Timeline from signing to funding explained.',
+    content: 'After you sign, documents move quickly through the funding pipeline.',
+    author: 'Loan Signing Agent',
+    date: '2024-01-01',
+    readTime: '3 min read',
+    category: 'Real Estate',
+    slug: 'scanback-timing-explained'
+  },
+  {
+    id: '16',
+    title: 'Apostille Processing Times & Rush Options',
+    excerpt: 'Ohio apostille timing: regular vs rush service, what affects speed, and how to plan ahead.',
+    content: 'Planning ahead saves time and money when getting documents apostilled.',
+    author: 'International Documents Specialist',
+    date: '2023-12-30',
+    readTime: '4 min read',
+    category: 'Apostille',
+    slug: 'apostille-processing-times'
+  },
+  {
+    id: '17',
+    title: 'In-Person vs. RON vs. RIN—Which Option Is Right for You?',
+    excerpt: 'Compare in-person, RON, and RIN notarization options. Which is right for your documents?',
+    content: 'Multiple notarization options exist. Here\'s when to use each.',
+    author: 'Technology Notary Specialist',
+    date: '2023-12-29',
+    readTime: '5 min read',
+    category: 'General Notary',
+    slug: 'notary-vs-ron-rin'
+  },
+  {
+    id: '18',
+    title: 'Business Contract Notarizations—When and Why',
+    excerpt: 'When do business contracts need notarization? Common agreements, legal requirements, and benefits.',
+    content: 'Not all contracts require notarization, but many benefit from it.',
+    author: 'Business Contracts Specialist',
+    date: '2023-12-28',
+    readTime: '4 min read',
+    category: 'Business Services',
+    slug: 'business-contract-notarization'
   }
 ];
 
