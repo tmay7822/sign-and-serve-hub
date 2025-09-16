@@ -57,7 +57,7 @@ const WhatHappensLoanSigning = () => {
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Need a flexible appointment?</h3>
                 <p className="mb-4">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong>. We cover {BUSINESS_CONFIG.serviceArea}—nights and weekends when available.
+                  Call <strong>{BUSINESS_CONFIG.phone}</strong>. We cover {BUSINESS_CONFIG.serviceArea.primary}—nights and weekends when available.
                 </p>
                 <Button size="lg" className="mr-4">
                   Get a Free Quote

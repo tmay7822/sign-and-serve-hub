@@ -55,7 +55,7 @@ const InvestorNotarizations = () => {
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Need flexible scheduling?</h3>
                 <p className="mb-4">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea}—evenings and weekends available.
+                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea.primary}—evenings and weekends available.
                 </p>
                 <Button size="lg" className="mr-4">
                   Get a Free Quote

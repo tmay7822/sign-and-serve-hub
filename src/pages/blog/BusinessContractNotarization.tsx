@@ -61,7 +61,7 @@ const BusinessContractNotarization = () => {
                 <li><strong>Corporate policy:</strong> Internal requirements for high-value deals</li>
               </ul>
 
-              <p>We handle corporate signings at offices throughout {BUSINESS_CONFIG.serviceArea}.</p>
+              <p>We handle corporate signings at offices throughout {BUSINESS_CONFIG.serviceArea.primary}.</p>
 
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Book corporate notary service</h3>

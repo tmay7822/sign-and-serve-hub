@@ -52,7 +52,7 @@ const HospitalNotaryWhatToExpect = () => {
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Need a same-day visit?</h3>
                 <p className="mb-4">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong>. We cover {BUSINESS_CONFIG.serviceArea} and facilities throughout the region.
+                  Call <strong>{BUSINESS_CONFIG.phone}</strong>. We cover {BUSINESS_CONFIG.serviceArea.primary} and facilities throughout the region.
                 </p>
                 <Button size="lg" className="mr-4">
                   Get a Free Quote

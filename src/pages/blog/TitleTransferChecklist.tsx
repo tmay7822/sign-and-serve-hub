@@ -59,7 +59,7 @@ const TitleTransferChecklist = () => {
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Need a mobile notary?</h3>
                 <p className="mb-4">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote for service across {BUSINESS_CONFIG.serviceArea}.
+                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote for service across {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
                 <Button size="lg" className="mr-4">
                   Get a Free Quote

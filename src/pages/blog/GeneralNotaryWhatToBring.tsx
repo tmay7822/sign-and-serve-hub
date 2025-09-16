@@ -48,7 +48,7 @@ const GeneralNotaryWhatToBring = () => {
                 <li><strong>Witnesses (if required):</strong> some forms need 1–2 disinterested witnesses. Ask us if you need help coordinating.</li>
               </ul>
 
-              <h2>Common documents we notarize in {BUSINESS_CONFIG.serviceArea}</h2>
+              <h2>Common documents we notarize in {BUSINESS_CONFIG.serviceArea.primary}</h2>
               <ul>
                 <li>Affidavits and sworn statements</li>
                 <li>Power of Attorney (POA)</li>
@@ -67,7 +67,7 @@ const GeneralNotaryWhatToBring = () => {
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Need help now?</h3>
                 <p className="mb-4">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea}—same-day and after-hours when available.
+                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea.primary}—same-day and after-hours when available.
                 </p>
                 <Button size="lg" className="mr-4">
                   Get a Free Quote
