@@ -10,7 +10,7 @@ const GeneralNotary = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with Service Details Above Fold */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -20,76 +20,40 @@ const GeneralNotary = () => {
             <p className="text-xl mb-8 opacity-90">
               Mobile, on-time, and error-free general notary services across Hamilton, Warren, Montgomery, and Butler Counties.
             </p>
+            
+            {/* Service Details Above Fold */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Common Services Include:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Affidavits and sworn statements</li>
+                  <li>• Power of attorney documents</li>
+                  <li>• Consent forms and permissions</li>
+                  <li>• Employment and background forms</li>
+                  <li>• Immigration and travel documents</li>
+                  <li>• Vehicle title transfers</li>
+                </ul>
+              </div>
+              <div className="bg-white/10 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg mb-3 text-brand-gold">What We Provide:</h3>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Same-day and after-hours service</li>
+                  <li>• Mobile service to your location</li>
+                  <li>• Professional document verification</li>
+                  <li>• Government ID verification</li>
+                  <li>• Proper witness coordination</li>
+                  <li>• Error-free execution</li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary">
                 Get a Free Quote
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
+              <Button size="lg" variant="outline-white">
                 Call (513) 555-SIGN
               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <TrustSignals />
-
-      {/* Service Details */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">
-              What We Do in Your Area
-            </h2>
-            
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <FileText className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">Acknowledgments & Jurats</h3>
-                    <p className="text-muted-foreground">Professional document verification and oath administration for legal compliance.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <Clock className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">Same-Day Availability</h3>
-                    <p className="text-muted-foreground">Emergency and after-hours appointments available across all service areas.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <Shield className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">Verified & Insured</h3>
-                    <p className="text-muted-foreground">Background checked, E&O insured, and NNA certified for your protection.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <MapPin className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">Mobile Service</h3>
-                    <p className="text-muted-foreground">We come to homes, offices, hospitals, senior centers, and anywhere you need us.</p>
-                  </div>
-                </div>
-                
-                <div className="bg-brand-light/30 p-6 rounded-lg">
-                  <h4 className="font-semibold text-brand-navy mb-3">Common Services Include:</h4>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Affidavits and sworn statements</li>
-                    <li>• Power of attorney documents</li>
-                    <li>• Consent forms and permissions</li>
-                    <li>• Employment and background forms</li>
-                    <li>• Immigration and travel documents</li>
-                    <li>• Vehicle title transfers</li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -118,6 +82,58 @@ const GeneralNotary = () => {
               <div>
                 <h4 className="font-semibold text-brand-navy mb-3">Montgomery County</h4>
                 <p className="text-sm text-muted-foreground">Dayton, Kettering, Centerville, Vandalia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Signals - Moved Below */}
+      <TrustSignals />
+
+      {/* Additional Service Details */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">
+              Professional & Reliable Service
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <FileText className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Acknowledgments & Jurats</h3>
+                    <p className="text-muted-foreground">Professional document verification and oath administration for legal compliance.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <Clock className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Same-Day Availability</h3>
+                    <p className="text-muted-foreground">Emergency and after-hours appointments available across all service areas.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <MapPin className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Mobile Service</h3>
+                    <p className="text-muted-foreground">We come to homes, offices, hospitals, senior centers, and anywhere you need us.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <Shield className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Verified & Insured</h3>
+                    <p className="text-muted-foreground">Background checked, E&O insured, and NNA certified for your protection.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

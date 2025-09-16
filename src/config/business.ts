@@ -53,6 +53,68 @@ export const BUSINESS_CONFIG = {
     url: "[LOGO_URL]", // URL or path to logo
     alt: "[LOGO_ALT_TEXT]", // Alt text for logo
   },
+
+  // Color Theme Options for Whitelabel
+  theme: {
+    selected: "professional-blue", // Options: professional-blue, elegant-black-red, warm-gold, fresh-green, modern-purple
+    options: {
+      "professional-blue": {
+        name: "Professional Blue",
+        primary: "213 94% 28%",      // Navy blue
+        primaryForeground: "0 0% 100%",
+        accent: "213 85% 45%",       // Lighter blue
+        accentForeground: "0 0% 100%",
+        brandNavy: "213 94% 28%",
+        brandBlue: "213 85% 45%",
+        brandLight: "213 45% 92%",
+        brandGold: "43 96% 56%"
+      },
+      "elegant-black-red": {
+        name: "Elegant Black & Red",
+        primary: "0 0% 9%",          // Deep black
+        primaryForeground: "0 0% 100%",
+        accent: "0 84% 50%",         // Bold red
+        accentForeground: "0 0% 100%",
+        brandNavy: "0 0% 9%",
+        brandBlue: "0 84% 50%",
+        brandLight: "0 0% 96%",
+        brandGold: "43 96% 56%"
+      },
+      "warm-gold": {
+        name: "Warm Gold & Brown",
+        primary: "30 25% 20%",       // Rich brown
+        primaryForeground: "0 0% 100%",
+        accent: "43 96% 56%",        // Gold
+        accentForeground: "30 25% 20%",
+        brandNavy: "30 25% 20%",
+        brandBlue: "43 96% 56%",
+        brandLight: "43 50% 95%",
+        brandGold: "43 96% 56%"
+      },
+      "fresh-green": {
+        name: "Fresh Green & Teal",
+        primary: "158 64% 24%",      // Forest green
+        primaryForeground: "0 0% 100%",
+        accent: "171 84% 35%",       // Teal
+        accentForeground: "0 0% 100%",
+        brandNavy: "158 64% 24%",
+        brandBlue: "171 84% 35%",
+        brandLight: "158 40% 96%",
+        brandGold: "43 96% 56%"
+      },
+      "modern-purple": {
+        name: "Modern Purple & Blue",
+        primary: "260 60% 30%",      // Deep purple
+        primaryForeground: "0 0% 100%",
+        accent: "230 80% 55%",       // Blue purple
+        accentForeground: "0 0% 100%",
+        brandNavy: "260 60% 30%",
+        brandBlue: "230 80% 55%",
+        brandLight: "260 40% 96%",
+        brandGold: "43 96% 56%"
+      }
+    }
+  },
   
   // SEO Information
   seo: {

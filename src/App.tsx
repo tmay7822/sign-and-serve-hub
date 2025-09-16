@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ThemeProvider from "@/components/ThemeProvider";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import Index from "./pages/Index";
 import GeneralNotary from "./pages/GeneralNotary";
 import LoanSignings from "./pages/LoanSignings";
@@ -24,16 +26,21 @@ import VehiclesDMV from "./pages/VehiclesDMV";
 import InsuranceRetirement from "./pages/InsuranceRetirement";
 import WillsTrustsEstates from "./pages/WillsTrustsEstates";
 import OtherNotary from "./pages/OtherNotary";
+import Blog from "./pages/Blog";
+import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
+import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <BreadcrumbNav />
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/general-notary" element={<GeneralNotary />} />
           <Route path="/loan-signings" element={<LoanSignings />} />
@@ -55,11 +62,16 @@ const App = () => (
           <Route path="/insurance-retirement" element={<InsuranceRetirement />} />
           <Route path="/wills-trusts-estates" element={<WillsTrustsEstates />} />
           <Route path="/other-notary" element={<OtherNotary />} />
+          <Route path="/blog" element={<Blog />} />
+          {/* Location-Specific Landing Pages */}
+          <Route path="/power-of-attorney-warren-county-lebanon" element={<POAWarrenLebanon />} />
+          <Route path="/loan-signing-dayton-montgomery-county" element={<LoanSigningDaytonMontgomery />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

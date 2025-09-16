@@ -13,6 +13,7 @@ const Header = () => {
     { name: 'Real Estate', href: '/real-estate' },
     { name: 'Apostille', href: '/apostille' },
     { name: 'Business Services', href: '/business-services' },
+    { name: 'Blog', href: '/blog' },
     { name: 'FAQ', href: '/faq' },
   ];
 
@@ -34,9 +35,9 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="font-bold text-xl text-brand-navy">
+              <a href="/" className="font-bold text-xl text-brand-navy hover:text-brand-blue transition-colors">
                 {BUSINESS_CONFIG.name}
-              </div>
+              </a>
             </div>
 
             {/* Desktop Navigation */}
