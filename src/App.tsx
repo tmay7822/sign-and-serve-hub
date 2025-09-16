@@ -48,6 +48,18 @@ import NotaryVsRONRIN from "./pages/blog/NotaryVsRONRIN";
 import BusinessContractNotarization from "./pages/blog/BusinessContractNotarization";
 import InternationalTravelConsent from "./pages/blog/InternationalTravelConsent";
 import SmallEstateAffidavitExecutorTips from "./pages/blog/SmallEstateAffidavitExecutorTips";
+import JailNotarizationProcess from "./pages/blog/JailNotarizationProcess";
+import AfterHoursEmergencyNotary from "./pages/blog/AfterHoursEmergencyNotary";
+import WitnessRequirements from "./pages/blog/WitnessRequirements";
+import ExpiredIDOptions from "./pages/blog/ExpiredIDOptions";
+import NameMismatchAffidavit from "./pages/blog/NameMismatchAffidavit";
+import DeedsExplained from "./pages/blog/DeedsExplained";
+import POAPitfalls from "./pages/blog/POAPitfalls";
+import ApostilleSchoolDocs from "./pages/blog/ApostilleSchoolDocs";
+import TranslatorAffidavits from "./pages/blog/TranslatorAffidavits";
+import TrustCertificationBanking from "./pages/blog/TrustCertificationBanking";
+import NotaryFeesExplained from "./pages/blog/NotaryFeesExplained";
+import WhatNotariesCannotDo from "./pages/blog/WhatNotariesCannotDo";
 import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
@@ -112,8 +124,20 @@ const App = () => (
           <Route path="/blog/apostille-processing-times" element={<ApostilleProcessingTimes />} />
           <Route path="/blog/notary-vs-ron-rin" element={<NotaryVsRONRIN />} />
           <Route path="/blog/business-contract-notarization" element={<BusinessContractNotarization />} />
-          <Route path="/blog/international-travel-consent" element={<InternationalTravelConsent />} />
-          <Route path="/blog/small-estate-affidavit-executor-tips" element={<SmallEstateAffidavitExecutorTips />} />
+        <Route path="/blog/international-travel-consent" element={<InternationalTravelConsent />} />
+        <Route path="/blog/small-estate-affidavit-executor-tips" element={<SmallEstateAffidavitExecutorTips />} />
+        <Route path="/blog/jail-notarization-process" element={<JailNotarizationProcess />} />
+        <Route path="/blog/after-hours-emergency-notary" element={<AfterHoursEmergencyNotary />} />
+        <Route path="/blog/witness-requirements" element={<WitnessRequirements />} />
+        <Route path="/blog/expired-id-options" element={<ExpiredIDOptions />} />
+        <Route path="/blog/name-mismatch-aka-affidavit" element={<NameMismatchAffidavit />} />
+        <Route path="/blog/deeds-explained" element={<DeedsExplained />} />
+        <Route path="/blog/poa-pitfalls-and-readiness" element={<POAPitfalls />} />
+        <Route path="/blog/apostille-school-docs" element={<ApostilleSchoolDocs />} />
+        <Route path="/blog/translator-affidavit-notary" element={<TranslatorAffidavits />} />
+        <Route path="/blog/trust-certification-for-banks" element={<TrustCertificationBanking />} />
+        <Route path="/blog/notary-fees-and-mobile-travel" element={<NotaryFeesExplained />} />
+        <Route path="/blog/what-notaries-cannot-do" element={<WhatNotariesCannotDo />} />
           {/* Location-Specific Landing Pages */}
           <Route path="/power-of-attorney-warren-county-lebanon" element={<POAWarrenLebanon />} />
           <Route path="/loan-signing-dayton-montgomery-county" element={<LoanSigningDaytonMontgomery />} />

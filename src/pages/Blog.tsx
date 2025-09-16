@@ -237,6 +237,138 @@ const blogPosts: BlogPost[] = [
     readTime: '5 min read',
     category: 'Estate Planning',
     slug: 'small-estate-affidavit-executor-tips'
+  },
+  {
+    id: '21',
+    title: 'Jail & Detention Notarizations—How It Works',
+    excerpt: 'Step-by-step jail and detention notarizations—ID, scheduling, and facility rules.',
+    content: 'We routinely perform notarizations at jails, detention centers, and prisons.',
+    author: 'Legal Documents Specialist',
+    date: '2025-01-20',
+    readTime: '4 min read',
+    category: 'Legal/Court',
+    slug: 'jail-notarization-process'
+  },
+  {
+    id: '22',
+    title: 'After-Hours & Emergency Notary Service',
+    excerpt: 'Nights, weekends, and urgent notarizations—what\'s possible and how to book fast.',
+    content: 'Documents don\'t keep office hours. We offer flexible, after-hours appointments.',
+    author: 'Mobile Notary Specialist',
+    date: '2025-02-18',
+    readTime: '3 min read',
+    category: 'General Notary',
+    slug: 'after-hours-emergency-notary'
+  },
+  {
+    id: '23',
+    title: 'Do You Need Witnesses? Notary Guide',
+    excerpt: 'When witnesses are required, who can qualify, and how we help arrange them.',
+    content: 'Some forms need one or two disinterested witnesses.',
+    author: 'General Notary Specialist',
+    date: '2025-03-15',
+    readTime: '4 min read',
+    category: 'General Notary',
+    slug: 'witness-requirements'
+  },
+  {
+    id: '24',
+    title: 'Expired ID? Options for Notarization',
+    excerpt: 'What to do if your ID is expired—alternatives and tips for notarization.',
+    content: 'Most notarizations require a current, government photo ID. If yours is expired, here are options.',
+    author: 'ID Verification Specialist',
+    date: '2025-04-12',
+    readTime: '3 min read',
+    category: 'General Notary',
+    slug: 'expired-id-options'
+  },
+  {
+    id: '25',
+    title: 'Name Mismatch? How to Avoid Re-Signs',
+    excerpt: 'AKA/Formerly Known As, hyphens, and spelling—clean up name mismatches before you sign.',
+    content: 'Name differences cause delays. Here\'s how to fix them.',
+    author: 'Document Preparation Specialist',
+    date: '2025-05-10',
+    readTime: '3 min read',
+    category: 'General Notary',
+    slug: 'name-mismatch-aka-affidavit'
+  },
+  {
+    id: '26',
+    title: 'Warranty, Quitclaim, and TOD Deeds—Notary\'s Role',
+    excerpt: 'Understand deed types and what a notary does (and doesn\'t do) for property transfers.',
+    content: 'Deeds transfer interests in property. Your notary\'s job is focused and neutral.',
+    author: 'Real Estate Specialist',
+    date: '2025-06-08',
+    readTime: '4 min read',
+    category: 'Real Estate',
+    slug: 'deeds-explained'
+  },
+  {
+    id: '27',
+    title: 'POA Pitfalls—Capacity, Witnesses, and Acceptance',
+    excerpt: 'Avoid POA rejections: capacity, ID, witnesses, and signatures for better acceptance.',
+    content: 'To be accepted, a POA must be executed correctly.',
+    author: 'Legal Documents Specialist',
+    date: '2025-07-06',
+    readTime: '4 min read',
+    category: 'Legal/Court',
+    slug: 'poa-pitfalls-and-readiness'
+  },
+  {
+    id: '28',
+    title: 'Apostille for Diplomas & Transcripts—Guide',
+    excerpt: 'How to notarize and apostille school records for use overseas—simple steps and tips.',
+    content: 'Using school documents overseas? You may need an apostille.',
+    author: 'International Documents Specialist',
+    date: '2025-08-04',
+    readTime: '5 min read',
+    category: 'Apostille',
+    slug: 'apostille-school-docs'
+  },
+  {
+    id: '29',
+    title: 'Notarizing Translator Affidavits',
+    excerpt: 'When translations need an affidavit and notarization—process and requirements.',
+    content: 'Some agencies require a translator\'s signed certificate of accuracy.',
+    author: 'International Documents Specialist',
+    date: '2025-08-15',
+    readTime: '3 min read',
+    category: 'International',
+    slug: 'translator-affidavit-notary'
+  },
+  {
+    id: '30',
+    title: 'Trust Certification for Banks—Checklist',
+    excerpt: 'What banks look for in a trust certification and how to notarize it properly.',
+    content: 'A trust certification summarizes key facts without exposing the full trust.',
+    author: 'Estate Planning Specialist',
+    date: '2025-08-20',
+    readTime: '4 min read',
+    category: 'Estate Planning',
+    slug: 'trust-certification-for-banks'
+  },
+  {
+    id: '31',
+    title: 'Notary Fees—What\'s the Mobile Travel Charge?',
+    excerpt: 'Understand standard notarization fees vs mobile travel charges with transparent pricing.',
+    content: 'There are two parts to mobile service pricing: notarial acts and travel.',
+    author: 'Pricing Specialist',
+    date: '2025-08-25',
+    readTime: '3 min read',
+    category: 'General Notary',
+    slug: 'notary-fees-and-mobile-travel'
+  },
+  {
+    id: '32',
+    title: 'What a Notary Cannot Do (and Why It Matters)',
+    excerpt: 'Notaries can\'t give legal advice or draft docs. Learn the boundaries and how we help.',
+    content: 'We protect signers and documents by staying neutral.',
+    author: 'Compliance Specialist',
+    date: '2025-09-03',
+    readTime: '4 min read',
+    category: 'General Notary',
+    slug: 'what-notaries-cannot-do'
   }
 ];
 
