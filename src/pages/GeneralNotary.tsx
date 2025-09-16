@@ -18,15 +18,15 @@ const GeneralNotary = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               General Notary Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-brand-navy">
               Mobile, on-time, and error-free general notary services across Hamilton, Warren, Montgomery, and Butler Counties.
             </p>
             
             {/* Service Details Above Fold */}
             <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Common Services Include:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Common Services Include:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Affidavits and sworn statements</li>
                   <li>• Power of attorney documents</li>
                   <li>• Consent forms and permissions</li>
@@ -35,9 +35,9 @@ const GeneralNotary = () => {
                   <li>• Vehicle title transfers</li>
                 </ul>
               </div>
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">What We Provide:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">What We Provide:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Same-day and after-hours service</li>
                   <li>• Mobile service to your location</li>
                   <li>• Professional document verification</li>
@@ -52,7 +52,7 @@ const GeneralNotary = () => {
               <Button size="lg" variant="secondary">
                 Get a Free Quote
               </Button>
-              <Button size="lg" variant="outline-white">
+              <Button size="lg" variant="outline">
                 Call {BUSINESS_CONFIG.phone}
               </Button>
             </div>

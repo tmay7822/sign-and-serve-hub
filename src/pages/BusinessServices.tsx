@@ -17,15 +17,15 @@ const BusinessServices = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Business Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-brand-navy">
               Professional I-9 verification, vendor agreements, and corporate document notarization across Ohio.
             </p>
             
             {/* Service Details Above Fold */}
             <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Business Documents:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Business Documents:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• I-9 Employment Verification</li>
                   <li>• Corporate Bylaws & Resolutions</li>
                   <li>• Vendor & Supplier Agreements</li>
@@ -34,9 +34,9 @@ const BusinessServices = () => {
                   <li>• Employment Contracts</li>
                 </ul>
               </div>
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Service:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Our Service:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Same-day I-9 appointments</li>
                   <li>• USCIS-compliant verification</li>
                   <li>• Mobile to your office location</li>

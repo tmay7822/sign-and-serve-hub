@@ -17,15 +17,15 @@ const EstatePlans = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Estate Planning Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-brand-navy">
               Professional notarization for wills, trusts, power of attorney, and healthcare directives across Ohio.
             </p>
             
             {/* Service Details Above Fold */}
             <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Estate Documents:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Estate Documents:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Last Will & Testament</li>
                   <li>• Revocable Living Trusts</li>
                   <li>• Durable Power of Attorney</li>
@@ -34,9 +34,9 @@ const EstatePlans = () => {
                   <li>• HIPAA Authorization Forms</li>
                 </ul>
               </div>
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Service:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Our Service:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Same-day and evening service</li>
                   <li>• Home, hospital, or office visits</li>
                   <li>• Sensitive, compassionate approach</li>

@@ -22,7 +22,7 @@ const HealthcareNotary = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">Get a Free Quote</Button>
-              <Button variant="outline-white" size="lg">
+              <Button variant="outline" size="lg">
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now
               </Button>

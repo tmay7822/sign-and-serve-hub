@@ -17,15 +17,15 @@ const Apostille = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Apostille Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-brand-navy">
               Document authentication for international use and recognition across Ohio and beyond.
             </p>
             
             {/* Service Details Above Fold */}
             <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Common Apostille Documents:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Common Apostille Documents:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Birth & Death Certificates</li>
                   <li>• Marriage & Divorce Certificates</li>
                   <li>• Educational Diplomas & Transcripts</li>
@@ -34,9 +34,9 @@ const Apostille = () => {
                   <li>• FBI Background Checks</li>
                 </ul>
               </div>
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Process:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Our Process:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Document eligibility verification</li>
                   <li>• Professional notarization</li>
                   <li>• Ohio Secretary of State submission</li>
