@@ -46,6 +46,8 @@ import ScanbackTimingExplained from "./pages/blog/ScanbackTimingExplained";
 import ApostilleProcessingTimes from "./pages/blog/ApostilleProcessingTimes";
 import NotaryVsRONRIN from "./pages/blog/NotaryVsRONRIN";
 import BusinessContractNotarization from "./pages/blog/BusinessContractNotarization";
+import InternationalTravelConsent from "./pages/blog/InternationalTravelConsent";
+import SmallEstateAffidavitExecutorTips from "./pages/blog/SmallEstateAffidavitExecutorTips";
 import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
@@ -110,6 +112,8 @@ const App = () => (
           <Route path="/blog/apostille-processing-times" element={<ApostilleProcessingTimes />} />
           <Route path="/blog/notary-vs-ron-rin" element={<NotaryVsRONRIN />} />
           <Route path="/blog/business-contract-notarization" element={<BusinessContractNotarization />} />
+          <Route path="/blog/international-travel-consent" element={<InternationalTravelConsent />} />
+          <Route path="/blog/small-estate-affidavit-executor-tips" element={<SmallEstateAffidavitExecutorTips />} />
           {/* Location-Specific Landing Pages */}
           <Route path="/power-of-attorney-warren-county-lebanon" element={<POAWarrenLebanon />} />
           <Route path="/loan-signing-dayton-montgomery-county" element={<LoanSigningDaytonMontgomery />} />

@@ -24,7 +24,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'A quick checklist for a smooth notarization—IDs, witnesses, signatures, and common mistakes to avoid.',
     content: 'Getting a document notarized is simple when you know what to bring. Use this short checklist to save time and avoid re-signs.',
     author: 'Professional Notary Team',
-    date: '2024-01-15',
+    date: '2025-01-15',
     readTime: '4 min read',
     category: 'General Notary',
     slug: 'general-notary-what-to-bring'
@@ -35,7 +35,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Compare mobile notary vs shipping store. Cost, convenience, privacy, witnesses, and turnaround explained.',
     content: 'Both options work. The right choice depends on your document and your schedule.',
     author: 'Professional Notary Team',
-    date: '2024-01-14',
+    date: '2025-02-14',
     readTime: '3 min read',
     category: 'General Notary',
     slug: 'mobile-vs-shipping-store'
@@ -46,7 +46,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Understand Healthcare Power of Attorney and Living Will, who signs, witnesses, and how a mobile notary helps.',
     content: 'Healthcare decisions matter. Two documents help your family act with clarity.',
     author: 'Healthcare Notary Specialist',
-    date: '2024-01-13',
+    date: '2025-02-13',
     readTime: '5 min read',
     category: 'Healthcare',
     slug: 'hcpoa-living-will-guide'
@@ -57,7 +57,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'On-site notarizations in hospitals, rehab, and nursing homes. What to expect, IDs, witnesses, and scheduling.',
     content: 'We routinely meet patients and families on-site. Here\'s how to keep it smooth.',
     author: 'Healthcare Notary Specialist',
-    date: '2024-01-12',
+    date: '2025-03-12',
     readTime: '4 min read',
     category: 'Healthcare',
     slug: 'hospital-notary-what-to-expect'
@@ -68,7 +68,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'A practical checklist for notarizing estate documents—IDs, witnesses, readiness, and signing tips.',
     content: 'Estate documents need clean execution. Use this quick checklist.',
     author: 'Estate Planning Specialist',
-    date: '2024-01-11',
+    date: '2025-03-11',
     readTime: '5 min read',
     category: 'Estate Planning',
     slug: 'wills-trusts-poa-checklist'
@@ -79,7 +79,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Buyer, seller, refi, or HELOC—what to expect at your loan signing. IDs, signatures, scanbacks, and timing.',
     content: 'Whether you\'re buying, selling, or refinancing, here\'s the basic flow.',
     author: 'Certified Loan Signing Agent',
-    date: '2024-01-10',
+    date: '2025-04-10',
     readTime: '4 min read',
     category: 'Real Estate',
     slug: 'what-happens-loan-signing'
@@ -90,7 +90,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'From notarization to state authentication—see the simple apostille path for Ohio residents.',
     content: 'If your document will be used overseas in a Hague-member country, you may need an apostille.',
     author: 'International Documents Specialist',
-    date: '2024-01-09',
+    date: '2025-04-09',
     readTime: '5 min read',
     category: 'Apostille',
     slug: 'how-apostille-works'
@@ -101,7 +101,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Remote hire I-9 support. What employers and employees need, IDs, and quick appointments.',
     content: 'When teams work hybrid or fully remote, you can appoint an authorized representative to complete Section 2 of the I-9.',
     author: 'Business Services Specialist',
-    date: '2024-01-08',
+    date: '2025-05-08',
     readTime: '4 min read',
     category: 'Business Services',
     slug: 'remote-hire-i9-steps'
@@ -112,7 +112,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Essential legal documents every 18+ college student needs. FERPA waivers, HIPAA forms, and POA explained.',
     content: 'When your child turns 18, certain documents help maintain family access to important information.',
     author: 'Educational Notary Specialist',
-    date: '2024-01-07',
+    date: '2025-05-07',
     readTime: '5 min read',
     category: 'College/18+',
     slug: 'college-18-plus-starter-pack'
@@ -123,7 +123,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Avoid DMV rejections. Use this title transfer checklist: IDs, liens, odometer, signatures, and notarization.',
     content: 'Get the title done right the first time. Here\'s what causes most rejections.',
     author: 'Vehicle Notary Specialist',
-    date: '2024-01-06',
+    date: '2025-06-06',
     readTime: '4 min read',
     category: 'Vehicles/DMV',
     slug: 'title-transfer-checklist'
@@ -134,7 +134,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'The difference between affidavits, jurats, and acknowledgments in simple terms. Which do you need?',
     content: 'These three types of notarizations serve different purposes. Here\'s how to tell them apart.',
     author: 'Legal Documents Specialist',
-    date: '2024-01-05',
+    date: '2025-06-05',
     readTime: '3 min read',
     category: 'Legal/Court',
     slug: 'affidavit-jurat-acknowledgment'
@@ -145,7 +145,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'When to update beneficiaries on 401k, IRA, life insurance. Mobile notary for quick form completion.',
     content: 'Life changes mean beneficiary updates. Here\'s when and how to handle these important forms.',
     author: 'Insurance Specialist',
-    date: '2024-01-04',
+    date: '2025-07-04',
     readTime: '4 min read',
     category: 'Insurance/Retirement',
     slug: 'beneficiary-change-forms'
@@ -156,7 +156,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Common investor documents—assignments, POAs, deeds, and contracts. Quick mobile service for deal closings.',
     content: 'Investors need fast, reliable notarization for time-sensitive deals.',
     author: 'Real Estate Specialist',
-    date: '2024-01-03',
+    date: '2025-07-03',
     readTime: '5 min read',
     category: 'Business Services',
     slug: 'investor-notarizations'
@@ -167,7 +167,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Seller signing checklist—what to bring, expect, and sign on closing day. Mobile notary available.',
     content: 'Congratulations on your sale! Here\'s how to close smoothly.',
     author: 'Real Estate Closing Agent',
-    date: '2024-01-02',
+    date: '2025-08-02',
     readTime: '4 min read',
     category: 'Real Estate',
     slug: 'seller-signing-day'
@@ -178,7 +178,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'When do scanbacks happen after loan signings? Timeline from signing to funding explained.',
     content: 'After you sign, documents move quickly through the funding pipeline.',
     author: 'Loan Signing Agent',
-    date: '2024-01-01',
+    date: '2025-08-01',
     readTime: '3 min read',
     category: 'Real Estate',
     slug: 'scanback-timing-explained'
@@ -189,7 +189,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Ohio apostille timing: regular vs rush service, what affects speed, and how to plan ahead.',
     content: 'Planning ahead saves time and money when getting documents apostilled.',
     author: 'International Documents Specialist',
-    date: '2023-12-30',
+    date: '2025-08-30',
     readTime: '4 min read',
     category: 'Apostille',
     slug: 'apostille-processing-times'
@@ -200,7 +200,7 @@ const blogPosts: BlogPost[] = [
     excerpt: 'Compare in-person, RON, and RIN notarization options. Which is right for your documents?',
     content: 'Multiple notarization options exist. Here\'s when to use each.',
     author: 'Technology Notary Specialist',
-    date: '2023-12-29',
+    date: '2025-09-15',
     readTime: '5 min read',
     category: 'General Notary',
     slug: 'notary-vs-ron-rin'
@@ -211,10 +211,32 @@ const blogPosts: BlogPost[] = [
     excerpt: 'When do business contracts need notarization? Common agreements, legal requirements, and benefits.',
     content: 'Not all contracts require notarization, but many benefit from it.',
     author: 'Business Contracts Specialist',
-    date: '2023-12-28',
+    date: '2025-09-10',
     readTime: '4 min read',
     category: 'Business Services',
     slug: 'business-contract-notarization'
+  },
+  {
+    id: '19',
+    title: 'Minor & Student Travel Consent—What Airlines Check',
+    excerpt: 'Flying with one parent or without parents? What to put in a travel consent letter and when to notarize.',
+    content: 'Border agents and airlines may ask for a notarized consent letter when minors travel.',
+    author: 'Travel Document Specialist',
+    date: '2025-09-05',
+    readTime: '3 min read',
+    category: 'College/18+',
+    slug: 'international-travel-consent'
+  },
+  {
+    id: '20',
+    title: 'Small Estate Affidavits—Executor Tips to Avoid Delays',
+    excerpt: 'How small estate affidavits work, common errors, and notarization tips for executors.',
+    content: 'A small estate affidavit can be faster than probate—but details matter.',
+    author: 'Estate Planning Specialist',
+    date: '2025-09-01',
+    readTime: '5 min read',
+    category: 'Estate Planning',
+    slug: 'small-estate-affidavit-executor-tips'
   }
 ];
 
