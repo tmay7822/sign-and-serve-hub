@@ -36,11 +36,11 @@ All colors MUST be HSL.
     --input: 213 27% 91%;
     --ring: 213 94% 28%;
 
-    /* Professional Notary Brand Colors */
-    --brand-navy: 213 94% 28%;
-    --brand-blue: 213 85% 45%;
-    --brand-light: 213 45% 92%;
-    --brand-gold: 43 96% 56%;
+    /* Professional Notary Brand Colors - Signed On Time Red & Black */
+    --brand-navy: 0 0% 15%;      /* Deep black */
+    --brand-blue: 0 84% 60%;     /* Bright red */
+    --brand-light: 0 0% 97%;     /* Light gray */
+    --brand-gold: 43 96% 56%;    /* Gold accent */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--brand-navy)), hsl(var(--brand-blue)));
@@ -101,9 +101,9 @@ All colors MUST be HSL.
     --ring: 213 85% 55%;
     
     /* Dark mode brand adjustments */
-    --brand-navy: 213 85% 55%;
-    --brand-blue: 213 75% 65%;
-    --brand-light: 213 27% 15%;
+    --brand-navy: 0 0% 85%;      /* Light text in dark mode */
+    --brand-blue: 0 84% 70%;     /* Bright red for dark mode */
+    --brand-light: 0 0% 15%;     /* Dark background */
     --brand-gold: 43 86% 66%;
     
     --gradient-primary: linear-gradient(135deg, hsl(var(--brand-navy)), hsl(var(--brand-blue)));

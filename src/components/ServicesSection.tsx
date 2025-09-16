@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import { 
   FileText, 
   Home, 
@@ -16,37 +17,37 @@ const ServicesSection = () => {
       icon: FileText,
       title: "General Notary",
       description: "Acknowledgments, jurats, oaths, affirmations, and document witnessing.",
-      link: "#general-notary"
+      link: "/general-notary"
     },
     {
       icon: Home,
       title: "Loan Signings",
       description: "Buyer, seller, refinance, HELOC, and investor loan document signings.",
-      link: "#loan-signings"
+      link: "/loan-signings"
     },
     {
       icon: FileSignature,
       title: "Estate Plans",
       description: "Wills, trusts, power of attorney, and healthcare directive signings.",
-      link: "#estate-plans"
+      link: "/estate-plans"
     },
     {
       icon: Building,
       title: "Real Estate",
       description: "Deeds, closings, investor documents, and property transfers.",
-      link: "#real-estate"
+      link: "/real-estate"
     },
     {
       icon: Globe,
       title: "Apostille",
       description: "Document authentication for international use and recognition.",
-      link: "#apostille"
+      link: "/apostille"
     },
     {
       icon: Briefcase,
       title: "Business Services",
       description: "I-9 verification, vendor agreements, and corporate documents.",
-      link: "#business-services"
+      link: "/business-services"
     }
   ];
 
@@ -88,10 +89,10 @@ const ServicesSection = () => {
                     className="text-brand-blue hover:text-brand-navy group-hover:gap-3 transition-all duration-300"
                     asChild
                   >
-                    <a href={service.link}>
+                    <Link to={service.link}>
                       Learn More
                       <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
