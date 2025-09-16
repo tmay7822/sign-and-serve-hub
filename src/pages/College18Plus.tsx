@@ -12,7 +12,7 @@ const College18Plus = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-brand-navy to-brand-blue text-white py-16">
+        <section className="bg-brand-light text-brand-navy py-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {serviceName} in Cincinnati, OH & Dayton Areas

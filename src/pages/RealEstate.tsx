@@ -11,21 +11,21 @@ const RealEstate = () => {
       <Header />
       
       {/* Hero Section with Service Details Above Fold */}
-      <section className="py-20 bg-gradient-primary text-white">
+      <section className="py-20 bg-brand-light text-brand-navy">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Real Estate Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-brand-navy">
               Professional notarization for deeds, closings, investor documents, and property transfers across Ohio.
             </p>
             
             {/* Service Details Above Fold */}
             <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Real Estate Documents:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Real Estate Documents:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Warranty & Quitclaim Deeds</li>
                   <li>• Purchase & Sale Agreements</li>
                   <li>• Assignment Contracts</li>
@@ -34,9 +34,9 @@ const RealEstate = () => {
                   <li>• Title Transfer Documents</li>
                 </ul>
               </div>
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Our Service:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Our Service:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Same-day and emergency service</li>
                   <li>• Meet at properties or offices</li>
                   <li>• Investor-friendly scheduling</li>
@@ -51,7 +51,7 @@ const RealEstate = () => {
               <Button size="lg" variant="secondary">
                 Get a Free Quote
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
+              <Button size="lg" variant="outline">
                 Call (513) 226-9052
               </Button>
             </div>

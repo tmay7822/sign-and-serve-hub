@@ -13,21 +13,21 @@ const LoanSignings = () => {
       <Header />
       
       {/* Hero Section with Service Details Above Fold */}
-      <section className="py-20 bg-gradient-primary text-white">
+      <section className="py-20 bg-brand-light text-brand-navy">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Loan Signing Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-brand-navy">
               Professional loan document signings for buyers, sellers, refinances, HELOCs, and investor transactions across Ohio.
             </p>
             
             {/* Service Details Above Fold */}
             <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">Loan Package Types:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Loan Package Types:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Purchase (Buyer & Seller)</li>
                   <li>• Refinance (Rate & Term, Cash-Out)</li>
                   <li>• HELOC & Home Equity Loans</li>
@@ -36,9 +36,9 @@ const LoanSignings = () => {
                   <li>• Loan Modifications</li>
                 </ul>
               </div>
-              <div className="bg-white/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-3 text-brand-gold">What We Provide:</h3>
-                <ul className="space-y-2 text-white/90">
+              <div className="bg-white p-6 rounded-lg border">
+                <h3 className="font-semibold text-lg mb-3 text-brand-blue">What We Provide:</h3>
+                <ul className="space-y-2 text-brand-navy">
                   <li>• Same-day and emergency service</li>
                   <li>• Error-free document execution</li>
                   <li>• Triple-checked processing</li>
@@ -53,7 +53,7 @@ const LoanSignings = () => {
               <Button size="lg" variant="secondary">
                 Get a Free Quote
               </Button>
-              <Button size="lg" variant="outline-white">
+              <Button size="lg" variant="outline">
                 Call {BUSINESS_CONFIG.phone}
               </Button>
             </div>
@@ -186,11 +186,11 @@ const LoanSignings = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-primary text-white">
+      <section className="py-16 bg-brand-light text-brand-navy">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-6">Need a Loan Signing Today?</h3>
-          <p className="text-xl mb-8 opacity-90">Contact us for same-day availability and professional service.</p>
-          <Button size="lg" variant="secondary">
+          <p className="text-xl mb-8 text-brand-navy">Contact us for same-day availability and professional service.</p>
+          <Button size="lg" variant="default">
             Get a Free Quote
           </Button>
         </div>

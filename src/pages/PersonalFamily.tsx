@@ -12,7 +12,7 @@ const PersonalFamily = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-brand-navy to-brand-blue text-white py-16">
+        <section className="bg-brand-light text-brand-navy py-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {serviceName} in Cincinnati, OH & Dayton Areas
@@ -22,7 +22,7 @@ const PersonalFamily = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">Get a Free Quote</Button>
-              <Button variant="outline-white" size="lg">
+              <Button variant="outline" size="lg">
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now
               </Button>
