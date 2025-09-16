@@ -25,7 +25,7 @@ const RealEstate = () => {
                 Get a Free Quote
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
-                Call (513) 555-SIGN
+                Call (513) 226-9052
               </Button>
             </div>
           </div>
@@ -35,7 +35,7 @@ const RealEstate = () => {
       <TrustSignals />
 
       {/* Service Details */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">
@@ -95,8 +95,10 @@ const RealEstate = () => {
         </div>
       </section>
 
+      <TrustSignals />
+
       {/* Investor Focus */}
-      <section className="py-16 bg-brand-light/20">
+      <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-3xl font-bold text-brand-navy mb-8 text-center">

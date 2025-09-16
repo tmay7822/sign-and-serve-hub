@@ -51,16 +51,16 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-foreground hover:text-brand-blue transition-colors duration-300 font-medium"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <Button variant="cta" size="sm" className="ml-4" asChild>
-                <a href="/contact">Contact Us</a>
+                <Link to="/contact">Contact Us</Link>
               </Button>
             </nav>
 
@@ -83,18 +83,18 @@ const Header = () => {
             <div className="lg:hidden border-t border-border">
               <nav className="py-4 space-y-2">
                 {navItems.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className="block py-2 text-foreground hover:text-brand-blue transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
                 <div className="pt-2">
                   <Button variant="cta" className="w-full" asChild>
-                    <a href="/contact">Contact Us</a>
+                    <Link to="/contact">Contact Us</Link>
                   </Button>
                 </div>
               </nav>

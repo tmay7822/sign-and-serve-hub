@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Phone, FileCheck } from 'lucide-react';
-import heroImage from '@/assets/hero-notary.jpg';
+import heroImage from '@/assets/hero-notary-appointment.jpg';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const HeroSection = () => {
