@@ -37,18 +37,18 @@ All colors MUST be HSL.
     --ring: 213 94% 28%;
 
     /* Professional Notary Brand Colors - Signed On Time Red & Black */
-    --brand-navy: 0 0% 5%;       /* Pure black for text */
-    --brand-blue: 0 84% 60%;     /* Bright red */
+    --brand-navy: 0 0% 8%;       /* Dark navy for gradients - better contrast */
+    --brand-blue: 0 70% 45%;     /* Darker red for better contrast */
     --brand-light: 0 0% 97%;     /* Light gray */
     --brand-gold: 43 96% 56%;    /* Gold accent */
     
     /* Improved contrast colors */
     --text-on-light: 0 0% 5%;    /* Pure black text for light backgrounds */
-    --text-on-dark: 0 0% 95%;    /* Light text for dark backgrounds */
+    --text-on-dark: 0 0% 100%;   /* Pure white text for dark backgrounds */
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-navy)), hsl(var(--brand-blue)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-navy) / 0.9), hsl(var(--brand-blue) / 0.8));
+    /* Gradients - ensuring dark enough for white text visibility */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 70% 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 8% / 0.95), hsl(0 70% 35% / 0.9));
     --gradient-card: linear-gradient(145deg, hsl(var(--background)), hsl(var(--brand-light) / 0.3));
     
     /* Shadows */
@@ -110,8 +110,8 @@ All colors MUST be HSL.
     --brand-light: 0 0% 15%;     /* Dark background */
     --brand-gold: 43 86% 66%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-navy)), hsl(var(--brand-blue)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-navy) / 0.9), hsl(var(--brand-blue) / 0.8));
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 12%), hsl(0 70% 40%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 12% / 0.95), hsl(0 70% 40% / 0.9));
     --gradient-card: linear-gradient(145deg, hsl(var(--background)), hsl(var(--brand-light) / 0.5));
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
