@@ -123,8 +123,6 @@ const BusinessServices = () => {
         </div>
       </section>
 
-      <TrustSignals />
-
       {/* I-9 Focus */}
       <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">

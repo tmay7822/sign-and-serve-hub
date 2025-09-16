@@ -42,6 +42,10 @@ All colors MUST be HSL.
     --brand-light: 0 0% 97%;     /* Light gray */
     --brand-gold: 43 96% 56%;    /* Gold accent */
     
+    /* Improved contrast colors */
+    --text-on-light: 0 0% 15%;   /* Dark text for light backgrounds */
+    --text-on-dark: 0 0% 95%;    /* Light text for dark backgrounds */
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--brand-navy)), hsl(var(--brand-blue)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--brand-navy) / 0.9), hsl(var(--brand-blue) / 0.8));
@@ -169,5 +173,13 @@ All colors MUST be HSL.
   
   .bg-brand-light {
     background-color: hsl(var(--brand-light));
+  }
+  
+  .text-on-light {
+    color: hsl(var(--text-on-light));
+  }
+  
+  .text-on-dark {
+    color: hsl(var(--text-on-dark));
   }
 }

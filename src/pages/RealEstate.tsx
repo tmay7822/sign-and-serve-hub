@@ -123,8 +123,6 @@ const RealEstate = () => {
         </div>
       </section>
 
-      <TrustSignals />
-
       {/* Investor Focus */}
       <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">
