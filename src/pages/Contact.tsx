@@ -37,7 +37,7 @@ const Contact = () => {
                   <CardTitle className="text-lg">Phone</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">(513) 555-SIGN</p>
+                  <p className="text-muted-foreground">(513) 226-9052</p>
                   <p className="text-sm text-muted-foreground">Available 7 days a week</p>
                 </CardContent>
               </Card>
@@ -48,7 +48,7 @@ const Contact = () => {
                   <CardTitle className="text-lg">Email</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">info@signrightnotary.com</p>
+                  <p className="text-muted-foreground">Terry@SignedOnTime.com</p>
                   <p className="text-sm text-muted-foreground">Quick response guaranteed</p>
                 </CardContent>
               </Card>
@@ -100,11 +100,11 @@ const Contact = () => {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
-                      <Input id="phone" type="tel" placeholder="(513) 555-0123" required />
+                      <Input id="phone" type="tel" placeholder="(513) 226-9052" required />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
-                      <Input id="email" type="email" placeholder="john@example.com" required />
+                      <Input id="email" type="email" placeholder="Terry@SignedOnTime.com" required />
                     </div>
                   </div>
                   

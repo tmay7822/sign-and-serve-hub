@@ -41,10 +41,10 @@ const FAQ = () => {
                 <h3 className="text-xl font-semibold text-brand-navy mb-4">Contact Information</h3>
                 <div className="space-y-3">
                   <div>
-                    <strong>Phone:</strong> (513) 555-SIGN
+                    <strong>Phone:</strong> (513) 226-9052
                   </div>
                   <div>
-                    <strong>Email:</strong> info@signrightnotary.com
+                    <strong>Email:</strong> Terry@SignedOnTime.com
                   </div>
                   <div>
                     <strong>Service Area:</strong> Cincinnati-Dayton, OH
