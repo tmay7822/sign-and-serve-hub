@@ -27,6 +27,25 @@ import InsuranceRetirement from "./pages/InsuranceRetirement";
 import WillsTrustsEstates from "./pages/WillsTrustsEstates";
 import OtherNotary from "./pages/OtherNotary";
 import Blog from "./pages/Blog";
+// Blog Posts
+import GeneralNotaryWhatToBring from "./pages/blog/GeneralNotaryWhatToBring";
+import MobileVsShippingStore from "./pages/blog/MobileVsShippingStore";
+import HCPOALivingWillGuide from "./pages/blog/HCPOALivingWillGuide";
+import HospitalNotaryWhatToExpect from "./pages/blog/HospitalNotaryWhatToExpect";
+import WillsTrustsPOAChecklist from "./pages/blog/WillsTrustsPOAChecklist";
+import WhatHappensLoanSigning from "./pages/blog/WhatHappensLoanSigning";
+import HowApostilleWorks from "./pages/blog/HowApostilleWorks";
+import RemoteHireI9Steps from "./pages/blog/RemoteHireI9Steps";
+import College18PlusStarterPack from "./pages/blog/College18PlusStarterPack";
+import TitleTransferChecklist from "./pages/blog/TitleTransferChecklist";
+import AffidavitJuratAcknowledgment from "./pages/blog/AffidavitJuratAcknowledgment";
+import BeneficiaryChangeForms from "./pages/blog/BeneficiaryChangeForms";
+import InvestorNotarizations from "./pages/blog/InvestorNotarizations";
+import SellerSigningDay from "./pages/blog/SellerSigningDay";
+import ScanbackTimingExplained from "./pages/blog/ScanbackTimingExplained";
+import ApostilleProcessingTimes from "./pages/blog/ApostilleProcessingTimes";
+import NotaryVsRONRIN from "./pages/blog/NotaryVsRONRIN";
+import BusinessContractNotarization from "./pages/blog/BusinessContractNotarization";
 import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
@@ -72,6 +91,25 @@ const App = () => (
           <Route path="/wills-trusts-estates" element={<WillsTrustsEstates />} />
           <Route path="/other-notary" element={<OtherNotary />} />
           <Route path="/blog" element={<Blog />} />
+          {/* Blog Posts */}
+          <Route path="/blog/general-notary-what-to-bring" element={<GeneralNotaryWhatToBring />} />
+          <Route path="/blog/mobile-vs-shipping-store" element={<MobileVsShippingStore />} />
+          <Route path="/blog/hcpoa-living-will-guide" element={<HCPOALivingWillGuide />} />
+          <Route path="/blog/hospital-notary-what-to-expect" element={<HospitalNotaryWhatToExpect />} />
+          <Route path="/blog/wills-trusts-poa-checklist" element={<WillsTrustsPOAChecklist />} />
+          <Route path="/blog/what-happens-loan-signing" element={<WhatHappensLoanSigning />} />
+          <Route path="/blog/how-apostille-works" element={<HowApostilleWorks />} />
+          <Route path="/blog/remote-hire-i9-steps" element={<RemoteHireI9Steps />} />
+          <Route path="/blog/college-18-plus-starter-pack" element={<College18PlusStarterPack />} />
+          <Route path="/blog/title-transfer-checklist" element={<TitleTransferChecklist />} />
+          <Route path="/blog/affidavit-jurat-acknowledgment" element={<AffidavitJuratAcknowledgment />} />
+          <Route path="/blog/beneficiary-change-forms" element={<BeneficiaryChangeForms />} />
+          <Route path="/blog/investor-notarizations" element={<InvestorNotarizations />} />
+          <Route path="/blog/seller-signing-day" element={<SellerSigningDay />} />
+          <Route path="/blog/scanback-timing-explained" element={<ScanbackTimingExplained />} />
+          <Route path="/blog/apostille-processing-times" element={<ApostilleProcessingTimes />} />
+          <Route path="/blog/notary-vs-ron-rin" element={<NotaryVsRONRIN />} />
+          <Route path="/blog/business-contract-notarization" element={<BusinessContractNotarization />} />
           {/* Location-Specific Landing Pages */}
           <Route path="/power-of-attorney-warren-county-lebanon" element={<POAWarrenLebanon />} />
           <Route path="/loan-signing-dayton-montgomery-county" element={<LoanSigningDaytonMontgomery />} />
