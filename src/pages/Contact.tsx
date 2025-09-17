@@ -13,13 +13,13 @@ const Contact = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-12 bg-gradient-primary text-white">
+      <section className="py-8 bg-gradient-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Contact SignRight Mobile Notary
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-6 opacity-90">
               Get in touch for a free quote or to schedule your appointment today.
             </p>
           </div>
@@ -27,7 +27,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-12 bg-background">
+      <section className="py-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
