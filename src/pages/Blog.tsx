@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, User, Clock, Filter } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
 
 interface BlogPost {
   id: string;
@@ -547,8 +548,10 @@ const Blog = () => {
                           <User size={14} />
                           <span>{post.author}</span>
                         </div>
-                        <Button size="sm" variant="outline">
-                          Read More
+                        <Button size="sm" variant="outline" asChild>
+                          <Link to={`/blog/${post.slug}`}>
+                            Read More
+                          </Link>
                         </Button>
                       </div>
                     </CardFooter>
