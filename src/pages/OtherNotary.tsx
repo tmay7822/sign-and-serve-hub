@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const OtherNotary = () => {
   const serviceName = "Other Notarizations";
@@ -21,7 +22,9 @@ const OtherNotary = () => {
               Mobile, on-time, and error-free notarizations serving Cincinnati, Dayton and all of Hamilton, Montgomery, Warren, and Butler Counties.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg">Get a Free Quote</Button>
+              <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
+              </Button>
               <Button variant="outline" size="lg">
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now
@@ -76,7 +79,9 @@ const OtherNotary = () => {
               <p className="text-lg text-muted-foreground">
                 Don't see your document listed? Ask—chances are we can help in Cincinnati, Dayton and throughout Hamilton, Montgomery, Warren, and Butler Counties.
               </p>
-              <Button variant="cta" size="lg" className="mt-4">Get a Free Quote</Button>
+              <Button variant="cta" size="lg" className="mt-4 text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
+              </Button>
             </div>
           </div>
         </section>
