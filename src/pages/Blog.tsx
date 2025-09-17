@@ -1,9 +1,11 @@
+import { useState, useMemo } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, User, Clock } from 'lucide-react';
+import { Calendar, User, Clock, Filter } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface BlogPost {
   id: string;
@@ -373,9 +375,53 @@ const blogPosts: BlogPost[] = [
 ];
 
 const Blog = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [sortBy, setSortBy] = useState<'newest' | 'category'>('newest');
+
+  // Get unique categories
+  const categories = useMemo(() => {
+    const unique = Array.from(new Set(blogPosts.map(post => post.category)));
+    return ['All', ...unique.sort()];
+  }, []);
+
+  // Filter and sort posts
+  const filteredAndSortedPosts = useMemo(() => {
+    let filtered = selectedCategory === 'All' 
+      ? blogPosts 
+      : blogPosts.filter(post => post.category === selectedCategory);
+
+    if (sortBy === 'newest') {
+      filtered = filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    } else {
+      filtered = filtered.sort((a, b) => a.category.localeCompare(b.category));
+    }
+
+    return filtered;
+  }, [selectedCategory, sortBy]);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      
+      {/* Quote Section */}
+      <section className="py-6 bg-brand-light border-b">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-center sm:text-left">
+              <h2 className="text-lg font-semibold text-brand-navy mb-2">Need Expert Notary Help?</h2>
+              <p className="text-brand-navy">Get professional guidance for your documents</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 font-semibold px-6">
+                Get a Free Quote
+              </Button>
+              <Button variant="outline" className="border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white px-6" asChild>
+                <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call {BUSINESS_CONFIG.phone}</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* Hero Section */}
       <section className="py-20 bg-gradient-primary text-white">
@@ -391,12 +437,74 @@ const Blog = () => {
         </div>
       </section>
 
+      {/* Filter Bar */}
+      <section className="py-6 bg-white border-b">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Filter className="h-5 w-5 text-brand-navy" />
+                <span className="font-medium text-brand-navy">Filter by Topic:</span>
+              </div>
+              
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(category)}
+                    className={selectedCategory === category 
+                      ? "bg-brand-gold text-brand-navy hover:bg-brand-gold/90" 
+                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">Sort by:</span>
+                <Button
+                  variant={sortBy === 'newest' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSortBy('newest')}
+                  className={sortBy === 'newest' 
+                    ? "bg-brand-navy text-white hover:bg-brand-navy/90" 
+                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }
+                >
+                  Newest
+                </Button>
+                <Button
+                  variant={sortBy === 'category' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSortBy('category')}
+                  className={sortBy === 'category' 
+                    ? "bg-brand-navy text-white hover:bg-brand-navy/90" 
+                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }
+                >
+                  Topic
+                </Button>
+              </div>
+            </div>
+            
+            <div className="mt-4 text-sm text-gray-600">
+              Showing {filteredAndSortedPosts.length} article{filteredAndSortedPosts.length !== 1 ? 's' : ''}
+              {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Blog Posts */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid gap-8">
-              {blogPosts.map((post) => (
+              {filteredAndSortedPosts.map((post) => (
                 <Card key={post.id} className="shadow-card">
                   <CardHeader>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
