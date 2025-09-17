@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
 
 const WillsTrustsPOAChecklist = () => {
   useEffect(() => {
@@ -65,11 +66,11 @@ const WillsTrustsPOAChecklist = () => {
                 <p className="mb-4">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote for mobile service in {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
-                <Button size="lg" className="mr-4">
-                  Get a Free Quote
+                <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mr-4" asChild>
+                  <Link to="/contact">Get a Free Quote</Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                  Call (513) 226-9052
                 </Button>
               </div>
             </article>

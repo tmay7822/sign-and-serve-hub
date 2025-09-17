@@ -58,8 +58,8 @@ const ApostilleSchoolDocs = () => {
                 <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mr-4" asChild>
                   <Link to="/contact">Get a Free Quote</Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                  Call (513) 226-9052
                 </Button>
               </div>
             </article>

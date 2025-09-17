@@ -52,7 +52,7 @@ const RealEstate = () => {
               <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
                 <Link to="/contact">Get a Free Quote</Link>
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                 Call (513) 226-9052
               </Button>
             </div>

@@ -25,9 +25,8 @@ const LegalCourt = () => {
               <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
                 <Link to="/contact">Get a Free Quote</Link>
               </Button>
-              <Button variant="outline" size="lg">
-                <Phone className="mr-2 h-5 w-5" />
-                Call Now
+              <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                Call (513) 226-9052
               </Button>
             </div>
           </div>
