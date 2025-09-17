@@ -446,8 +446,8 @@ const Blog = () => {
               <p className="text-brand-navy">Get professional guidance for your documents</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 font-semibold px-6">
-                Get a Free Quote
+              <Button className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 font-semibold px-6" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
               </Button>
               <Button variant="outline" className="border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white px-6" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call {BUSINESS_CONFIG.phone}</a>
