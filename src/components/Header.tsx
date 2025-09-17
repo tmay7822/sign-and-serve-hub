@@ -46,7 +46,7 @@ const Header = () => {
                 <img 
                   src={logoImage} 
                   alt={BUSINESS_CONFIG.logo.alt}
-                  className="h-24 lg:h-32 w-auto"
+                  className="h-32 lg:h-40 w-auto"
                 />
               </Link>
             </div>
