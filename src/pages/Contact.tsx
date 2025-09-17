@@ -37,7 +37,9 @@ const Contact = () => {
                   <CardTitle className="text-lg">Phone</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">(513) 226-9052</p>
+                  <a href="tel:(513) 226-9052" className="text-muted-foreground hover:text-brand-blue transition-colors">
+                    (513) 226-9052
+                  </a>
                   <p className="text-sm text-muted-foreground">Available 7 days a week</p>
                 </CardContent>
               </Card>
@@ -48,7 +50,9 @@ const Contact = () => {
                   <CardTitle className="text-lg">Email</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Terry@SignedOnTime.com</p>
+                  <a href="mailto:Terry@SignedOnTime.com" className="text-muted-foreground hover:text-brand-blue transition-colors">
+                    Terry@SignedOnTime.com
+                  </a>
                   <p className="text-sm text-muted-foreground">Quick response guaranteed</p>
                 </CardContent>
               </Card>

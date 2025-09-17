@@ -111,10 +111,10 @@ const FAQ = () => {
                 <h3 className="text-xl font-semibold text-brand-navy mb-4">Contact Information</h3>
                 <div className="space-y-3">
                   <div>
-                    <strong>Phone:</strong> (513) 226-9052
+                    <strong>Phone:</strong> <a href="tel:(513) 226-9052" className="text-brand-blue hover:underline">(513) 226-9052</a>
                   </div>
                   <div>
-                    <strong>Email:</strong> Terry@SignedOnTime.com
+                    <strong>Email:</strong> <a href="mailto:Terry@SignedOnTime.com" className="text-brand-blue hover:underline">Terry@SignedOnTime.com</a>
                   </div>
                   <div>
                     <strong>Service Area:</strong> Cincinnati-Dayton, OH
