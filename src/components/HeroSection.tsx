@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Phone, FileCheck } from 'lucide-react';
 import heroImage from '@/assets/hero-notary-appointment.jpg';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -33,10 +34,13 @@ const HeroSection = () => {
             <Button 
               variant="cta" 
               size="lg" 
-              className="text-lg px-8 py-6"
+              className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              asChild
             >
-              <FileCheck className="mr-2 h-5 w-5" />
-              Get a Free Quote
+              <Link to="/contact">
+                <FileCheck className="mr-2 h-5 w-5" />
+                Get a Free Quote
+              </Link>
             </Button>
             
             <Button 

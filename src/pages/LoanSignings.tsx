@@ -4,7 +4,7 @@ import PopupForm from '@/components/PopupForm';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { Home, Clock, Shield, MapPin, DollarSign, FileCheck } from 'lucide-react';
-
+import { Link } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const LoanSignings = () => {
@@ -50,8 +50,8 @@ const LoanSignings = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary">
-                Get a Free Quote
+              <Button size="lg" variant="cta" className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
               </Button>
               <Button size="lg" variant="outline">
                 Call {BUSINESS_CONFIG.phone}

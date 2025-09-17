@@ -5,6 +5,7 @@ import PopupForm from '@/components/PopupForm';
 import FAQSection from '@/components/FAQSection';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
 
 const FAQ = () => {
   useEffect(() => {
@@ -89,8 +90,8 @@ const FAQ = () => {
             <p className="text-xl mb-8 opacity-90">
               Everything you need to know about our mobile notary and loan signing services.
             </p>
-            <Button size="lg" variant="secondary">
-              Get a Free Quote
+            <Button size="lg" variant="cta" className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
+              <Link to="/contact">Get a Free Quote</Link>
             </Button>
           </div>
         </div>

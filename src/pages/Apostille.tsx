@@ -4,6 +4,7 @@ import PopupForm from '@/components/PopupForm';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { Globe, Clock, Shield, MapPin, FileCheck, Plane } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Apostille = () => {
   return (
@@ -48,8 +49,8 @@ const Apostille = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary">
-                Get a Free Quote
+              <Button size="lg" variant="cta" className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
                 Call (513) 226-9052
