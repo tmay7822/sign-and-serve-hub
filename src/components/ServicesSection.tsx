@@ -70,7 +70,7 @@ const ServicesSection = () => {
             return (
               <Card 
                 key={index} 
-                className="gradient-card border-2 border-brand-light/50 hover:border-brand-blue/30 hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group bg-white/80 backdrop-blur-sm min-h-[280px] flex flex-col"
+                className="gradient-card border-2 border-black/10 hover:border-brand-blue/30 hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group bg-white/80 backdrop-blur-sm min-h-[280px] flex flex-col"
               >
                 <CardHeader className="text-center pb-4 flex-shrink-0">
                   <div className="mx-auto w-16 h-16 lg:w-18 lg:h-18 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
