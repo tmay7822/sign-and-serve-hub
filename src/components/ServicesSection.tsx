@@ -64,34 +64,34 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <Card 
                 key={index} 
-                className="gradient-card border-0 hover:shadow-professional transition-all duration-300 hover:scale-105 group"
+                className="gradient-card border-0 hover:shadow-professional transition-all duration-300 hover:scale-105 group h-full"
               >
-                <CardHeader className="text-center">
-                  <div className="mx-auto w-16 h-16 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="h-8 w-8 text-white" />
+                <CardHeader className="text-center pb-4">
+                  <div className="mx-auto w-14 h-14 lg:w-16 lg:h-16 gradient-primary rounded-xl flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="h-6 w-6 lg:h-8 lg:w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-brand-navy">
+                  <CardTitle className="text-lg lg:text-xl text-brand-navy leading-tight">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <CardDescription className="text-base mb-6">
+                <CardContent className="text-center pt-0 flex flex-col justify-between h-full">
+                  <CardDescription className="text-sm lg:text-base mb-4 lg:mb-6 flex-grow">
                     {service.description}
                   </CardDescription>
                   <Button 
                     variant="ghost" 
-                    className="text-brand-blue hover:text-brand-navy group-hover:gap-3 transition-all duration-300"
+                    className="text-brand-blue hover:text-brand-navy group-hover:gap-3 transition-all duration-300 text-sm lg:text-base"
                     asChild
                   >
                     <Link to={service.link}>
                       Learn More
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="h-3 w-3 lg:h-4 lg:w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
                     </Link>
                   </Button>
                 </CardContent>

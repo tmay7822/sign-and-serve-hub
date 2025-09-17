@@ -13,21 +13,21 @@ const LoanSignings = () => {
       <Header />
       
       {/* Hero Section with Service Details Above Fold */}
-      <section className="py-20 bg-brand-light text-brand-navy">
-        <div className="container mx-auto px-4">
+      <section className="py-12 lg:py-20 bg-brand-light text-brand-navy">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 leading-tight">
               Loan Signing Services in Cincinnati-Dayton, OH
             </h1>
-            <p className="text-xl mb-8 text-brand-navy">
+            <p className="text-lg lg:text-xl mb-6 lg:mb-8 text-brand-navy max-w-3xl mx-auto">
               Professional loan document signings for buyers, sellers, refinances, HELOCs, and investor transactions across Ohio.
             </p>
             
             {/* Service Details Above Fold */}
-            <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="bg-white p-6 rounded-lg border">
-                <h3 className="font-semibold text-lg mb-3 text-brand-blue">Loan Package Types:</h3>
-                <ul className="space-y-2 text-brand-navy">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:mb-8 text-left">
+              <div className="bg-white p-4 lg:p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-base lg:text-lg mb-3 text-brand-blue">Loan Package Types:</h3>
+                <ul className="space-y-1 lg:space-y-2 text-sm lg:text-base text-brand-navy">
                   <li>• Purchase (Buyer & Seller)</li>
                   <li>• Refinance (Rate & Term, Cash-Out)</li>
                   <li>• HELOC & Home Equity Loans</li>
@@ -36,9 +36,9 @@ const LoanSignings = () => {
                   <li>• Loan Modifications</li>
                 </ul>
               </div>
-              <div className="bg-white p-6 rounded-lg border">
-                <h3 className="font-semibold text-lg mb-3 text-brand-blue">What We Provide:</h3>
-                <ul className="space-y-2 text-brand-navy">
+              <div className="bg-white p-4 lg:p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-base lg:text-lg mb-3 text-brand-blue">What We Provide:</h3>
+                <ul className="space-y-1 lg:space-y-2 text-sm lg:text-base text-brand-navy">
                   <li>• Same-day and emergency service</li>
                   <li>• Error-free document execution</li>
                   <li>• Triple-checked processing</li>
@@ -49,12 +49,24 @@ const LoanSignings = () => {
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
+              <Button 
+                variant="cta" 
+                size="lg" 
+                className="text-base lg:text-lg px-6 lg:px-8 py-4 lg:py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto" 
+                asChild
+              >
                 <Link to="/contact">Get a Free Quote</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-                Call (513) 226-9052
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-base lg:text-lg px-6 lg:px-8 py-4 lg:py-6 w-full sm:w-auto"
+                asChild
+              >
+                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                  Call (513) 226-9052
+                </a>
               </Button>
             </div>
           </div>
