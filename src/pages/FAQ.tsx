@@ -132,8 +132,8 @@ const FAQ = () => {
                   We typically respond to quote requests within 30 minutes during business hours. 
                   For urgent same-day appointments, please call directly.
                 </p>
-                <Button variant="cta" className="w-full">
-                  Get Immediate Quote
+                <Button variant="cta" className="w-full" asChild>
+                  <Link to="/contact">Get Immediate Quote</Link>
                 </Button>
               </div>
             </div>

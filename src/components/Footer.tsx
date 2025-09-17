@@ -1,15 +1,16 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import logoImage from '@/assets/signed-on-time-logo-transparent.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const serviceLinks = [
-    { name: 'General Notary', href: '#general-notary' },
-    { name: 'Loan Signings', href: '#loan-signings' },
-    { name: 'Estate Plans', href: '#estate-plans' },
-    { name: 'Real Estate', href: '#real-estate' },
-    { name: 'Apostille', href: '#apostille' },
-    { name: 'Business Services', href: '#business-services' }
+    { name: 'General Notary', href: '/general-notary' },
+    { name: 'Loan Signings', href: '/loan-signings' },
+    { name: 'Estate Plans', href: '/estate-plans' },
+    { name: 'Real Estate', href: '/real-estate' },
+    { name: 'Apostille', href: '/apostille' },
+    { name: 'Business Services', href: '/business-services' }
   ];
 
   return (
@@ -54,12 +55,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.href}
+                  <Link 
+                    to={link.href}
                     className="text-white/80 hover:text-brand-gold transition-colors duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
