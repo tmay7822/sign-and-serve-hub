@@ -94,7 +94,7 @@ const FAQ = () => {
               <Button size="lg" variant="cta" className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
                 <Link to="/contact">Get a Free Quote</Link>
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
+              <Button size="lg" variant="outline" className="text-base lg:text-lg px-6 lg:px-8 py-4 w-full sm:w-auto shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call {BUSINESS_CONFIG.phone}</a>
               </Button>
             </div>
