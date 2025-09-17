@@ -438,7 +438,7 @@ const Blog = () => {
       </section>
 
       {/* Filter Bar */}
-      <section className="py-6 bg-white border-b">
+      <section className="py-4 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
