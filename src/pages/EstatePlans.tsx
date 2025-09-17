@@ -4,6 +4,7 @@ import PopupForm from '@/components/PopupForm';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { FileSignature, Clock, Shield, MapPin, Heart, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const EstatePlans = () => {
   return (
@@ -48,8 +49,8 @@ const EstatePlans = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary">
-                Get a Free Quote
+              <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
                 Call (513) 226-9052
@@ -204,8 +205,8 @@ const EstatePlans = () => {
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-6">Ready to Complete Your Estate Planning?</h3>
           <p className="text-xl mb-8 opacity-90">Schedule a convenient appointment at your location.</p>
-          <Button size="lg" variant="secondary">
-            Get a Free Quote
+          <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+            <Link to="/contact">Get a Free Quote</Link>
           </Button>
         </div>
       </section>

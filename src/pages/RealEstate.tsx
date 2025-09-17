@@ -4,6 +4,7 @@ import PopupForm from '@/components/PopupForm';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { Building, Clock, Shield, MapPin, FileText, DollarSign } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const RealEstate = () => {
   return (
@@ -48,8 +49,8 @@ const RealEstate = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary">
-                Get a Free Quote
+              <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
               </Button>
               <Button size="lg" variant="outline">
                 Call (513) 226-9052
@@ -235,8 +236,8 @@ const RealEstate = () => {
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-6">Ready to Close Your Real Estate Deal?</h3>
           <p className="text-xl mb-8 opacity-90">Get professional notary service that keeps your transaction on track.</p>
-          <Button size="lg" variant="secondary">
-            Get a Free Quote
+          <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+            <Link to="/contact">Get a Free Quote</Link>
           </Button>
         </div>
       </section>

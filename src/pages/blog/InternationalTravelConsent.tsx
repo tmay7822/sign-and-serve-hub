@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
 
 const InternationalTravelConsent = () => {
   useEffect(() => {
@@ -57,8 +58,8 @@ const InternationalTravelConsent = () => {
                 <p className="mb-4">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Service across {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
-                <Button size="lg" className="mr-4">
-                  Get a Free Quote
+                <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none mr-4" asChild>
+                  <Link to="/contact">Get a Free Quote</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
                   <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
