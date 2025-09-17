@@ -27,8 +27,8 @@ const ServicesSection = () => {
     },
     {
       icon: FileSignature,
-      title: "Estate Plans",
-      description: "Wills, trusts, power of attorney, and healthcare directive signings.",
+      title: "Estate Plans & Health Care",
+      description: "Wills, trusts, power of attorney, healthcare directives, and medical document signings.",
       link: "/estate-plans"
     },
     {
@@ -64,36 +64,38 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <Card 
                 key={index} 
-                className="gradient-card border-0 hover:shadow-professional transition-all duration-300 hover:scale-105 group h-full"
+                className="gradient-card border-2 border-brand-light/50 hover:border-brand-blue/30 hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group bg-white/80 backdrop-blur-sm min-h-[280px] flex flex-col"
               >
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-14 h-14 lg:w-16 lg:h-16 gradient-primary rounded-xl flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="h-6 w-6 lg:h-8 lg:w-8 text-white" />
+                <CardHeader className="text-center pb-4 flex-shrink-0">
+                  <div className="mx-auto w-16 h-16 lg:w-18 lg:h-18 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <IconComponent className="h-7 w-7 lg:h-9 lg:w-9 text-white" />
                   </div>
-                  <CardTitle className="text-lg lg:text-xl text-brand-navy leading-tight">
+                  <CardTitle className="text-xl lg:text-2xl text-brand-navy leading-tight font-semibold">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-center pt-0 flex flex-col justify-between h-full">
-                  <CardDescription className="text-sm lg:text-base mb-4 lg:mb-6 flex-grow">
+                <CardContent className="text-center pt-0 flex flex-col flex-grow">
+                  <CardDescription className="text-base lg:text-lg mb-6 flex-grow text-muted-foreground leading-relaxed">
                     {service.description}
                   </CardDescription>
-                  <Button 
-                    variant="ghost" 
-                    className="text-brand-blue hover:text-brand-navy group-hover:gap-3 transition-all duration-300 text-sm lg:text-base"
-                    asChild
-                  >
-                    <Link to={service.link}>
-                      Learn More
-                      <ArrowRight className="h-3 w-3 lg:h-4 lg:w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
+                  <div className="mt-auto pt-4">
+                    <Button 
+                      variant="outline" 
+                      className="w-full bg-brand-blue/5 border-brand-blue/20 text-brand-blue hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all duration-300 font-medium py-3"
+                      asChild
+                    >
+                      <Link to={service.link}>
+                        Learn More
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      </Link>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             );
