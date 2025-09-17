@@ -4,7 +4,7 @@ import { Phone, Menu, X } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
 
-import logoImage from '@/assets/signed-on-time-logo.jpg';
+import logoImage from '@/assets/signed-on-time-logo-transparent.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +42,7 @@ const Header = () => {
                 <img 
                   src={logoImage} 
                   alt={BUSINESS_CONFIG.logo.alt}
-                  className="h-20 w-auto"
+                  className="h-24 w-auto"
                 />
               </Link>
             </div>
