@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ThemeProvider from "@/components/ThemeProvider";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import GeneralNotary from "./pages/GeneralNotary";
 import LoanSignings from "./pages/LoanSignings";
@@ -82,6 +83,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <BreadcrumbNav />
           <Routes>
           <Route path="/" element={<Index />} />
