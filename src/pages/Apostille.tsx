@@ -255,9 +255,14 @@ const Apostille = () => {
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-6">Need Documents Authenticated for International Use?</h3>
           <p className="text-xl mb-8 opacity-90">Get expert apostille service that meets global standards.</p>
-          <Button size="lg" variant="secondary">
-            Get a Free Quote
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="secondary" asChild>
+              <Link to="/contact">Get a Free Quote</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy" asChild>
+              <a href="tel:(513) 226-9052">Call (513) 226-9052</a>
+            </Button>
+          </div>
         </div>
       </section>
 
