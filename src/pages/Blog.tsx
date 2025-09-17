@@ -15,7 +15,8 @@ interface BlogPost {
   author: string;
   date: string;
   readTime: string;
-  category: string;
+  tags: string[];
+  category: string; // Keep for backward compatibility
   slug: string;
 }
 
@@ -28,6 +29,7 @@ const blogPosts: BlogPost[] = [
     author: 'Professional Notary Team',
     date: '2025-01-15',
     readTime: '4 min read',
+    tags: ['General Notary', 'Documents'],
     category: 'General Notary',
     slug: 'general-notary-what-to-bring'
   },
@@ -39,6 +41,7 @@ const blogPosts: BlogPost[] = [
     author: 'Professional Notary Team',
     date: '2025-02-14',
     readTime: '3 min read',
+    tags: ['General Notary', 'Mobile Service'],
     category: 'General Notary',
     slug: 'mobile-vs-shipping-store'
   },
@@ -50,6 +53,7 @@ const blogPosts: BlogPost[] = [
     author: 'Healthcare Notary Specialist',
     date: '2025-02-13',
     readTime: '5 min read',
+    tags: ['Healthcare', 'Estate Planning', 'Legal/Court'],
     category: 'Healthcare',
     slug: 'hcpoa-living-will-guide'
   },
@@ -61,6 +65,7 @@ const blogPosts: BlogPost[] = [
     author: 'Healthcare Notary Specialist',
     date: '2025-03-12',
     readTime: '4 min read',
+    tags: ['Healthcare', 'Mobile Service'],
     category: 'Healthcare',
     slug: 'hospital-notary-what-to-expect'
   },
@@ -72,6 +77,7 @@ const blogPosts: BlogPost[] = [
     author: 'Estate Planning Specialist',
     date: '2025-03-11',
     readTime: '5 min read',
+    tags: ['Estate Planning', 'Legal/Court', 'Documents'],
     category: 'Estate Planning',
     slug: 'wills-trusts-poa-checklist'
   },
@@ -83,6 +89,7 @@ const blogPosts: BlogPost[] = [
     author: 'Certified Loan Signing Agent',
     date: '2025-04-10',
     readTime: '4 min read',
+    tags: ['Real Estate', 'Business Services'],
     category: 'Real Estate',
     slug: 'what-happens-loan-signing'
   },
@@ -94,6 +101,7 @@ const blogPosts: BlogPost[] = [
     author: 'International Documents Specialist',
     date: '2025-04-09',
     readTime: '5 min read',
+    tags: ['Apostille', 'International', 'Documents'],
     category: 'Apostille',
     slug: 'how-apostille-works'
   },
@@ -105,6 +113,7 @@ const blogPosts: BlogPost[] = [
     author: 'Business Services Specialist',
     date: '2025-05-08',
     readTime: '4 min read',
+    tags: ['Business Services', 'Legal/Court'],
     category: 'Business Services',
     slug: 'remote-hire-i9-steps'
   },
@@ -116,6 +125,7 @@ const blogPosts: BlogPost[] = [
     author: 'Educational Notary Specialist',
     date: '2025-05-07',
     readTime: '5 min read',
+    tags: ['College/18+', 'Healthcare', 'Legal/Court'],
     category: 'College/18+',
     slug: 'college-18-plus-starter-pack'
   },
@@ -127,6 +137,7 @@ const blogPosts: BlogPost[] = [
     author: 'Vehicle Notary Specialist',
     date: '2025-06-06',
     readTime: '4 min read',
+    tags: ['Vehicles/DMV', 'Documents'],
     category: 'Vehicles/DMV',
     slug: 'title-transfer-checklist'
   },
@@ -138,6 +149,7 @@ const blogPosts: BlogPost[] = [
     author: 'Legal Documents Specialist',
     date: '2025-06-05',
     readTime: '3 min read',
+    tags: ['Legal/Court', 'General Notary', 'Documents'],
     category: 'Legal/Court',
     slug: 'affidavit-jurat-acknowledgment'
   },
@@ -149,6 +161,7 @@ const blogPosts: BlogPost[] = [
     author: 'Insurance Specialist',
     date: '2025-07-04',
     readTime: '4 min read',
+    tags: ['Insurance/Retirement', 'Documents'],
     category: 'Insurance/Retirement',
     slug: 'beneficiary-change-forms'
   },
@@ -160,6 +173,7 @@ const blogPosts: BlogPost[] = [
     author: 'Real Estate Specialist',
     date: '2025-07-03',
     readTime: '5 min read',
+    tags: ['Business Services', 'Real Estate', 'Documents'],
     category: 'Business Services',
     slug: 'investor-notarizations'
   },
@@ -171,6 +185,7 @@ const blogPosts: BlogPost[] = [
     author: 'Real Estate Closing Agent',
     date: '2025-08-02',
     readTime: '4 min read',
+    tags: ['Real Estate', 'Documents'],
     category: 'Real Estate',
     slug: 'seller-signing-day'
   },
@@ -182,6 +197,7 @@ const blogPosts: BlogPost[] = [
     author: 'Loan Signing Agent',
     date: '2025-08-01',
     readTime: '3 min read',
+    tags: ['Real Estate', 'Business Services'],
     category: 'Real Estate',
     slug: 'scanback-timing-explained'
   },
@@ -193,6 +209,7 @@ const blogPosts: BlogPost[] = [
     author: 'International Documents Specialist',
     date: '2025-08-30',
     readTime: '4 min read',
+    tags: ['Apostille', 'International', 'Documents'],
     category: 'Apostille',
     slug: 'apostille-processing-times'
   },
@@ -204,6 +221,7 @@ const blogPosts: BlogPost[] = [
     author: 'Technology Notary Specialist',
     date: '2025-09-15',
     readTime: '5 min read',
+    tags: ['General Notary', 'Technology'],
     category: 'General Notary',
     slug: 'notary-vs-ron-rin'
   },
@@ -215,6 +233,7 @@ const blogPosts: BlogPost[] = [
     author: 'Business Contracts Specialist',
     date: '2025-09-10',
     readTime: '4 min read',
+    tags: ['Business Services', 'Legal/Court', 'Documents'],
     category: 'Business Services',
     slug: 'business-contract-notarization'
   },
@@ -226,6 +245,7 @@ const blogPosts: BlogPost[] = [
     author: 'Travel Document Specialist',
     date: '2025-09-05',
     readTime: '3 min read',
+    tags: ['College/18+', 'International', 'Legal/Court'],
     category: 'College/18+',
     slug: 'international-travel-consent'
   },
@@ -237,6 +257,7 @@ const blogPosts: BlogPost[] = [
     author: 'Estate Planning Specialist',
     date: '2025-09-01',
     readTime: '5 min read',
+    tags: ['Estate Planning', 'Legal/Court', 'Documents'],
     category: 'Estate Planning',
     slug: 'small-estate-affidavit-executor-tips'
   },
@@ -248,6 +269,7 @@ const blogPosts: BlogPost[] = [
     author: 'Legal Documents Specialist',
     date: '2025-01-20',
     readTime: '4 min read',
+    tags: ['Legal/Court', 'Mobile Service'],
     category: 'Legal/Court',
     slug: 'jail-notarization-process'
   },
@@ -259,6 +281,7 @@ const blogPosts: BlogPost[] = [
     author: 'Mobile Notary Specialist',
     date: '2025-02-18',
     readTime: '3 min read',
+    tags: ['General Notary', 'Mobile Service'],
     category: 'General Notary',
     slug: 'after-hours-emergency-notary'
   },
@@ -270,6 +293,7 @@ const blogPosts: BlogPost[] = [
     author: 'General Notary Specialist',
     date: '2025-03-15',
     readTime: '4 min read',
+    tags: ['General Notary', 'Legal/Court'],
     category: 'General Notary',
     slug: 'witness-requirements'
   },
@@ -281,6 +305,7 @@ const blogPosts: BlogPost[] = [
     author: 'ID Verification Specialist',
     date: '2025-04-12',
     readTime: '3 min read',
+    tags: ['General Notary', 'Documents'],
     category: 'General Notary',
     slug: 'expired-id-options'
   },
@@ -292,6 +317,7 @@ const blogPosts: BlogPost[] = [
     author: 'Document Preparation Specialist',
     date: '2025-05-10',
     readTime: '3 min read',
+    tags: ['General Notary', 'Legal/Court', 'Documents'],
     category: 'General Notary',
     slug: 'name-mismatch-aka-affidavit'
   },
@@ -303,6 +329,7 @@ const blogPosts: BlogPost[] = [
     author: 'Real Estate Specialist',
     date: '2025-06-08',
     readTime: '4 min read',
+    tags: ['Real Estate', 'Legal/Court', 'Documents'],
     category: 'Real Estate',
     slug: 'deeds-explained'
   },
@@ -314,6 +341,7 @@ const blogPosts: BlogPost[] = [
     author: 'Legal Documents Specialist',
     date: '2025-07-06',
     readTime: '4 min read',
+    tags: ['Legal/Court', 'Estate Planning', 'Documents'],
     category: 'Legal/Court',
     slug: 'poa-pitfalls-and-readiness'
   },
@@ -325,6 +353,7 @@ const blogPosts: BlogPost[] = [
     author: 'International Documents Specialist',
     date: '2025-08-04',
     readTime: '5 min read',
+    tags: ['Apostille', 'International', 'College/18+'],
     category: 'Apostille',
     slug: 'apostille-school-docs'
   },
@@ -336,6 +365,7 @@ const blogPosts: BlogPost[] = [
     author: 'International Documents Specialist',
     date: '2025-08-15',
     readTime: '3 min read',
+    tags: ['International', 'Legal/Court', 'Documents'],
     category: 'International',
     slug: 'translator-affidavit-notary'
   },
@@ -347,6 +377,7 @@ const blogPosts: BlogPost[] = [
     author: 'Estate Planning Specialist',
     date: '2025-08-20',
     readTime: '4 min read',
+    tags: ['Estate Planning', 'Business Services', 'Documents'],
     category: 'Estate Planning',
     slug: 'trust-certification-for-banks'
   },
@@ -358,6 +389,7 @@ const blogPosts: BlogPost[] = [
     author: 'Pricing Specialist',
     date: '2025-08-25',
     readTime: '3 min read',
+    tags: ['General Notary', 'Mobile Service'],
     category: 'General Notary',
     slug: 'notary-fees-and-mobile-travel'
   },
@@ -369,6 +401,7 @@ const blogPosts: BlogPost[] = [
     author: 'Compliance Specialist',
     date: '2025-09-03',
     readTime: '4 min read',
+    tags: ['General Notary', 'Legal/Court'],
     category: 'General Notary',
     slug: 'what-notaries-cannot-do'
   }
@@ -378,9 +411,9 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [sortBy, setSortBy] = useState<'newest' | 'category'>('newest');
 
-  // Get unique categories
+  // Get unique categories from tags
   const categories = useMemo(() => {
-    const unique = Array.from(new Set(blogPosts.map(post => post.category)));
+    const unique = Array.from(new Set(blogPosts.flatMap(post => post.tags)));
     return ['All', ...unique.sort()];
   }, []);
 
@@ -388,7 +421,7 @@ const Blog = () => {
   const filteredAndSortedPosts = useMemo(() => {
     let filtered = selectedCategory === 'All' 
       ? blogPosts 
-      : blogPosts.filter(post => post.category === selectedCategory);
+      : blogPosts.filter(post => post.tags.includes(selectedCategory));
 
     if (sortBy === 'newest') {
       filtered = filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -438,15 +471,10 @@ const Blog = () => {
       </section>
 
       {/* Filter Bar */}
-      <section className="py-4 bg-white border-b">
+      <section className="py-2 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Filter className="h-5 w-5 text-brand-navy" />
-                <span className="font-medium text-brand-navy">Filter by Topic:</span>
-              </div>
-              
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <Button
@@ -454,108 +482,81 @@ const Blog = () => {
                     variant={selectedCategory === category ? "default" : "outline"}
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
-                    className={selectedCategory === category 
-                      ? "bg-brand-gold text-brand-navy hover:bg-brand-gold/90" 
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                    }
+                    className="text-xs"
                   >
                     {category}
                   </Button>
                 ))}
               </div>
-              
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Sort by:</span>
-                <Button
-                  variant={sortBy === 'newest' ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSortBy('newest')}
-                  className={sortBy === 'newest' 
-                    ? "bg-brand-navy text-white hover:bg-brand-navy/90" 
-                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }
+                <Filter size={16} />
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as 'newest' | 'category')}
+                  className="text-sm border border-gray-300 rounded px-2 py-1"
                 >
-                  Newest
-                </Button>
-                <Button
-                  variant={sortBy === 'category' ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSortBy('category')}
-                  className={sortBy === 'category' 
-                    ? "bg-brand-navy text-white hover:bg-brand-navy/90" 
-                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }
-                >
-                  Topic
-                </Button>
+                  <option value="newest">Newest First</option>
+                  <option value="category">By Category</option>
+                </select>
               </div>
             </div>
-            
-            <div className="mt-4 text-sm text-gray-600">
-              Showing {filteredAndSortedPosts.length} article{filteredAndSortedPosts.length !== 1 ? 's' : ''}
-              {selectedCategory !== 'All' && ` in ${selectedCategory}`}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Blog Posts */}
-      <section className="py-16 bg-background">
+      {/* Blog Grid */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid gap-8">
-              {filteredAndSortedPosts.map((post) => (
-                <Card key={post.id} className="shadow-card">
-                  <CardHeader>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {new Date(post.date).toLocaleDateString()}
+          <div className="max-w-6xl mx-auto">
+            {filteredAndSortedPosts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-600">No blog posts found for the selected category.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredAndSortedPosts.map((post) => (
+                  <Card key={post.id} className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                    <CardHeader className="flex-shrink-0">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                        <Calendar size={14} />
+                        <span>{new Date(post.date).toLocaleDateString()}</span>
+                        <Clock size={14} />
+                        <span>{post.readTime}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {post.readTime}
+                      <CardTitle className="text-xl mb-2 line-clamp-2">
+                        {post.title}
+                      </CardTitle>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {post.tags.map((tag) => (
+                          <span key={tag} className="text-xs bg-brand-light text-brand-navy px-2 py-1 rounded">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                      <span className="bg-brand-light text-brand-navy px-2 py-1 rounded text-xs">
-                        {post.category}
-                      </span>
-                    </div>
-                    <CardTitle className="text-2xl text-brand-navy hover:text-brand-blue transition-colors">
-                      <a href={`/blog/${post.slug}`}>{post.title}</a>
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="prose prose-sm max-w-none text-muted-foreground">
-                      {post.content.split('\n\n')[0]}...
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <User className="h-4 w-4" />
-                      {post.author}
-                    </div>
-                    <Button variant="outline" asChild>
-                      <a href={`/blog/${post.slug}`}>Read More</a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
+                    </CardHeader>
+                    
+                    <CardContent className="flex-grow">
+                      <CardDescription className="text-sm line-clamp-3 mb-4">
+                        {post.excerpt}
+                      </CardDescription>
+                    </CardContent>
+                    
+                    <CardFooter className="flex-shrink-0 pt-0">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <User size={14} />
+                          <span>{post.author}</span>
+                        </div>
+                        <Button size="sm" variant="outline">
+                          Read More
+                        </Button>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-6">Need Professional Notary Services?</h3>
-          <p className="text-xl mb-8 opacity-90">Get your documents notarized by certified professionals</p>
-          <Button size="lg" variant="secondary">
-            Get a Free Quote
-          </Button>
         </div>
       </section>
 
