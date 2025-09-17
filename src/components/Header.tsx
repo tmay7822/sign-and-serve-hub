@@ -38,13 +38,12 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <Link to="/" className="flex items-center gap-3 font-bold text-xl text-brand-navy hover:text-brand-blue transition-colors">
+              <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
                 <img 
                   src={logoImage} 
                   alt={BUSINESS_CONFIG.logo.alt}
-                  className="h-16 w-auto"
+                  className="h-20 w-auto"
                 />
-                {BUSINESS_CONFIG.name}
               </Link>
             </div>
 
