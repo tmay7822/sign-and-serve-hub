@@ -10,6 +10,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
+    { name: 'Home', href: '/' },
     { name: 'General Notary', href: '/general-notary' },
     { name: 'Loan Signings', href: '/loan-signings' },
     { name: 'Estate Plans', href: '/estate-plans' },
