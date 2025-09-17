@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import logoImage from '@/assets/signed-on-time-logo-transparent.png';
+import logoImage from '@/assets/signed-on-time-logo.jpg';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
