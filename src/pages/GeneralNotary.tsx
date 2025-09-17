@@ -142,6 +142,187 @@ const GeneralNotary = () => {
         </div>
       </section>
 
+      {/* Comprehensive Document List */}
+      <section className="py-16 bg-brand-light/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">
+              Documents We Notarize
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 text-center max-w-3xl mx-auto">
+              From simple affidavits to complex legal documents, we provide professional notarization services for all your document needs.
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Personal & Family Documents */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Personal & Family</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Adoption Papers</li>
+                  <li>• Authorization for Minor to Travel</li>
+                  <li>• Child Custody Agreement</li>
+                  <li>• Child Support Agreement</li>
+                  <li>• International Travel Consent</li>
+                  <li>• Marriage License Application</li>
+                  <li>• Name Change Application</li>
+                  <li>• Parental Consent for Travel</li>
+                  <li>• Parental Permission for Field Trip</li>
+                  <li>• Paternity Affidavit</li>
+                  <li>• Prenuptial Agreement</li>
+                  <li>• Postnuptial Agreement</li>
+                  <li>• Separation Agreement</li>
+                  <li>• Spousal Consent Form</li>
+                </ul>
+              </div>
+
+              {/* Real Estate Documents */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Real Estate</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Agreement of Sale</li>
+                  <li>• Assignment of Lease</li>
+                  <li>• Deed of Trust</li>
+                  <li>• Grant Deed</li>
+                  <li>• Homeowner Association (HOA) Agreement</li>
+                  <li>• Land Contract</li>
+                  <li>• Lease Agreement</li>
+                  <li>• Mechanic's Lien</li>
+                  <li>• Mortgage Agreement</li>
+                  <li>• Notice of Default</li>
+                  <li>• Notice to Quit</li>
+                  <li>• Partition Deed</li>
+                  <li>• Property Deed</li>
+                  <li>• Quitclaim Deed</li>
+                  <li>• Real Estate Contract</li>
+                  <li>• Real Estate Option Agreement</li>
+                  <li>• Release of Lien</li>
+                  <li>• Rental Agreement</li>
+                  <li>• Rental Application</li>
+                  <li>• Settlement Statement (HUD-1)</li>
+                  <li>• Title Transfer</li>
+                  <li>• Warranty Deed</li>
+                </ul>
+              </div>
+
+              {/* Business & Legal Documents */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Business & Legal</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Affidavit</li>
+                  <li>• Certificate of Incorporation</li>
+                  <li>• Contract</li>
+                  <li>• Corporate Resolution</li>
+                  <li>• Employee Non-Compete Agreement</li>
+                  <li>• Exclusive License Agreement</li>
+                  <li>• Hold Harmless Agreement</li>
+                  <li>• Incorporation Documents</li>
+                  <li>• Jurat</li>
+                  <li>• Letter of Consent</li>
+                  <li>• Mutual Non-Disclosure Agreement (NDA)</li>
+                  <li>• Mutual Release Agreement</li>
+                  <li>• Operating Agreement</li>
+                  <li>• Settlement Agreement</li>
+                  <li>• Signature Affidavit</li>
+                  <li>• Stock Transfer Agreement</li>
+                  <li>• Subordination Agreement</li>
+                  <li>• Temporary Restraining Order (TRO)</li>
+                  <li>• Uniform Commercial Code (UCC) Financing Statement</li>
+                  <li>• Vendor Agreement</li>
+                  <li>• Work for Hire Agreement</li>
+                  <li>• Zoning Compliance Certificate</li>
+                </ul>
+              </div>
+
+              {/* Healthcare & Medical Documents */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Healthcare & Medical</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Health Care Proxy</li>
+                  <li>• Health Insurance Claim Form</li>
+                  <li>• HIPAA Authorization</li>
+                  <li>• Living Will</li>
+                  <li>• Medical Directive</li>
+                  <li>• Medical Records Release Authorization</li>
+                </ul>
+              </div>
+
+              {/* Financial Documents */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Financial</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Bill of Sale</li>
+                  <li>• Escrow Agreement</li>
+                  <li>• Financial Statement</li>
+                  <li>• Installment Payment Agreement</li>
+                  <li>• Insurance Assignment Form</li>
+                  <li>• Investment Authorization Form</li>
+                  <li>• Loan Agreement</li>
+                  <li>• Loan Modification Agreement</li>
+                  <li>• Personal Guarantee</li>
+                  <li>• Promissory Note</li>
+                  <li>• Retirement Benefits Form</li>
+                  <li>• Tax Form (W-9, W-2, etc.)</li>
+                </ul>
+              </div>
+
+              {/* Estate Planning & Power of Attorney */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Estate Planning</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Affidavit of Domicile</li>
+                  <li>• Durable Power of Attorney</li>
+                  <li>• Estate Plan</li>
+                  <li>• Final Release of Waiver</li>
+                  <li>• Living Trust</li>
+                  <li>• Petition for Guardianship</li>
+                  <li>• Power of Attorney (POA)</li>
+                  <li>• Proof of Identity Affidavit</li>
+                  <li>• Proof of Life Certificate</li>
+                  <li>• Revocation of Power of Attorney</li>
+                  <li>• Revocation of Trust</li>
+                  <li>• Simple Will</li>
+                  <li>• Temporary Guardianship Agreement</li>
+                  <li>• Trust Amendment</li>
+                  <li>• Trust Certification</li>
+                  <li>• Trustee Appointment</li>
+                  <li>• Waiver of Right to Claim Against Estate</li>
+                  <li>• Will Codicil</li>
+                </ul>
+              </div>
+
+              {/* Vehicle & Transportation */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Vehicle & Transportation</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Vehicle Bill of Sale</li>
+                  <li>• Vehicle Title Application</li>
+                </ul>
+              </div>
+
+              {/* Miscellaneous */}
+              <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <h3 className="font-semibold text-lg mb-4 text-brand-blue">Other Documents</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Environmental Impact Statement</li>
+                  <li>• Lien Waiver</li>
+                  <li>• Preliminary Notice</li>
+                  <li>• Resignation Letter</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <p className="text-muted-foreground mb-6">
+                Don't see your document listed? We notarize most types of documents. Contact us for assistance.
+              </p>
+              <Button variant="cta" size="lg" asChild>
+                <Link to="/contact">Get a Free Quote</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
