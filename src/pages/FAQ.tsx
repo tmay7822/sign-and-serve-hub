@@ -1,10 +1,80 @@
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import FAQSection from '@/components/FAQSection';
 import { Button } from '@/components/ui/button';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const FAQ = () => {
+  useEffect(() => {
+    const title = "Frequently Asked Questions | Mobile Notary Services | Signed On Time";
+    const metaDescription = "Common questions about mobile notary services in Cincinnati-Dayton area. Same-day service, pricing, and service area information.";
+    
+    document.title = title;
+    
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', metaDescription);
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = metaDescription;
+      document.head.appendChild(meta);
+    }
+
+    // Add FAQ structured data
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you come to me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We're a mobile service covering Cincinnati-Dayton metro area including Hamilton, Warren, Montgomery, and Butler Counties—homes, offices, hospitals, senior communities, and more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What IDs are accepted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Current government photo ID (driver's license, passport, state ID). If yours is expired, call us to discuss options allowed by state rules."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "How much does it cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Two parts: per-signature notarization (regulated by state) + mobile travel (time/distance). We quote upfront with transparent pricing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you do evenings or weekends?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. After-hours appointments are available throughout our service area. Travel and after-hours fees apply."
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

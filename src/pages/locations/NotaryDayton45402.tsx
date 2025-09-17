@@ -15,7 +15,7 @@ const NotaryDayton45402 = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Mobile Notary Services in Dayton, OH 45402
+              General Notary in Dayton, OH 45402
             </h1>
             <p className="text-xl mb-8 opacity-90">
               Professional mobile notary serving downtown Dayton, Montgomery County with comprehensive business and residential services.

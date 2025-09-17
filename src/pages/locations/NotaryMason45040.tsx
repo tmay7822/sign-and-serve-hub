@@ -15,7 +15,7 @@ const NotaryMason45040 = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Mobile Notary Services in Mason, OH 45040
+              General Notary in Mason, OH 45040
             </h1>
             <p className="text-xl mb-8 opacity-90">
               Professional mobile notary serving Mason, Warren County with same-day appointments and evening availability.

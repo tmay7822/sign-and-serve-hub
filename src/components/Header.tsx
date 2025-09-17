@@ -42,7 +42,7 @@ const Header = () => {
                 <img 
                   src={logoImage} 
                   alt={BUSINESS_CONFIG.logo.alt}
-                  className="h-10 w-auto"
+                  className="h-16 w-auto"
                 />
                 {BUSINESS_CONFIG.name}
               </Link>

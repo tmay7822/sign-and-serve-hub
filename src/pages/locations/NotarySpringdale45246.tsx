@@ -15,7 +15,7 @@ const NotarySpringdale45246 = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Mobile Notary Services in Springdale, OH 45246
+              General Notary in Springdale, OH 45246
             </h1>
             <p className="text-xl mb-8 opacity-90">
               Professional mobile notary serving Springdale, Hamilton County with reliable community-focused services.

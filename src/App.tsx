@@ -71,6 +71,7 @@ import NotaryWestChester45069 from "./pages/locations/NotaryWestChester45069";
 import NotarySpringdale45246 from "./pages/locations/NotarySpringdale45246";
 import NotaryKettering45429 from "./pages/locations/NotaryKettering45429";
 import NotaryLebanon45036 from "./pages/locations/NotaryLebanon45036";
+import GeneralNotaryBlueAsh45242 from "./pages/locations/GeneralNotaryBlueAsh45242";
 
 const queryClient = new QueryClient();
 
@@ -155,6 +156,7 @@ const App = () => (
           <Route path="/notary-springdale-45246" element={<NotarySpringdale45246 />} />
           <Route path="/notary-kettering-45429" element={<NotaryKettering45429 />} />
           <Route path="/notary-lebanon-45036" element={<NotaryLebanon45036 />} />
+          <Route path="/general-notary/hamilton/blue-ash" element={<GeneralNotaryBlueAsh45242 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
