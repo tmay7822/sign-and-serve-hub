@@ -475,30 +475,37 @@ const Blog = () => {
       <section className="py-2 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-              <div className="flex flex-wrap gap-2">
+            <div className="flex flex-col gap-4">
+              {/* Categories */}
+              <div className="flex flex-wrap gap-2 justify-start">
                 {categories.map((category) => (
                   <Button
                     key={category}
                     variant={selectedCategory === category ? "default" : "outline"}
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
-                    className="text-xs"
+                    className="text-xs whitespace-nowrap"
                   >
                     {category}
                   </Button>
                 ))}
               </div>
-              <div className="flex items-center gap-2">
-                <Filter size={16} />
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as 'newest' | 'category')}
-                  className="text-sm border border-gray-300 rounded px-2 py-1"
-                >
-                  <option value="newest">Newest First</option>
-                  <option value="category">By Category</option>
-                </select>
+              {/* Sort Controls */}
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-muted-foreground">
+                  {filteredAndSortedPosts.length} article{filteredAndSortedPosts.length !== 1 ? 's' : ''} found
+                </div>
+                <div className="flex items-center gap-2">
+                  <Filter size={16} />
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as 'newest' | 'category')}
+                    className="text-sm border border-gray-300 rounded px-2 py-1 bg-white"
+                  >
+                    <option value="newest">Newest First</option>
+                    <option value="category">By Category</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -514,41 +521,44 @@ const Blog = () => {
                 <p className="text-gray-600">No blog posts found for the selected category.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {filteredAndSortedPosts.map((post) => (
                   <Card key={post.id} className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader className="flex-shrink-0">
+                    <CardHeader className="flex-shrink-0 p-4 lg:p-6">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                         <Calendar size={14} />
-                        <span>{new Date(post.date).toLocaleDateString()}</span>
+                        <span className="text-xs">{new Date(post.date).toLocaleDateString()}</span>
                         <Clock size={14} />
-                        <span>{post.readTime}</span>
+                        <span className="text-xs">{post.readTime}</span>
                       </div>
-                      <CardTitle className="text-xl mb-2 line-clamp-2">
+                      <CardTitle className="text-lg lg:text-xl mb-2 line-clamp-2 leading-tight">
                         {post.title}
                       </CardTitle>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {post.tags.map((tag) => (
+                        {post.tags.slice(0, 2).map((tag) => (
                           <span key={tag} className="text-xs bg-brand-light text-brand-navy px-2 py-1 rounded">
                             {tag}
                           </span>
                         ))}
+                        {post.tags.length > 2 && (
+                          <span className="text-xs text-muted-foreground">+{post.tags.length - 2}</span>
+                        )}
                       </div>
                     </CardHeader>
                     
-                    <CardContent className="flex-grow">
+                    <CardContent className="flex-grow p-4 lg:p-6 pt-0">
                       <CardDescription className="text-sm line-clamp-3 mb-4">
                         {post.excerpt}
                       </CardDescription>
                     </CardContent>
                     
-                    <CardFooter className="flex-shrink-0 pt-0">
+                    <CardFooter className="flex-shrink-0 p-4 lg:p-6 pt-0">
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <User size={14} />
-                          <span>{post.author}</span>
+                          <span className="text-xs truncate">{post.author}</span>
                         </div>
-                        <Button size="sm" variant="outline" asChild>
+                        <Button size="sm" variant="outline" asChild className="whitespace-nowrap">
                           <Link to={`/blog/${post.slug}`}>
                             Read More
                           </Link>
