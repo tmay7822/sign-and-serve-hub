@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Link } from 'react-router-dom';
 
 const HCPOALivingWillGuide = () => {
   useEffect(() => {
@@ -56,8 +57,8 @@ const HCPOALivingWillGuide = () => {
                 <p className="mb-4">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea.primary} with compassionate, on-time service.
                 </p>
-                <Button size="lg" className="mr-4">
-                  Get a Free Quote
+                <Button size="lg" className="mr-4" asChild>
+                  <Link to="/contact">Get a Free Quote</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
                   <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
