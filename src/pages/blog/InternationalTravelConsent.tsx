@@ -58,7 +58,7 @@ const InternationalTravelConsent = () => {
                 <p className="mb-4">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Service across {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
-                <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none mr-4" asChild>
+                <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mr-4" asChild>
                   <Link to="/contact">Get a Free Quote</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>

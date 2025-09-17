@@ -190,9 +190,14 @@ const LoanSignings = () => {
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-6">Need a Loan Signing Today?</h3>
           <p className="text-xl mb-8 text-brand-navy">Contact us for same-day availability and professional service.</p>
-          <Button size="lg" variant="default">
-            Get a Free Quote
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
+              <Link to="/contact">Get a Free Quote</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+              Call {BUSINESS_CONFIG.phone}
+            </Button>
+          </div>
         </div>
       </section>
 

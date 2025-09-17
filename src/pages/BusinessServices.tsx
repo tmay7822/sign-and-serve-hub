@@ -49,10 +49,10 @@ const BusinessServices = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+              <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
                 <Link to="/contact">Get a Free Quote</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                 Call (513) 226-9052
               </Button>
             </div>
@@ -269,7 +269,7 @@ const BusinessServices = () => {
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-6">Ready to Streamline Your Business Documents?</h3>
           <p className="text-xl mb-8 opacity-90">Get professional notary service that supports your business operations.</p>
-          <Button variant="cta" size="lg" className="text-xl px-10 py-8 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-500 animate-pulse hover:animate-none" asChild>
+          <Button variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
             <Link to="/contact">Get a Free Quote</Link>
           </Button>
         </div>
