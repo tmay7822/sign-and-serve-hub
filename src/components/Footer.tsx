@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import logoImage from '@/assets/signed-on-time-logo-transparent.png';
 
 const Footer = () => {
   const serviceLinks = [
@@ -17,8 +18,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <div className="font-bold text-xl mb-4">
-              {BUSINESS_CONFIG.name}
+            <div className="mb-4">
+              <img 
+                src={logoImage} 
+                alt={BUSINESS_CONFIG.logo.alt}
+                className="h-16 w-auto mb-4"
+              />
             </div>
             <p className="text-white/80 mb-6 leading-relaxed">
               {BUSINESS_CONFIG.name} provides mobile notary and loan signing services across {BUSINESS_CONFIG.serviceArea.primary}. 

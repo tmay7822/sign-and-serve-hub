@@ -5,7 +5,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[600px] flex items-center">
+    <section className="relative min-h-[500px] flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
