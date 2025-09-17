@@ -39,14 +39,14 @@ const Header = () => {
       {/* Main header */}
       <header className="bg-white shadow-professional sticky top-0 z-50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center justify-between h-48 lg:h-56">
             {/* Logo */}
             <div className="flex items-center flex-shrink-0">
               <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
                 <img 
                   src={logoImage} 
                   alt={BUSINESS_CONFIG.logo.alt}
-                  className="h-24 lg:h-28 w-auto"
+                  className="h-48 lg:h-56 w-auto"
                 />
               </Link>
             </div>
