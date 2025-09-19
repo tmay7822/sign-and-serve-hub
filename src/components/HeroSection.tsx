@@ -19,7 +19,7 @@ const HeroSection = () => {
             </h2>
             
             <p className="text-2xl lg:text-3xl font-bold text-primary mb-6">
-              by Terry May with Signed On Time
+              Terry May with Signed On Time
             </p>
             
             <div className="mb-8">
