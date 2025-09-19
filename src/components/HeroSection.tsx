@@ -5,34 +5,34 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section className="bg-background py-16 lg:py-24">
+    <section className="bg-background py-8 lg:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 lg:mb-8 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
             Signed Right.<br />
             <span className="text-primary">Signed On Time.</span>
           </h1>
           
-          <div className="bg-card rounded-lg p-8 lg:p-12 shadow-lg mb-8">
-            <h2 className="text-2xl lg:text-3xl font-semibold text-foreground mb-4">
+          <div className="bg-card rounded-lg p-4 lg:p-6 shadow-lg mb-4">
+            <h2 className="text-xl lg:text-2xl font-semibold text-foreground mb-3">
               Professional Mobile Notary & Loan Signing Services
             </h2>
             
-            <p className="text-2xl lg:text-3xl font-bold text-primary mb-6">
+            <p className="text-xl lg:text-2xl font-bold text-primary mb-4">
               Terry May with Signed On Time
             </p>
             
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-foreground mb-4">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 Serving Cincinnati to Dayton Metro Area
               </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 We provide certified, insured, and background-checked mobile notary services 
                 across the following counties: <span className="font-semibold text-foreground">Hamilton, Warren, Montgomery, Butler, Clinton, & Greene</span>.
               </p>
             </div>
             
-            <p className="text-lg font-medium text-foreground mb-6">
+            <p className="text-base font-medium text-foreground mb-4">
               See below for all of our services
             </p>
 
