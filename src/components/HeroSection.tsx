@@ -14,13 +14,29 @@ const HeroSection = () => {
           </h1>
           
           <div className="bg-card rounded-lg p-8 lg:p-12 shadow-lg mb-8">
-            <h2 className="text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            <h2 className="text-2xl lg:text-3xl font-semibold text-foreground mb-4">
               Professional Mobile Notary & Loan Signing Services
             </h2>
             
-            <p className="text-lg lg:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Certified, insured, and background-checked mobile notary services. 
-              We come to you with same-day availability and error-free document processing.
+            <p className="text-lg font-medium text-primary mb-6">
+              by Terry May with Signed On Time
+            </p>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-foreground mb-4">
+                Serving Cincinnati to Dayton Metro Area
+              </h3>
+              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+                We provide certified, insured, and background-checked mobile notary services 
+                across the following counties: <span className="font-semibold text-foreground">Hamilton, Warren, Montgomery, Butler, Clinton, & Greene</span>.
+              </p>
+              <p className="text-base text-muted-foreground">
+                Same-day availability with error-free document processing. We come to you!
+              </p>
+            </div>
+            
+            <p className="text-lg font-medium text-foreground mb-6">
+              You can see below for all of our services
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-8">
