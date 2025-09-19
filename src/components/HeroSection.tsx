@@ -18,7 +18,7 @@ const HeroSection = () => {
               Professional Mobile Notary & Loan Signing Services
             </h2>
             
-            <p className="text-lg font-medium text-primary mb-6">
+            <p className="text-2xl lg:text-3xl font-bold text-primary mb-6">
               by Terry May with Signed On Time
             </p>
             
@@ -35,42 +35,9 @@ const HeroSection = () => {
               </p>
             </div>
             
-            <p className="text-lg font-medium text-foreground mb-6">
+            <p className="text-lg font-medium text-foreground mb-8">
               You can see below for all of our services
             </p>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div>
-                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                  <FileCheck className="mr-2 h-5 w-5 text-primary" />
-                  Our Services
-                </h3>
-                <ul className="text-left space-y-2 text-muted-foreground">
-                  <li>• Mobile Notary Services</li>
-                  <li>• Loan Signings & Real Estate</li>
-                  <li>• Legal Document Notarization</li>
-                  <li>• Apostille Services</li>
-                  <li>• Business & Personal Documents</li>
-                  <li>• Estate Planning Documents</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                  <MapPin className="mr-2 h-5 w-5 text-primary" />
-                  Service Areas
-                </h3>
-                <div className="text-left text-muted-foreground">
-                  <p className="font-medium mb-2">We serve {BUSINESS_CONFIG.serviceArea.primary}:</p>
-                  <p className="text-sm leading-relaxed">
-                    {BUSINESS_CONFIG.serviceArea.counties}
-                  </p>
-                  <p className="text-sm mt-2 text-primary font-medium">
-                    Mobile service to your location
-                  </p>
-                </div>
-              </div>
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
               <Button 
