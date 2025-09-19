@@ -26,12 +26,9 @@ const HeroSection = () => {
               <h3 className="text-xl font-semibold text-foreground mb-4">
                 Serving Cincinnati to Dayton Metro Area
               </h3>
-              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 We provide certified, insured, and background-checked mobile notary services 
                 across the following counties: <span className="font-semibold text-foreground">Hamilton, Warren, Montgomery, Butler, Clinton, & Greene</span>.
-              </p>
-              <p className="text-base text-muted-foreground">
-                Same-day availability with error-free document processing. We come to you!
               </p>
             </div>
             
@@ -63,26 +60,6 @@ const HeroSection = () => {
                   Call Now
                 </a>
               </Button>
-            </div>
-          </div>
-
-          {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-8 text-sm lg:text-base text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-              <span>Same-day service</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-              <span>Mobile to you</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-              <span>5-star rated</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-              <span>Licensed & Insured</span>
             </div>
           </div>
         </div>
