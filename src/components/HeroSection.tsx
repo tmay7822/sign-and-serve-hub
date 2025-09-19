@@ -35,8 +35,8 @@ const HeroSection = () => {
               </p>
             </div>
             
-            <p className="text-lg font-medium text-foreground mb-8">
-              You can see below for all of our services
+            <p className="text-lg font-medium text-foreground mb-6">
+              See below for all of our services
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
