@@ -3,18 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignRight Mobile Notary | Mobile Notary & Loan Signing Services | Cincinnati-Dayton</title>
-    <meta name="description" content="Professional mobile notary and loan signing services across Cincinnati-Dayton. Same-day availability, error-free docs, five-star service. Background checked, insured, and NNA certified." />
-    <meta name="author" content="SignRight Mobile Notary" />
+    <title id="dynamic-title">Loading...</title>
+    <meta name="description" id="dynamic-description" content="" />
+    <meta name="author" id="dynamic-author" content="" />
 
-    <meta property="og:title" content="SignRight Mobile Notary | Mobile Notary & Loan Signing Services" />
-    <meta property="og:description" content="Professional mobile notary and loan signing services across Cincinnati-Dayton. Same-day availability, error-free docs, five-star service." />
+    <meta property="og:title" id="dynamic-og-title" content="" />
+    <meta property="og:description" id="dynamic-og-description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/placeholder-logo.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image" content="/placeholder-logo.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/assets/logo-placeholder.png" as="image" />
+    
+    <script>
+      // Dynamic meta tags from business config
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/src/config/business.ts')
+          .then(() => {
+            // This will be handled by the React app
+            // Just ensuring the page loads properly for white-label customization
+          })
+          .catch(() => {
+            // Fallback meta tags
+            document.title = "Professional Notary Services | Mobile Notary & Loan Signing";
+            document.getElementById('dynamic-description').setAttribute('content', 
+              'Professional mobile notary and loan signing services. Same-day availability, error-free docs, five-star service.');
+          });
+      });
+    </script>
   </head>
 
   <body>

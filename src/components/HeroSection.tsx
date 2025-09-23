@@ -24,11 +24,16 @@ const HeroSection = () => {
             
             <div className="mb-4">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Serving Cincinnati to Dayton Metro Area
+                Serving {BUSINESS_CONFIG.serviceArea.primary}
               </h3>
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed mb-2">
                 We provide certified, insured, and background-checked mobile notary services 
-                across the following counties: <span className="font-semibold text-foreground">Hamilton, Warren, Montgomery, Butler, Clinton, & Greene</span>.
+                across the following counties:
+              </p>
+              <p className="text-base font-bold text-foreground">
+                {Array.isArray(BUSINESS_CONFIG.serviceArea.counties) 
+                  ? BUSINESS_CONFIG.serviceArea.counties.join(', ')
+                  : BUSINESS_CONFIG.serviceArea.counties}
               </p>
             </div>
             

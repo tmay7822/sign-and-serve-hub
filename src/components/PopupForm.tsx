@@ -6,10 +6,12 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, X, Send, CheckCircle } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const PopupForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -43,26 +45,62 @@ const PopupForm = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // In a real app, you would send the data to your backend
-    console.log('Form submitted:', formData);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setIsOpen(false);
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        zip: '',
-        preferredTime: '',
-        notes: '',
-        services: []
+    setIsSubmitting(true);
+
+    try {
+      // Netlify Forms submission
+      const formElement = e.target as HTMLFormElement;
+      const netlifyFormData = new FormData(formElement);
+      
+      // Add services array as comma-separated string
+      netlifyFormData.set('services', formData.services.join(', '));
+      
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(netlifyFormData as any).toString()
       });
-    }, 3000);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setIsOpen(false);
+          setFormData({
+            name: '',
+            phone: '',
+            email: '',
+            zip: '',
+            preferredTime: '',
+            notes: '',
+            services: []
+          });
+        }, 3000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      // Fallback: mailto link
+      const subject = encodeURIComponent(`New Quote Request from ${formData.name}`);
+      const body = encodeURIComponent(`
+Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email}
+ZIP Code: ${formData.zip}
+Preferred Time: ${formData.preferredTime}
+Services: ${formData.services.join(', ')}
+Notes: ${formData.notes}
+      `.trim());
+      
+      window.location.href = `mailto:${BUSINESS_CONFIG.email}?subject=${subject}&body=${body}`;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -106,7 +144,7 @@ const PopupForm = () => {
               {isSubmitted ? (
                 <div className="text-center py-8">
                   <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-brand-navy mb-2">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
                     Thanks! We'll reach out shortly.
                   </h3>
                   <p className="text-muted-foreground">
@@ -114,12 +152,22 @@ const PopupForm = () => {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
+                  {/* Netlify form detection */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  {/* Honeypot field */}
+                  <div style={{ display: 'none' }}>
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="name">Name *</Label>
                       <Input
                         id="name"
+                        name="name"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -130,6 +178,7 @@ const PopupForm = () => {
                       <Label htmlFor="phone">Phone *</Label>
                       <Input
                         id="phone"
+                        name="phone"
                         type="tel"
                         required
                         value={formData.phone}
@@ -144,17 +193,19 @@ const PopupForm = () => {
                       <Label htmlFor="email">Email *</Label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        placeholder="Terry@SignedOnTime.com"
+                        placeholder="your@email.com"
                       />
                     </div>
                     <div>
                       <Label htmlFor="zip">ZIP Code *</Label>
                       <Input
                         id="zip"
+                        name="zip"
                         required
                         value={formData.zip}
                         onChange={(e) => setFormData(prev => ({ ...prev, zip: e.target.value }))}
@@ -167,6 +218,7 @@ const PopupForm = () => {
                     <Label htmlFor="preferredTime">Preferred Time</Label>
                     <Input
                       id="preferredTime"
+                      name="preferredTime"
                       value={formData.preferredTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, preferredTime: e.target.value }))}
                       placeholder="e.g., Today 3PM, Tomorrow morning"
@@ -180,6 +232,8 @@ const PopupForm = () => {
                         <div key={service} className="flex items-center space-x-2">
                           <Checkbox
                             id={service}
+                            name="service"
+                            value={service}
                             checked={formData.services.includes(service)}
                             onCheckedChange={(checked) => handleServiceChange(service, checked as boolean)}
                           />
@@ -195,6 +249,7 @@ const PopupForm = () => {
                     <Label htmlFor="notes">Additional Notes</Label>
                     <Textarea
                       id="notes"
+                      name="notes"
                       value={formData.notes}
                       onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
                       placeholder="Any specific requirements or questions..."
@@ -202,9 +257,9 @@ const PopupForm = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full gradient-primary text-white">
+                  <Button type="submit" disabled={isSubmitting} className="w-full gradient-primary text-white">
                     <Send className="mr-2 h-4 w-4" />
-                    Send Request
+                    {isSubmitting ? 'Sending...' : 'Send Request'}
                   </Button>
                 </form>
               )}
