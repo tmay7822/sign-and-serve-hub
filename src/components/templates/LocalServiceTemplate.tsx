@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
+import { QuoteButton } from '@/components/QuoteButton';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { RouteCity } from '@/data/locations';
 import { Service, getServiceBySlug } from '@/data/services';
@@ -101,9 +102,9 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" className="text-lg px-8 py-3">
+              <QuoteButton size="lg" className="text-lg px-8 py-3">
                 Get Free Quote
-              </Button>
+              </QuoteButton>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>
                   <Phone className="mr-2 h-5 w-5" />
@@ -260,10 +261,17 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
                   </div>
                 </div>
 
-                <Button className="w-full" size="lg">
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call for Quote: {BUSINESS_CONFIG.phone}
-                </Button>
+                <div className="flex flex-col gap-3">
+                  <QuoteButton className="w-full" size="lg">
+                    Get Free Quote
+                  </QuoteButton>
+                  <Button variant="outline" className="w-full" size="lg" asChild>
+                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call: {BUSINESS_CONFIG.phone}
+                    </a>
+                  </Button>
+                </div>
               </Card>
             </div>
           </div>
@@ -382,9 +390,9 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-3">
+              <QuoteButton size="lg" className="text-lg px-8 py-3">
                 Get Free Quote
-              </Button>
+              </QuoteButton>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>
                   Call {BUSINESS_CONFIG.phone}
