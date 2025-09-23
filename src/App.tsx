@@ -96,13 +96,13 @@ const App = () => (
           {/* Homepage */}
           <Route path="/" element={<Index />} />
           
-          {/* Main Service Hubs - New Architecture */}
+          {/* Main Service Hubs - Use Specific Components */}
           <Route path="/general-notary" element={<GeneralNotary />} />
-          <Route path="/loan-signings" element={<ServiceHub />} />
-          <Route path="/estate-plans" element={<ServiceHub />} />
-          <Route path="/real-estate" element={<ServiceHub />} />
-          <Route path="/apostille" element={<ServiceHub />} />
-          <Route path="/business-services" element={<ServiceHub />} />
+          <Route path="/loan-signings" element={<LoanSignings />} />
+          <Route path="/estate-plans" element={<EstatePlans />} />
+          <Route path="/real-estate" element={<RealEstate />} />
+          <Route path="/apostille" element={<Apostille />} />
+          <Route path="/business-services" element={<BusinessServices />} />
           
           {/* Dynamic Service Hubs */}
           <Route path="/:slug" element={<ServiceHub />} />
@@ -152,13 +152,6 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           
-          
-          {/* Legacy Service Pages - Keep for Backward Compatibility */}
-          <Route path="/loan-signings" element={<LoanSignings />} />
-          <Route path="/estate-plans" element={<EstatePlans />} />
-          <Route path="/real-estate" element={<RealEstate />} />
-          <Route path="/apostille" element={<Apostille />} />
-          <Route path="/business-services" element={<BusinessServices />} />
           <Route path="/college-18-plus" element={<College18Plus />} />
           <Route path="/personal-family" element={<PersonalFamily />} />
           <Route path="/healthcare-notary" element={<HealthcareNotary />} />
