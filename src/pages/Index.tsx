@@ -7,6 +7,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
+import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const Index = () => {
@@ -96,6 +97,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <LocalBusinessSchema />
       <Header />
       <HeroSection />
       <ServicesSection />
