@@ -1,6 +1,7 @@
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
+import { SocialMediaLinks } from '@/components/SocialMediaLinks';
 
 const Footer = () => {
   const serviceLinks = [
@@ -23,22 +24,7 @@ const Footer = () => {
               Background-checked, insured, and certified, we deliver accurate documents on your schedule with 
               professional excellence and five-star service.
             </p>
-            <div className="flex items-center gap-4">
-              <a 
-                href={BUSINESS_CONFIG.social.facebook} 
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all duration-300"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a 
-                href={BUSINESS_CONFIG.social.linkedin} 
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all duration-300"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
+            <SocialMediaLinks className="justify-start" iconSize={20} variant="footer" />
           </div>
 
           {/* Services */}

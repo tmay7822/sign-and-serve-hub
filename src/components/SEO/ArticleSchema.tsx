@@ -77,9 +77,9 @@ const ArticleSchema: React.FC<ArticleSchemaProps> = ({
           "name": BUSINESS_CONFIG.name,
           "sameAs": [
             BUSINESS_CONFIG.website,
-            ...(BUSINESS_CONFIG.social.facebook ? [BUSINESS_CONFIG.social.facebook] : []),
-            ...(BUSINESS_CONFIG.social.linkedin ? [BUSINESS_CONFIG.social.linkedin] : []),
-            ...(BUSINESS_CONFIG.social.google ? [BUSINESS_CONFIG.social.google] : [])
+            ...(BUSINESS_CONFIG.socialMedia.facebook ? [BUSINESS_CONFIG.socialMedia.facebook] : []),
+            ...(BUSINESS_CONFIG.socialMedia.linkedin ? [BUSINESS_CONFIG.socialMedia.linkedin] : []),
+            ...(BUSINESS_CONFIG.socialMedia.google ? [BUSINESS_CONFIG.socialMedia.google] : [])
           ]
         }
       ]

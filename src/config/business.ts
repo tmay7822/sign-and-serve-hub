@@ -34,9 +34,13 @@ export const BUSINESS_CONFIG = {
   },
   
   // Social Media
-  social: {
+  socialMedia: {
     facebook: "https://facebook.com/signedontime", 
+    twitter: "", 
+    instagram: "", 
     linkedin: "https://linkedin.com/company/signedontime", 
+    youtube: "", 
+    whatsapp: "", 
     google: "https://g.page/signedontime", 
   },
   

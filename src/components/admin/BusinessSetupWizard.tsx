@@ -52,7 +52,11 @@ interface BusinessFormData {
   };
   social: {
     facebook: string;
+    twitter: string;
+    instagram: string;
     linkedin: string;
+    youtube: string;
+    whatsapp: string;
     google: string;
   };
   credentials: {
@@ -112,7 +116,7 @@ export function BusinessSetupWizard({ onClose }: BusinessSetupWizardProps) {
     address: { ...BUSINESS_CONFIG.address },
     serviceArea: { ...BUSINESS_CONFIG.serviceArea },
     hours: { ...BUSINESS_CONFIG.hours },
-    social: { ...BUSINESS_CONFIG.social },
+    social: { ...BUSINESS_CONFIG.socialMedia },
     credentials: { ...BUSINESS_CONFIG.credentials },
     seo: { ...BUSINESS_CONFIG.seo }
   });

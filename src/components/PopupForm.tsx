@@ -7,9 +7,10 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, X, Send, CheckCircle } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { usePopupForm } from '@/hooks/usePopupForm';
 
 const PopupForm = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, openPopup, closePopup } = usePopupForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -69,7 +70,7 @@ const PopupForm = () => {
         // Reset form after 3 seconds
         setTimeout(() => {
           setIsSubmitted(false);
-          setIsOpen(false);
+          closePopup();
           setFormData({
             name: '',
             phone: '',
@@ -108,7 +109,7 @@ Notes: ${formData.notes}
       {/* Chat Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <Button
-          onClick={() => setIsOpen(true)}
+          onClick={openPopup}
           className="w-14 h-14 rounded-full gradient-primary shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
           aria-label="Open contact form"
         >
@@ -122,14 +123,14 @@ Notes: ${formData.notes}
           {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
+            onClick={closePopup}
           />
           
           {/* Form Card */}
           <Card className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
             <CardHeader className="gradient-primary text-white relative">
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={closePopup}
                 className="absolute top-4 right-4 text-white hover:text-brand-gold transition-colors"
                 aria-label="Close form"
               >
