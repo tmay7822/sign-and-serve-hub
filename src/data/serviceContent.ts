@@ -1216,9 +1216,7 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
 };
 
 export const getServiceContent = (serviceId: string): ServiceContent | undefined => {
-  const content = SERVICE_CONTENT[serviceId];
-  console.log(`Getting service content for ID: ${serviceId}`, content ? 'Found' : 'Not found');
-  return content;
+  return SERVICE_CONTENT[serviceId];
 };
 
 export const getServiceFAQs = (serviceId: string) => {
