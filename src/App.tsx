@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ThemeProvider from "@/components/ThemeProvider";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
 import ScrollToTop from "@/components/ScrollToTop";
+import { AdminDashboard } from "@/components/admin/AdminDashboard";
 import Index from "./pages/Index";
 import GeneralNotary from "./pages/GeneralNotary";
 import FAQ from "./pages/FAQ";
@@ -95,6 +96,9 @@ const App = () => (
           <Routes>
           {/* Homepage */}
           <Route path="/" element={<Index />} />
+          
+          {/* Admin Dashboard */}
+          <Route path="/admin" element={<AdminDashboard />} />
           
           {/* Main Service Hubs - Use Specific Components */}
           <Route path="/general-notary" element={<GeneralNotary />} />
