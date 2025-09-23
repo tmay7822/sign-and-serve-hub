@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState, useEffect } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ImageUpload from './ImageUpload';
+import SEOAnalyzer from './SEOAnalyzer';
+import BulkContentGenerator from './BulkContentGenerator';
 import { 
-  Plus, 
   Edit, 
   Trash2, 
+  Plus, 
   Save, 
-  Eye,
+  Eye, 
+  Calendar, 
+  Tag, 
+  ArrowLeft,
   FileText,
-  Calendar,
-  Tag,
-  CheckCircle,
-  Clock
+  Search,
+  Target,
+  Globe,
+  Wand2,
+  Upload
 } from 'lucide-react';
 
 interface BlogManagerProps {
@@ -29,95 +37,193 @@ interface BlogPost {
   title: string;
   slug: string;
   content: string;
-  excerpt: string;
+  excerpt?: string;
   category: string;
+  serviceSlug?: string;
   status: 'draft' | 'published';
   publishDate: string;
   featured: boolean;
-  seoTitle: string;
-  seoDescription: string;
-  keywords: string;
+  metaDescription?: string;
+  focusKeyword?: string;
+  tags?: string[];
+  author: string;
 }
 
 const BLOG_CATEGORIES = [
-  { value: 'general-notary', label: 'General Notary' },
-  { value: 'loan-signings', label: 'Loan Signings' },
-  { value: 'real-estate', label: 'Real Estate' },
-  { value: 'estate-planning', label: 'Estate Planning' },
-  { value: 'business-notary', label: 'Business Notary' },
-  { value: 'tips-guides', label: 'Tips & Guides' }
+  { id: 'general-notary', name: 'General Notary' },
+  { id: 'loan-signings', name: 'Loan Signings' },
+  { id: 'real-estate', name: 'Real Estate' },
+  { id: 'estate-planning', name: 'Estate Planning' },
+  { id: 'business-notary', name: 'Business Notary' },
+  { id: 'tips-guides', name: 'Tips & Guides' },
+  { id: 'legal-documents', name: 'Legal Documents' },
+  { id: 'healthcare', name: 'Healthcare' },
+  { id: 'apostille', name: 'Apostille Services' }
 ];
 
 const BLOG_TEMPLATES = [
   {
-    id: 'notary-basics',
-    title: 'What to Bring to a Notary Appointment',
+    id: 'service-guide',
+    title: 'Complete Service Guide Template',
     category: 'general-notary',
-    content: `# What to Bring to Your Notary Appointment
+    description: 'Comprehensive guide template for any notary service',
+    content: `# Complete Guide to [Service Name]
 
-When you schedule a mobile notary appointment, proper preparation ensures a smooth and efficient process. Here's everything you need to bring:
+## What is [Service Name]?
 
-## Required Documents
+[Service Name] is a crucial notary service that ensures your important documents are properly executed and legally binding. Whether you're dealing with personal, business, or legal matters, having professional [service name] can save you time and provide peace of mind.
 
-### 1. Valid Photo Identification
-- Driver's license
-- State-issued ID card  
-- Passport
-- Military ID
+## When You Need [Service Name]
 
-### 2. Documents to be Notarized
-- Bring all original documents
-- Do NOT sign anything before the notary arrives
-- Have all pages present and accounted for
+- Real estate transactions
+- Legal document execution
+- Business contracts and agreements
+- Personal family matters
+- Financial documents
+- Healthcare directives
 
-## What the Notary Will Bring
-- Notary seal and supplies
-- Notary journal
-- Additional forms if needed
+## Our [Service Name] Process
 
-## Preparation Tips
-- Review documents beforehand
-- Have all signers present
-- Ensure adequate lighting and table space
-- Have payment ready
+### 1. Initial Consultation
+We review your documents and requirements to ensure everything is prepared correctly before our visit.
 
-## Contact Information
-If you have questions about your specific documents, call us at [PHONE] before your appointment.`,
-    excerpt: 'Learn what documents and identification you need for a successful notary appointment.'
+### 2. Document Preparation
+Our experienced notary will guide you through the proper preparation of all necessary documentation.
+
+### 3. Professional Service
+We provide mobile service at your convenience, ensuring all legal requirements are met.
+
+### 4. Completion & Follow-up
+You receive properly executed documents with guidance on next steps if needed.
+
+## Why Choose Our [Service Name]
+
+- **Licensed & Experienced**: Our notaries are fully licensed and experienced professionals
+- **Mobile Service**: We come to you at your convenient location
+- **Available 7 Days**: Flexible scheduling including evenings and weekends  
+- **Competitive Pricing**: Transparent, upfront pricing with no hidden fees
+- **Same-Day Service**: Often available for urgent requests
+
+## Frequently Asked Questions
+
+**Q: How quickly can you provide [service name]?**
+A: We typically offer same-day service and can often accommodate urgent requests within 2-4 hours.
+
+**Q: What documents do I need to prepare?**
+A: Requirements vary by service type. We'll provide a complete checklist when you schedule your appointment.
+
+**Q: Do you travel for [service name]?**
+A: Yes! We provide mobile service throughout our service area for your convenience.
+
+## Contact Us Today
+
+Ready to schedule your [service name]? Contact us today for professional, reliable service you can trust.
+
+*Professional notary services available throughout [Your Service Area]*`
   },
   {
-    id: 'loan-signing-process',
-    title: 'What to Expect During Your Loan Signing',
-    category: 'loan-signings',
-    content: `# What to Expect During Your Loan Signing Appointment
+    id: 'faq-template',
+    title: 'Service FAQ Template',
+    category: 'tips-guides',
+    description: 'Common questions and answers for any service',
+    content: `# [Service Name] - Frequently Asked Questions
 
-A loan signing is one of the final steps in your mortgage or refinance process. Here's what you can expect:
+## General Questions
 
-## Before the Appointment
-- You'll receive a call to schedule
-- The signing typically takes 45-60 minutes
-- All borrowers must be present
+**What is [service name] and why do I need it?**
+[Service name] ensures your important documents are properly executed and legally binding according to state requirements.
 
-## During the Signing
-- Review loan documents carefully
-- Ask questions about anything unclear
-- Sign where indicated by the signing agent
-- Provide required identification
+**How much does [service name] cost?**
+Our pricing is competitive and transparent. We provide upfront costs with no hidden fees.
 
-## Key Documents You'll Sign
-- Promissory Note
-- Deed of Trust/Mortgage
-- Closing Disclosure
-- Various disclosures and notices
+**Do you provide mobile [service name]?**
+Yes! We come directly to your preferred location for maximum convenience.
 
-## After Signing
-- Documents are returned to the lender
-- Funding typically occurs within 24-48 hours
-- You'll receive copies of signed documents
+## Scheduling & Availability
 
-## Questions?
-Contact our certified signing agents at [PHONE] for any questions about your loan signing appointment.`,
-    excerpt: 'Understanding the loan signing process helps ensure a smooth closing experience.'
+**How quickly can I get [service name]?**
+We offer same-day service and can often accommodate urgent requests within a few hours.
+
+**What days and times are you available?**
+We're available 7 days a week, including evenings and weekends for your convenience.
+
+**What if I need to reschedule?**
+We understand things come up. Just give us reasonable notice and we'll work with your schedule.
+
+## Requirements & Process
+
+**What documents do I need to bring?**
+Requirements vary by service type. We'll provide a detailed checklist when you book your appointment.
+
+**Do all parties need to be present?**
+Yes, all signers must be present with valid photo identification during the notarization.
+
+**What if I have questions during the process?**
+Our experienced notaries are happy to explain each step and answer your questions.
+
+## Contact Information
+
+Have more questions? Contact us today and speak with a professional who can provide the information you need.`
+  },
+  {
+    id: 'local-spotlight',
+    title: 'Local Area Spotlight Template', 
+    category: 'general-notary',
+    description: 'Template for highlighting service in specific locations',
+    content: `# Professional Notary Services in [City, County]
+
+## About [City Name]
+
+[City Name] is a vibrant community in [County Name], and we're proud to serve this area with professional notary services. Whether you're a long-time resident or new to the area, we understand the unique needs of our local community.
+
+## Why [City] Residents Choose Our Services
+
+### Local Expertise
+- Familiar with [County] County requirements and procedures
+- Understanding of local business and residential needs
+- Established relationships with area institutions
+- Quick response times throughout the [City] area
+
+### Professional Service
+- Licensed and experienced notary professionals
+- Mobile service throughout [City] and surrounding areas
+- Flexible scheduling to accommodate your lifestyle
+- Competitive pricing with transparent fees
+
+## Popular Services in [City]
+
+Residents of [City] frequently need notary services for:
+- Home buying and refinancing transactions
+- Business documentation and contracts
+- Power of attorney and healthcare directives
+- Estate planning documents
+- Employment and educational paperwork
+- Vehicle title transfers and DMV documents
+
+## Serving the [City] Community
+
+As your local notary service provider, we're committed to:
+- Supporting [City] residents and businesses
+- Providing exceptional service throughout [County] County
+- Building lasting relationships in the community
+- Offering reliable, professional assistance when you need it most
+
+## [County] County Expertise
+
+[County] County has specific requirements for various documents and procedures. Our local expertise ensures your notarization needs are handled correctly the first time, saving you time and potential complications.
+
+## Schedule Your [City] Appointment
+
+Experience professional notary services in [City]. Contact us today to schedule your appointment and discover why residents throughout [County] County trust us for their important document needs.
+
+## Service Coverage
+
+We proudly serve:
+- All of [City], [County] County
+- Surrounding communities in [County] County  
+- Nearby areas within our service region
+
+*Your trusted notary professional serving [City], [County] County and beyond.*`
   }
 ];
 
@@ -125,44 +231,45 @@ export function BlogManager({ onClose }: BlogManagerProps) {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [currentPost, setCurrentPost] = useState<BlogPost | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [saved, setSaved] = useState(false);
+
+  // Load posts from localStorage on mount
+  useEffect(() => {
+    const savedPosts = localStorage.getItem('blogPosts');
+    if (savedPosts) {
+      setPosts(JSON.parse(savedPosts));
+    }
+  }, []);
 
   const createNewPost = () => {
     const newPost: BlogPost = {
-      id: Date.now().toString(),
-      title: 'New Blog Post',
-      slug: 'new-blog-post',
+      id: Math.random().toString(36).substr(2, 9),
+      title: '',
+      slug: '',
       content: '# New Blog Post\n\nStart writing your content here...',
-      excerpt: '',
       category: 'general-notary',
       status: 'draft',
-      publishDate: new Date().toISOString().split('T')[0],
+      publishDate: new Date().toISOString(),
       featured: false,
-      seoTitle: '',
-      seoDescription: '',
-      keywords: ''
+      author: 'Admin',
+      tags: []
     };
-    setPosts(prev => [...prev, newPost]);
     setCurrentPost(newPost);
     setIsEditing(true);
   };
 
   const createFromTemplate = (template: typeof BLOG_TEMPLATES[0]) => {
     const newPost: BlogPost = {
-      id: Date.now().toString(),
-      title: template.title,
-      slug: template.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-      content: template.content.replace('[PHONE]', '(555) 123-4567'), // Replace with actual phone
-      excerpt: template.excerpt,
+      id: Math.random().toString(36).substr(2, 9),
+      title: template.title.replace(' Template', ''),
+      slug: template.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+      content: template.content,
       category: template.category,
       status: 'draft',
-      publishDate: new Date().toISOString().split('T')[0],
+      publishDate: new Date().toISOString(),
       featured: false,
-      seoTitle: template.title,
-      seoDescription: template.excerpt,
-      keywords: ''
+      author: 'Admin',
+      tags: [template.category]
     };
-    setPosts(prev => [...prev, newPost]);
     setCurrentPost(newPost);
     setIsEditing(true);
   };
@@ -170,342 +277,420 @@ export function BlogManager({ onClose }: BlogManagerProps) {
   const updatePost = (field: keyof BlogPost, value: any) => {
     if (!currentPost) return;
     
-    const updated = { ...currentPost, [field]: value };
+    const updatedPost = { ...currentPost, [field]: value };
     
     // Auto-generate slug from title
     if (field === 'title') {
-      updated.slug = value.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      updatedPost.slug = value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     }
     
-    setCurrentPost(updated);
-    
-    // Update in posts array
-    setPosts(prev => prev.map(post => 
-      post.id === updated.id ? updated : post
-    ));
+    setCurrentPost(updatedPost);
   };
 
-  const savePost = () => {
+  const handleImageUpload = (imageUrl: string, altText?: string) => {
     if (!currentPost) return;
     
-    localStorage.setItem('blogPosts', JSON.stringify(posts));
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+    // Insert image at cursor position or append to content
+    const imageMarkdown = `![${altText || 'Uploaded image'}](${imageUrl})`;
+    updatePost('content', currentPost.content + '\n\n' + imageMarkdown);
+  };
+
+  const handleBulkGenerate = (generatedPosts: Array<{
+    title: string;
+    content: string;
+    slug: string;
+    category: string;
+    serviceSlug: string;
+    metaDescription: string;
+    focusKeyword: string;
+  }>) => {
+    const newPosts = generatedPosts.map(postData => ({
+      id: Math.random().toString(36).substr(2, 9),
+      ...postData,
+      author: 'Admin',
+      publishDate: new Date().toISOString(),
+      status: 'draft' as const,
+      featured: false,
+      tags: [postData.category, postData.serviceSlug],
+      excerpt: postData.metaDescription
+    }));
+
+    setPosts(prevPosts => [...prevPosts, ...newPosts]);
+    savePost([...posts, ...newPosts]);
+  };
+
+  const savePost = (postsToSave?: BlogPost[]) => {
+    const updatedPosts = postsToSave || (currentPost ? [...posts.filter(p => p.id !== currentPost.id), currentPost] : posts);
+    setPosts(updatedPosts);
+    localStorage.setItem('blogPosts', JSON.stringify(updatedPosts));
   };
 
   const deletePost = (postId: string) => {
-    setPosts(prev => prev.filter(post => post.id !== postId));
+    const updatedPosts = posts.filter(post => post.id !== postId);
+    setPosts(updatedPosts);
+    localStorage.setItem('blogPosts', JSON.stringify(updatedPosts));
+    
     if (currentPost?.id === postId) {
       setCurrentPost(null);
       setIsEditing(false);
     }
   };
 
-  const publishPost = () => {
-    if (!currentPost) return;
-    updatePost('status', 'published');
-    savePost();
+  const publishPost = (post: BlogPost) => {
+    const updatedPost = { ...post, status: 'published' as const };
+    setCurrentPost(updatedPost);
+    savePost([...posts.filter(p => p.id !== post.id), updatedPost]);
   };
 
+  // Component rendering
   if (isEditing && currentPost) {
     return (
-      <div className="max-w-4xl mx-auto space-y-6">
-        {saved && (
-          <Alert className="border-green-200 bg-green-50">
-            <CheckCircle className="h-4 w-4 text-green-600" />
-            <AlertDescription className="text-green-800">
-              Blog post saved successfully!
-            </AlertDescription>
-          </Alert>
-        )}
-
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold">Edit Blog Post</h2>
-            <p className="text-muted-foreground">
-              Create engaging content for your website visitors
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => setIsEditing(false)}>
-              ← Back to Posts
-            </Button>
-            <Button variant="outline" onClick={savePost}>
-              <Save className="w-4 h-4 mr-2" />
-              Save Draft
-            </Button>
-            <Button onClick={publishPost}>
-              Publish Post
-            </Button>
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            onClick={() => setIsEditing(false)}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Posts
+          </Button>
+          <div className="flex items-center gap-2">
+            <Badge variant={currentPost.status === 'published' ? 'default' : 'secondary'}>
+              {currentPost.status}
+            </Badge>
+            {currentPost.featured && <Badge variant="outline">Featured</Badge>}
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Post Content</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <Edit className="h-5 w-5" />
+                  {currentPost.id ? 'Edit Post' : 'Create New Post'}
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="title">Title</Label>
-                  <Input
-                    id="title"
-                    value={currentPost.title}
-                    onChange={(e) => updatePost('title', e.target.value)}
-                    placeholder="Enter post title"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="excerpt">Excerpt</Label>
-                  <Textarea
-                    id="excerpt"
-                    value={currentPost.excerpt}
-                    onChange={(e) => updatePost('excerpt', e.target.value)}
-                    placeholder="Brief summary for search results and previews"
-                    rows={2}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="content">Content (Markdown)</Label>
-                  <Textarea
-                    id="content"
-                    value={currentPost.content}
-                    onChange={(e) => updatePost('content', e.target.value)}
-                    placeholder="Write your blog post content using Markdown..."
-                    rows={20}
-                    className="font-mono text-sm"
-                  />
+              <CardContent>
+                <Tabs defaultValue="content" className="space-y-6">
+                  <TabsList className="grid w-full grid-cols-4">
+                    <TabsTrigger value="content">Content</TabsTrigger>
+                    <TabsTrigger value="seo">SEO</TabsTrigger>
+                    <TabsTrigger value="media">Media</TabsTrigger>
+                    <TabsTrigger value="settings">Settings</TabsTrigger>
+                  </TabsList>
+
+                  <TabsContent value="content" className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Title *</label>
+                      <Input
+                        placeholder="Enter post title"
+                        value={currentPost.title}
+                        onChange={(e) => updatePost('title', e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Content *</label>
+                      <div className="border rounded-md">
+                        <Editor
+                          apiKey="no-api-key"
+                          value={currentPost.content}
+                          onEditorChange={(content) => updatePost('content', content)}
+                          init={{
+                            height: 400,
+                            menubar: false,
+                            plugins: [
+                              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                              'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                              'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                            ],
+                            toolbar: 'undo redo | blocks | ' +
+                              'bold italic forecolor | alignleft aligncenter ' +
+                              'alignright alignjustify | bullist numlist outdent indent | ' +
+                              'removeformat | help',
+                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="seo" className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Meta Description</label>
+                      <Textarea
+                        placeholder="Brief description for search engines (120-160 characters)"
+                        value={currentPost.metaDescription || ''}
+                        onChange={(e) => updatePost('metaDescription', e.target.value)}
+                        maxLength={160}
+                        rows={3}
+                      />
+                      <div className="text-xs text-muted-foreground text-right">
+                        {(currentPost.metaDescription || '').length}/160 characters
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Focus Keyword</label>
+                      <Input
+                        placeholder="Main keyword for SEO"
+                        value={currentPost.focusKeyword || ''}
+                        onChange={(e) => updatePost('focusKeyword', e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">URL Slug</label>
+                      <Input
+                        placeholder="url-slug"
+                        value={currentPost.slug}
+                        onChange={(e) => updatePost('slug', e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Tags</label>
+                      <Input
+                        placeholder="Enter tags separated by commas"
+                        value={currentPost.tags?.join(', ') || ''}
+                        onChange={(e) => updatePost('tags', e.target.value.split(',').map(tag => tag.trim()).filter(tag => tag))}
+                      />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="media" className="space-y-4">
+                    <ImageUpload onImageUpload={handleImageUpload} maxFiles={5} />
+                  </TabsContent>
+
+                  <TabsContent value="settings" className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Category</label>
+                        <Select value={currentPost.category} onValueChange={(value) => updatePost('category', value)}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {BLOG_CATEGORIES.map((category) => (
+                              <SelectItem key={category.id} value={category.id}>
+                                {category.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Service</label>
+                        <Select value={currentPost.serviceSlug} onValueChange={(value) => updatePost('serviceSlug', value)}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select service" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="general-notary">General Notary</SelectItem>
+                            <SelectItem value="real-estate">Real Estate</SelectItem>
+                            <SelectItem value="loan-signings">Loan Signings</SelectItem>
+                            <SelectItem value="legal-documents">Legal Documents</SelectItem>
+                            <SelectItem value="business-services">Business Services</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Publish Date</label>
+                        <Input
+                          type="datetime-local"
+                          value={currentPost.publishDate ? new Date(currentPost.publishDate).toISOString().slice(0, 16) : ''}
+                          onChange={(e) => updatePost('publishDate', e.target.value ? new Date(e.target.value).toISOString() : null)}
+                        />
+                      </div>
+                    </div>
+                  </TabsContent>
+                </Tabs>
+
+                {/* Action Buttons */}
+                <div className="flex gap-2 pt-4 border-t">
+                  <Button onClick={() => savePost()}>
+                    <Save className="h-4 w-4 mr-2" />
+                    Save Draft
+                  </Button>
+                  <Button 
+                    variant="default"
+                    onClick={() => publishPost(currentPost)}
+                  >
+                    <Eye className="h-4 w-4 mr-2" />
+                    Publish
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    Cancel
+                  </Button>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Post Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="category">Category</Label>
-                  <Select 
-                    value={currentPost.category} 
-                    onValueChange={(value) => updatePost('category', value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {BLOG_CATEGORIES.map(cat => (
-                        <SelectItem key={cat.value} value={cat.value}>
-                          {cat.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="publishDate">Publish Date</Label>
-                  <Input
-                    id="publishDate"
-                    type="date"
-                    value={currentPost.publishDate}
-                    onChange={(e) => updatePost('publishDate', e.target.value)}
-                  />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="featured"
-                    checked={currentPost.featured}
-                    onChange={(e) => updatePost('featured', e.target.checked)}
-                  />
-                  <Label htmlFor="featured">Featured post</Label>
-                </div>
-
-                <div>
-                  <Badge variant={currentPost.status === 'published' ? 'default' : 'secondary'}>
-                    {currentPost.status === 'published' ? 'Published' : 'Draft'}
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>SEO Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="seoTitle">SEO Title</Label>
-                  <Input
-                    id="seoTitle"
-                    value={currentPost.seoTitle}
-                    onChange={(e) => updatePost('seoTitle', e.target.value)}
-                    placeholder="SEO-optimized title"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="seoDescription">SEO Description</Label>
-                  <Textarea
-                    id="seoDescription"
-                    value={currentPost.seoDescription}
-                    onChange={(e) => updatePost('seoDescription', e.target.value)}
-                    placeholder="Meta description for search engines"
-                    rows={3}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="keywords">Keywords</Label>
-                  <Input
-                    id="keywords"
-                    value={currentPost.keywords}
-                    onChange={(e) => updatePost('keywords', e.target.value)}
-                    placeholder="keyword1, keyword2, keyword3"
-                  />
-                </div>
-              </CardContent>
-            </Card>
+            <SEOAnalyzer
+              title={currentPost.title}
+              content={currentPost.content}
+              metaDescription={currentPost.metaDescription || ''}
+              slug={currentPost.slug}
+              focusKeyword={currentPost.focusKeyword}
+            />
           </div>
         </div>
       </div>
     );
   }
 
+  // Main Blog Manager View
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold">Blog Manager</h2>
-          <p className="text-muted-foreground">
-            Create and manage blog posts to drive traffic and establish expertise
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={createNewPost}>
-            <Plus className="w-4 h-4 mr-2" />
-            New Post
-          </Button>
-        </div>
-      </div>
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              Blog Manager
+            </CardTitle>
+            <div className="flex gap-2">
+              <Button onClick={createNewPost} className="flex items-center gap-2">
+                <Plus className="h-4 w-4" />
+                New Post
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="posts" className="space-y-6">
+            <TabsList>
+              <TabsTrigger value="posts">All Posts ({posts.length})</TabsTrigger>
+              <TabsTrigger value="bulk">
+                <Wand2 className="h-4 w-4 mr-1" />
+                Bulk Generator
+              </TabsTrigger>
+              <TabsTrigger value="templates">Templates</TabsTrigger>
+            </TabsList>
 
-      {/* Templates */}
-      {posts.length === 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Get Started with Blog Templates</CardTitle>
-            <CardDescription>
-              Choose from pre-written blog posts that you can customize for your business
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {BLOG_TEMPLATES.map(template => (
-                <Card key={template.id} className="cursor-pointer hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{template.title}</CardTitle>
-                    <CardDescription>{template.excerpt}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between">
-                      <Badge variant="outline">
-                        {BLOG_CATEGORIES.find(c => c.value === template.category)?.label}
-                      </Badge>
-                      <Button size="sm" onClick={() => createFromTemplate(template)}>
-                        Use Template
+            <TabsContent value="posts">
+              {posts.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="space-y-4">
+                    <div className="text-muted-foreground">
+                      <FileText className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                      <h3 className="text-lg font-medium">No blog posts yet</h3>
+                      <p>Get started by creating your first blog post, using a template, or generating bulk content.</p>
+                    </div>
+
+                    <div className="flex justify-center gap-2">
+                      <Button onClick={createNewPost}>
+                        <Plus className="h-4 w-4 mr-2" />
+                        Create Your First Post
                       </Button>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Posts List */}
-      {posts.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Your Blog Posts</CardTitle>
-            <CardDescription>
-              Manage your published and draft blog posts
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {posts.map(post => (
-                <div key={post.id} className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-2 h-2 rounded-full ${
-                      post.status === 'published' ? 'bg-green-500' : 'bg-orange-500'
-                    }`} />
-                    <div>
-                      <h3 className="font-medium">{post.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {BLOG_CATEGORIES.find(c => c.value === post.category)?.label} • {post.publishDate}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant={post.status === 'published' ? 'default' : 'secondary'}>
-                      {post.status === 'published' ? (
-                        <>
-                          <CheckCircle className="w-3 h-3 mr-1" />
-                          Published
-                        </>
-                      ) : (
-                        <>
-                          <Clock className="w-3 h-3 mr-1" />
-                          Draft
-                        </>
-                      )}
-                    </Badge>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => {
-                        setCurrentPost(post);
-                        setIsEditing(true);
-                      }}
-                    >
-                      <Edit className="w-4 h-4 mr-1" />
-                      Edit
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="destructive"
-                      onClick={() => deletePost(post.id)}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Search className="h-4 w-4" />
+                    <Input placeholder="Search posts..." className="max-w-sm" />
+                  </div>
 
-      {/* Empty State */}
-      {posts.length === 0 && (
-        <div className="text-center py-12">
-          <FileText className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-          <h3 className="text-xl font-medium mb-2">No blog posts yet</h3>
-          <p className="text-muted-foreground mb-4">
-            Start creating content to attract customers and improve your SEO
-          </p>
-          <Button onClick={createNewPost}>
-            <Plus className="w-4 h-4 mr-2" />
-            Create Your First Post
-          </Button>
-        </div>
-      )}
+                  <div className="space-y-3">
+                    {posts.map((post) => (
+                      <Card key={post.id}>
+                        <CardContent className="p-4">
+                          <div className="flex items-center justify-between">
+                            <div className="space-y-1 flex-1">
+                              <div className="flex items-center gap-2">
+                                <h3 className="font-medium">{post.title}</h3>
+                                <Badge variant={post.status === 'published' ? 'default' : 'secondary'}>
+                                  {post.status}
+                                </Badge>
+                                {post.featured && <Badge variant="outline">Featured</Badge>}
+                              </div>
+                              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="h-3 w-3" />
+                                  {new Date(post.publishDate).toLocaleDateString()}
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <Tag className="h-3 w-3" />
+                                  {post.category}
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <Globe className="h-3 w-3" />
+                                  {post.slug}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                  setCurrentPost(post);
+                                  setIsEditing(true);
+                                }}
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => deletePost(post.id)}
+                                className="text-red-600 hover:text-red-700"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="bulk">
+              <BulkContentGenerator onGenerate={handleBulkGenerate} />
+            </TabsContent>
+
+            <TabsContent value="templates">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {BLOG_TEMPLATES.map((template) => (
+                  <Card key={template.id} className="cursor-pointer hover:bg-muted/50 transition-colors">
+                    <CardContent className="p-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h5 className="font-medium text-sm">{template.title}</h5>
+                          <Badge variant="outline" className="text-xs">{template.category}</Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{template.description}</p>
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          onClick={() => createFromTemplate(template)}
+                          className="w-full"
+                        >
+                          Use Template
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
     </div>
   );
 }
