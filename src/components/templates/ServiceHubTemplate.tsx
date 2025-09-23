@@ -8,13 +8,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Service } from '@/data/services';
 import { BlogPost, getPostsByService, getCategoryByServiceSlug } from '@/data/blog';
 import { RouteCity, getRoutesByService } from '@/data/locations';
-import { FileText, MapPin, Clock, Shield, Star, ArrowRight } from 'lucide-react';
+import { getServiceContent } from '@/data/serviceContent';
+import { FileText, MapPin, Clock, Shield, Star, ArrowRight, CheckCircle, HelpCircle } from 'lucide-react';
 
 interface ServiceHubTemplateProps {
   service: Service;
@@ -30,6 +32,7 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
   const category = getCategoryByServiceSlug(service.slug);
   const posts = featuredPosts || getPostsByService(service.slug).slice(0, 4);
   const routes = localRoutes || getRoutesByService(service.slug).slice(0, 12);
+  const serviceContent = getServiceContent(service.id);
 
   useEffect(() => {
     // Set page title and meta description
@@ -71,6 +74,7 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
       />
       <BreadcrumbSchema />
       <Header />
+      <BreadcrumbNav />
       
       {/* Hero Section */}
       <section className="bg-background py-12 lg:py-16">
@@ -121,7 +125,7 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
       {/* Service Details Section */}
       <section className="py-16 bg-card/30">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
                 Professional {service.serviceName}
@@ -130,15 +134,38 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
                 {service.summary}
               </p>
               
-              {/* Link to Blog Category */}
-              {category && (
-                <Button variant="outline" size="lg" className="mb-6" asChild>
-                  <Link to={`/blog/${category.slug}`}>
-                    {service.serviceName} Guides & Tips
-                    <ArrowRight className="ml-2 h-4 w-4" />
+              {/* Specific Services */}
+              {serviceContent?.specificServices && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">What We Notarize</h3>
+                  <ul className="grid grid-cols-1 gap-3">
+                    {serviceContent.specificServices.map((item, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Link to Blog Category and FAQ */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                {category && (
+                  <Button variant="outline" size="lg" asChild>
+                    <Link to={`/blog/${category.slug}`}>
+                      {service.serviceName} Guides & Tips
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                )}
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/faq">
+                    <HelpCircle className="mr-2 h-4 w-4" />
+                    View FAQ
                   </Link>
                 </Button>
-              )}
+              </div>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -165,33 +192,82 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
               </div>
             </div>
 
-            <div className="bg-card p-8 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold text-foreground mb-4">Service Area</h3>
-              <p className="text-muted-foreground mb-4">
-                We serve {BUSINESS_CONFIG.serviceArea.primary} including:
-              </p>
-              <p className="text-foreground font-medium mb-6">
-                {BUSINESS_CONFIG.serviceArea.counties}
-              </p>
-              
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm">
-                  <Clock className="h-4 w-4 text-primary" />
-                  <span>Weekdays: {BUSINESS_CONFIG.hours.weekdays}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Clock className="h-4 w-4 text-primary" />
-                  <span>Weekends: {BUSINESS_CONFIG.hours.weekends}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Clock className="h-4 w-4 text-primary" />
-                  <span>Emergency: {BUSINESS_CONFIG.hours.emergency}</span>
+            <div className="space-y-6">
+              {/* Service Area Card */}
+              <div className="bg-card p-8 rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-foreground mb-4">Service Area</h3>
+                <p className="text-muted-foreground mb-4">
+                  We serve {BUSINESS_CONFIG.serviceArea.primary} including:
+                </p>
+                <p className="text-foreground font-medium mb-6">
+                  {BUSINESS_CONFIG.serviceArea.counties}
+                </p>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-4 w-4 text-primary" />
+                    <span>Weekdays: {BUSINESS_CONFIG.hours.weekdays}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-4 w-4 text-primary" />
+                    <span>Weekends: {BUSINESS_CONFIG.hours.weekends}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-4 w-4 text-primary" />
+                    <span>Emergency: {BUSINESS_CONFIG.hours.emergency}</span>
+                  </div>
                 </div>
               </div>
+
+              {/* Quick Tips */}
+              {serviceContent?.tips && (
+                <div className="bg-card p-6 rounded-lg shadow-lg">
+                  <h3 className="text-lg font-bold text-foreground mb-4">Quick Tips</h3>
+                  <div className="space-y-3">
+                    {serviceContent.tips.map((tip, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                        <div>
+                          <h4 className="font-medium text-foreground text-sm">{tip.title}</h4>
+                          <p className="text-muted-foreground text-sm">{tip.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Process Section */}
+      {serviceContent?.process && (
+        <section className="py-16">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                {serviceContent.process.title}
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Simple, professional, and efficient
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {serviceContent.process.steps.map((step, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mx-auto mb-4">
+                    {index + 1}
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Featured Posts Section */}
       {posts.length > 0 && (

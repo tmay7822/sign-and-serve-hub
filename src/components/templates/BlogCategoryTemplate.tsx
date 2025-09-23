@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { BlogCategory, BlogPost, getPostsByCategory } from '@/data/blog';
@@ -85,6 +86,7 @@ const BlogCategoryTemplate: React.FC<BlogCategoryTemplateProps> = ({
     <div className="min-h-screen bg-background">
       <BreadcrumbSchema />
       <Header />
+      <BreadcrumbNav />
       
       {/* Hero Section */}
       <section className="bg-background py-12 lg:py-16">

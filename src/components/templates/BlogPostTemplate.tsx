@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import ArticleSchema from '@/components/SEO/ArticleSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -129,21 +130,11 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
       />
       <BreadcrumbSchema />
       <Header />
+      <BreadcrumbNav />
       
       {/* Article Header */}
       <article className="py-12 lg:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          {/* Breadcrumb Navigation */}
-          <nav className="mb-8">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Link to="/blog" className="hover:text-primary">Blog</Link>
-              <span>/</span>
-              <Link to={`/blog/${post.categorySlug}`} className="hover:text-primary">
-                {post.categorySlug.replace('-guides', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-              </Link>
-            </div>
-          </nav>
-
           {/* Article Header */}
           <header className="mb-8">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
