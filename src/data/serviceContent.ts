@@ -514,8 +514,8 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
     relatedServices: ['business-banking', 'general-notary']
   },
 
-  'college-18plus': {
-    serviceId: 'college-18plus',
+  'college-18-plus': {
+    serviceId: 'college-18-plus',
     specificServices: [
       'FERPA release forms',
       'Medical consent and HIPAA forms',
@@ -1216,7 +1216,9 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
 };
 
 export const getServiceContent = (serviceId: string): ServiceContent | undefined => {
-  return SERVICE_CONTENT[serviceId];
+  const content = SERVICE_CONTENT[serviceId];
+  console.log(`Getting service content for ID: ${serviceId}`, content ? 'Found' : 'Not found');
+  return content;
 };
 
 export const getServiceFAQs = (serviceId: string) => {
