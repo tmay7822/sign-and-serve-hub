@@ -16,6 +16,7 @@ const BreadcrumbNav = () => {
 
   const getBreadcrumbName = (path: string) => {
     const names: { [key: string]: string } = {
+      'blog': 'Blog',
       'general-notary': 'General Notary',
       'loan-signings': 'Loan Signings',
       'estate-plans': 'Estate Plans',

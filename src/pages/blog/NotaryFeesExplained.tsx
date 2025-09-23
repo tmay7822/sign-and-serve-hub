@@ -20,13 +20,13 @@ const NotaryFeesExplained = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <section className="py-20 bg-brand-light text-brand-navy">
+      <section className="py-20 bg-card/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
               Notary Fees—What's the Mobile Travel Charge?
             </h1>
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-8 text-muted-foreground">
               There are two parts to mobile service pricing:
             </p>
           </div>
@@ -44,9 +44,9 @@ const NotaryFeesExplained = () => {
 
               <p>You'll get a clear quote before we schedule.</p>
 
-              <div className="bg-brand-light p-6 rounded-lg mt-8">
-                <h3 className="text-brand-navy font-bold mb-4">Get an instant estimate</h3>
-                <p className="mb-4">
+              <div className="bg-card p-6 rounded-lg mt-8">
+                <h3 className="text-foreground font-bold mb-4">Get an instant estimate</h3>
+                <p className="mb-4 text-muted-foreground">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Transparent pricing for {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
                 <Button size="lg" className="mr-4" asChild>

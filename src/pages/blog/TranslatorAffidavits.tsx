@@ -20,13 +20,13 @@ const TranslatorAffidavits = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <section className="py-20 bg-brand-light text-brand-navy">
+      <section className="py-20 bg-card/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
               Notarizing Translator Affidavits
             </h1>
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-8 text-muted-foreground">
               Some agencies require a translator's signed <strong>certificate of accuracy</strong>.
             </p>
           </div>
@@ -46,9 +46,9 @@ const TranslatorAffidavits = () => {
               <h2>Best practice</h2>
               <p>Use a qualified translator, include language pair, and attach the translation pages as referenced.</p>
 
-              <div className="bg-brand-light p-6 rounded-lg mt-8">
-                <h3 className="text-brand-navy font-bold mb-4">Need this notarized?</h3>
-                <p className="mb-4">
+              <div className="bg-card p-6 rounded-lg mt-8">
+                <h3 className="text-foreground font-bold mb-4">Need this notarized?</h3>
+                <p className="mb-4 text-muted-foreground">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Serving {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
                 <Button size="lg" className="mr-4" asChild>
