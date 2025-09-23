@@ -33,6 +33,14 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
   const posts = featuredPosts || getPostsByService(service.slug).slice(0, 4);
   const routes = localRoutes || getRoutesByService(service.slug).slice(0, 12);
   const serviceContent = getServiceContent(service.id);
+  
+  // Debug logging
+  console.log('=== SERVICE DEBUG ===');
+  console.log('Service object:', service);
+  console.log('Service ID:', service.id);
+  console.log('Service slug:', service.slug);
+  console.log('Service content:', serviceContent);
+  console.log('Service content keys:', serviceContent ? Object.keys(serviceContent) : 'No content');
 
   useEffect(() => {
     // Set page title and meta description
