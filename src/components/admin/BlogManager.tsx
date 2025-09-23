@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
+import { LazyTinyMCEEditor } from './LazyTinyMCEEditor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -391,30 +391,11 @@ export function BlogManager({ onClose }: BlogManagerProps) {
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Content *</label>
-                      <div className="border rounded-md">
-                        <Editor
-                          apiKey="no-api-key"
-                          value={currentPost.content}
-                          onEditorChange={(content) => updatePost('content', content)}
-                          init={{
-                            height: 400,
-                            menubar: false,
-                            plugins: [
-                              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                              'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                              'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                            ],
-                            toolbar: 'undo redo | blocks | ' +
-                              'bold italic forecolor | alignleft aligncenter ' +
-                              'alignright alignjustify | bullist numlist outdent indent | ' +
-                              'removeformat | help',
-                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                          }}
-                        />
-                      </div>
-                    </div>
+                    <LazyTinyMCEEditor
+                      value={currentPost.content}
+                      onChange={(content) => updatePost('content', content)}
+                      height={400}
+                    />
                   </TabsContent>
 
                   <TabsContent value="seo" className="space-y-4">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -18,9 +18,13 @@ import {
 } from 'lucide-react';
 import { BusinessSetupWizard } from './BusinessSetupWizard';
 import { ContentManager } from './ContentManager';
-import { BlogManager } from './BlogManager';
 import { LocationManager } from './LocationManager';
 import { ThemeCustomizer } from './ThemeCustomizer';
+
+// Lazy load BlogManager to prevent TinyMCE crashes
+const LazyBlogManager = lazy(() => 
+  import('./BlogManager').then(module => ({ default: module.BlogManager }))
+);
 
 interface AdminStats {
   setupComplete: boolean;
@@ -67,7 +71,7 @@ export function AdminDashboard() {
       title: 'Blog Manager',
       description: 'Create and manage blog posts',
       icon: MessageSquare,
-      component: BlogManager
+      component: LazyBlogManager
     },
     {
       id: 'locations',
@@ -129,7 +133,16 @@ export function AdminDashboard() {
           </div>
         </div>
         <div className="container mx-auto px-4 py-8">
-          {getCurrentComponent()}
+          <Suspense fallback={
+            <div className="flex items-center justify-center py-12">
+              <div className="text-center space-y-4">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                <p className="text-sm text-muted-foreground">Loading component...</p>
+              </div>
+            </div>
+          }>
+            {getCurrentComponent()}
+          </Suspense>
         </div>
       </div>
     );
