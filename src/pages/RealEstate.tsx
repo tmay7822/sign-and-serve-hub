@@ -9,7 +9,7 @@ const RealEstate = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} />;
+  return <ServiceHubTemplate service={service} showBooking={true} defaultService="real-estate" />;
 };
 
 export default RealEstate;

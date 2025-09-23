@@ -36,6 +36,7 @@ import VehiclesDMV from "./pages/VehiclesDMV";
 import InsuranceRetirement from "./pages/InsuranceRetirement";
 import WillsTrustsEstates from "./pages/WillsTrustsEstates";
 import OtherNotary from "./pages/OtherNotary";
+import Pricing from "./pages/Pricing";
 // Blog Posts
 import GeneralNotaryWhatToBring from "./pages/blog/GeneralNotaryWhatToBring";
 import MobileVsShippingStore from "./pages/blog/MobileVsShippingStore";
@@ -155,6 +156,7 @@ const App = () => (
           {/* Static Pages */}
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
           
           <Route path="/college-18-plus" element={<College18Plus />} />
           <Route path="/personal-family" element={<PersonalFamily />} />

@@ -23,12 +23,16 @@ interface ServiceHubTemplateProps {
   service: Service;
   featuredPosts?: BlogPost[];
   localRoutes?: RouteCity[];
+  showBooking?: boolean;
+  defaultService?: string;
 }
 
 const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
   service,
   featuredPosts,
-  localRoutes
+  localRoutes,
+  showBooking = false,
+  defaultService
 }) => {
   const category = getCategoryByServiceSlug(service.slug);
   const posts = featuredPosts || getPostsByService(service.slug).slice(0, 4);
@@ -90,8 +94,13 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <QuoteButton size="lg" className="text-lg px-8 py-3">
-                Get Free Quote
+              <QuoteButton 
+                size="lg" 
+                className="text-lg px-8 py-3"
+                showBooking={showBooking}
+                defaultService={defaultService}
+              >
+                {showBooking ? "Get Free Quote" : "Get Free Quote"}
               </QuoteButton>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>
@@ -378,8 +387,13 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <QuoteButton size="lg" className="text-lg px-8 py-3">
-                Get Free Quote
+              <QuoteButton 
+                size="lg" 
+                className="text-lg px-8 py-3"
+                showBooking={showBooking}
+                defaultService={defaultService}
+              >
+                {showBooking ? "Get Free Quote" : "Get Free Quote"}
               </QuoteButton>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>

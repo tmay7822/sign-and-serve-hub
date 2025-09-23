@@ -9,7 +9,7 @@ const GeneralNotary: React.FC = () => {
     return <div>Service not found</div>;
   }
 
-  return <ServiceHubTemplate service={service} />;
+  return <ServiceHubTemplate service={service} showBooking={true} defaultService="general-notary" />;
 };
 
 export default GeneralNotary;

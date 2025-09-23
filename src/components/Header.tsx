@@ -18,6 +18,7 @@ const Header = () => {
     { name: 'Apostille', href: '/apostille' },
     { name: 'Business Services', href: '/business-services' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Pricing', href: '/pricing' },
     { name: 'FAQ', href: '/faq' },
   ];
 

@@ -9,7 +9,7 @@ const LoanSignings = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} />;
+  return <ServiceHubTemplate service={service} showBooking={true} defaultService="loan-signings" />;
 };
 
 export default LoanSignings;
