@@ -1,5 +1,5 @@
 import React from 'react';
-import readingTime from 'reading-time';
+import { calculateReadingTime } from '@/utils/readingTime';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -21,8 +21,8 @@ const SEOAnalyzer: React.FC<SEOAnalyzerProps> = ({
   focusKeyword = ''
 }) => {
   const textContent = content.replace(/<[^>]*>/g, '');
-  const wordCount = textContent.trim().split(/\s+/).length;
-  const readingStats = readingTime(textContent);
+  const readingTimeResult = calculateReadingTime(textContent);
+  const wordCount = readingTimeResult.words;
   
   // SEO Analysis
   const checks = [
@@ -115,7 +115,7 @@ const SEOAnalyzer: React.FC<SEOAnalyzerProps> = ({
           </div>
           <div className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            {readingStats.text}
+            {readingTimeResult.text}
           </div>
         </div>
 
