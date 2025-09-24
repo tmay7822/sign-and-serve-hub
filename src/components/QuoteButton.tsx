@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { usePopupForm } from "@/hooks/usePopupForm";
 import { BookingWidget } from "./BookingWidget";
 import { QuoteCalculatorModal } from "./QuoteCalculatorModal";
 import { useNavigate, useLocation } from "react-router-dom";
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface QuoteButtonProps {
   className?: string;
@@ -27,7 +27,6 @@ export const QuoteButton = ({
   useCalculator = false
 }: QuoteButtonProps) => {
   const [showCalculator, setShowCalculator] = useState(false);
-  const { openPopup } = usePopupForm();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -52,7 +51,8 @@ export const QuoteButton = ({
     } else if (useCalculator) {
       setShowCalculator(true);
     } else {
-      openPopup();
+      // Direct call action for all other cases
+      window.open(`tel:${BUSINESS_CONFIG.phone}`);
     }
   };
 
@@ -68,12 +68,12 @@ export const QuoteButton = ({
           Book Now
         </BookingWidget>
         <Button 
-          onClick={openPopup}
+          onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
           variant="outline"
           size={size}
           className={className}
         >
-          Get Quote
+          Call Now
         </Button>
       </div>
     );

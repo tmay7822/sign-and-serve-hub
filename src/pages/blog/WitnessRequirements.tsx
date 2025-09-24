@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { Link } from 'react-router-dom';
 
 const WitnessRequirements = () => {
   useEffect(() => {

@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
@@ -385,7 +384,6 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
       </section>
 
       <Footer />
-      <PopupForm />
     </div>
   );
 };

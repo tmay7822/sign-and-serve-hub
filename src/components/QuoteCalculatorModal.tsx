@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Calculator, MapPin, DollarSign, ArrowRight } from 'lucide-react';
 import { SERVICE_PRICING, TRAVEL_ZONES, getPricingEstimate, getTravelZone } from '@/config/servicepricing';
 import { BookingWidget } from '@/components/BookingWidget';
-import { usePopupForm } from '@/hooks/usePopupForm';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface QuoteCalculatorModalProps {
   isOpen: boolean;
@@ -19,18 +19,12 @@ interface QuoteCalculatorModalProps {
 export const QuoteCalculatorModal = ({ isOpen, onClose }: QuoteCalculatorModalProps) => {
   const [selectedService, setSelectedService] = useState<string>('');
   const [zipCode, setZipCode] = useState('');
-  const { openPopup } = usePopupForm();
   
   const estimate = selectedService && zipCode ? 
     getPricingEstimate([selectedService], zipCode) : null;
   
   const travelZone = zipCode ? getTravelZone(zipCode) : null;
   const selectedServiceData = SERVICE_PRICING.find(s => s.id === selectedService);
-
-  const handleGetCustomQuote = () => {
-    onClose();
-    openPopup();
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -161,10 +155,10 @@ export const QuoteCalculatorModal = ({ isOpen, onClose }: QuoteCalculatorModalPr
             <Button 
               variant="outline" 
               size="lg" 
-              onClick={handleGetCustomQuote}
+              onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
               className="w-full"
             >
-              Get Custom Quote Instead
+              Call for Custom Quote: {BUSINESS_CONFIG.phone}
             </Button>
           </div>
 

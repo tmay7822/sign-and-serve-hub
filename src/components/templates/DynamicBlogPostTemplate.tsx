@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Badge } from '@/components/ui/badge';
@@ -138,7 +137,6 @@ const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
       </section>
 
       <Footer />
-      <PopupForm />
     </div>
   );
 };

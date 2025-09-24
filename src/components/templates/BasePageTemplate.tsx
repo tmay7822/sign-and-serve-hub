@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 
 interface BasePageTemplateProps {
@@ -45,7 +44,6 @@ export const BasePageTemplate = ({
       )}
 
       <Footer />
-      <PopupForm />
     </div>
   );
 };

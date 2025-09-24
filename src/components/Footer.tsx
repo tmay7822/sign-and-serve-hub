@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-brand-navy text-white">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
@@ -77,10 +77,10 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Hours */}
+          {/* Hours & Certifications */}
           <div>
             <h3 className="font-semibold text-lg mb-4">Business Hours</h3>
-            <div className="space-y-2 text-white/80">
+            <div className="space-y-2 text-white/80 mb-6">
               <div className="flex items-start gap-3">
                 <Clock className="h-5 w-5 text-brand-gold mt-0.5" />
                 <div>
@@ -92,46 +92,35 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Certification Logos */}
-        <div className="mt-12 pt-8 border-t border-white/20">
-          <h3 className="font-semibold text-lg mb-6 text-center">Professional Certifications</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            <div className="flex flex-col items-center">
+            
+            <h4 className="font-semibold mb-3">Professional Certifications</h4>
+            <div className="grid grid-cols-2 gap-3">
               <img 
                 src={trustDeliveryLogo} 
                 alt="Trust Delivery Certified" 
-                className="h-12 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
               />
-            </div>
-            <div className="flex flex-col items-center">
               <img 
                 src={lssLogo} 
                 alt="Loan Signing System Certified" 
-                className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
-            </div>
-            <div className="flex flex-col items-center">
               <img 
                 src={nnaLogo} 
                 alt="National Notary Association Member" 
-                className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
-            </div>
-            <div className="flex flex-col items-center">
               <img 
                 src={nnaCertifiedLogo} 
                 alt="NNA Background Screened" 
-                className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
           </div>
         </div>
 
         {/* Legal Disclaimer */}
-        <div className="border-t border-white/20 mt-12 pt-8">
+        <div className="border-t border-white/20 mt-8 pt-6">
           <div className="text-center mb-6">
             <p className="text-white/80 text-sm leading-relaxed">
               <strong className="text-white">Pricing Disclaimer:</strong> Pricing is subject to State law and will be determined before services rendered and will be based on number of notarizations, travel, type of services, and emergency services.

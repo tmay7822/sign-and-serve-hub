@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { BookingWidget } from '@/components/BookingWidget';
-import { usePopupForm } from '@/hooks/usePopupForm';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Calculator, Phone, Calendar } from 'lucide-react';
 
@@ -17,12 +16,6 @@ export const StandardCTAButtons = ({
   className = '',
   showCalculator = true 
 }: StandardCTAButtonsProps) => {
-  const { openPopup } = usePopupForm();
-
-  const handleGetQuote = () => {
-    openPopup();
-  };
-
   const baseButtonClasses = "flex-1 sm:flex-none sm:min-w-[140px]";
 
   return (
@@ -37,15 +30,15 @@ export const StandardCTAButtons = ({
         Book Now
       </BookingWidget>
 
-      {/* Get Quote Button */}
+      {/* Call for Quote Button */}
       <Button
         variant="outline"
         size="lg"
-        onClick={handleGetQuote}
+        onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
         className={`${baseButtonClasses} bg-brand-navy text-white hover:bg-brand-blue hover:scale-105 font-semibold shadow-button hover:shadow-lg transition-all duration-300 border-brand-navy hover:border-brand-blue`}
       >
         <Calculator className="mr-2 h-4 w-4" />
-        Get Quote
+        Call for Quote: {BUSINESS_CONFIG.phone}
       </Button>
 
       {/* Call Now Button */}
