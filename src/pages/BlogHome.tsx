@@ -9,6 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
+import { BookingWidget } from '@/components/BookingWidget';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { BLOG_CATEGORIES, getFeaturedPosts } from '@/data/blog';
 import { Calendar, Clock, User, ArrowRight, BookOpen, FileText, Users, Building, Globe, Briefcase } from 'lucide-react';
@@ -77,9 +78,9 @@ const BlogHome: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-3">
-                Get Free Quote
-              </Button>
+              <BookingWidget size="lg" className="text-lg px-8 py-3">
+                Book Now
+              </BookingWidget>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>
                   Call {BUSINESS_CONFIG.phone}
@@ -218,9 +219,9 @@ const BlogHome: React.FC = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-3">
-                Get Free Quote
-              </Button>
+              <BookingWidget size="lg" className="text-lg px-8 py-3">
+                Book Now
+              </BookingWidget>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
                 <a href={`tel:${BUSINESS_CONFIG.phone}`}>
                   Call {BUSINESS_CONFIG.phone}

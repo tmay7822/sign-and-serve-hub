@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Phone, FileCheck, MapPin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
+import { BookingWidget } from '@/components/BookingWidget';
 
 const HeroSection = () => {
   return (
@@ -42,17 +43,13 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <Button 
-                variant="cta" 
-                size="lg" 
+              <BookingWidget
+                size="lg"
                 className="text-base lg:text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
-                asChild
               >
-                <Link to="/contact">
-                  <FileCheck className="mr-2 h-5 w-5" />
-                  Get a Free Quote
-                </Link>
-              </Button>
+                <FileCheck className="mr-2 h-5 w-5" />
+                Book Now
+              </BookingWidget>
               
               <Button 
                 variant="outline" 
@@ -60,10 +57,10 @@ const HeroSection = () => {
                 className="text-base lg:text-lg px-8 py-4 w-full sm:w-auto"
                 asChild
               >
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                <Link to="/contact">
                   <Phone className="mr-2 h-5 w-5" />
-                  Call Now
-                </a>
+                  Get a Free Quote
+                </Link>
               </Button>
             </div>
           </div>

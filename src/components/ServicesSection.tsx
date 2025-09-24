@@ -16,7 +16,7 @@ const ServicesSection = () => {
     {
       icon: FileText,
       title: "General Notary",
-      description: "Acknowledgments, jurats, oaths, affirmations, and document witnessing.",
+      description: "Acknowledgments, oaths, affirmations, and document witnessing.",
       link: "/general-notary"
     },
     {

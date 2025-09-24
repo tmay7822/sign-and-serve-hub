@@ -22,7 +22,7 @@ export const SERVICE_PRICING: ServicePricing[] = [
     id: 'general-notary',
     serviceName: 'General Notary',
     baseRate: 75,
-    description: 'Basic notarization (acknowledgments, jurats, oaths)',
+    description: 'Basic notarization (acknowledgments, oaths)',
     estimatedTime: '15-30 minutes',
     tidyCalId: 'general-notary',
     category: 'primary'
@@ -57,7 +57,7 @@ export const SERVICE_PRICING: ServicePricing[] = [
   {
     id: 'apostille',
     serviceName: 'Apostille Services',
-    baseRate: 100,
+    baseRate: 225,
     description: 'International document authentication',
     estimatedTime: '30-45 minutes',
     tidyCalId: 'apostille',

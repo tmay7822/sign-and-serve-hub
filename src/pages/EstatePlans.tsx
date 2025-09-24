@@ -9,7 +9,7 @@ const EstatePlans = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} />;
+  return <ServiceHubTemplate service={service} showBooking={true} defaultService="estate-plans" />;
 };
 
 export default EstatePlans;

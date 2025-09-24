@@ -102,7 +102,7 @@ export default function Pricing() {
                     <ul className="space-y-2 text-sm">
                       <li>• Mobile service to your location</li>
                       <li>• Professional notarization</li>
-                      <li>• Document review & guidance</li>
+                      
                       <li>• Notary seal & signature</li>
                       <li>• Digital copies (when requested)</li>
                       <li>• $100K E&O insurance coverage</li>
@@ -192,6 +192,17 @@ export default function Pricing() {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Disclaimer */}
+        <section className="py-12 bg-muted/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-lg font-bold text-foreground">
+                <strong>Pricing is subject to change and is based on Ohio law, travel fees, emergency services, and will be determined when we speak.</strong>
+              </p>
             </div>
           </div>
         </section>
