@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
+import { BookingWidget } from '@/components/BookingWidget';
 
 const ExpiredIDOptions = () => {
   useEffect(() => {
@@ -52,11 +53,14 @@ const ExpiredIDOptions = () => {
                 <p className="mb-4">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> before we schedule.
                 </p>
-                <div className="flex gap-2">
-                  <QuoteButton variant="cta" size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" scrollToPricing={true}>
-                    Get a Free Quote
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <BookingWidget size="lg">
+                    Book Appointment
+                  </BookingWidget>
+                  <QuoteButton size="lg" variant="outline" useCalculator={true}>
+                    Get Free Quote
                   </QuoteButton>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="secondary" size="lg" asChild>
                     <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
                   </Button>
                 </div>

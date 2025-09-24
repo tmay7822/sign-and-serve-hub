@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
+import { BookingWidget } from '@/components/BookingWidget';
 
 const GeneralNotaryWhatToBring = () => {
   useEffect(() => {
@@ -71,11 +72,14 @@ const GeneralNotaryWhatToBring = () => {
                 <p className="mb-4">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea.primary}—same-day and after-hours when available.
                 </p>
-                <div className="flex gap-2">
-                  <QuoteButton size="lg" scrollToPricing={true}>
-                    Get a Free Quote
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <BookingWidget size="lg" defaultService="general-notary">
+                    Book Appointment
+                  </BookingWidget>
+                  <QuoteButton size="lg" variant="outline" useCalculator={true}>
+                    Get Free Quote
                   </QuoteButton>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="secondary" size="lg" asChild>
                     <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
                   </Button>
                 </div>

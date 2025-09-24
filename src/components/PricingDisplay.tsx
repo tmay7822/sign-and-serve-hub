@@ -29,8 +29,7 @@ export const PricingDisplay = ({
       {/* Service Pricing Table */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="w-5 h-5" />
+          <CardTitle>
             Service Pricing
           </CardTitle>
         </CardHeader>

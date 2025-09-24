@@ -5,6 +5,7 @@ import PopupForm from '@/components/PopupForm';
 import { PricingDisplay } from '@/components/PricingDisplay';
 import { BookingWidget } from '@/components/BookingWidget';
 import { QuoteButton } from '@/components/QuoteButton';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Shield, Phone } from 'lucide-react';
@@ -42,9 +43,14 @@ export default function Pricing() {
                 <BookingWidget size="lg">
                   Book Appointment
                 </BookingWidget>
-                <QuoteButton variant="outline" size="lg">
+                <QuoteButton variant="outline" size="lg" useCalculator={true}>
                   Get Custom Quote
                 </QuoteButton>
+                <Button variant="secondary" size="lg" asChild>
+                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                    Call {BUSINESS_CONFIG.phone}
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
@@ -219,9 +225,14 @@ export default function Pricing() {
                 <BookingWidget size="lg">
                   Book Your Appointment
                 </BookingWidget>
-                <QuoteButton variant="outline" size="lg">
+                <QuoteButton variant="outline" size="lg" useCalculator={true}>
                   Get Quote First
                 </QuoteButton>
+                <Button variant="secondary" size="lg" asChild>
+                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                    Call {BUSINESS_CONFIG.phone}
+                  </a>
+                </Button>
               </div>
             </div>
           </div>

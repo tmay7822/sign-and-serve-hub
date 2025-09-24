@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { usePopupForm } from "@/hooks/usePopupForm";
 import { BookingWidget } from "./BookingWidget";
+import { QuoteCalculatorModal } from "./QuoteCalculatorModal";
 import { useNavigate, useLocation } from "react-router-dom";
 
 interface QuoteButtonProps {
@@ -11,6 +13,7 @@ interface QuoteButtonProps {
   showBooking?: boolean;
   defaultService?: string;
   scrollToPricing?: boolean;
+  useCalculator?: boolean;
 }
 
 export const QuoteButton = ({ 
@@ -20,8 +23,10 @@ export const QuoteButton = ({
   children = "Get a Quote",
   showBooking = false,
   defaultService,
-  scrollToPricing = false
+  scrollToPricing = false,
+  useCalculator = false
 }: QuoteButtonProps) => {
+  const [showCalculator, setShowCalculator] = useState(false);
   const { openPopup } = usePopupForm();
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,6 +49,8 @@ export const QuoteButton = ({
           }
         }, 100);
       }
+    } else if (useCalculator) {
+      setShowCalculator(true);
     } else {
       openPopup();
     }
@@ -73,13 +80,22 @@ export const QuoteButton = ({
   }
 
   return (
-    <Button 
-      onClick={handleClick}
-      variant={variant}
-      size={size}
-      className={className}
-    >
-      {children}
-    </Button>
+    <>
+      <Button 
+        onClick={handleClick}
+        variant={variant}
+        size={size}
+        className={className}
+      >
+        {children}
+      </Button>
+      
+      {useCalculator && (
+        <QuoteCalculatorModal 
+          isOpen={showCalculator} 
+          onClose={() => setShowCalculator(false)} 
+        />
+      )}
+    </>
   );
 };
