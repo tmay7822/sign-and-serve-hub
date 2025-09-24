@@ -2,6 +2,10 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
 import { SocialMediaLinks } from '@/components/SocialMediaLinks';
+import trustDeliveryLogo from '@/assets/trust-delivery-logo.png';
+import lssLogo from '@/assets/lss-logo.png';
+import nnaLogo from '@/assets/nna-logo.png';
+import nnaCertifiedLogo from '@/assets/nna-certified-logo.png';
 
 const Footer = () => {
   const serviceLinks = [
@@ -87,6 +91,41 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Certification Logos */}
+        <div className="mt-12 pt-8 border-t border-white/20">
+          <h3 className="font-semibold text-lg mb-6 text-center">Professional Certifications</h3>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            <div className="flex flex-col items-center">
+              <img 
+                src={trustDeliveryLogo} 
+                alt="Trust Delivery Certified" 
+                className="h-12 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src={lssLogo} 
+                alt="Loan Signing System Certified" 
+                className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src={nnaLogo} 
+                alt="National Notary Association Member" 
+                className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src={nnaCertifiedLogo} 
+                alt="NNA Background Screened" 
+                className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
             </div>
           </div>
         </div>

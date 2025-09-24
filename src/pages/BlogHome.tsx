@@ -9,7 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
-import { BookingWidget } from '@/components/BookingWidget';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { BLOG_CATEGORIES, getFeaturedPosts } from '@/data/blog';
 import { Calendar, Clock, User, ArrowRight, BookOpen, FileText, Users, Building, Globe, Briefcase } from 'lucide-react';
@@ -77,16 +77,7 @@ const BlogHome: React.FC = () => {
               how to prepare, and get expert tips for all your notarization needs.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BookingWidget size="lg" className="text-lg px-8 py-3">
-                Book Now
-              </BookingWidget>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
-            </div>
+            <StandardCTAButtons variant="top" />
           </div>
         </div>
       </section>
@@ -103,34 +94,43 @@ const BlogHome: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {BLOG_CATEGORIES.map(category => (
-              <Card key={category.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader className="text-center pb-4">
-                  <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <div className="text-primary">
+              <Card 
+                key={category.id} 
+                className="gradient-card border-2 border-black/10 hover:border-brand-blue/30 hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group bg-white/80 backdrop-blur-sm min-h-[280px] flex flex-col"
+              >
+                <CardHeader className="text-center pb-4 flex-shrink-0">
+                  <div className="mx-auto w-16 h-16 lg:w-18 lg:h-18 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <div className="text-white">
                       {getCategoryIcon(category.serviceSlug)}
                     </div>
                   </div>
-                  <CardTitle className="text-xl">
+                  <CardTitle className="text-xl lg:text-2xl text-brand-navy leading-tight font-semibold">
                     <Link 
                       to={`/blog/${category.slug}`}
-                      className="hover:text-primary transition-colors"
+                      className="hover:text-brand-blue transition-colors"
                     >
                       {category.title}
                     </Link>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <CardDescription className="mb-6">
+                <CardContent className="text-center pt-0 flex flex-col flex-grow">
+                  <CardDescription className="text-base lg:text-lg mb-6 flex-grow text-muted-foreground leading-relaxed">
                     {category.description}
                   </CardDescription>
-                  <Button variant="outline" asChild>
-                    <Link to={`/blog/${category.slug}`}>
-                      View Guides
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <div className="mt-auto pt-4">
+                    <Button 
+                      variant="outline" 
+                      className="w-full bg-brand-blue/5 border-brand-blue/20 text-brand-blue hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all duration-300 font-medium py-3"
+                      asChild
+                    >
+                      <Link to={`/blog/${category.slug}`}>
+                        View Guides
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      </Link>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -218,16 +218,7 @@ const BlogHome: React.FC = () => {
               we're here to help. Mobile service throughout {BUSINESS_CONFIG.serviceArea.primary}.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BookingWidget size="lg" className="text-lg px-8 py-3">
-                Book Now
-              </BookingWidget>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
-            </div>
+            <StandardCTAButtons variant="bottom" />
           </div>
         </div>
       </section>

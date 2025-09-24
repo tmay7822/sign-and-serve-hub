@@ -11,8 +11,7 @@ import PopupForm from '@/components/PopupForm';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
-import { QuoteButton } from '@/components/QuoteButton';
-import { BookingWidget } from '@/components/BookingWidget';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Service } from '@/data/services';
 import { BlogPost, getPostsByService, getCategoryByServiceSlug } from '@/data/blog';
@@ -94,30 +93,11 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
               {service.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              {showBooking ? (
-                <BookingWidget 
-                  size="lg" 
-                  className="text-lg px-8 py-3"
-                  defaultService={defaultService}
-                >
-                  Book Now
-                </BookingWidget>
-              ) : (
-                <QuoteButton 
-                  size="lg" 
-                  className="text-lg px-8 py-3"
-                  useCalculator={true}
-                >
-                  Get Free Quote
-                </QuoteButton>
-              )}
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
-            </div>
+            <StandardCTAButtons 
+              defaultService={defaultService} 
+              variant="top"
+              className="mb-8"
+            />
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
@@ -396,30 +376,10 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
               Same-day appointments often available.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {showBooking ? (
-                <BookingWidget 
-                  size="lg" 
-                  className="text-lg px-8 py-3"
-                  defaultService={defaultService}
-                >
-                  Book Now
-                </BookingWidget>
-              ) : (
-                <QuoteButton 
-                  size="lg" 
-                  className="text-lg px-8 py-3"
-                  useCalculator={true}
-                >
-                  Get Free Quote
-                </QuoteButton>
-              )}
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
-            </div>
+            <StandardCTAButtons 
+              defaultService={defaultService} 
+              variant="bottom"
+            />
           </div>
         </div>
       </section>
