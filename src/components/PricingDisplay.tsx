@@ -103,7 +103,7 @@ export const PricingDisplay = ({
 
       {/* Pricing Calculator */}
       {showCalculator && (
-        <Card>
+        <Card id="pricing-calculator">
           <CardHeader>
             <CardTitle>Pricing Calculator</CardTitle>
           </CardHeader>

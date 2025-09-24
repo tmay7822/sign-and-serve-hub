@@ -3,6 +3,7 @@ import { Phone, FileCheck, MapPin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
 import { BookingWidget } from '@/components/BookingWidget';
+import { QuoteButton } from '@/components/QuoteButton';
 
 const HeroSection = () => {
   return (
@@ -42,7 +43,7 @@ const HeroSection = () => {
               See below for all of our services
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
               <BookingWidget
                 size="lg"
                 className="text-base lg:text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
@@ -51,16 +52,26 @@ const HeroSection = () => {
                 Book Now
               </BookingWidget>
               
+              <QuoteButton 
+                variant="outline" 
+                size="lg" 
+                className="text-base lg:text-lg px-8 py-4 w-full sm:w-auto"
+                scrollToPricing={true}
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Get a Free Quote
+              </QuoteButton>
+
               <Button 
                 variant="outline" 
                 size="lg" 
                 className="text-base lg:text-lg px-8 py-4 w-full sm:w-auto"
                 asChild
               >
-                <Link to="/contact">
+                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
                   <Phone className="mr-2 h-5 w-5" />
-                  Get a Free Quote
-                </Link>
+                  Call Now
+                </a>
               </Button>
             </div>
           </div>

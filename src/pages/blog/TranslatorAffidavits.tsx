@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';  
+import { QuoteButton } from '@/components/QuoteButton';
 
 const TranslatorAffidavits = () => {
   useEffect(() => {
@@ -51,12 +52,14 @@ const TranslatorAffidavits = () => {
                 <p className="mb-4 text-muted-foreground">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Serving {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
-                <Button size="lg" className="mr-4" asChild>
-                  <Link to="/contact">Get a Free Quote</Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
-                </Button>
+            <div className="flex gap-2">
+              <QuoteButton size="lg" scrollToPricing={true}>
+                Get a Free Quote
+              </QuoteButton>
+              <Button variant="outline" size="lg" asChild>
+                <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
+              </Button>
+            </div>
               </div>
             </article>
           </div>

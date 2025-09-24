@@ -91,18 +91,26 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-white/80 text-sm">
-            © 2024 {BUSINESS_CONFIG.name}. All rights reserved.
+        {/* Legal Disclaimer */}
+        <div className="border-t border-white/20 mt-12 pt-8">
+          <div className="text-center mb-6">
+            <p className="text-white/80 text-sm leading-relaxed">
+              <strong className="text-white">Pricing Disclaimer:</strong> Pricing is subject to State law and will be determined before services rendered and will be based on number of notarizations, travel, type of services, and emergency services.
+            </p>
           </div>
-          <div className="flex items-center gap-6 mt-4 md:mt-0">
-            <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
-              Terms of Service
-            </a>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-white/80 text-sm">
+              © 2024 {BUSINESS_CONFIG.name}. All rights reserved.
+            </div>
+            <div className="flex items-center gap-6 mt-4 md:mt-0">
+              <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
+                Terms of Service
+              </a>
+            </div>
           </div>
         </div>
       </div>

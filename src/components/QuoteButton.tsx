@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { usePopupForm } from "@/hooks/usePopupForm";
 import { BookingWidget } from "./BookingWidget";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface QuoteButtonProps {
   className?: string;
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "hero" | "cta" | "outline-white";
   size?: "default" | "sm" | "lg" | "icon";
   children?: React.ReactNode;
   showBooking?: boolean;
   defaultService?: string;
+  scrollToPricing?: boolean;
 }
 
 export const QuoteButton = ({ 
@@ -17,9 +19,35 @@ export const QuoteButton = ({
   size = "default",
   children = "Get a Quote",
   showBooking = false,
-  defaultService
+  defaultService,
+  scrollToPricing = false
 }: QuoteButtonProps) => {
   const { openPopup } = usePopupForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClick = () => {
+    if (scrollToPricing) {
+      if (location.pathname === '/pricing') {
+        // If already on pricing page, scroll to calculator
+        const calculatorElement = document.getElementById('pricing-calculator');
+        if (calculatorElement) {
+          calculatorElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Navigate to pricing page and scroll to calculator
+        navigate('/pricing');
+        setTimeout(() => {
+          const calculatorElement = document.getElementById('pricing-calculator');
+          if (calculatorElement) {
+            calculatorElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    } else {
+      openPopup();
+    }
+  };
 
   if (showBooking) {
     return (
@@ -46,7 +74,7 @@ export const QuoteButton = ({
 
   return (
     <Button 
-      onClick={openPopup}
+      onClick={handleClick}
       variant={variant}
       size={size}
       className={className}

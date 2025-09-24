@@ -27,6 +27,9 @@ const Header = () => {
       {/* Top bar with phone number */}
       <div className="bg-brand-navy text-white py-3 px-4 border-b border-brand-navy/20">
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
+          <div className="hidden md:block text-sm text-white/90 font-medium">
+            Professional Mobile Notary Services • Available Today
+          </div>
           <div className="flex items-center gap-2 text-sm font-medium">
             <Phone className="h-4 w-4" />
             <a 
@@ -35,9 +38,6 @@ const Header = () => {
             >
               {BUSINESS_CONFIG.phone}
             </a>
-          </div>
-          <div className="hidden md:block text-sm text-white/90 font-medium">
-            Professional Mobile Notary Services • Available Today
           </div>
         </div>
       </div>

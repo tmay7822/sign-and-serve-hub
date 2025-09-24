@@ -5,6 +5,7 @@ import PopupForm from '@/components/PopupForm';
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
+import { QuoteButton } from '@/components/QuoteButton';
 
 const NotaryFeesExplained = () => {
   useEffect(() => {
@@ -49,12 +50,14 @@ const NotaryFeesExplained = () => {
                 <p className="mb-4 text-muted-foreground">
                   Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Transparent pricing for {BUSINESS_CONFIG.serviceArea.primary}.
                 </p>
-                <Button size="lg" className="mr-4" asChild>
-                  <Link to="/contact">Get a Free Quote</Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
-                </Button>
+                <div className="flex gap-2">
+                  <QuoteButton size="lg" scrollToPricing={true} className="mr-4">
+                    Get a Free Quote
+                  </QuoteButton>
+                  <Button variant="outline" size="lg" asChild>
+                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
+                  </Button>
+                </div>
               </div>
             </article>
           </div>
