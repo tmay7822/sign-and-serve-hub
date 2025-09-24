@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
+import DynamicBlogPostTemplate from '@/components/templates/DynamicBlogPostTemplate';
 import { getPostBySlug } from '@/data/blog';
 
 const BlogPost: React.FC = () => {
@@ -19,7 +19,7 @@ const BlogPost: React.FC = () => {
     return <Navigate to="/blog" replace />;
   }
 
-  return <BlogPostTemplate post={post} />;
+  return <DynamicBlogPostTemplate post={post} />;
 };
 
 export default BlogPost;

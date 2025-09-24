@@ -30,7 +30,7 @@ export const PricingDisplay = ({
       <Card>
         <CardHeader>
           <CardTitle>
-            Service Pricing
+            Professional Pricing
           </CardTitle>
         </CardHeader>
         <CardContent>

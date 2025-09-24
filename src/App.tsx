@@ -70,6 +70,7 @@ import TranslatorAffidavits from "./pages/blog/TranslatorAffidavits";
 import TrustCertificationBanking from "./pages/blog/TrustCertificationBanking";
 import NotaryFeesExplained from "./pages/blog/NotaryFeesExplained";
 import WhatNotariesCannotDo from "./pages/blog/WhatNotariesCannotDo";
+import EstatePlanningGuides from "./pages/blog/EstatePlanningGuides";
 import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
@@ -152,6 +153,7 @@ const App = () => (
           <Route path="/blog/trust-certification-for-banks" element={<BlogPost />} />
           <Route path="/blog/notary-fees-and-mobile-travel" element={<BlogPost />} />
           <Route path="/blog/what-notaries-cannot-do" element={<BlogPost />} />
+          <Route path="/blog/estate-planning-guides" element={<EstatePlanningGuides />} />
           
           {/* Static Pages */}
           <Route path="/faq" element={<FAQ />} />
