@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
+
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
@@ -69,7 +69,7 @@ const NotaryFeesExplained = () => {
       </section>
 
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 };

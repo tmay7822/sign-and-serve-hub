@@ -6,7 +6,7 @@ import TrustSignals from '@/components/TrustSignals';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
+
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
 
@@ -105,7 +105,7 @@ const Index = () => {
       <TestimonialsSection />
       <FAQSection />
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 };

@@ -244,7 +244,7 @@ const Contact = () => {
       </section>
 
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 };

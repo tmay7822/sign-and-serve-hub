@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
+
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -224,7 +224,7 @@ const BlogHome: React.FC = () => {
       </section>
 
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
+
 import { PricingDisplay } from '@/components/PricingDisplay';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -212,7 +212,7 @@ export default function Pricing() {
       </main>
 
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 }

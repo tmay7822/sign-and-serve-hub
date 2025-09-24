@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
+
 import FAQSection from '@/components/FAQSection';
 import { DocumentSearch } from '@/components/DocumentSearch';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -147,7 +147,7 @@ const FAQ = () => {
       </section>
 
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 };

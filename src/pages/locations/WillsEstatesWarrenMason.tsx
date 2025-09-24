@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PopupForm from '@/components/PopupForm';
+
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { FileText, Clock, Shield, MapPin, Users, Heart } from 'lucide-react';
@@ -177,7 +177,7 @@ const WillsEstatesWarrenMason = () => {
       </section>
 
       <Footer />
-      <PopupForm />
+      
     </div>
   );
 };
