@@ -13,6 +13,12 @@ export const TidyCalEmbed = ({ serviceId, className = "", height = "600px" }: Ti
       const script = document.createElement('script');
       script.src = 'https://asset.tidycal.com/js/embed.js';
       script.async = true;
+      script.onload = () => {
+        console.log('TidyCal script loaded successfully');
+      };
+      script.onerror = () => {
+        console.error('Failed to load TidyCal script');
+      };
       document.head.appendChild(script);
     }
   }, []);
@@ -31,7 +37,7 @@ export const TidyCalEmbed = ({ serviceId, className = "", height = "600px" }: Ti
   const calendarId = tidyCalIds[serviceId] || tidyCalIds['general-notary'];
 
   return (
-    <div className={`tidycal-embed ${className}`}>
+    <div className={`tidycal-embed ${className}`} style={{ isolation: 'isolate' }}>
       <iframe
         src={`https://tidycal.com/${calendarId}?embed=true`}
         width="100%"
@@ -39,6 +45,8 @@ export const TidyCalEmbed = ({ serviceId, className = "", height = "600px" }: Ti
         frameBorder="0"
         title="Schedule Appointment"
         className="rounded-lg shadow-lg"
+        style={{ zIndex: 1 }}
+        sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
       />
     </div>
   );

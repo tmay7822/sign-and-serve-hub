@@ -3,11 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import FAQSection from '@/components/FAQSection';
-import { Button } from '@/components/ui/button';
+import { DocumentSearch } from '@/components/DocumentSearch';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { Link } from 'react-router-dom';
-import { BookingWidget } from '@/components/BookingWidget';
-import { QuoteButton } from '@/components/QuoteButton';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 
 const FAQ = () => {
   useEffect(() => {
@@ -92,30 +90,21 @@ const FAQ = () => {
             <p className="text-xl mb-8 opacity-90">
               Everything you need to know about our mobile notary and loan signing services.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <BookingWidget
-                size="lg"
-                className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
-              >
-                Book Now
-              </BookingWidget>
-              <QuoteButton 
-                size="lg" 
-                variant="cta" 
-                className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
-                scrollToPricing={true}
-              >
-                Get a Free Quote
-              </QuoteButton>
-              <Button size="lg" variant="outline" className="text-base lg:text-lg px-6 lg:px-8 py-4 w-full sm:w-auto shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white text-brand-navy border-white hover:bg-brand-light" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call {BUSINESS_CONFIG.phone}</a>
-              </Button>
-            </div>
+            <StandardCTAButtons variant="top" />
           </div>
         </div>
       </section>
 
       <FAQSection />
+      
+      {/* Document Search Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <DocumentSearch />
+          </div>
+        </div>
+      </section>
 
       {/* Additional FAQ Section */}
       <section className="py-16 bg-brand-light/20">
@@ -150,14 +139,7 @@ const FAQ = () => {
                   We typically respond to quote requests within 30 minutes during business hours. 
                   For urgent same-day appointments, please call directly.
                 </p>
-                <div className="flex gap-2">
-                  <BookingWidget className="flex-1">
-                    Book Now
-                  </BookingWidget>
-                  <QuoteButton variant="cta" className="flex-1" scrollToPricing={true}>
-                    Get Quote
-                  </QuoteButton>
-                </div>
+                <StandardCTAButtons showCalculator={false} />
               </div>
             </div>
           </div>

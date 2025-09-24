@@ -3,9 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
 import { PricingDisplay } from '@/components/PricingDisplay';
-import { BookingWidget } from '@/components/BookingWidget';
-import { QuoteButton } from '@/components/QuoteButton';
-import { Button } from '@/components/ui/button';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Shield, Phone } from 'lucide-react';
@@ -39,19 +37,7 @@ export default function Pricing() {
                 Professional mobile notary services with clear, upfront pricing. 
                 No hidden fees, no surprises.
               </p>
-              <div className="flex gap-4 justify-center flex-wrap">
-                <BookingWidget size="lg">
-                  Book Appointment
-                </BookingWidget>
-                <QuoteButton variant="outline" size="lg" useCalculator={true}>
-                  Get Custom Quote
-                </QuoteButton>
-                <Button variant="secondary" size="lg" asChild>
-                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                    Call {BUSINESS_CONFIG.phone}
-                  </a>
-                </Button>
-              </div>
+              <StandardCTAButtons />
             </div>
           </div>
         </section>
@@ -128,9 +114,7 @@ export default function Pricing() {
                       <p className="text-sm text-muted-foreground">
                         Large volume signings, corporate contracts, or special arrangements
                       </p>
-                      <QuoteButton className="w-full">
-                        Request Custom Quote
-                      </QuoteButton>
+                      <StandardCTAButtons showCalculator={false} />
                       <p className="text-xs text-center">
                         Call {BUSINESS_CONFIG.phone} for immediate assistance
                       </p>
@@ -221,19 +205,7 @@ export default function Pricing() {
               <p className="text-lg text-muted-foreground mb-8">
                 Book online or call for immediate assistance. Same-day appointments available.
               </p>
-              <div className="flex gap-4 justify-center flex-wrap">
-                <BookingWidget size="lg">
-                  Book Your Appointment
-                </BookingWidget>
-                <QuoteButton variant="outline" size="lg" useCalculator={true}>
-                  Get Quote First
-                </QuoteButton>
-                <Button variant="secondary" size="lg" asChild>
-                  <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                    Call {BUSINESS_CONFIG.phone}
-                  </a>
-                </Button>
-              </div>
+              <StandardCTAButtons />
             </div>
           </div>
         </section>

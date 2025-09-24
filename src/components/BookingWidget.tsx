@@ -86,6 +86,9 @@ export const BookingWidget = ({
                   ))}
                 </SelectContent>
               </Select>
+              <p className="text-xs text-muted-foreground mt-1">
+                All fees are estimates and subject to final confirmation
+              </p>
             </div>
 
             {/* ZIP Code Input */}
