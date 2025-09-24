@@ -17,15 +17,15 @@ export const TidyCalEmbed = ({ serviceId, className = "", height = "600px" }: Ti
     }
   }, []);
 
-  // TidyCal service-specific calendar IDs (replace with your actual TidyCal IDs)
+  // TidyCal service-specific calendar IDs
   const tidyCalIds: Record<string, string> = {
-    'general-notary': 'your-general-notary-id',
-    'loan-signing': 'your-loan-signing-id',
-    'real-estate': 'your-real-estate-id',
-    'estate-planning': 'your-estate-planning-id',
-    'apostille': 'your-apostille-id',
-    'business': 'your-business-id',
-    'healthcare': 'your-healthcare-id'
+    'general-notary': 'm42zv71/professional-general-notary',
+    'loan-signings': 'm42zv71/loan-signing-real-estate',
+    'real-estate': 'm42zv71/loan-signing-real-estate',
+    'estate-plans': 'm42zv71/estateplanning-healthcare',
+    'apostille': 'm42zv71/apostille-services',
+    'business-docs': 'm42zv71/business-services',
+    'healthcare-notary': 'm42zv71/estateplanning-healthcare'
   };
 
   const calendarId = tidyCalIds[serviceId] || tidyCalIds['general-notary'];
