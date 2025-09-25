@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { BookingWidget } from '@/components/BookingWidget';
+import { QuoteButton } from '@/components/QuoteButton';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Calculator, Phone, Calendar } from 'lucide-react';
 
@@ -30,16 +31,16 @@ export const StandardCTAButtons = ({
         Book Now
       </BookingWidget>
 
-      {/* Call for Quote Button */}
-      <Button
+      {/* Get Quote Button */}
+      <QuoteButton
         variant="outline"
         size="lg"
-        onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
+        useCalculator={true}
         className={`${baseButtonClasses} bg-brand-navy text-white hover:bg-brand-blue hover:scale-105 font-semibold shadow-button hover:shadow-lg transition-all duration-300 border-brand-navy hover:border-brand-blue`}
       >
         <Calculator className="mr-2 h-4 w-4" />
-        Call for Quote: {BUSINESS_CONFIG.phone}
-      </Button>
+        Get Quote
+      </QuoteButton>
 
       {/* Call Now Button */}
       <Button

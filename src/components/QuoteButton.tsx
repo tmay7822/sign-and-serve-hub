@@ -14,6 +14,7 @@ interface QuoteButtonProps {
   defaultService?: string;
   scrollToPricing?: boolean;
   useCalculator?: boolean;
+  onAfterAction?: () => void;
 }
 
 export const QuoteButton = ({ 
@@ -24,7 +25,8 @@ export const QuoteButton = ({
   showBooking = false,
   defaultService,
   scrollToPricing = false,
-  useCalculator = false
+  useCalculator = false,
+  onAfterAction
 }: QuoteButtonProps) => {
   const [showCalculator, setShowCalculator] = useState(false);
   const navigate = useNavigate();
@@ -53,6 +55,11 @@ export const QuoteButton = ({
     } else {
       // Direct call action for all other cases
       window.open(`tel:${BUSINESS_CONFIG.phone}`);
+    }
+    
+    // Call the onAfterAction callback if provided
+    if (onAfterAction) {
+      onAfterAction();
     }
   };
 

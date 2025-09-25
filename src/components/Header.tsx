@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Phone, Menu, X } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
+import { QuoteButton } from '@/components/QuoteButton';
 
 import logoImage from '@/assets/signed-on-time-logo-transparent.png';
 
@@ -74,14 +75,14 @@ const Header = () => {
 
             {/* CTA Section */}
             <div className="flex items-center gap-4">
-              <Button 
+              <QuoteButton 
                 variant="cta" 
                 size="sm" 
-                className="hidden sm:flex font-semibold px-6 py-2 shadow-md hover:shadow-lg transition-all" 
-                asChild
+                className="hidden sm:flex font-semibold px-6 py-2 shadow-md hover:shadow-lg transition-all"
+                useCalculator={true}
               >
-                <Link to="/contact">Get Quote</Link>
-              </Button>
+                Get Quote
+              </QuoteButton>
 
               {/* Mobile menu button */}
               <button
@@ -113,11 +114,14 @@ const Header = () => {
                   </Link>
                 ))}
                 <div className="px-4 pt-4 pb-2 border-t border-gray-100 mt-4">
-                  <Button variant="cta" className="w-full font-semibold py-3 shadow-md" asChild>
-                    <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                      Get Quote
-                    </Link>
-                  </Button>
+                  <QuoteButton 
+                    variant="cta" 
+                    className="w-full font-semibold py-3 shadow-md"
+                    useCalculator={true}
+                    onAfterAction={() => setIsMenuOpen(false)}
+                  >
+                    Get Quote
+                  </QuoteButton>
                 </div>
                 <div className="px-4 pb-4">
                   <Button 

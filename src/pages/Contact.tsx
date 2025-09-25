@@ -1,11 +1,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
+import { QuoteButton } from '@/components/QuoteButton';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Calculator } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -20,8 +21,27 @@ const Contact = () => {
               Contact SignRight Mobile Notary
             </h1>
             <p className="text-xl mb-6 opacity-90">
-              Get in touch for a free quote or to schedule your appointment today.
+              Get an instant quote or contact us for detailed assistance.
             </p>
+            
+            {/* Instant Quote CTA */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-md mx-auto">
+              <div className="flex items-center justify-center mb-4">
+                <Calculator className="h-8 w-8 mr-3" />
+                <h3 className="text-xl font-bold">Get Instant Quote</h3>
+              </div>
+              <p className="text-white/90 mb-4 text-center">
+                See pricing immediately for your service and location
+              </p>
+              <QuoteButton 
+                variant="outline" 
+                size="lg" 
+                className="w-full bg-white text-brand-navy hover:bg-white/90 font-semibold"
+                useCalculator={true}
+              >
+                Calculate Your Quote
+              </QuoteButton>
+            </div>
           </div>
         </div>
       </section>
