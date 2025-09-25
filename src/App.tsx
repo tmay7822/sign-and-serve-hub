@@ -10,6 +10,7 @@ import { AdminDashboard } from "@/components/admin/AdminDashboard";
 import Index from "./pages/Index";
 import GeneralNotary from "./pages/GeneralNotary";
 import FAQ from "./pages/FAQ";
+import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 // New Blog Pages
@@ -156,9 +157,10 @@ const App = () => (
           <Route path="/blog/estate-planning-guides" element={<EstatePlanningGuides />} />
           
           {/* Static Pages */}
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/pricing" element={<Pricing />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/pricing" element={<Pricing />} />
           
           <Route path="/college-18-plus" element={<College18Plus />} />
           <Route path="/personal-family" element={<PersonalFamily />} />

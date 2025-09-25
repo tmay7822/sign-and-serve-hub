@@ -11,15 +11,13 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '/' },
     { name: 'General Notary', href: '/general-notary' },
     { name: 'Loan Signings', href: '/loan-signings' },
     { name: 'Estate Plans', href: '/estate-plans' },
     { name: 'Real Estate', href: '/real-estate' },
     { name: 'Apostille', href: '/apostille' },
-    { name: 'Business Services', href: '/business-services' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Pricing', href: '/pricing' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact', href: '/contact' },
     { name: 'FAQ', href: '/faq' },
   ];
 
