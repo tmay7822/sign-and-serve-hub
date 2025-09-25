@@ -8,7 +8,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import nnaLogo from '@/assets/nna-logo.png';
 import lssLogo from '@/assets/lss-logo.png';
 
-export default function AboutUs() {
+const AboutUs = () => {
   const certifications = [
     {
       name: "National Notary Association Certified",
@@ -262,4 +262,6 @@ export default function AboutUs() {
       </BasePageTemplate>
     </>
   );
-}
+};
+
+export default AboutUs;
