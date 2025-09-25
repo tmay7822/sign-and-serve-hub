@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { BasePageTemplate } from '@/components/templates/BasePageTemplate';
 import HeroSection from '@/components/HeroSection';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -74,7 +75,7 @@ const AboutUs = () => {
         {/* Company Story */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">Our Mission</h2>
+            <h2 className="text-3xl font-bold mb-8">Our Mission</h2>
             <Card className="p-8">
               <CardContent className="text-lg leading-relaxed space-y-4">
                 <p>
@@ -85,12 +86,13 @@ const AboutUs = () => {
                 <p>
                   Founded on the principles of reliability, professionalism, and convenience, we've built our 
                   reputation by making the notarization process as smooth and stress-free as possible. 
-                  From simple acknowledgments to complex loan signings, we handle every document with the same 
+                  From simple acknowledgments to complex <Link to="/loan-signings" className="text-primary hover:underline">loan signings</Link>, we handle every document with the same 
                   level of care and attention to detail.
                 </p>
                 <p>
                   Our goal is simple: to provide you with fast, accurate, and professional notary services 
-                  when and where you need them most.
+                  when and where you need them most. Whether you need <Link to="/estate-plans" className="text-primary hover:underline">estate planning documents</Link> notarized 
+                  or require <Link to="/healthcare-notary" className="text-primary hover:underline">hospital notary services</Link>, we're here to help.
                 </p>
               </CardContent>
             </Card>
@@ -149,7 +151,7 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* Service Areas */}
+        {/* Service Area Links */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">Service Areas</h2>
@@ -167,6 +169,25 @@ const AboutUs = () => {
                       </Badge>
                     </div>
                   ))}
+                </div>
+                <div className="mt-6 text-center space-y-4">
+                  <p className="text-muted-foreground">
+                    Explore our specialized services in key areas:
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <Link to="/notary-cincinnati-45202" className="text-primary hover:underline">
+                      Cincinnati Notary Services
+                    </Link>
+                    <Link to="/notary-dayton-45402" className="text-primary hover:underline">
+                      Dayton Mobile Notary
+                    </Link>
+                    <Link to="/loan-signings" className="text-primary hover:underline">
+                      Loan Signing Services
+                    </Link>
+                    <Link to="/estate-plans" className="text-primary hover:underline">
+                      Estate Planning Documents
+                    </Link>
+                  </div>
                 </div>
                 <p className="text-center mt-6 text-muted-foreground">
                   Don't see your location? Call us - we may still be able to help!
@@ -200,6 +221,43 @@ const AboutUs = () => {
                 </CardHeader>
               </Card>
             </div>
+          </div>
+        </section>
+
+        {/* Professional Blog Resources */}
+        <section className="mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8">Professional Resources</h2>
+            <Card className="p-8">
+              <CardContent>
+                <h3 className="text-xl mb-6">Expert Guidance & Educational Content</h3>
+                <div className="space-y-4">
+                  <p>
+                    For detailed guidance on specific notarization topics, explore our comprehensive blog articles:
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <Link to="/blog/witness-requirements" className="text-primary hover:underline block p-3 bg-secondary rounded-lg">
+                      • Ohio Witness Requirements Guide
+                    </Link>
+                    <Link to="/blog/notary-fees-explained" className="text-primary hover:underline block p-3 bg-secondary rounded-lg">
+                      • Notary Fees & Pricing Explained
+                    </Link>
+                    <Link to="/blog/trust-certification-banking" className="text-primary hover:underline block p-3 bg-secondary rounded-lg">
+                      • Trust Certification for Banking
+                    </Link>
+                    <Link to="/blog/hcpoa-living-will-guide" className="text-primary hover:underline block p-3 bg-secondary rounded-lg">
+                      • Healthcare POA & Living Wills
+                    </Link>
+                    <Link to="/blog/what-happens-loan-signing" className="text-primary hover:underline block p-3 bg-secondary rounded-lg">
+                      • What Happens at Loan Signings
+                    </Link>
+                    <Link to="/blog/hospital-notary-what-to-expect" className="text-primary hover:underline block p-3 bg-secondary rounded-lg">
+                      • Hospital Notary Services Guide
+                    </Link>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 

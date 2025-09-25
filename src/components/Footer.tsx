@@ -13,16 +13,25 @@ const Footer = () => {
     { name: 'Loan Signings', href: '/loan-signings' },
     { name: 'Estate Plans', href: '/estate-plans' },
     { name: 'Real Estate', href: '/real-estate' },
+    { name: 'Healthcare Notary', href: '/healthcare-notary' },
     { name: 'Apostille', href: '/apostille' },
     { name: 'Business Services', href: '/business-services' }
+  ];
+
+  const quickLinks = [
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Service Areas', href: '/service-areas' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Blog', href: '/blog' }
   ];
 
   return (
     <footer className="bg-brand-navy text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <p className="text-white/80 mb-6 leading-relaxed">
               {BUSINESS_CONFIG.name} provides mobile notary and loan signing services across {BUSINESS_CONFIG.serviceArea.primary}. 
               Background-checked, insured, and certified, we deliver accurate documents on your schedule with 
@@ -36,6 +45,23 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Our Services</h3>
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    to={link.href}
+                    className="text-white/80 hover:text-brand-gold transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}

@@ -21,6 +21,7 @@ import BlogPost from "./pages/BlogPost";
 // New Service Pages
 import ServiceHub from "./pages/ServiceHub";
 import LocalService from "./pages/LocalService";
+import ServiceAreas from "./pages/ServiceAreas";
 // Legacy Pages for Backward Compatibility
 import LoanSignings from "./pages/LoanSignings";
 import EstatePlans from "./pages/EstatePlans";
@@ -163,6 +164,7 @@ const App = () => (
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/service-areas" element={<ServiceAreas />} />
           
           <Route path="/college-18-plus" element={<College18Plus />} />
           <Route path="/personal-family" element={<PersonalFamily />} />
