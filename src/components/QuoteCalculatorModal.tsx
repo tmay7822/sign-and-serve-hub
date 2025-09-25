@@ -158,7 +158,7 @@ export const QuoteCalculatorModal = ({ isOpen, onClose }: QuoteCalculatorModalPr
               onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
               className="w-full"
             >
-              Call for Custom Quote: {BUSINESS_CONFIG.phone}
+              Call Now: {BUSINESS_CONFIG.phone}
             </Button>
           </div>
 
