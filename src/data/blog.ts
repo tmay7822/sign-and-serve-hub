@@ -129,6 +129,23 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: 7
   },
   {
+    id: 'witness-requirements',
+    title: 'Do You Need Witnesses? Notary Guide',
+    slug: 'witness-requirements',
+    serviceSlug: 'estate-plans',
+    categorySlug: 'estate-planning-guides',
+    excerpt: 'When witnesses are required, who can qualify, and how we help arrange them for your document signing.',
+    content: 'Witness requirements guide...',
+    heroImage: '/assets/blog-estate-planning.jpg',
+    metaTitle: 'Document Witness Requirements | Notary Guide',
+    metaDescription: 'When witnesses are required, who can qualify, and how we help arrange them.',
+    publishDate: '2024-01-20',
+    author: 'Terry May',
+    tags: ['witnesses', 'notary requirements', 'document signing'],
+    featured: false,
+    readTime: 4
+  },
+  {
     id: 'what-happens-loan-signing',
     title: 'What Happens During a Loan Signing Appointment?',
     slug: 'what-happens-loan-signing',
@@ -178,6 +195,40 @@ export const BLOG_POSTS: BlogPost[] = [
     tags: ['estate planning', 'wills', 'trusts', 'power of attorney'],
     featured: true,
     readTime: 12
+  },
+  {
+    id: 'estate-planning-guides',
+    title: 'Estate Planning Document Guides',
+    slug: 'estate-planning-guides',
+    serviceSlug: 'estate-plans',
+    categorySlug: 'estate-planning-guides',
+    excerpt: 'Complete guides for wills, trusts, POAs, and other estate planning documents with professional notary guidance.',
+    content: 'Collection of estate planning guides...',
+    heroImage: '/assets/blog-estate-planning.jpg',
+    metaTitle: 'Estate Planning Guides | Wills, Trusts & POA Resources',
+    metaDescription: 'Comprehensive guides for wills, trusts, power of attorney, and healthcare directives. Professional notary services for all estate planning documents.',
+    publishDate: '2024-01-15',
+    author: 'Terry May',
+    tags: ['estate planning', 'wills', 'trusts', 'power of attorney'],
+    featured: false,
+    readTime: 8
+  },
+  {
+    id: 'business-contract-notarization',
+    title: 'When Do Business Contracts Need Notarization?',
+    slug: 'business-contract-notarization',
+    serviceSlug: 'business-services',
+    categorySlug: 'business-guides',
+    excerpt: 'Understanding when business contracts require notarization and the benefits of professional notary services for your business.',
+    content: 'Business contract notarization guide...',
+    heroImage: '/assets/blog-business.jpg',
+    metaTitle: 'Business Contract Notarization | When Required & Benefits',
+    metaDescription: 'Learn when business contracts need notarization, legal requirements, and how professional notary services protect your business interests.',
+    publishDate: '2024-02-20',
+    author: 'Terry May',
+    tags: ['business contracts', 'notarization', 'legal protection'],
+    featured: false,
+    readTime: 6
   }
 ];
 

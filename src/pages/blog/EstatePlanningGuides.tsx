@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,15 +5,6 @@ import { FileText, Users, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const EstatePlanningGuides = () => {
-  useEffect(() => {
-    document.title = `Estate Planning Guides | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Comprehensive guides for wills, trusts, power of attorney, and healthcare directives. Professional notary services for all estate planning documents.');
-    }
-  }, []);
-
   const guides = [
     {
       title: "Wills & Trusts Checklist",
@@ -58,7 +48,10 @@ const EstatePlanningGuides = () => {
     <BlogPostTemplate
       title="Estate Planning Guides"
       subtitle="Professional guidance for wills, trusts, power of attorney, and healthcare directives in Ohio"
-      defaultService="wills-trusts-estates"
+      metaDescription="Comprehensive guides for wills, trusts, power of attorney, and healthcare directives. Professional notary services for all estate planning documents."
+      publishDate="2024-01-15"
+      readTime={8}
+      tags={['estate planning', 'wills', 'trusts', 'power of attorney']}
     >
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {guides.map((guide, index) => (

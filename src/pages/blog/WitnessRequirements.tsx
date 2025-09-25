@@ -1,23 +1,32 @@
-import { useEffect } from 'react';
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
-import { Button } from '@/components/ui/button';
-import { BUSINESS_CONFIG } from '@/config/business';
 
 const WitnessRequirements = () => {
-  useEffect(() => {
-    document.title = `Document Witness Requirements | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'When witnesses are required, who can qualify, and how we help arrange them.');
+  const faqs = [
+    {
+      question: "Can family members be witnesses?",
+      answer: "Generally no. Witnesses should be disinterested parties who are not beneficiaries or related to the signer by blood or marriage."
+    },
+    {
+      question: "Do witnesses need to bring ID?",
+      answer: "Yes, witnesses must be able to present valid government-issued photo identification if requested by the notary."
     }
-  }, []);
+  ];
 
   return (
     <BlogPostTemplate
       title="Do You Need Witnesses? Notary Guide"
       subtitle="Some forms need one or two disinterested witnesses."
-      defaultService="wills-trusts-estates"
+      metaDescription="When witnesses are required, who can qualify, and how we help arrange them."
+      publishDate="2024-01-20"
+      readTime={4}
+      tags={['witnesses', 'notary requirements', 'document signing']}
+      faqs={faqs}
+      showLocationLink={true}
+      relatedPost={{
+        title: "Estate Planning Documents Checklist",
+        slug: "wills-trusts-poa-checklist",
+        description: "Complete preparation guide for wills, trusts, and powers of attorney"
+      }}
     >
       <article className="prose prose-lg max-w-none">
         <h2>Common docs needing witnesses</h2>
