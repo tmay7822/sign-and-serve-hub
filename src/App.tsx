@@ -74,6 +74,23 @@ import TrustCertificationBanking from "./pages/blog/TrustCertificationBanking";
 import NotaryFeesExplained from "./pages/blog/NotaryFeesExplained";
 import WhatNotariesCannotDo from "./pages/blog/WhatNotariesCannotDo";
 import EstatePlanningGuides from "./pages/blog/EstatePlanningGuides";
+// NEW BLOG POST IMPORTS
+import OhioBuyerSellerLoanSigningChecklist from "./pages/blog/OhioBuyerSellerLoanSigningChecklist";
+import RefiHelocNotaryErrorsToAvoidOhio from "./pages/blog/RefiHelocNotaryErrorsToAvoidOhio";
+import ScanbacksPrintingMobileLoanClosingsOhio from "./pages/blog/ScanbacksPrintingMobileLoanClosingsOhio";
+import HospitalRehabLoanSigningsOhio from "./pages/blog/HospitalRehabLoanSigningsOhio";
+import OhioWillsPOAWhatNotariesCanAndCantDo from "./pages/blog/OhioWillsPOAWhatNotariesCanAndCantDo";
+import HealthcareDirectivesNotaryOhioBedside from "./pages/blog/HealthcareDirectivesNotaryOhioBedside";
+import CertificationOfTrustNotaryOhio from "./pages/blog/CertificationOfTrustNotaryOhio";
+import WitnessesForWillsPOAOhioLocalNorms from "./pages/blog/WitnessesForWillsPOAOhioLocalNorms";
+import VendorPacketsAffidavitsNotaryOhio from "./pages/blog/VendorPacketsAffidavitsNotaryOhio";
+import ContractsTitleAuthorityNotaryOhio from "./pages/blog/ContractsTitleAuthorityNotaryOhio";
+import PermitsLicensingNotarySameDayOhio from "./pages/blog/PermitsLicensingNotarySameDayOhio";
+import HRI9VsNotaryOhio from "./pages/blog/HRI9VsNotaryOhio";
+import HospitalNotaryChecklistOhio from "./pages/blog/HospitalNotaryChecklistOhio";
+import SeniorCommunitiesNotaryPOAHealthcareOhio from "./pages/blog/SeniorCommunitiesNotaryPOAHealthcareOhio";
+import UrgentNotarySameDayOhioHospitals from "./pages/blog/UrgentNotarySameDayOhioHospitals";
+import HospitalNotaryIDProblemsOhio from "./pages/blog/HospitalNotaryIDProblemsOhio";
 import POAWarrenLebanon from "./pages/locations/POAWarrenLebanon";
 import LoanSigningDaytonMontgomery from "./pages/locations/LoanSigningDaytonMontgomery";
 import GeneralNotaryHamiltonCincinnati from "./pages/locations/GeneralNotaryHamiltonCincinnati";
@@ -125,39 +142,57 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogCategory />} />
           
           {/* Individual Blog Posts */}
-          <Route path="/blog/general-notary-what-to-bring" element={<BlogPost />} />
-          <Route path="/blog/mobile-vs-shipping-store" element={<BlogPost />} />
-          <Route path="/blog/hcpoa-living-will-guide" element={<BlogPost />} />
-          <Route path="/blog/hospital-notary-what-to-expect" element={<BlogPost />} />
-          <Route path="/blog/wills-trusts-poa-checklist" element={<BlogPost />} />
-          <Route path="/blog/what-happens-loan-signing" element={<BlogPost />} />
-          <Route path="/blog/how-apostille-works" element={<BlogPost />} />
-          <Route path="/blog/remote-hire-i9-steps" element={<BlogPost />} />
-          <Route path="/blog/college-18-plus-starter-pack" element={<BlogPost />} />
-          <Route path="/blog/title-transfer-checklist" element={<BlogPost />} />
-          <Route path="/blog/affidavit-jurat-acknowledgment" element={<BlogPost />} />
-          <Route path="/blog/beneficiary-change-forms" element={<BlogPost />} />
-          <Route path="/blog/investor-notarizations" element={<BlogPost />} />
-          <Route path="/blog/seller-signing-day" element={<BlogPost />} />
-          <Route path="/blog/scanback-timing-explained" element={<BlogPost />} />
-          <Route path="/blog/apostille-processing-times" element={<BlogPost />} />
-          <Route path="/blog/notary-vs-ron-rin" element={<BlogPost />} />
-          <Route path="/blog/business-contract-notarization" element={<BlogPost />} />
-          <Route path="/blog/international-travel-consent" element={<BlogPost />} />
-          <Route path="/blog/small-estate-affidavit-executor-tips" element={<BlogPost />} />
-          <Route path="/blog/jail-notarization-process" element={<BlogPost />} />
-          <Route path="/blog/after-hours-emergency-notary" element={<BlogPost />} />
-          <Route path="/blog/witness-requirements" element={<BlogPost />} />
-          <Route path="/blog/expired-id-options" element={<BlogPost />} />
-          <Route path="/blog/name-mismatch-aka-affidavit" element={<BlogPost />} />
-          <Route path="/blog/deeds-explained" element={<BlogPost />} />
-          <Route path="/blog/poa-pitfalls-and-readiness" element={<BlogPost />} />
-          <Route path="/blog/apostille-school-docs" element={<BlogPost />} />
-          <Route path="/blog/translator-affidavit-notary" element={<BlogPost />} />
-          <Route path="/blog/trust-certification-for-banks" element={<BlogPost />} />
-          <Route path="/blog/notary-fees-and-mobile-travel" element={<BlogPost />} />
-          <Route path="/blog/what-notaries-cannot-do" element={<BlogPost />} />
+          <Route path="/blog/general-notary-what-to-bring" element={<GeneralNotaryWhatToBring />} />
+          <Route path="/blog/mobile-vs-shipping-store" element={<MobileVsShippingStore />} />
+          <Route path="/blog/hcpoa-living-will-guide" element={<HCPOALivingWillGuide />} />
+          <Route path="/blog/hospital-notary-what-to-expect" element={<HospitalNotaryWhatToExpect />} />
+          <Route path="/blog/wills-trusts-poa-checklist" element={<WillsTrustsPOAChecklist />} />
+          <Route path="/blog/what-happens-loan-signing" element={<WhatHappensLoanSigning />} />
+          <Route path="/blog/how-apostille-works" element={<HowApostilleWorks />} />
+          <Route path="/blog/remote-hire-i9-steps" element={<RemoteHireI9Steps />} />
+          <Route path="/blog/college-18-plus-starter-pack" element={<College18PlusStarterPack />} />
+          <Route path="/blog/title-transfer-checklist" element={<TitleTransferChecklist />} />
+          <Route path="/blog/affidavit-jurat-acknowledgment" element={<AffidavitJuratAcknowledgment />} />
+          <Route path="/blog/beneficiary-change-forms" element={<BeneficiaryChangeForms />} />
+          <Route path="/blog/investor-notarizations" element={<InvestorNotarizations />} />
+          <Route path="/blog/seller-signing-day" element={<SellerSigningDay />} />
+          <Route path="/blog/scanback-timing-explained" element={<ScanbackTimingExplained />} />
+          <Route path="/blog/apostille-processing-times" element={<ApostilleProcessingTimes />} />
+          <Route path="/blog/notary-vs-ron-rin" element={<NotaryVsRONRIN />} />
+          <Route path="/blog/business-contract-notarization" element={<BusinessContractNotarization />} />
+          <Route path="/blog/international-travel-consent" element={<InternationalTravelConsent />} />
+          <Route path="/blog/small-estate-affidavit-executor-tips" element={<SmallEstateAffidavitExecutorTips />} />
+          <Route path="/blog/jail-notarization-process" element={<JailNotarizationProcess />} />
+          <Route path="/blog/after-hours-emergency-notary" element={<AfterHoursEmergencyNotary />} />
+          <Route path="/blog/witness-requirements" element={<WitnessRequirements />} />
+          <Route path="/blog/expired-id-options" element={<ExpiredIDOptions />} />
+          <Route path="/blog/name-mismatch-aka-affidavit" element={<NameMismatchAffidavit />} />
+          <Route path="/blog/deeds-explained" element={<DeedsExplained />} />
+          <Route path="/blog/poa-pitfalls-and-readiness" element={<POAPitfalls />} />
+          <Route path="/blog/apostille-school-docs" element={<ApostilleSchoolDocs />} />
+          <Route path="/blog/translator-affidavit-notary" element={<TranslatorAffidavits />} />
+          <Route path="/blog/trust-certification-for-banks" element={<TrustCertificationBanking />} />
+          <Route path="/blog/notary-fees-and-mobile-travel" element={<NotaryFeesExplained />} />
+          <Route path="/blog/what-notaries-cannot-do" element={<WhatNotariesCannotDo />} />
           <Route path="/blog/estate-planning-guides" element={<EstatePlanningGuides />} />
+          
+          {/* NEW BLOG POSTS */}
+          <Route path="/blog/ohio-buyer-seller-loan-signing-checklist" element={<OhioBuyerSellerLoanSigningChecklist />} />
+          <Route path="/blog/refi-heloc-notary-errors-to-avoid-ohio" element={<RefiHelocNotaryErrorsToAvoidOhio />} />
+          <Route path="/blog/scanbacks-printing-mobile-loan-closings-ohio" element={<ScanbacksPrintingMobileLoanClosingsOhio />} />
+          <Route path="/blog/hospital-rehab-loan-signings-ohio" element={<HospitalRehabLoanSigningsOhio />} />
+          <Route path="/blog/ohio-wills-poa-what-notaries-can-and-cant-do" element={<OhioWillsPOAWhatNotariesCanAndCantDo />} />
+          <Route path="/blog/healthcare-directives-notary-ohio-bedside" element={<HealthcareDirectivesNotaryOhioBedside />} />
+          <Route path="/blog/certification-of-trust-notary-ohio" element={<CertificationOfTrustNotaryOhio />} />
+          <Route path="/blog/witnesses-for-wills-poa-ohio-local-norms" element={<WitnessesForWillsPOAOhioLocalNorms />} />
+          <Route path="/blog/vendor-packets-affidavits-notary-ohio" element={<VendorPacketsAffidavitsNotaryOhio />} />
+          <Route path="/blog/contracts-title-authority-notary-ohio" element={<ContractsTitleAuthorityNotaryOhio />} />
+          <Route path="/blog/permits-licensing-notary-same-day-ohio" element={<PermitsLicensingNotarySameDayOhio />} />
+          <Route path="/blog/hr-i9-vs-notary-ohio" element={<HRI9VsNotaryOhio />} />
+          <Route path="/blog/hospital-notary-checklist-ohio" element={<HospitalNotaryChecklistOhio />} />
+          <Route path="/blog/senior-communities-notary-poa-healthcare-ohio" element={<SeniorCommunitiesNotaryPOAHealthcareOhio />} />
+          <Route path="/blog/urgent-notary-same-day-ohio-hospitals" element={<UrgentNotarySameDayOhioHospitals />} />
+          <Route path="/blog/hospital-notary-id-problems-ohio" element={<HospitalNotaryIDProblemsOhio />} />
           
           {/* Static Pages */}
         <Route path="/faq" element={<FAQ />} />
