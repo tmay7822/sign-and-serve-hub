@@ -1,7 +1,7 @@
 // BLOG HOME PAGE
 // Main blog landing page with categories and featured posts
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,11 +11,32 @@ import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { BLOG_CATEGORIES, getFeaturedPosts } from '@/data/blog';
-import { Calendar, Clock, User, ArrowRight, BookOpen, FileText, Users, Building, Globe, Briefcase } from 'lucide-react';
+import { BLOG_CATEGORIES, getPostsForBlogHome, getTotalBlogCount } from '@/data/blog';
+import { Calendar, Clock, User, ArrowRight, BookOpen, FileText, Users, Building, Globe, Briefcase, Plus } from 'lucide-react';
 
 const BlogHome: React.FC = () => {
-  const featuredPosts = getFeaturedPosts().slice(0, 6);
+  const [displayedPosts, setDisplayedPosts] = useState(12); // Start with 12 posts
+  const [sortBy, setSortBy] = useState<'recent' | 'featured'>('featured');
+  
+  const totalPosts = getTotalBlogCount();
+  
+  // Get posts based on sort preference
+  const allPosts = sortBy === 'featured' 
+    ? getPostsForBlogHome() // Featured first, then recent
+    : getPostsForBlogHome().sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()); // All by date
+    
+  const postsToShow = allPosts.slice(0, displayedPosts);
+  const hasMorePosts = displayedPosts < allPosts.length;
+
+  const loadMorePosts = () => {
+    setDisplayedPosts(prev => Math.min(prev + 12, allPosts.length));
+  };
+
+  // Reset displayed posts when sort changes
+  const handleSortChange = (newSort: 'recent' | 'featured') => {
+    setSortBy(newSort);
+    setDisplayedPosts(12);
+  };
 
   useEffect(() => {
     // Set page title and meta description
@@ -143,15 +164,33 @@ const BlogHome: React.FC = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
-              Featured Guides
+              Expert Guides & Resources
             </h2>
             <p className="text-lg text-muted-foreground">
-              Essential reading for anyone needing notary services
+              Browse {totalPosts}+ professional guides covering all notary services
             </p>
+            
+            {/* Sort Options */}
+            <div className="flex justify-center gap-4 mt-6">
+              <Button
+                variant={sortBy === 'featured' ? 'default' : 'outline'}
+                onClick={() => handleSortChange('featured')}
+                className="px-6"
+              >
+                Featured First
+              </Button>
+              <Button
+                variant={sortBy === 'recent' ? 'default' : 'outline'}
+                onClick={() => handleSortChange('recent')}
+                className="px-6"
+              >
+                Most Recent
+              </Button>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredPosts.map(post => (
+            {postsToShow.map(post => (
               <Card key={post.id} className="hover:shadow-lg transition-shadow">
                 {post.heroImage && (
                   <div className="aspect-video bg-muted overflow-hidden rounded-t-lg">
@@ -203,6 +242,30 @@ const BlogHome: React.FC = () => {
               </Card>
             ))}
           </div>
+
+          {/* Load More Button */}
+          {hasMorePosts && (
+            <div className="text-center mt-12">
+              <Button 
+                onClick={loadMorePosts}
+                variant="outline"
+                size="lg"
+                className="px-8 py-3 bg-white hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                <Plus className="h-5 w-5 mr-2" />
+                Load More Guides ({allPosts.length - displayedPosts} remaining)
+              </Button>
+            </div>
+          )}
+          
+          {/* Show All Posts Link */}
+          {!hasMorePosts && allPosts.length > 12 && (
+            <div className="text-center mt-8">
+              <p className="text-muted-foreground">
+                Showing all {allPosts.length} guides
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

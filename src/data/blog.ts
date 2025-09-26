@@ -536,3 +536,23 @@ export const getFeaturedPosts = (): BlogPost[] => {
 export const getPostBySlug = (slug: string): BlogPost | undefined => {
   return BLOG_POSTS.find(post => post.slug === slug);
 };
+
+// Get all posts with pagination
+export const getAllPosts = (): BlogPost[] => {
+  return BLOG_POSTS.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+};
+
+// Get posts for blog home (featured first, then recent)
+export const getPostsForBlogHome = (limit?: number): BlogPost[] => {
+  const featured = getFeaturedPosts();
+  const nonFeatured = BLOG_POSTS.filter(post => !post.featured)
+    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+  
+  const allPosts = [...featured, ...nonFeatured];
+  return limit ? allPosts.slice(0, limit) : allPosts;
+};
+
+// Get total blog count
+export const getTotalBlogCount = (): number => {
+  return BLOG_POSTS.length;
+};
