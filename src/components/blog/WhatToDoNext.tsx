@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BUSINESS_CONFIG } from '@/config/business';
-import { QuoteButton } from '@/components/QuoteButton';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 
 const WhatToDoNext = () => {
   return (
@@ -13,11 +11,7 @@ const WhatToDoNext = () => {
           Tell us your location & document → we'll quote before we drive.
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="text-center mb-4">
-          <p className="text-sm font-medium text-foreground mb-2">Choose a service:</p>
-        </div>
-        
+      <CardContent className="space-y-6">
         <div className="grid gap-3">
           <Link 
             to="/loan-signings" 
@@ -44,21 +38,11 @@ const WhatToDoNext = () => {
           </Link>
         </div>
         
-        <div className="text-center pt-2">
-          <p className="text-sm text-muted-foreground mb-3">
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground mb-4">
             Or view all <Link to="/service-areas" className="text-primary hover:underline font-medium">Service Areas</Link>
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
-            <QuoteButton size="sm" className="w-full sm:w-auto">
-              Book Online
-            </QuoteButton>
-            <Button variant="outline" size="sm" asChild className="w-full sm:w-auto">
-              <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                Call/Text {BUSINESS_CONFIG.phone}
-              </a>
-            </Button>
-          </div>
+          <StandardCTAButtons variant="bottom" />
         </div>
       </CardContent>
     </Card>

@@ -1,79 +1,45 @@
-import { useEffect } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-
-import { Button } from '@/components/ui/button';
-import { BUSINESS_CONFIG } from '@/config/business';
-import { Link } from 'react-router-dom';
-import { QuoteButton } from '@/components/QuoteButton';
-import { BookingWidget } from '@/components/BookingWidget';
+import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 
 const POAPitfalls = () => {
-  useEffect(() => {
-    document.title = `Power of Attorney Pitfalls | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Avoid POA rejections: capacity, ID, witnesses, and signatures for better acceptance.');
+  const faqs = [
+    {
+      question: "What happens if the signer shows signs of confusion during POA signing?",
+      answer: "We cannot proceed with notarization if there are concerns about the signer's capacity. We may suggest rescheduling or consulting with healthcare providers."
+    },
+    {
+      question: "Do banks have preferred POA forms?",
+      answer: "Yes, many banks have their own POA forms they prefer. It's best to ask the receiving institution about their requirements before signing."
     }
-  }, []);
+  ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      
-      <section className="py-20 bg-card/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              POA Pitfalls—Capacity, Witnesses, and Acceptance
-            </h1>
-            <p className="text-xl mb-8 text-muted-foreground">
-              To be accepted, a POA must be executed correctly.
-            </p>
-          </div>
-        </div>
-      </section>
+    <BlogPostTemplate
+      title="POA Pitfalls—Capacity, Witnesses, and Acceptance"
+      subtitle="To be accepted, a POA must be executed correctly."
+      metaDescription="Avoid POA rejections: capacity, ID, witnesses, and signatures for better acceptance."
+      publishDate="2024-01-20"
+      readTime={3}
+      tags={['Power of Attorney', 'Estate Planning']}
+      faqs={faqs}
+      showLocationLink={true}
+      relatedPost={{
+        title: "Wills, Trusts & POA—Notary Checklist",
+        slug: "wills-trusts-poa-checklist", 
+        description: "Complete preparation guide for estate documents"
+      }}
+    >
+      <article className="prose prose-lg max-w-none">
+        <h2>Key checks</h2>
+        <ul>
+          <li><strong>Capacity:</strong> Signer is alert, aware, and willing.</li>
+          <li><strong>ID:</strong> Government photo ID matches the name on the document.</li>
+          <li><strong>Witnesses:</strong> Some POA forms require them.</li>
+        </ul>
 
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <article className="prose prose-lg max-w-none">
-              <h2>Key checks</h2>
-              <ul>
-                <li><strong>Capacity:</strong> Signer is alert, aware, and willing.</li>
-                <li><strong>ID:</strong> Government photo ID matches the name on the document.</li>
-                <li><strong>Witnesses:</strong> Some POA forms require them.</li>
-              </ul>
-
-              <h2>Pro tip</h2>
-              <p>Ask the receiving bank, hospital, or title company if they have <strong>preferred forms</strong>.</p>
-
-              <div className="bg-card p-6 rounded-lg mt-8">
-                <h3 className="text-foreground font-bold mb-4">Book a mobile notary</h3>
-                <p className="mb-4 text-muted-foreground">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong>. We cover {BUSINESS_CONFIG.serviceArea.primary}.
-                </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BookingWidget size="lg">
-                Book Appointment
-              </BookingWidget>
-              <QuoteButton size="lg" variant="outline" useCalculator={true}>
-                Get Free Quote
-              </QuoteButton>
-              <Button variant="secondary" size="lg" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
-              </Button>
-            </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-      
-    </div>
+        <h2>Pro tip</h2>
+        <p>Ask the receiving bank, hospital, or title company if they have <strong>preferred forms</strong>.</p>
+      </article>
+    </BlogPostTemplate>
   );
 };
 

@@ -1,97 +1,61 @@
-import { useEffect } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-
-import { Button } from '@/components/ui/button';
+import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { Link } from 'react-router-dom';
-import { QuoteButton } from '@/components/QuoteButton';
-import { BookingWidget } from '@/components/BookingWidget';
 
 const GeneralNotaryWhatToBring = () => {
-  useEffect(() => {
-    document.title = `What to Bring to a Notarization | ${BUSINESS_CONFIG.name}`;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'A quick checklist for a smooth notarization—IDs, witnesses, signatures, and common mistakes to avoid. Call ' + BUSINESS_CONFIG.phone + '.');
+  const faqs = [
+    {
+      question: "What if my ID has a different address than what's on the document?",
+      answer: "Address differences are usually okay as long as the name matches exactly. The important part is name consistency between ID and document."
+    },
+    {
+      question: "Can I bring a photocopy of my ID instead of the original?",
+      answer: "No, we need to see the original, valid photo ID. Photocopies, expired IDs, or screenshots are not acceptable for notarization."
     }
-  }, []);
+  ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      
-      {/* Hero Section */}
-      <section className="py-20 bg-brand-light text-brand-navy">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              What to Bring to a Notarization
-            </h1>
-            <p className="text-xl mb-8">
-              Getting a document notarized is simple when you know what to bring. Use this short checklist to save time and avoid re-signs.
-            </p>
-          </div>
-        </div>
-      </section>
+    <BlogPostTemplate
+      title="What to Bring to a Notarization"
+      subtitle="Getting a document notarized is simple when you know what to bring. Use this short checklist to save time and avoid re-signs."
+      metaDescription="A quick checklist for a smooth notarization—IDs, witnesses, signatures, and common mistakes to avoid."
+      publishDate="2024-01-08"
+      readTime={3}
+      tags={['General Notary', 'Preparation']}
+      faqs={faqs}
+      showLocationLink={true}
+      relatedPost={{
+        title: "What a Notary Cannot Do (and Why It Matters)",
+        slug: "what-notaries-cannot-do", 
+        description: "Understanding notary boundaries and limitations"
+      }}
+    >
+      <article className="prose prose-lg max-w-none">
+        <h2>Your quick checklist</h2>
+        <ul>
+          <li><strong>Valid photo ID:</strong> driver's license, passport, or state ID. Must be current and legible.</li>
+          <li><strong>Completed—but unsigned—document:</strong> never sign before you meet the notary.</li>
+          <li><strong>Names must match:</strong> the name on the ID should match the name on the document.</li>
+          <li><strong>All signers present:</strong> every signer must appear in person.</li>
+          <li><strong>Witnesses (if required):</strong> some forms need 1–2 disinterested witnesses. Ask us if you need help coordinating.</li>
+        </ul>
 
-      {/* Article Content */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <article className="prose prose-lg max-w-none">
-              <h2>Your quick checklist</h2>
-              <ul>
-                <li><strong>Valid photo ID:</strong> driver's license, passport, or state ID. Must be current and legible.</li>
-                <li><strong>Completed—but unsigned—document:</strong> never sign before you meet the notary.</li>
-                <li><strong>Names must match:</strong> the name on the ID should match the name on the document.</li>
-                <li><strong>All signers present:</strong> every signer must appear in person.</li>
-                <li><strong>Witnesses (if required):</strong> some forms need 1–2 disinterested witnesses. Ask us if you need help coordinating.</li>
-              </ul>
+        <h2>Common documents we notarize in {BUSINESS_CONFIG.serviceArea.primary}</h2>
+        <ul>
+          <li>Affidavits and sworn statements</li>
+          <li>Power of Attorney (POA)</li>
+          <li>Deeds and real estate forms</li>
+          <li>School and medical releases</li>
+          <li>Consent to travel letters</li>
+        </ul>
 
-              <h2>Common documents we notarize in {BUSINESS_CONFIG.serviceArea.primary}</h2>
-              <ul>
-                <li>Affidavits and sworn statements</li>
-                <li>Power of Attorney (POA)</li>
-                <li>Deeds and real estate forms</li>
-                <li>School and medical releases</li>
-                <li>Consent to travel letters</li>
-              </ul>
-
-              <h2>Tips from {BUSINESS_CONFIG.name}</h2>
-              <ul>
-                <li>Bring a <strong>backup ID</strong> if your primary is worn or recently renewed.</li>
-                <li>If you're unsure about witnesses, <strong>ask before the appointment</strong>.</li>
-                <li>Have a simple plan for where we'll meet: home, office, hospital, or a public location.</li>
-              </ul>
-
-              <div className="bg-brand-light p-6 rounded-lg mt-8">
-                <h3 className="text-brand-navy font-bold mb-4">Need help now?</h3>
-                <p className="mb-4">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. We serve {BUSINESS_CONFIG.serviceArea.primary}—same-day and after-hours when available.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <BookingWidget size="lg" defaultService="general-notary">
-                    Book Appointment
-                  </BookingWidget>
-                  <QuoteButton size="lg" variant="outline" useCalculator={true}>
-                    Get Free Quote
-                  </QuoteButton>
-                  <Button variant="secondary" size="lg" asChild>
-                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
-                  </Button>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-      
-    </div>
+        <h2>Tips from {BUSINESS_CONFIG.name}</h2>
+        <ul>
+          <li>Bring a <strong>backup ID</strong> if your primary is worn or recently renewed.</li>
+          <li>If you're unsure about witnesses, <strong>ask before the appointment</strong>.</li>
+          <li>Have a simple plan for where we'll meet: home, office, hospital, or a public location.</li>
+        </ul>
+      </article>
+    </BlogPostTemplate>
   );
 };
 

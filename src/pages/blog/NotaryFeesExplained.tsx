@@ -1,76 +1,42 @@
-import { useEffect } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-
-import { Button } from '@/components/ui/button';
-import { BUSINESS_CONFIG } from '@/config/business';
-import { Link } from 'react-router-dom';
-import { QuoteButton } from '@/components/QuoteButton';
-import { BookingWidget } from '@/components/BookingWidget';
+import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 
 const NotaryFeesExplained = () => {
-  useEffect(() => {
-    document.title = `Notary Fees & Mobile Travel Charges | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Understand standard notarization fees vs mobile travel charges with transparent pricing.');
+  const faqs = [
+    {
+      question: "How much do mobile notary services cost?",
+      answer: "There are two parts: notarial acts (per-signature fee, often state-regulated) and mobile travel (time/distance-based). We provide transparent quotes upfront."
+    },
+    {
+      question: "Are there additional charges for after-hours service?",
+      answer: "Yes, evening, weekend, and holiday appointments may have additional fees. We'll explain all costs before scheduling."
     }
-  }, []);
+  ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      
-      <section className="py-20 bg-card/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Notary Fees—What's the Mobile Travel Charge?
-            </h1>
-            <p className="text-xl mb-8 text-muted-foreground">
-              There are two parts to mobile service pricing:
-            </p>
-          </div>
-        </div>
-      </section>
+    <BlogPostTemplate
+      title="Notary Fees—What's the Mobile Travel Charge?"
+      subtitle="There are two parts to mobile service pricing:"
+      metaDescription="Understand standard notarization fees vs mobile travel charges with transparent pricing."
+      publishDate="2024-01-10"
+      readTime={2}
+      tags={['Pricing', 'Mobile Notary']}
+      faqs={faqs}
+      showLocationLink={true}
+      relatedPost={{
+        title: "What to Bring to a Notarization", 
+        slug: "general-notary-what-to-bring",
+        description: "Essential checklist for smooth notarization"
+      }}
+    >
+      <article className="prose prose-lg max-w-none">
+        <ol>
+          <li><strong>Notarial act(s):</strong> Per-signature fee (often regulated by state).</li>
+          <li><strong>Mobile travel:</strong> Time and distance to come to you (market-based).</li>
+        </ol>
 
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <article className="prose prose-lg max-w-none">
-              <ol>
-                <li><strong>Notarial act(s):</strong> Per-signature fee (often regulated by state).</li>
-                <li><strong>Mobile travel:</strong> Time and distance to come to you (market-based).</li>
-              </ol>
-
-              <p>You'll get a clear quote before we schedule.</p>
-
-              <div className="bg-card p-6 rounded-lg mt-8">
-                <h3 className="text-foreground font-bold mb-4">Get an instant estimate</h3>
-                <p className="mb-4 text-muted-foreground">
-                  Call <strong>{BUSINESS_CONFIG.phone}</strong> or get a free quote. Transparent pricing for {BUSINESS_CONFIG.serviceArea.primary}.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <BookingWidget size="lg">
-                    Book Appointment
-                  </BookingWidget>
-                  <QuoteButton size="lg" variant="outline" useCalculator={true}>
-                    Get Free Quote
-                  </QuoteButton>
-                  <Button variant="secondary" size="lg" asChild>
-                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>Call Now</a>
-                  </Button>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-      
-    </div>
+        <p>You'll get a clear quote before we schedule.</p>
+      </article>
+    </BlogPostTemplate>
   );
 };
 
