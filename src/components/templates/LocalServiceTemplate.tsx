@@ -10,12 +10,12 @@ import Footer from '@/components/Footer';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import LocalSignalsWidget from '@/components/LocalSignalsWidget';
-import { QuoteButton } from '@/components/QuoteButton';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { RouteCity } from '@/data/locations';
 import { Service, getServiceBySlug } from '@/data/services';
 import { BlogPost, getPostsByService, getCategoryByServiceSlug } from '@/data/blog';
-import { MapPin, Clock, Shield, Star, Phone, ArrowRight, FileText, Users, Building } from 'lucide-react';
+import { MapPin, Clock, Shield, Star, ArrowRight, FileText, Users, Building } from 'lucide-react';
 
 interface LocalServiceTemplateProps {
   route: RouteCity;
@@ -101,16 +101,12 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
               We come to your location with same-day availability and certified, insured service.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <QuoteButton size="lg" className="text-lg px-8 py-3" useCalculator={true}>
-                Get Free Quote
-              </QuoteButton>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
+            <div className="mb-8">
+              <StandardCTAButtons 
+                defaultService={route.serviceSlug}
+                variant="top"
+                className="justify-center"
+              />
             </div>
 
             {/* Trust Indicators */}
@@ -261,17 +257,10 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  <QuoteButton className="w-full" size="lg" useCalculator={true}>
-                    Get Free Quote
-                  </QuoteButton>
-                  <Button variant="outline" className="w-full" size="lg" asChild>
-                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                      <Phone className="mr-2 h-5 w-5" />
-                      Call: {BUSINESS_CONFIG.phone}
-                    </a>
-                  </Button>
-                </div>
+                <StandardCTAButtons 
+                  defaultService={route.serviceSlug}
+                  className="flex-col gap-3"
+                />
               </Card>
             </div>
           </div>
@@ -303,17 +292,10 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">
                   Get Started Today
                 </h3>
-                <div className="space-y-4">
-                  <QuoteButton className="w-full" size="lg" useCalculator={true}>
-                    Get Free Quote
-                  </QuoteButton>
-                  <Button variant="outline" className="w-full" size="lg" asChild>
-                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                      <Phone className="mr-2 h-5 w-5" />
-                      Call Now
-                    </a>
-                  </Button>
-                </div>
+                <StandardCTAButtons 
+                  defaultService={route.serviceSlug}
+                  className="flex-col gap-4"
+                />
               </Card>
             </div>
           </div>
@@ -382,16 +364,10 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
               Same-day appointments often available.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <QuoteButton size="lg" className="text-lg px-8 py-3" useCalculator={true}>
-                Get Free Quote
-              </QuoteButton>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
-            </div>
+            <StandardCTAButtons 
+              defaultService={route.serviceSlug}
+              className="justify-center"
+            />
           </div>
         </div>
       </section>
