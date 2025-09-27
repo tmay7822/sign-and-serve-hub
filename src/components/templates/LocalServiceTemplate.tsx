@@ -102,7 +102,7 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <QuoteButton size="lg" className="text-lg px-8 py-3">
+              <QuoteButton size="lg" className="text-lg px-8 py-3" useCalculator={true}>
                 Get Free Quote
               </QuoteButton>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
@@ -262,7 +262,7 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <QuoteButton className="w-full" size="lg">
+                  <QuoteButton className="w-full" size="lg" useCalculator={true}>
                     Get Free Quote
                   </QuoteButton>
                   <Button variant="outline" className="w-full" size="lg" asChild>
@@ -304,7 +304,7 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
                   Get Started Today
                 </h3>
                 <div className="space-y-4">
-                  <QuoteButton className="w-full" size="lg">
+                  <QuoteButton className="w-full" size="lg" useCalculator={true}>
                     Get Free Quote
                   </QuoteButton>
                   <Button variant="outline" className="w-full" size="lg" asChild>
@@ -383,7 +383,7 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <QuoteButton size="lg" className="text-lg px-8 py-3">
+              <QuoteButton size="lg" className="text-lg px-8 py-3" useCalculator={true}>
                 Get Free Quote
               </QuoteButton>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>

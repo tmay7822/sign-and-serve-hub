@@ -14,7 +14,7 @@ const BreadcrumbNav = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
-  const getBreadcrumbName = (path: string) => {
+  const getBreadcrumbName = (path: string, index: number, allPaths: string[]) => {
     const names: { [key: string]: string } = {
       'blog': 'Blog',
       'general-notary': 'General Notary',
@@ -40,8 +40,35 @@ const BreadcrumbNav = () => {
       'loan-signing-dayton-montgomery': 'Loan Signing Dayton Montgomery County',
       'general-notary-hamilton-cincinnati': 'General Notary Hamilton County Cincinnati',
       'wills-estates-warren-mason': 'Wills Estates Warren County Mason',
+      // County names
+      'warren': 'Warren',
+      'hamilton': 'Hamilton',
+      'montgomery': 'Montgomery',
+      'butler': 'Butler',
+      'clermont': 'Clermont',
+      // City names
+      'mason': 'Mason',
+      'lebanon': 'Lebanon',
+      'cincinnati': 'Cincinnati',
+      'dayton': 'Dayton',
+      'kettering': 'Kettering',
+      'springdale': 'Springdale',
+      'west-chester': 'West Chester',
+      'blue-ash': 'Blue Ash',
     };
-    return names[path] || path.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    
+    // For dynamic routes like /loan-signings/warren/mason
+    if (names[path]) {
+      return names[path];
+    }
+    
+    // Handle ZIP codes
+    if (/^\d{5}$/.test(path)) {
+      return path;
+    }
+    
+    // Default capitalization
+    return path.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   };
 
   if (location.pathname === '/') {
@@ -67,13 +94,13 @@ const BreadcrumbNav = () => {
                 <React.Fragment key={name}>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    {isLast ? (
-                      <BreadcrumbPage>{getBreadcrumbName(name)}</BreadcrumbPage>
-                    ) : (
-                      <BreadcrumbLink href={routeTo}>
-                        {getBreadcrumbName(name)}
-                      </BreadcrumbLink>
-                    )}
+                  {isLast ? (
+                    <BreadcrumbPage>{getBreadcrumbName(name, index, pathnames)}</BreadcrumbPage>
+                  ) : (
+                    <BreadcrumbLink href={routeTo}>
+                      {getBreadcrumbName(name, index, pathnames)}
+                    </BreadcrumbLink>
+                  )}
                   </BreadcrumbItem>
                 </React.Fragment>
               );

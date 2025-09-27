@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { QuoteButton } from '@/components/QuoteButton';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import { Service } from '@/data/services';
@@ -61,16 +61,10 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
               {service.summary}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <QuoteButton size="lg" className="text-lg px-8 py-4" defaultService={defaultService}>
-                Get Free Quote
-              </QuoteButton>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4" asChild>
-                <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                  Call {BUSINESS_CONFIG.phone}
-                </a>
-              </Button>
-            </div>
+            <StandardCTAButtons 
+              defaultService={defaultService}
+              className="text-lg"
+            />
           </div>
         </div>
       </section>
@@ -122,9 +116,10 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
                 
                 {showBooking && (
                   <div className="mt-6 pt-6 border-t border-border">
-                    <QuoteButton className="w-full" size="lg" defaultService={defaultService}>
-                      Book This Service
-                    </QuoteButton>
+                    <StandardCTAButtons 
+                      defaultService={defaultService}
+                      className="flex-col gap-3"
+                    />
                   </div>
                 )}
               </Card>
@@ -245,16 +240,10 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
             Same-day appointments available throughout {BUSINESS_CONFIG.serviceArea.primary}.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <QuoteButton size="lg" className="text-lg px-8 py-4" defaultService={defaultService}>
-              Get Your Free Quote
-            </QuoteButton>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4" asChild>
-              <a href={`tel:${BUSINESS_CONFIG.phone}`}>
-                Call {BUSINESS_CONFIG.phone}
-              </a>
-            </Button>
-          </div>
+          <StandardCTAButtons 
+            defaultService={defaultService}
+            className="text-lg"
+          />
         </div>
       </section>
 
