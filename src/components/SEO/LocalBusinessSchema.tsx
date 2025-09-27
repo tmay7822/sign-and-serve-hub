@@ -50,11 +50,28 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
             "@type": "AdministrativeArea",
             "name": `${county.trim()} County, OH`
           })),
+          "geo": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": 39.1031,
+              "longitude": -84.5120
+            },
+            "geoRadius": "50000"
+          },
           "openingHours": [
             "Mo-Fr 08:00-20:00",
             "Sa-Su 09:00-18:00"
           ],
-          "priceRange": "$$"
+          "priceRange": "$$",
+          "paymentAccepted": ["Cash", "Check", "Credit Card", "Venmo", "Zelle"],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "47",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
         },
         "areaServed": BUSINESS_CONFIG.serviceArea.counties.split(', ').map(county => ({
           "@type": "AdministrativeArea",
@@ -90,6 +107,23 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
           "@type": "AdministrativeArea",
           "name": `${county.trim()} County, OH`
         })),
+        "geo": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.1031,
+            "longitude": -84.5120
+          },
+          "geoRadius": "50000"
+        },
+        "paymentAccepted": ["Cash", "Check", "Credit Card", "Venmo", "Zelle"],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "47",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Notary Services",

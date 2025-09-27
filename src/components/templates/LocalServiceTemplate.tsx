@@ -9,6 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
+import LocalSignalsWidget from '@/components/LocalSignalsWidget';
 import { QuoteButton } from '@/components/QuoteButton';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { RouteCity } from '@/data/locations';
@@ -277,50 +278,43 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
         </div>
       </section>
 
-      {/* Local Focus Section */}
-      <section className="py-16">
+      {/* Enhanced Local Signals */}
+      <section className="py-16 bg-card/30">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
-              Why Choose Us in {route.city}?
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Local expertise combined with professional mobile notary services throughout {route.county} County.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Local Knowledge</h3>
-              <p className="text-muted-foreground">
-                Familiar with {route.city} and {route.county} County requirements, ensuring smooth, 
-                efficient service for all your document needs.
-              </p>
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <LocalSignalsWidget
+                city={route.city}
+                county={route.county}
+                zipCode={route.primaryZip}
+                localLandmarks={[
+                  `${route.city} City Hall`,
+                  `${route.county} County Courthouse`,
+                  `${route.city} Business District`,
+                  `${route.primaryZip} Shopping Centers`,
+                  `${route.city} Medical Facilities`,
+                  `${route.county} County Services`
+                ]}
+              />
             </div>
-
-            <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Fast Response</h3>
-              <p className="text-muted-foreground">
-                Quick response times to {route.city} locations. Same-day service available 
-                for urgent notarization needs.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Building className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Professional Service</h3>
-              <p className="text-muted-foreground">
-                Certified, bonded, and insured notary service with a commitment to 
-                excellence in every {route.city} appointment.
-              </p>
+            
+            <div>
+              <Card className="p-6 bg-card shadow-lg">
+                <h3 className="text-xl font-bold text-foreground mb-6 text-center">
+                  Get Started Today
+                </h3>
+                <div className="space-y-4">
+                  <QuoteButton className="w-full" size="lg">
+                    Get Free Quote
+                  </QuoteButton>
+                  <Button variant="outline" className="w-full" size="lg" asChild>
+                    <a href={`tel:${BUSINESS_CONFIG.phone}`}>
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call Now
+                    </a>
+                  </Button>
+                </div>
+              </Card>
             </div>
           </div>
         </div>

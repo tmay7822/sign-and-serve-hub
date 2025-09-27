@@ -1,5 +1,5 @@
 import { getServiceBySlug } from '@/data/services';
-import ServiceHubTemplate from '@/components/templates/ServiceHubTemplate';
+import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
 import { Navigate } from 'react-router-dom';
 
 const EstatePlans = () => {
@@ -9,7 +9,15 @@ const EstatePlans = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} showBooking={true} defaultService="estate-plans" />;
+  return <ServiceHubEnhanced 
+    service={service} 
+    showBooking={true} 
+    defaultService="estate-plans"
+    quickAnswer={{
+      question: "How do I get estate planning documents notarized?",
+      answer: "We notarize wills, powers of attorney, healthcare directives, and trust documents. Our mobile notary comes to your location with proper witnesses when required. We understand Ohio estate planning requirements and ensure documents meet legal standards."
+    }}
+  />;
 };
 
 export default EstatePlans;

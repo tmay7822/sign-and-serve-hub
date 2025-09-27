@@ -28,6 +28,14 @@ export interface BlogPost {
   tags: string[];
   featured: boolean;
   readTime: number;
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
+  quickAnswer?: {
+    question: string;
+    answer: string;
+  };
 }
 
 export const BLOG_CATEGORIES: BlogCategory[] = [

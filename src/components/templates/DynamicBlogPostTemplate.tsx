@@ -4,6 +4,8 @@ import Footer from '@/components/Footer';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Badge } from '@/components/ui/badge';
+import EnhancedFAQSchema from '@/components/SEO/EnhancedFAQSchema';
+import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
 import { Calendar, Clock, User } from 'lucide-react';
 
 interface BlogPost {
@@ -22,6 +24,14 @@ interface BlogPost {
   tags: string[];
   featured: boolean;
   readTime: number;
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
+  quickAnswer?: {
+    question: string;
+    answer: string;
+  };
 }
 
 interface DynamicBlogPostTemplateProps {
@@ -40,6 +50,18 @@ const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Enhanced FAQ Schema */}
+      {post.faqs && post.faqs.length > 0 && (
+        <EnhancedFAQSchema 
+          faqs={post.faqs}
+          mainEntity={{
+            name: post.title,
+            description: post.excerpt,
+            url: `/blog/${post.slug}`
+          }}
+        />
+      )}
+      
       <Header />
       
       {/* Hero Section */}
@@ -94,6 +116,31 @@ const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
+            {/* Quick Answer Section for AI Search */}
+            {post.quickAnswer && (
+              <QuickAnswerSection
+                question={post.quickAnswer.question}
+                answer={post.quickAnswer.answer}
+                location="Cincinnati-Dayton Metro"
+                service="notary services"
+              />
+            )}
+
+            {/* FAQ Section with Enhanced Schema */}
+            {post.faqs && post.faqs.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {post.faqs.map((faq, index) => (
+                    <div key={index} className="border border-border rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-foreground mb-3">{faq.question}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <article className="prose prose-lg max-w-none">
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </article>
