@@ -28,58 +28,50 @@ const Footer = () => {
 
   return (
     <footer className="bg-brand-navy text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Company Info */}
-          <div className="lg:col-span-2">
-            <p className="text-white/80 mb-6 leading-relaxed">
-              {BUSINESS_CONFIG.name} provides mobile notary and loan signing services across {BUSINESS_CONFIG.serviceArea.primary}. 
-              Background-checked, insured, and certified, we deliver accurate documents on your schedule with 
-              professional excellence and five-star service.
+          <div className="lg:col-span-1">
+            <p className="text-white/80 mb-4 text-sm leading-relaxed">
+              Mobile notary services across {BUSINESS_CONFIG.serviceArea.primary}. 
+              Certified, insured, and background-checked for your peace of mind.
             </p>
-            <SocialMediaLinks className="justify-start" iconSize={20} variant="footer" />
+            <SocialMediaLinks className="justify-start" iconSize={18} variant="footer" />
           </div>
 
-          {/* Services */}
+          {/* Combined Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Our Services</h3>
-            <ul className="space-y-2">
-              {serviceLinks.map((link) => (
-                <li key={link.name}>
+            <h3 className="font-semibold mb-3">Services & Info</h3>
+            <div className="space-y-1.5 text-sm">
+              {serviceLinks.slice(0, 4).map((link) => (
+                <div key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-white/80 hover:text-brand-gold transition-colors duration-300"
+                    className="text-white/80 hover:text-brand-gold transition-colors duration-300 block"
                   >
                     {link.name}
                   </Link>
-                </li>
+                </div>
               ))}
-            </ul>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
+              {quickLinks.slice(0, 3).map((link) => (
+                <div key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-white/80 hover:text-brand-gold transition-colors duration-300"
+                    className="text-white/80 hover:text-brand-gold transition-colors duration-300 block"
                   >
                     {link.name}
                   </Link>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-brand-gold" />
+            <h3 className="font-semibold mb-3">Contact</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-brand-gold" />
                 <a 
                   href={`tel:${BUSINESS_CONFIG.phone}`}
                   className="text-white/80 hover:text-brand-gold transition-colors"
@@ -87,8 +79,8 @@ const Footer = () => {
                   {BUSINESS_CONFIG.phone}
                 </a>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-brand-gold" />
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-brand-gold" />
                 <a 
                   href={`mailto:${BUSINESS_CONFIG.email}`}
                   className="text-white/80 hover:text-brand-gold transition-colors"
@@ -96,50 +88,43 @@ const Footer = () => {
                   {BUSINESS_CONFIG.email}
                 </a>
               </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-brand-gold" />
-                <span className="text-white/80">{BUSINESS_CONFIG.serviceArea.primary} Area</span>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-brand-gold" />
+                <span className="text-white/80">{BUSINESS_CONFIG.serviceArea.primary}</span>
+              </div>
+              <div className="flex items-center gap-2 mt-3">
+                <Clock className="h-4 w-4 text-brand-gold" />
+                <div className="text-white/80">
+                  <div>{BUSINESS_CONFIG.hours.weekdays}</div>
+                  <div className="text-brand-gold text-xs">Emergency 24/7</div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Hours & Certifications */}
+          {/* Certifications */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Business Hours</h3>
-            <div className="space-y-2 text-white/80 mb-6">
-              <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-brand-gold mt-0.5" />
-                <div>
-                  <div>Monday - Friday: {BUSINESS_CONFIG.hours.weekdays}</div>
-                  <div>Saturday - Sunday: {BUSINESS_CONFIG.hours.weekends}</div>
-                  <div className="mt-2 text-brand-gold font-medium">
-                    Emergency services available {BUSINESS_CONFIG.hours.emergency}
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <h4 className="font-semibold mb-3">Professional Certifications</h4>
-            <div className="grid grid-cols-2 gap-3">
+            <h3 className="font-semibold mb-3">Certified & Insured</h3>
+            <div className="flex flex-wrap gap-2">
               <img 
                 src={trustDeliveryLogo} 
-                alt="Trust Delivery Certified" 
-                className="h-8 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+                alt="Trust Delivery" 
+                className="h-6 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
               />
               <img 
                 src={lssLogo} 
-                alt="Loan Signing System Certified" 
-                className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                alt="LSS Certified" 
+                className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
               <img 
                 src={nnaLogo} 
-                alt="National Notary Association Member" 
-                className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                alt="NNA Member" 
+                className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
               <img 
                 src={nnaCertifiedLogo} 
-                alt="NNA Background Screened" 
-                className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                alt="Background Screened" 
+                className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
           </div>
