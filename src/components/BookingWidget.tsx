@@ -11,6 +11,7 @@ import { SERVICE_PRICING, getPricingEstimate, getTravelZone, type ServicePricing
 
 interface BookingWidgetProps {
   defaultService?: string;
+  defaultZipCode?: string;
   variant?: "default" | "outline" | "secondary" | "ghost";
   size?: "default" | "sm" | "lg";
   className?: string;
@@ -19,15 +20,22 @@ interface BookingWidgetProps {
 
 export const BookingWidget = ({ 
   defaultService, 
+  defaultZipCode,
   variant = "default", 
   size = "default", 
   className = "",
   children = "Book Appointment"
 }: BookingWidgetProps) => {
   const [selectedService, setSelectedService] = useState<string>(defaultService || '');
-  const [zipCode, setZipCode] = useState<string>('');
+  const [zipCode, setZipCode] = useState<string>(defaultZipCode || '');
   const [showCalendar, setShowCalendar] = useState(false);
-  const [estimate, setEstimate] = useState<ReturnType<typeof getPricingEstimate> | null>(null);
+  const [estimate, setEstimate] = useState<ReturnType<typeof getPricingEstimate> | null>(() => {
+    // Auto-calculate estimate if both defaultService and defaultZipCode are provided
+    if (defaultService && defaultZipCode) {
+      return getPricingEstimate([defaultService], defaultZipCode);
+    }
+    return null;
+  });
 
   const handleServiceChange = (serviceId: string) => {
     setSelectedService(serviceId);

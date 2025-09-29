@@ -144,6 +144,7 @@ export const QuoteCalculatorModal = ({ isOpen, onClose }: QuoteCalculatorModalPr
             {selectedService && zipCode && (
               <BookingWidget 
                 defaultService={selectedService}
+                defaultZipCode={zipCode}
                 size="lg"
                 className="w-full"
               >

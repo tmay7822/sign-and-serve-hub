@@ -27,7 +27,6 @@ export const StandardCTAButtons = ({
         size="lg"
         className={`${baseButtonClasses} bg-brand-navy text-white hover:bg-brand-blue hover:scale-105 font-semibold shadow-button hover:shadow-lg transition-all duration-300`}
       >
-        <Calendar className="mr-2 h-4 w-4" />
         Book Now
       </BookingWidget>
 
