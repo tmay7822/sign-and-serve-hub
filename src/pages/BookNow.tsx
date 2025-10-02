@@ -6,7 +6,7 @@ import { CompactServicesGrid } from '@/components/landing/CompactServicesGrid';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
 import { MiniTestimonials } from '@/components/landing/MiniTestimonials';
 import { QuoteCalculatorModal } from '@/components/QuoteCalculatorModal';
-import { Phone, ArrowRight, Calculator } from 'lucide-react';
+import { Phone, ArrowRight, Calculator, Shield, Award, CheckCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import logoImage from '@/assets/signed-on-time-logo.jpg';
@@ -82,7 +82,6 @@ const BookNow = () => {
                 <p className="text-lg md:text-xl text-muted-foreground mb-3">
                   Professional mobile notary service across {BUSINESS_CONFIG.serviceArea.primary}
                 </p>
-                <QuickTrustBadges />
               </div>
 
               {/* Main Booking Widget */}
@@ -118,33 +117,63 @@ const BookNow = () => {
           </div>
         </section>
 
-        {/* Why Choose Us */}
+        {/* Why Choose Us - Enhanced Trust & Credibility */}
         <section className="py-12">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl font-bold text-primary mb-8 text-center">
                 Why Choose {BUSINESS_CONFIG.name}?
               </h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center p-6 bg-card rounded-lg border">
-                  <div className="text-3xl mb-3">🚗</div>
-                  <h3 className="font-bold text-lg mb-2">Mobile Service</h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Background Checked */}
+                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 gradient-primary rounded-lg">
+                      <Shield className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Background Checked</h3>
                   <p className="text-sm text-muted-foreground">
-                    We come to you - home, office, hospital, or anywhere convenient
+                    Fully vetted and background screened for your security and peace of mind
                   </p>
                 </div>
-                <div className="text-center p-6 bg-card rounded-lg border">
-                  <div className="text-3xl mb-3">⚡</div>
-                  <h3 className="font-bold text-lg mb-2">Same Day Availability</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Urgent needs? We offer same-day and after-hours appointments
-                  </p>
-                </div>
-                <div className="text-center p-6 bg-card rounded-lg border">
-                  <div className="text-3xl mb-3">✓</div>
+                
+                {/* NNA Certified */}
+                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 gradient-primary rounded-lg">
+                      <Award className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
                   <h3 className="font-bold text-lg mb-2">NNA Certified</h3>
                   <p className="text-sm text-muted-foreground">
-                    Background checked, insured, and professionally certified
+                    Professionally certified and insured for your protection
+                  </p>
+                </div>
+                
+                {/* Fully Insured */}
+                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 gradient-primary rounded-lg">
+                      <CheckCircle className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Fully Insured</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Protected with $100,000 E&O insurance and bonding
+                  </p>
+                </div>
+                
+                {/* Same Day Availability */}
+                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 gradient-primary rounded-lg">
+                      <Clock className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Same Day Availability</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Urgent needs? We offer same-day and after-hours service
                   </p>
                 </div>
               </div>
