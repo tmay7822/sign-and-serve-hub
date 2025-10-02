@@ -8,12 +8,20 @@ import { MiniTestimonials } from '@/components/landing/MiniTestimonials';
 import { QuoteCalculatorModal } from '@/components/QuoteCalculatorModal';
 import { Phone, ArrowRight, Calculator } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import logoImage from '@/assets/signed-on-time-logo.jpg';
 
 const BookNow = () => {
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [preSelectedService, setPreSelectedService] = useState<string>("");
+  const bookingWidgetRef = useRef<HTMLDivElement>(null);
+
+  const handleServiceSelect = (serviceName: string) => {
+    setPreSelectedService(serviceName);
+    // Scroll to booking widget
+    bookingWidgetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   return (
     <>
@@ -34,6 +42,10 @@ const BookNow = () => {
                 alt={BUSINESS_CONFIG.logo.alt}
                 className="h-12 md:h-14 w-auto object-contain"
               />
+              <div className="hidden md:block">
+                <div className="text-xl font-bold text-primary">{BUSINESS_CONFIG.name}</div>
+                <div className="text-xs text-muted-foreground">{BUSINESS_CONFIG.tagline}</div>
+              </div>
             </Link>
             <div className="flex items-center gap-3">
               <Button 
@@ -55,30 +67,31 @@ const BookNow = () => {
         </header>
 
         {/* Hero Section with Booking Widget */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-8">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               {/* Headline */}
-              <div className="text-center mb-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-3">
+              <div className="text-center mb-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2">
                   Get Your Quote & Book Online
                   <span className="block text-accent mt-2">in 60 Seconds</span>
                 </h1>
-                <p className="text-xl md:text-2xl font-semibold text-accent mb-2">
+                <p className="text-xl md:text-2xl font-semibold text-accent mb-1">
                   {BUSINESS_CONFIG.tagline}
                 </p>
-                <p className="text-lg md:text-xl text-muted-foreground mb-4">
+                <p className="text-lg md:text-xl text-muted-foreground mb-3">
                   Professional mobile notary service across {BUSINESS_CONFIG.serviceArea.primary}
                 </p>
                 <QuickTrustBadges />
               </div>
 
               {/* Main Booking Widget */}
-              <div className="bg-card border-2 border-accent/20 rounded-xl shadow-2xl p-6 md:p-8">
+              <div ref={bookingWidgetRef} className="bg-card border-2 border-accent/20 rounded-xl shadow-2xl p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-primary mb-6 text-center">
                   Select Your Service & Get Instant Pricing
                 </h2>
                 <BookingWidget 
+                  defaultService={preSelectedService}
                   variant="default"
                   size="lg"
                   className="w-full"
@@ -101,7 +114,7 @@ const BookNow = () => {
                 From loan signings to estate planning, we handle all your notarization needs
               </p>
             </div>
-            <CompactServicesGrid />
+            <CompactServicesGrid onServiceSelect={handleServiceSelect} />
           </div>
         </section>
 
