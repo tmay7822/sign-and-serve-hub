@@ -4,7 +4,7 @@
 export const BUSINESS_CONFIG = {
   // Basic Business Information
   name: "Signed On Time", 
-  tagline: "Your Trusted Mobile Notary Experts", 
+  tagline: "We Come To You Anytime and Anywhere",
   
   // Contact Information
   phone: "(513) 226-9052", 

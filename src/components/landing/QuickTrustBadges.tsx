@@ -5,7 +5,7 @@ export const QuickTrustBadges = () => {
     { icon: Shield, text: "Background Checked" },
     { icon: Award, text: "NNA Certified" },
     { icon: CheckCircle, text: "Fully Insured" },
-    { icon: Clock, text: "Same-Day Available" }
+    { icon: Clock, text: "Same Day Availability" }
   ];
 
   return (

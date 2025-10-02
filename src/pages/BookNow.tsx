@@ -5,10 +5,16 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { CompactServicesGrid } from '@/components/landing/CompactServicesGrid';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
 import { MiniTestimonials } from '@/components/landing/MiniTestimonials';
-import { Phone, ArrowRight } from 'lucide-react';
+import { QuoteCalculatorModal } from '@/components/QuoteCalculatorModal';
+import { Phone, ArrowRight, Calculator } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import logoImage from '@/assets/signed-on-time-logo.jpg';
 
 const BookNow = () => {
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
+
   return (
     <>
       <Seo
@@ -22,8 +28,16 @@ const BookNow = () => {
         {/* Minimal Header */}
         <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <Link to="/" className="text-xl font-bold text-primary hover:text-accent transition-colors">
-              {BUSINESS_CONFIG.name}
+            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <img 
+                src={logoImage} 
+                alt={BUSINESS_CONFIG.logo.alt}
+                className="h-12 md:h-14 w-auto object-contain"
+              />
+              <div className="hidden sm:block">
+                <div className="text-xl font-bold text-primary">{BUSINESS_CONFIG.name}</div>
+                <div className="text-xs text-muted-foreground">{BUSINESS_CONFIG.tagline}</div>
+              </div>
             </Link>
             <Button 
               variant="ghost" 
@@ -45,6 +59,9 @@ const BookNow = () => {
                   Get Your Quote & Book Online
                   <span className="block text-accent mt-2">in 60 Seconds</span>
                 </h1>
+                <p className="text-xl md:text-2xl font-semibold text-accent mb-3">
+                  {BUSINESS_CONFIG.tagline}
+                </p>
                 <p className="text-lg md:text-xl text-muted-foreground mb-6">
                   Professional mobile notary service across {BUSINESS_CONFIG.serviceArea.primary}
                 </p>
@@ -70,9 +87,9 @@ const BookNow = () => {
                 <p className="text-muted-foreground mb-3">Prefer to speak with us?</p>
                 <Button 
                   size="lg"
-                  variant="outline"
+                  variant="default"
                   onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
-                  className="text-lg"
+                  className="text-lg bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
                 >
                   <Phone className="mr-2 h-5 w-5" />
                   Call {BUSINESS_CONFIG.phone}
@@ -114,7 +131,7 @@ const BookNow = () => {
                 </div>
                 <div className="text-center p-6 bg-card rounded-lg border">
                   <div className="text-3xl mb-3">⚡</div>
-                  <h3 className="font-bold text-lg mb-2">Same-Day Available</h3>
+                  <h3 className="font-bold text-lg mb-2">Same Day Availability</h3>
                   <p className="text-sm text-muted-foreground">
                     Urgent needs? We offer same-day and after-hours appointments
                   </p>
@@ -164,14 +181,22 @@ const BookNow = () => {
             <p className="text-xl mb-8 opacity-90">
               Book your appointment now or call us for immediate assistance
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-3xl mx-auto">
+              <BookingWidget 
+                variant="secondary"
+                size="lg"
+                className="text-lg min-w-[200px]"
+              >
+                Book Now
+              </BookingWidget>
               <Button 
                 size="lg"
                 variant="secondary"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => setShowQuoteModal(true)}
                 className="text-lg min-w-[200px]"
               >
-                Book Online Now
+                <Calculator className="mr-2 h-5 w-5" />
+                Get Quick Quote
               </Button>
               <Button 
                 size="lg"
@@ -180,11 +205,17 @@ const BookNow = () => {
                 className="text-lg min-w-[200px] bg-background/10 hover:bg-background/20 text-primary-foreground border-primary-foreground/30"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                {BUSINESS_CONFIG.phone}
+                Call Now
               </Button>
             </div>
           </div>
         </section>
+
+        {/* Quote Calculator Modal */}
+        <QuoteCalculatorModal 
+          isOpen={showQuoteModal}
+          onClose={() => setShowQuoteModal(false)}
+        />
 
         {/* Minimal Footer */}
         <footer className="py-6 border-t bg-background">
