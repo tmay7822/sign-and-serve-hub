@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 213 27% 96%;
     --muted-foreground: 0 0% 25%;
 
-    --accent: 213 85% 45%;
+    --accent: 0 80% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -38,7 +38,7 @@ All colors MUST be HSL.
 
     /* Professional Notary Brand Colors - Signed On Time Red & Black */
     --brand-navy: 0 0% 8%;       /* Dark navy for gradients - better contrast */
-    --brand-blue: 0 70% 45%;     /* Darker red for better contrast */
+    --brand-blue: 0 80% 50%;     /* Professional red for better contrast */
     --brand-light: 0 0% 97%;     /* Light gray */
     --brand-gold: 43 96% 56%;    /* Gold accent */
     
@@ -47,8 +47,8 @@ All colors MUST be HSL.
     --text-on-dark: 0 0% 100%;   /* Pure white text for dark backgrounds */
     
     /* Gradients - ensuring dark enough for white text visibility */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 70% 35%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 8% / 0.95), hsl(0 70% 35% / 0.9));
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 80% 40%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 8% / 0.95), hsl(0 80% 40% / 0.9));
     --gradient-card: linear-gradient(145deg, hsl(var(--background)), hsl(var(--brand-light) / 0.3));
     
     /* Shadows */

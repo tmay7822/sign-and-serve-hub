@@ -30,7 +30,7 @@ export const SERVICE_PRICING: ServicePricing[] = [
   {
     id: 'loan-signings',
     serviceName: 'Loan Signings',
-    baseRate: 150,
+    baseRate: 100,
     description: 'Mortgage closings, refinances, HELOCs',
     estimatedTime: '60-90 minutes',
     tidyCalId: 'loan-signing',

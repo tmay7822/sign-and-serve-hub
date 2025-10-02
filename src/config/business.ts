@@ -121,10 +121,10 @@ export const BUSINESS_CONFIG = {
         name: "Signed On Time Red & Black",
         primary: "0 0% 15%",         // Deep black
         primaryForeground: "0 0% 100%",
-        accent: "0 84% 60%",         // Bright red
+        accent: "0 80% 50%",         // Professional red
         accentForeground: "0 0% 100%",
         brandNavy: "0 0% 15%",
-        brandBlue: "0 84% 60%",
+        brandBlue: "0 80% 50%",      // Professional red
         brandLight: "0 0% 97%",
         brandGold: "43 96% 56%"
       }

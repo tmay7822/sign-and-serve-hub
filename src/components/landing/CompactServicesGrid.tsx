@@ -19,7 +19,7 @@ export const CompactServicesGrid = ({ onServiceSelect }: { onServiceSelect?: (se
       icon: Home,
       name: "Loan Signings",
       description: "Professional mortgage, refinance, and HELOC closings with certified signing agent",
-      price: "$150",
+      price: "$100",
       link: "/loan-signings",
       serviceId: "loan-signings"
     },
