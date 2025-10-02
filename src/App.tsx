@@ -103,6 +103,7 @@ import NotarySpringdale45246 from "./pages/locations/NotarySpringdale45246";
 import NotaryKettering45429 from "./pages/locations/NotaryKettering45429";
 import NotaryLebanon45036 from "./pages/locations/NotaryLebanon45036";
 import GeneralNotaryBlueAsh45242 from "./pages/locations/GeneralNotaryBlueAsh45242";
+import BookNow from "./pages/BookNow";
 
 const queryClient = new QueryClient();
 
@@ -119,6 +120,9 @@ const App = () => (
           <Routes>
           {/* Homepage */}
           <Route path="/" element={<Index />} />
+          
+          {/* Quick Booking Landing Page */}
+          <Route path="/book-now" element={<BookNow />} />
           
           {/* Admin Dashboard */}
           <Route path="/admin" element={<AdminDashboard />} />
