@@ -230,6 +230,8 @@ const BookNow = () => {
                 <Link to="/" className="hover:text-primary transition-colors">Home</Link>
                 <Link to="/about-us" className="hover:text-primary transition-colors">About</Link>
                 <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
+                <Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                <Link to="/terms-of-service" className="hover:text-primary transition-colors">Terms of Service</Link>
               </div>
             </div>
           </div>
