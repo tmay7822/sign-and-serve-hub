@@ -27,12 +27,15 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
   'general-notary': {
     serviceId: 'general-notary',
     specificServices: [
-      'Acknowledgments for real estate deeds',
-      'Jurats for sworn statements and affidavits',
-      'Copy certifications of important documents',
-      'Oaths and affirmations for various purposes',
-      'Signature witnessing for contracts',
-      'I-9 employment verification forms'
+      'Acknowledgments for real estate deeds and property transfers',
+      'Jurats for sworn statements, affidavits, and court documents',
+      'Copy certifications of important documents and records',
+      'Oaths and affirmations for various legal purposes',
+      'Signature witnessing for contracts and agreements',
+      'I-9 employment verification forms with authorized representative',
+      'Name change affidavits and identity verification',
+      'Small estate affidavits for probate matters',
+      'Minor travel consent forms for international travel'
     ],
     process: {
       title: 'Our General Notary Process',
@@ -56,12 +59,15 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       ]
     },
     commonDocuments: [
-      'Real estate deeds and property documents',
-      'Power of attorney forms',
-      'Affidavits and sworn statements',
-      'Contract acknowledgments',
-      'Employment verification (I-9)',
-      'Medical forms and healthcare directives'
+      'Real estate deeds and property transfer documents',
+      'Power of attorney forms (financial and healthcare)',
+      'Affidavits and sworn statements for court',
+      'Contract acknowledgments and business agreements',
+      'Employment verification (I-9) forms',
+      'Medical forms and healthcare directives',
+      'Title transfer documents and vehicle registrations',
+      'Name change affidavits and identity documents',
+      'Consent forms for minor children traveling'
     ],
     faqs: [
       {

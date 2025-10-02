@@ -132,9 +132,23 @@ const Footer = () => {
 
         {/* Legal Disclaimer */}
         <div className="border-t border-white/20 mt-8 pt-6">
-          <div className="text-center mb-6">
-            <p className="text-white/80 text-sm leading-relaxed">
-              <strong className="text-white">Pricing Disclaimer:</strong> Pricing is subject to State law and will be determined before services rendered and will be based on number of notarizations, travel, type of services, and emergency services.
+          <div className="text-sm text-white/80 mb-6 max-w-6xl mx-auto space-y-3">
+            <p>
+              <strong className="text-white">Pricing Disclaimer:</strong> All pricing is subject to confirmation based on service requirements, travel distance, and time. 
+              Notary fees are regulated by Ohio state law. Mobile service fees vary by location and urgency. 
+              Travel fees determined by service zone (see pricing page). Emergency/after-hours services subject to additional fees. 
+              All pricing quoted before service confirmation.
+            </p>
+            
+            <p>
+              <strong className="text-white">Professional Credentials:</strong> {BUSINESS_CONFIG.name} is a commissioned Ohio notary public with professional liability insurance (E&O), 
+              background screening verification, and National Notary Association (NNA) membership. All notarial acts performed in accordance with Ohio Revised Code 
+              and Secretary of State regulations. Notary records maintained for minimum 5 years as required by law.
+            </p>
+            
+            <p>
+              <strong className="text-white">Service Areas:</strong> Proudly serving Cincinnati, Dayton, and surrounding communities throughout Southwest Ohio. 
+              Mobile notary services available throughout Hamilton, Warren, Butler, Montgomery, Greene, and Clark counties.
             </p>
           </div>
           
@@ -143,12 +157,12 @@ const Footer = () => {
               © 2024 {BUSINESS_CONFIG.name}. All rights reserved.
             </div>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
+              <Link to="/privacy-policy" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="text-white/80 hover:text-brand-gold text-sm transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>

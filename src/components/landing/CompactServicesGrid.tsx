@@ -81,8 +81,8 @@ export const CompactServicesGrid = ({ onServiceSelect }: { onServiceSelect?: (se
               <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-accent/50">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-accent/10 rounded-lg">
-                      <Icon className="h-6 w-6 text-accent" />
+            <div className="p-3 gradient-primary rounded-lg">
+              <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-lg text-primary mb-1">

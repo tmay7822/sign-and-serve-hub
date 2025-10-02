@@ -15,9 +15,9 @@ export const QuickTrustBadges = () => {
         return (
           <div 
             key={index}
-            className="flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full"
+            className="flex items-center gap-2 bg-brand-gold/15 px-4 py-2 rounded-full border border-brand-gold/30"
           >
-            <Icon className="h-4 w-4 text-accent" />
+            <Icon className="h-4 w-4 text-brand-gold" />
             <span className="text-sm font-medium text-foreground">
               {badge.text}
             </span>

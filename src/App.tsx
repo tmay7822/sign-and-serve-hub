@@ -104,6 +104,8 @@ import NotaryKettering45429 from "./pages/locations/NotaryKettering45429";
 import NotaryLebanon45036 from "./pages/locations/NotaryLebanon45036";
 import GeneralNotaryBlueAsh45242 from "./pages/locations/GeneralNotaryBlueAsh45242";
 import BookNow from "./pages/BookNow";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 const queryClient = new QueryClient();
 
@@ -204,6 +206,8 @@ const App = () => (
         <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/service-areas" element={<ServiceAreas />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
           
           <Route path="/college-18-plus" element={<College18Plus />} />
           <Route path="/personal-family" element={<PersonalFamily />} />

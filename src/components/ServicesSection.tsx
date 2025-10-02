@@ -87,7 +87,7 @@ const ServicesSection = () => {
                   <div className="mt-auto pt-4">
                     <Button 
                       variant="outline" 
-                      className="w-full bg-brand-blue/5 border-brand-blue/20 text-brand-blue hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all duration-300 font-medium py-3"
+                      className="w-full bg-primary/5 border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 font-medium py-3"
                       asChild
                     >
                       <Link to={service.link}>
