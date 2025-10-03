@@ -11,12 +11,22 @@ interface Message {
   timestamp: Date;
 }
 
+const SUGGESTED_PROMPTS = [
+  { icon: "💰", text: "What are your prices?" },
+  { icon: "📍", text: "Do you serve my area?" },
+  { icon: "⏰", text: "What are your hours?" },
+  { icon: "📋", text: "What services do you offer?" },
+  { icon: "🚗", text: "Do you come to me?" },
+  { icon: "📅", text: "How do I schedule an appointment?" }
+];
+
 export const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [showSuggestedPrompts, setShowSuggestedPrompts] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -70,20 +80,22 @@ export const AIChatWidget = () => {
     }
   };
 
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (messageText?: string) => {
+    const textToSend = messageText || input;
+    if (!textToSend.trim() || isLoading) return;
 
     const userMessage: Message = {
       role: 'user',
-      content: input,
+      content: textToSend,
       timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
+    setShowSuggestedPrompts(false);
 
-    await saveMessage('user', input);
+    await saveMessage('user', textToSend);
 
     try {
       const response = await fetch(
@@ -201,6 +213,10 @@ export const AIChatWidget = () => {
     }
   };
 
+  const handlePromptClick = (promptText: string) => {
+    sendMessage(promptText);
+  };
+
   return (
     <>
       {/* Floating Chat Button */}
@@ -257,6 +273,25 @@ export const AIChatWidget = () => {
               </div>
             ))}
             
+            {/* Suggested Prompts */}
+            {showSuggestedPrompts && messages.length === 1 && !isLoading && (
+              <div className="space-y-2 animate-in fade-in duration-300">
+                <p className="text-xs text-muted-foreground font-medium px-2">💡 Quick questions:</p>
+                <div className="grid grid-cols-1 gap-2">
+                  {SUGGESTED_PROMPTS.map((prompt, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handlePromptClick(prompt.text)}
+                      className="text-left px-3 py-2 rounded-lg border border-accent bg-card hover:bg-accent hover:text-accent-foreground text-sm transition-all duration-200 hover:shadow-md"
+                    >
+                      <span className="mr-2">{prompt.icon}</span>
+                      {prompt.text}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-muted rounded-lg p-3">
@@ -305,7 +340,7 @@ export const AIChatWidget = () => {
                 className="flex-1"
               />
               <Button
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={isLoading || !input.trim()}
                 size="icon"
                 className="bg-accent hover:bg-accent/90"
