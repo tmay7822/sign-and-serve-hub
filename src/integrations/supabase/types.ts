@@ -14,7 +14,112 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_chat_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          role: string
+          session_id: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          role: string
+          session_id?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          role?: string
+          session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_chat_messages_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "ai_chat_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_chat_sessions: {
+        Row: {
+          created_at: string | null
+          id: string
+          message_count: number | null
+          resulted_in_lead: boolean | null
+          service_interest: string | null
+          visitor_zip: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          message_count?: number | null
+          resulted_in_lead?: boolean | null
+          service_interest?: string | null
+          visitor_zip?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          message_count?: number | null
+          resulted_in_lead?: boolean | null
+          service_interest?: string | null
+          visitor_zip?: string | null
+        }
+        Relationships: []
+      }
+      ai_leads: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: string
+          message: string | null
+          name: string | null
+          phone: string | null
+          service_type: string | null
+          session_id: string | null
+          status: string | null
+          zip_code: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          phone?: string | null
+          service_type?: string | null
+          session_id?: string | null
+          status?: string | null
+          zip_code?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          phone?: string | null
+          service_type?: string | null
+          session_id?: string | null
+          status?: string | null
+          zip_code?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_leads_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "ai_chat_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
