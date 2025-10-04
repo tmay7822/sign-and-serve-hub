@@ -68,7 +68,6 @@ export const AIChatWidget = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [showSuggestedPrompts, setShowSuggestedPrompts] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -135,7 +134,6 @@ export const AIChatWidget = () => {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
-    setShowSuggestedPrompts(false);
 
     await saveMessage('user', textToSend);
 
@@ -333,7 +331,7 @@ export const AIChatWidget = () => {
             ))}
             
             {/* Suggested Prompts */}
-            {showSuggestedPrompts && messages.length === 1 && !isLoading && (
+            {messages.length === 1 && !isLoading && (
               <div className="space-y-2 animate-in fade-in duration-300">
                 <p className="text-xs text-muted-foreground font-medium px-2">💡 Quick questions:</p>
                 <div className="grid grid-cols-1 gap-2">
