@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { MapPin, Phone, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 
 const ServiceAreas = () => {
   const countyAreas = [
@@ -54,11 +55,14 @@ const ServiceAreas = () => {
       <BasePageTemplate
         heroSection={
           <section className="bg-gradient-to-br from-primary/10 to-primary/5 py-16">
-            <div className="container mx-auto px-4 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Service Areas</h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Professional mobile notary services throughout Southwest Ohio. We come to you - home, office, or hospital.
-              </p>
+            <div className="container mx-auto px-4">
+              <BreadcrumbNav />
+              <div className="text-center mt-8">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Service Areas</h1>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Professional mobile notary services throughout Southwest Ohio. We come to you - home, office, or hospital.
+                </p>
+              </div>
             </div>
           </section>
         }
@@ -210,6 +214,17 @@ const ServiceAreas = () => {
                   >
                     Call {BUSINESS_CONFIG.phone}
                   </a>
+                </div>
+                <div className="mt-8 pt-8 border-t border-border">
+                  <p className="text-muted-foreground mb-4">
+                    Want to learn more about our company?
+                  </p>
+                  <Link 
+                    to="/about" 
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Read Our Story & Values →
+                  </Link>
                 </div>
               </CardContent>
             </Card>

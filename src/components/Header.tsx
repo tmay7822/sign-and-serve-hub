@@ -16,6 +16,7 @@ const Header = () => {
     { name: 'Estate Plans', href: '/estate-plans' },
     { name: 'Real Estate', href: '/real-estate' },
     { name: 'Apostille', href: '/apostille' },
+    { name: 'Service Areas', href: '/service-areas' },
     { name: 'Blog', href: '/blog' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },

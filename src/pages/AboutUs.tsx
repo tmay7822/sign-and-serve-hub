@@ -151,46 +151,28 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* Service Area Links */}
+        {/* Service Area CTA */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">Service Areas</h2>
-            <Card className="p-8">
+            <Card className="p-8 text-center">
               <CardContent>
-                <p className="text-lg text-center mb-6">
-                  We proudly serve clients throughout Southwest Ohio, including all cities and townships in:
+                <MapPin className="h-16 w-16 text-primary mx-auto mb-6" />
+                <h3 className="text-2xl font-bold mb-4">
+                  Serving Southwest Ohio
+                </h3>
+                <p className="text-lg mb-6">
+                  We provide mobile notary services across 6 counties including 
+                  Hamilton, Warren, Butler, Montgomery, Clermont, and Brown counties.
                 </p>
-                <div className="grid md:grid-cols-3 gap-4">
-                  {serviceAreas.map((area, index) => (
-                    <div key={index} className="flex items-center justify-center">
-                      <Badge variant="secondary" className="text-sm py-2 px-4">
-                        <MapPin className="h-4 w-4 mr-2" />
-                        {area}
-                      </Badge>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center space-y-4">
-                  <p className="text-muted-foreground">
-                    Explore our specialized services in key areas:
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-3">
-                    <Link to="/notary-cincinnati-45202" className="text-primary hover:underline">
-                      Cincinnati Notary Services
-                    </Link>
-                    <Link to="/notary-dayton-45402" className="text-primary hover:underline">
-                      Dayton Mobile Notary
-                    </Link>
-                    <Link to="/loan-signings" className="text-primary hover:underline">
-                      Loan Signing Services
-                    </Link>
-                    <Link to="/estate-plans" className="text-primary hover:underline">
-                      Estate Planning Documents
-                    </Link>
-                  </div>
-                </div>
-                <p className="text-center mt-6 text-muted-foreground">
-                  Don't see your location? Call us - we may still be able to help!
+                <Link to="/service-areas">
+                  <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold text-lg inline-flex items-center gap-2 transition-colors shadow-md hover:shadow-lg">
+                    View Full Coverage Map & Cities
+                    <MapPin className="h-5 w-5" />
+                  </button>
+                </Link>
+                <p className="text-sm text-muted-foreground mt-4">
+                  See detailed city-by-city coverage and ZIP code information
                 </p>
               </CardContent>
             </Card>
