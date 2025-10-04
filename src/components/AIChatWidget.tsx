@@ -20,6 +20,48 @@ const SUGGESTED_PROMPTS = [
   { icon: "📅", text: "How do I schedule an appointment?" }
 ];
 
+const SERVICE_QUICK_ACTIONS = [
+  { 
+    icon: "📄", 
+    label: "Loan Signings", 
+    query: "Tell me more about loan signings and pricing"
+  },
+  { 
+    icon: "📋", 
+    label: "Estate Planning", 
+    query: "Tell me about estate planning services - wills, trusts, and POA"
+  },
+  { 
+    icon: "🏠", 
+    label: "Real Estate", 
+    query: "What real estate documents can you notarize?"
+  },
+  { 
+    icon: "🌍", 
+    label: "Apostille", 
+    query: "How does apostille service work?"
+  },
+  { 
+    icon: "✍️", 
+    label: "General Notary", 
+    query: "What's included in general notary service?"
+  },
+  { 
+    icon: "💼", 
+    label: "Business Docs", 
+    query: "Tell me about business document notarization"
+  }
+];
+
+const isServiceListResponse = (content: string): boolean => {
+  const lowerContent = content.toLowerCase();
+  return (
+    lowerContent.includes('services') && 
+    (lowerContent.includes('offer') || lowerContent.includes('key services')) &&
+    (lowerContent.includes('loan signing') || lowerContent.includes('estate planning') || lowerContent.includes('apostille'))
+  );
+};
+
 export const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -254,22 +296,39 @@ export const AIChatWidget = () => {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-lg p-3 ${
-                    message.role === 'user'
-                      ? 'bg-accent text-accent-foreground'
-                      : 'bg-muted text-foreground'
-                  }`}
-                >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                  <p className="text-xs opacity-50 mt-1">
-                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </p>
+              <div key={index}>
+                <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.role === 'user'
+                        ? 'bg-accent text-accent-foreground'
+                        : 'bg-muted text-foreground'
+                    }`}
+                  >
+                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    <p className="text-xs opacity-50 mt-1">
+                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </p>
+                  </div>
                 </div>
+                
+                {/* Service Quick Action Buttons */}
+                {message.role === 'assistant' && isServiceListResponse(message.content) && (
+                  <div className="flex justify-start mt-2">
+                    <div className="max-w-[80%] flex flex-wrap gap-2">
+                      {SERVICE_QUICK_ACTIONS.map((action, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handlePromptClick(action.query)}
+                          className="px-3 py-1.5 text-xs bg-accent/10 hover:bg-accent text-accent hover:text-accent-foreground rounded-full border border-accent transition-all duration-200 hover:shadow-md"
+                        >
+                          <span className="mr-1">{action.icon}</span>
+                          {action.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
             
