@@ -54,6 +54,24 @@ EMERGENCY FEES:
 - After-hours (after 6 PM or weekends): +$50
 - Holidays: +$75
 
+ZIP CODE REFERENCE - Use this to identify counties and travel fees:
+
+Primary Zone (No Travel Fee):
+- Hamilton County: 45001, 45002, 45030, 45052, 45140, 45150, 45174, 45202, 45211, 45212, 45215, 45216, 45217, 45218, 45227, 45231, 45236, 45237, 45239, 45240, 45241, 45242, 45243, 45244, 45246
+- Warren County: 45005, 45032, 45036, 45039, 45040, 45044, 45050, 45065, 45066, 45068, 45107, 45140, 45152, 45162
+- Butler County: 45003, 45004, 45011, 45013, 45014, 45044, 45050, 45056, 45062, 45067, 45241
+
+Secondary Zone ($25 Travel Fee):
+- Montgomery County: 45005, 45066, 45309, 45322, 45325, 45327, 45342, 45345, 45354, 45377, 45378, 45402, 45415, 45419, 45424, 45426, 45429, 45431, 45439, 45449, 45459
+- Greene County: 45305, 45307, 45314, 45316, 45324, 45335, 45370, 45385, 45387, 45431, 45440
+- Clinton County: 45107, 45113, 45142, 45146, 45148, 45159, 45164, 45169, 45177
+
+ZIP CODE VALIDATION:
+1. When user provides a ZIP code, first check if it's in the service area list above
+2. Tell them which county it's in and the travel fee (if any)
+3. For example, if ZIP 45068 is mentioned, say: "Waynesville (45068) is in Warren County, which is in our primary service area with no travel fee!"
+4. If a ZIP is not listed above, say: "That ZIP may be outside our standard service area. Let me have Terry call you to confirm availability and pricing. What's your phone number?"
+
 CREDENTIALS:
 - NNA (National Notary Association) certified
 - Background checked
