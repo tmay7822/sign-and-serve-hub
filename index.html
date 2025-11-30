@@ -3,40 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="dynamic-title">Loading...</title>
-    <meta name="description" id="dynamic-description" content="" />
-    <meta name="author" id="dynamic-author" content="" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Mobile Notary Cincinnati | Signed On Time</title>
+    <meta name="description" content="Same-day mobile notary in Cincinnati-Dayton. NNA certified, insured. Loan signings, POA, wills, apostille. Call (513) 226-9052 for free quote!" />
+    <meta name="keywords" content="mobile notary, loan signing agent, Cincinnati notary, Dayton notary, power of attorney, notary public Ohio" />
+    <meta name="author" content="Signed On Time Mobile Notary" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.signedontime.com/" />
 
-    <meta property="og:title" id="dynamic-og-title" content="" />
-    <meta property="og:description" id="dynamic-og-description" content="" />
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/favicon.png" />
+    <meta property="og:url" content="https://www.signedontime.com/" />
+    <meta property="og:title" content="Mobile Notary Cincinnati | Signed On Time" />
+    <meta property="og:description" content="Same-day mobile notary in Cincinnati-Dayton. NNA certified, insured. Call (513) 226-9052!" />
+    <meta property="og:image" content="https://www.signedontime.com/favicon.png" />
+    <meta property="og:site_name" content="Signed On Time Mobile Notary" />
+    <meta property="og:locale" content="en_US" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/favicon.png" />
+    <meta name="twitter:url" content="https://www.signedontime.com/" />
+    <meta name="twitter:title" content="Mobile Notary Cincinnati | Signed On Time" />
+    <meta name="twitter:description" content="Same-day mobile notary in Cincinnati-Dayton. NNA certified, insured. Call (513) 226-9052!" />
+    <meta name="twitter:image" content="https://www.signedontime.com/favicon.png" />
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-10XS8C36RK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-10XS8C36RK');
+    </script>
+    
+    <!-- Search Console & Bing Verification (add your codes) -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/src/assets/logo-placeholder.png" as="image" />
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
     
-    <script>
-      // Dynamic meta tags from business config
-      document.addEventListener('DOMContentLoaded', function() {
-        fetch('/src/config/business.ts')
-          .then(() => {
-            // This will be handled by the React app
-            // Just ensuring the page loads properly for white-label customization
-          })
-          .catch(() => {
-            // Fallback meta tags
-            document.title = "Professional Notary Services | Mobile Notary & Loan Signing";
-            document.getElementById('dynamic-description').setAttribute('content', 
-              'Professional mobile notary and loan signing services. Same-day availability, error-free docs, five-star service.');
-          });
-      });
-    </script>
+    <!-- Geo Tags for Local SEO -->
+    <meta name="geo.region" content="US-OH" />
+    <meta name="geo.placename" content="Cincinnati" />
+    <meta name="geo.position" content="39.1031;-84.5120" />
+    <meta name="ICBM" content="39.1031, -84.5120" />
   </head>
 
   <body>
