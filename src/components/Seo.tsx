@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { getHref } from '@/utils/ssg';
 
 interface SeoProps {
   title: string;
@@ -17,7 +18,8 @@ const Seo: React.FC<SeoProps> = ({
   ogImage = '/hero-notary.jpg',
   jsonLd
 }) => {
-  const url = canonical || window.location.href;
+  // SSG-safe URL handling
+  const url = canonical || getHref(canonical);
 
   return (
     <Helmet>

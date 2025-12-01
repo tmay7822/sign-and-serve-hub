@@ -9,6 +9,7 @@ import RelatedReading from '@/components/blog/RelatedReading';
 import PopularServices from '@/components/blog/PopularServices';
 import BlogFAQ from '@/components/blog/BlogFAQ';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getPathname } from '@/utils/ssg';
 
 interface BlogPostTemplateProps {
   title: string;
@@ -50,6 +51,10 @@ const BlogPostTemplate = ({
   showPopularServices = true,
   className = '' 
 }: BlogPostTemplateProps) => {
+  // SSG-safe pathname extraction
+  const pathname = getPathname();
+  const postSlug = pathname.split('/').pop() || '';
+
   // Generate Article schema
   const articleSchema = {
     "@context": "https://schema.org",
@@ -62,7 +67,7 @@ const BlogPostTemplate = ({
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${BUSINESS_CONFIG.website}/blog/${window.location.pathname.split('/').pop()}`
+      "@id": `${BUSINESS_CONFIG.website}/blog/${postSlug}`
     },
     "publisher": {
       "@type": "Organization",
@@ -74,7 +79,7 @@ const BlogPostTemplate = ({
       <Seo 
         title={`${title} | ${BUSINESS_CONFIG.name} Blog`}
         description={metaDescription || subtitle || `${title} - Professional mobile notary guidance from ${BUSINESS_CONFIG.name}`}
-        canonical={`${BUSINESS_CONFIG.website}/blog/${window.location.pathname.split('/').pop()}`}
+        canonical={`${BUSINESS_CONFIG.website}/blog/${postSlug}`}
         jsonLd={articleSchema}
       />
       

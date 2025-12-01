@@ -3,6 +3,7 @@
 
 import { useEffect } from 'react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { isBrowser, getHref } from '@/utils/ssg';
 
 interface ArticleSchemaProps {
   headline: string;
@@ -26,11 +27,16 @@ const ArticleSchema: React.FC<ArticleSchemaProps> = ({
   wordCount
 }) => {
   useEffect(() => {
+    // Only run in browser
+    if (!isBrowser) return;
+
     // Remove any existing article schema
     const existingSchema = document.querySelector('script[data-type="article-schema"]');
     if (existingSchema) {
       existingSchema.remove();
     }
+
+    const baseUrl = getHref(url);
 
     const schema = {
       "@context": "https://schema.org",
@@ -54,9 +60,9 @@ const ArticleSchema: React.FC<ArticleSchemaProps> = ({
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": url || window.location.href
+        "@id": baseUrl
       },
-      "url": url || window.location.href,
+      "url": baseUrl,
       ...(image && { 
         "image": {
           "@type": "ImageObject",

@@ -2,6 +2,7 @@
 // Generates comprehensive FAQ structured data for blog posts
 
 import { useEffect } from 'react';
+import { isBrowser } from '@/utils/ssg';
 
 interface FAQ {
   question: string;
@@ -22,7 +23,8 @@ const EnhancedFAQSchema: React.FC<EnhancedFAQSchemaProps> = ({
   mainEntity 
 }) => {
   useEffect(() => {
-    if (faqs.length === 0) return;
+    // Only run in browser
+    if (!isBrowser || faqs.length === 0) return;
 
     // Remove any existing FAQ schema
     const existingSchema = document.querySelector('script[data-type="faq-schema"]');

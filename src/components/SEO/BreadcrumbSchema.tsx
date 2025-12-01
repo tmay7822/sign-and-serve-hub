@@ -4,6 +4,7 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { isBrowser, getOrigin } from '@/utils/ssg';
 
 interface BreadcrumbItem {
   name: string;
@@ -20,6 +21,9 @@ const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items, autoGenerate
   const location = useLocation();
 
   useEffect(() => {
+    // Only run in browser
+    if (!isBrowser) return;
+
     let breadcrumbItems: BreadcrumbItem[] = [];
 
     if (items) {
@@ -29,6 +33,8 @@ const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items, autoGenerate
     }
 
     if (breadcrumbItems.length > 0) {
+      const origin = getOrigin();
+
       const schema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -36,7 +42,7 @@ const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items, autoGenerate
           "@type": "ListItem",
           "position": item.position,
           "name": item.name,
-          "item": `${window.location.origin}${item.url}`
+          "item": `${origin}${item.url}`
         }))
       };
 
