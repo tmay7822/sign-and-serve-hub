@@ -33,6 +33,9 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
   const posts = featuredPosts || getPostsByService(route.serviceSlug).slice(0, 3);
 
   useEffect(() => {
+    // Only run in browser
+    if (typeof window === 'undefined') return;
+
     // Set page title and meta description
     document.title = route.title;
     

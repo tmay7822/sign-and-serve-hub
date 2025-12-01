@@ -31,6 +31,9 @@ const BlogCategoryTemplate: React.FC<BlogCategoryTemplateProps> = ({
   const categoryPosts = posts || getPostsByCategory(category.slug);
   
   useEffect(() => {
+    // Only run in browser
+    if (typeof window === 'undefined') return;
+
     // Set page title and meta description
     const title = category.metaTitle || `${category.title} Guides & Tips | ${BUSINESS_CONFIG.name}`;
     document.title = title;

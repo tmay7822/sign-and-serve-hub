@@ -39,6 +39,9 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
   const serviceContent = getServiceContent(service.id);
 
   useEffect(() => {
+    // Only run in browser
+    if (typeof window === 'undefined') return;
+
     // Set page title and meta description
     const title = service.metaTitle || `${service.serviceName} in ${BUSINESS_CONFIG.address.city}, ${BUSINESS_CONFIG.address.state} | ${BUSINESS_CONFIG.name}`;
     document.title = title;

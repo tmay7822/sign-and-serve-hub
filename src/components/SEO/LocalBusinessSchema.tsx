@@ -3,6 +3,7 @@
 
 import { useEffect } from 'react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { isBrowser, getHref } from '@/utils/ssg';
 
 interface LocalBusinessSchemaProps {
   serviceName?: string;
@@ -16,11 +17,16 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
   url 
 }) => {
   useEffect(() => {
+    // Only run in browser
+    if (!isBrowser) return;
+
     // Remove any existing business schema
     const existingSchema = document.querySelector('script[data-type="business-schema"]');
     if (existingSchema) {
       existingSchema.remove();
     }
+
+    const pageUrl = getHref(url);
 
     let schema;
 
@@ -77,7 +83,7 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
           "@type": "AdministrativeArea",
           "name": `${county.trim()} County, OH`
         })),
-        "url": url || window.location.href
+        "url": pageUrl
       };
     } else {
       // Main LocalBusiness schema for homepage
