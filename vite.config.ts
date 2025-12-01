@@ -19,13 +19,23 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Generate static HTML for SEO crawlers
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-tooltip', '@radix-ui/react-accordion'],
         },
       },
     },
+  },
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    crittersOptions: {
+      preload: 'swap',
+      pruneSource: false,
+    },
+    // Entry point for SSG
+    entry: './src/main.tsx',
   },
 }));
