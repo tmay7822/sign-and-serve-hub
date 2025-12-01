@@ -1,9 +1,7 @@
 // SITEMAP GENERATION UTILITY
-// Generates sitemap.xml for SEO optimization
+// Generates sitemap.xml from PRERENDER_ROUTES for SEO optimization
 
-import { SERVICES, getEnabledServices } from '@/data/services';
-import { BLOG_CATEGORIES, BLOG_POSTS } from '@/data/blog';
-import { ROUTES_CITY, getHighPriorityRoutes } from '@/data/locations';
+import { PRERENDER_ROUTES } from '@/config/prerenderRoutes';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface SitemapUrl {
@@ -13,115 +11,82 @@ interface SitemapUrl {
   priority: number;
 }
 
+const getPriorityForRoute = (path: string): { priority: number; changefreq: SitemapUrl['changefreq'] } => {
+  // Homepage - Highest Priority
+  if (path === '/') {
+    return { priority: 1.0, changefreq: 'weekly' };
+  }
+  
+  // Main Service Hubs - High Priority
+  const serviceHubs = [
+    '/general-notary', '/loan-signings', '/estate-plans', '/real-estate', 
+    '/apostille', '/business-services', '/college-18-plus', '/personal-family',
+    '/healthcare-notary', '/real-estate-notary', '/business-banking', '/legal-court',
+    '/international-apostille', '/vehicles-dmv', '/insurance-retirement', 
+    '/wills-trusts-estates', '/other-notary'
+  ];
+  if (serviceHubs.includes(path)) {
+    return { priority: 0.9, changefreq: 'monthly' };
+  }
+  
+  // Blog Home - High Priority
+  if (path === '/blog') {
+    return { priority: 0.8, changefreq: 'weekly' };
+  }
+  
+  // Blog Categories - High Priority
+  const blogCategories = [
+    '/blog/loan-signing', '/blog/estate-planning', '/blog/real-estate',
+    '/blog/apostille', '/blog/business', '/blog/general-notary', '/blog/healthcare'
+  ];
+  if (blogCategories.includes(path)) {
+    return { priority: 0.8, changefreq: 'weekly' };
+  }
+  
+  // Blog Posts - Medium Priority
+  if (path.startsWith('/blog/')) {
+    return { priority: 0.6, changefreq: 'monthly' };
+  }
+  
+  // Location Pages - Medium-High Priority
+  if (path.includes('notary') && (path.includes('-45') || path.includes('county'))) {
+    return { priority: 0.7, changefreq: 'monthly' };
+  }
+  
+  // Contact, Book Now - High Priority
+  if (path === '/contact' || path === '/book-now') {
+    return { priority: 0.8, changefreq: 'monthly' };
+  }
+  
+  // Static Pages
+  const staticPages: Record<string, number> = {
+    '/faq': 0.6,
+    '/about': 0.5,
+    '/pricing': 0.7,
+    '/service-areas': 0.6,
+    '/privacy-policy': 0.3,
+    '/terms-of-service': 0.3
+  };
+  if (staticPages[path] !== undefined) {
+    return { priority: staticPages[path], changefreq: 'monthly' };
+  }
+  
+  // Default
+  return { priority: 0.5, changefreq: 'monthly' };
+};
+
 export const generateSitemap = (): string => {
   const baseUrl = BUSINESS_CONFIG.website;
   const today = new Date().toISOString().split('T')[0];
   
-  const urls: SitemapUrl[] = [];
-
-  // Homepage - Highest Priority
-  urls.push({
-    url: `${baseUrl}/`,
-    lastmod: today,
-    changefreq: 'weekly',
-    priority: 1.0
-  });
-
-  // Main Service Hubs - High Priority
-  getEnabledServices().forEach(service => {
-    urls.push({
-      url: `${baseUrl}/${service.slug}`,
+  const urls: SitemapUrl[] = PRERENDER_ROUTES.map(path => {
+    const { priority, changefreq } = getPriorityForRoute(path);
+    return {
+      url: `${baseUrl}${path === '/' ? '' : path}`,
       lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    });
-  });
-
-  // Blog Home - High Priority
-  urls.push({
-    url: `${baseUrl}/blog`,
-    lastmod: today,
-    changefreq: 'weekly',
-    priority: 0.8
-  });
-
-  // Blog Categories - High Priority
-  BLOG_CATEGORIES.forEach(category => {
-    urls.push({
-      url: `${baseUrl}/blog/${category.slug}`,
-      lastmod: today,
-      changefreq: 'weekly',
-      priority: 0.8
-    });
-  });
-
-  // Blog Posts - Medium Priority
-  BLOG_POSTS.forEach(post => {
-    urls.push({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastmod: post.publishDate,
-      changefreq: 'monthly',
-      priority: 0.6
-    });
-  });
-
-  // High Priority Local Service Pages
-  getHighPriorityRoutes().forEach(route => {
-    urls.push({
-      url: `${baseUrl}${route.path}`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.7
-    });
-  });
-
-  // Medium Priority Local Service Pages
-  ROUTES_CITY.filter(route => route.priority === 'medium').forEach(route => {
-    urls.push({
-      url: `${baseUrl}${route.path}`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.5
-    });
-  });
-
-  // Static Pages
-  const staticPages = [
-    { path: '/faq', priority: 0.6 },
-    { path: '/contact', priority: 0.8 }
-  ];
-
-  staticPages.forEach(page => {
-    urls.push({
-      url: `${baseUrl}${page.path}`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: page.priority
-    });
-  });
-
-  // Legacy Pages - Lower Priority
-  const legacyPages = [
-    '/college-18-plus',
-    '/personal-family',
-    '/healthcare-notary',
-    '/real-estate-notary',
-    '/business-banking',
-    '/legal-court',
-    '/international-apostille',
-    '/vehicles-dmv',
-    '/insurance-retirement',
-    '/wills-trusts-estates',
-    '/other-notary'
-  ];
-
-  legacyPages.forEach(path => {
-    urls.push({
-      url: `${baseUrl}${path}`,
-      lastmod: today,
-      changefreq: 'yearly',
-      priority: 0.3
-    });
+      changefreq,
+      priority
+    };
   });
 
   // Generate XML
