@@ -17,7 +17,7 @@ const groupByCounty = (locations: LocationPageData[]): Record<string, LocationPa
 };
 
 // County order for display (primary service areas first)
-const COUNTY_ORDER = ['Hamilton', 'Warren', 'Butler', 'Montgomery', 'Clermont', 'Brown', 'Miami'];
+const COUNTY_ORDER = ['Hamilton', 'Warren', 'Butler', 'Montgomery', 'Greene', 'Clinton', 'Clermont', 'Brown', 'Miami'];
 
 const LocationIndex = () => {
   const locationsByCounty = groupByCounty(LOCATION_PAGES);

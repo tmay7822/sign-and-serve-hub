@@ -38,6 +38,16 @@ const ServiceAreas = () => {
       description: 'Professional mobile notary services for healthcare, legal, and financial documents.'
     },
     {
+      name: 'Greene County',
+      cities: ['Xenia', 'Beavercreek', 'Fairborn', 'Yellow Springs', 'Bellbrook'],
+      description: 'Mobile notary services near Wright-Patterson AFB and throughout the Xenia and Beavercreek areas.'
+    },
+    {
+      name: 'Clinton County',
+      cities: ['Wilmington', 'Blanchester', 'Sabina'],
+      description: 'Professional notary services for rural Clinton County communities with flexible scheduling.'
+    },
+    {
       name: 'Brown County',
       cities: ['Georgetown', 'Mount Orab', 'Ripley'],
       description: 'Rural and residential notary services with flexible scheduling.'
@@ -48,7 +58,7 @@ const ServiceAreas = () => {
     <>
       <Seo
         title="Service Areas - Mobile Notary Throughout Southwest Ohio"
-        description="Professional mobile notary services across Hamilton, Warren, Butler, Montgomery, Clermont, and Brown counties. Same-day appointments available."
+        description="Professional mobile notary services across Hamilton, Warren, Butler, Montgomery, Greene, Clinton, Clermont, and Brown counties. Same-day appointments available."
         keywords="mobile notary Southwest Ohio, Hamilton County notary, Warren County mobile notary, Montgomery County notary services"
         canonical="https://www.signedontime.com/service-areas"
       />
