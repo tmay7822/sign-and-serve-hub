@@ -95,7 +95,7 @@ export const PRERENDER_ROUTES = [
   '/blog/urgent-notary-same-day-ohio-hospitals',
   '/blog/hospital-notary-id-problems-ohio',
   
-  // Location Pages
+  // Location Pages - Existing
   '/notary-cincinnati-45202',
   '/notary-mason-45040',
   '/notary-dayton-45402',
@@ -103,11 +103,29 @@ export const PRERENDER_ROUTES = [
   '/notary-springdale-45246',
   '/notary-kettering-45429',
   '/notary-lebanon-45036',
-  '/general-notary/hamilton/blue-ash',
-  '/power-of-attorney-warren-county-lebanon',
-  '/loan-signing-dayton-montgomery-county',
-  '/general-notary-hamilton-county-cincinnati',
-  '/wills-estates-warren-county-mason',
+  '/general-notary-blue-ash-45242',
+  '/general-notary-hamilton-cincinnati',
+  '/loan-signing-dayton-montgomery',
+  '/poa-warren-lebanon',
+  '/wills-estates-warren-mason',
+  
+  // Location Pages - New (16 additional for full coverage)
+  '/notary-fairfield-45014',
+  '/notary-hamilton-45011',
+  '/notary-middletown-45042',
+  '/notary-oxford-45056',
+  '/notary-miamisburg-45342',
+  '/notary-centerville-45459',
+  '/notary-huber-heights-45424',
+  '/notary-troy-45373',
+  '/notary-loveland-45140',
+  '/notary-milford-45150',
+  '/notary-batavia-45103',
+  '/notary-wilmington-45177',
+  '/notary-hillsboro-45133',
+  '/notary-georgetown-45121',
+  '/notary-xenia-45385',
+  '/notary-beavercreek-45431',
 ];
 
 export default PRERENDER_ROUTES;
