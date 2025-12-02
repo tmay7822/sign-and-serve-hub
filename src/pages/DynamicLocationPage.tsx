@@ -2,7 +2,7 @@
 // Renders location pages based on URL slug using centralized data
 
 import React from 'react';
-import { useParams, Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,12 +12,56 @@ import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { getLocationPageBySlug, getLocationPageByPath, LocationPageData, toRouteCity } from '@/data/locationPages';
+import { getLocationPageByPath, LOCATION_PAGES, LocationPageData, toRouteCity } from '@/data/locationPages';
 import { getServiceBySlug } from '@/data/services';
 import { getPostsByService } from '@/data/blog';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { MapPin, Clock, Shield, Star, Home, Users, FileText, Building, Phone } from 'lucide-react';
+import { MapPin, Clock, Shield, Star, Home, Users, Building, Phone, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+
+// Get nearby locations based on same county or adjacent areas
+const getNearbyLocations = (currentPage: LocationPageData): LocationPageData[] => {
+  // First get same county locations (excluding current)
+  const sameCounty = LOCATION_PAGES.filter(
+    loc => loc.county === currentPage.county && loc.slug !== currentPage.slug
+  );
+  
+  // Define adjacent counties for cross-linking
+  const adjacentCounties: Record<string, string[]> = {
+    'Hamilton': ['Warren', 'Butler', 'Clermont'],
+    'Warren': ['Hamilton', 'Butler', 'Montgomery', 'Clermont'],
+    'Butler': ['Hamilton', 'Warren', 'Montgomery'],
+    'Montgomery': ['Warren', 'Butler', 'Miami'],
+    'Clermont': ['Hamilton', 'Warren', 'Brown'],
+    'Brown': ['Clermont', 'Hamilton'],
+    'Miami': ['Montgomery'],
+  };
+  
+  // Get locations from adjacent counties
+  const adjacent = LOCATION_PAGES.filter(
+    loc => adjacentCounties[currentPage.county]?.includes(loc.county) && loc.slug !== currentPage.slug
+  );
+  
+  // Combine and prioritize: same county first, then adjacent, limit to 6
+  const combined = [...sameCounty, ...adjacent];
+  
+  // Sort by priority (high first) and take top 6
+  return combined
+    .sort((a, b) => {
+      const priorityOrder = { high: 0, medium: 1, low: 2 };
+      return (priorityOrder[a.priority as keyof typeof priorityOrder] || 2) - 
+             (priorityOrder[b.priority as keyof typeof priorityOrder] || 2);
+    })
+    .slice(0, 6);
+};
 
 const DynamicLocationPage: React.FC = () => {
   const location = useLocation();
@@ -33,6 +77,7 @@ const DynamicLocationPage: React.FC = () => {
   const service = getServiceBySlug(pageData.serviceSlug);
   const relatedPosts = getPostsByService(pageData.serviceSlug).slice(0, 3);
   const route = toRouteCity(pageData);
+  const nearbyLocations = getNearbyLocations(pageData);
 
   return (
     <div className="min-h-screen bg-background">
@@ -52,6 +97,35 @@ const DynamicLocationPage: React.FC = () => {
       />
       <BreadcrumbSchema />
       <Header />
+      
+      {/* Breadcrumb Navigation */}
+      <nav className="bg-muted/50 border-b" aria-label="Breadcrumb">
+        <div className="container mx-auto px-4 py-3">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">Home</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>
+                <ChevronRight className="h-4 w-4" />
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/service-areas">Service Areas</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>
+                <ChevronRight className="h-4 w-4" />
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage>{pageData.city}, {pageData.state} {pageData.primaryZip}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </nav>
       
       {/* Hero Section */}
       <section className="py-16 lg:py-20 bg-gradient-primary text-white">
@@ -277,6 +351,56 @@ const DynamicLocationPage: React.FC = () => {
                     </CardContent>
                   </Card>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Nearby Locations for Cross-Linking */}
+      {nearbyLocations.length > 0 && (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h3 className="text-2xl font-bold text-foreground mb-4 text-center">
+                Nearby Service Areas
+              </h3>
+              <p className="text-muted-foreground text-center mb-8">
+                We also provide mobile notary services in these nearby locations
+              </p>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {nearbyLocations.map((loc) => (
+                  <Link
+                    key={loc.slug}
+                    to={loc.path}
+                    className="group flex items-center justify-between p-4 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-all"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-primary shrink-0" />
+                        <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                          {loc.city}, {loc.state}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 mt-1 ml-6">
+                        <span className="text-sm text-muted-foreground">
+                          {loc.primaryZip} • {loc.county} County
+                        </span>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary shrink-0 ml-2 transition-colors" />
+                  </Link>
+                ))}
+              </div>
+              
+              <div className="text-center mt-8">
+                <Button variant="outline" asChild>
+                  <Link to="/service-areas">
+                    View All Service Areas
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
