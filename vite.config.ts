@@ -104,6 +104,23 @@ function sitemapPlugin(): Plugin {
         '/notary-west-chester-45069',
         '/poa-warren-lebanon',
         '/wills-estates-warren-mason',
+        // 16 new location pages
+        '/notary-fairfield-45014',
+        '/notary-hamilton-45011',
+        '/notary-middletown-45042',
+        '/notary-oxford-45056',
+        '/notary-miamisburg-45342',
+        '/notary-centerville-45459',
+        '/notary-huber-heights-45424',
+        '/notary-troy-45373',
+        '/notary-loveland-45140',
+        '/notary-milford-45150',
+        '/notary-batavia-45103',
+        '/notary-wilmington-45177',
+        '/notary-hillsboro-45133',
+        '/notary-georgetown-45121',
+        '/notary-xenia-45385',
+        '/notary-beavercreek-45431',
       ];
 
       const BUSINESS_WEBSITE = 'https://signedontime.com';
