@@ -98,6 +98,16 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     metaTitle: 'Business Notary Guides & Tips',
     metaDescription: 'Business notarization guides for contracts, corporate documents, and professional business processes.',
     order: 6
+  },
+  {
+    id: 'healthcare-guides',
+    title: 'Healthcare Notary',
+    slug: 'healthcare-guides',
+    serviceSlug: 'healthcare-notary',
+    description: 'Healthcare notarization guides for hospital visits, bedside signings, healthcare directives, and senior care facilities.',
+    metaTitle: 'Healthcare Notary Guides & Tips',
+    metaDescription: 'Expert healthcare notary guides for hospital and bedside signings, healthcare directives, and senior care facility notarizations.',
+    order: 7
   }
 ];
 
