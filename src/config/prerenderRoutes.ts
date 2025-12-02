@@ -126,6 +126,15 @@ export const PRERENDER_ROUTES = [
   '/notary-georgetown-45121',
   '/notary-xenia-45385',
   '/notary-beavercreek-45431',
+  
+  // Additional Greene County locations
+  '/notary-fairborn-45324',
+  '/notary-bellbrook-45305',
+  '/notary-yellow-springs-45387',
+  
+  // Additional Clinton County locations
+  '/notary-blanchester-45107',
+  '/notary-sabina-45169',
 ];
 
 export default PRERENDER_ROUTES;
