@@ -3,6 +3,7 @@
 
 import { lazy, Suspense } from 'react';
 import type { RouteRecord } from 'vite-react-ssg';
+import { Navigate } from 'react-router-dom';
 import Layout from './App';
 import { PRERENDER_ROUTES } from '@/config/prerenderRoutes';
 
@@ -138,13 +139,22 @@ export const routes: RouteRecord[] = [
       
       // Blog Home & Categories
       { path: 'blog', element: <BlogHome /> },
-      { path: 'blog/loan-signing', element: <BlogCategory /> },
-      { path: 'blog/estate-planning', element: <BlogCategory /> },
-      { path: 'blog/real-estate', element: <BlogCategory /> },
-      { path: 'blog/apostille', element: <BlogCategory /> },
-      { path: 'blog/business', element: <BlogCategory /> },
-      { path: 'blog/general-notary', element: <BlogCategory /> },
-      { path: 'blog/healthcare', element: <BlogCategory /> },
+      { path: 'blog/general-notary-guides', element: <BlogCategory /> },
+      { path: 'blog/loan-signing-guides', element: <BlogCategory /> },
+      { path: 'blog/real-estate-guides', element: <BlogCategory /> },
+      { path: 'blog/estate-planning-guides', element: <BlogCategory /> },
+      { path: 'blog/apostille-guides', element: <BlogCategory /> },
+      { path: 'blog/business-guides', element: <BlogCategory /> },
+      { path: 'blog/healthcare-guides', element: <BlogCategory /> },
+      
+      // Legacy blog category redirects
+      { path: 'blog/general-notary', element: <Navigate to="/blog/general-notary-guides" replace /> },
+      { path: 'blog/loan-signing', element: <Navigate to="/blog/loan-signing-guides" replace /> },
+      { path: 'blog/real-estate', element: <Navigate to="/blog/real-estate-guides" replace /> },
+      { path: 'blog/estate-planning', element: <Navigate to="/blog/estate-planning-guides" replace /> },
+      { path: 'blog/apostille', element: <Navigate to="/blog/apostille-guides" replace /> },
+      { path: 'blog/business', element: <Navigate to="/blog/business-guides" replace /> },
+      { path: 'blog/healthcare', element: <Navigate to="/blog/healthcare-guides" replace /> },
       
       // Individual Blog Posts
       { path: 'blog/general-notary-what-to-bring', element: <GeneralNotaryWhatToBring /> },

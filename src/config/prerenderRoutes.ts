@@ -36,13 +36,13 @@ export const PRERENDER_ROUTES = [
   
   // Blog Home & Categories
   '/blog',
-  '/blog/loan-signing',
-  '/blog/estate-planning',
-  '/blog/real-estate',
-  '/blog/apostille',
-  '/blog/business',
-  '/blog/general-notary',
-  '/blog/healthcare',
+  '/blog/general-notary-guides',
+  '/blog/loan-signing-guides',
+  '/blog/real-estate-guides',
+  '/blog/estate-planning-guides',
+  '/blog/apostille-guides',
+  '/blog/business-guides',
+  '/blog/healthcare-guides',
   
   // Individual Blog Posts
   '/blog/general-notary-what-to-bring',
