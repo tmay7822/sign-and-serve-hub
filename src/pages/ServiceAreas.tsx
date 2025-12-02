@@ -6,6 +6,7 @@ import { MapPin, Phone, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
+import LocationIndex from '@/components/LocationIndex';
 
 const ServiceAreas = () => {
   const countyAreas = [
@@ -107,44 +108,8 @@ const ServiceAreas = () => {
           </div>
         </section>
 
-        {/* Featured Locations */}
-        <section className="mb-16">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">Featured Local Services</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <Link to="/notary-cincinnati-45202" className="group">
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="group-hover:text-primary transition-colors">
-                      Cincinnati Notary Services
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription>
-                      Professional mobile notary services throughout Cincinnati and Hamilton County. 
-                      Same-day appointments available for urgent document needs.
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
-              <Link to="/notary-dayton-45402" className="group">
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="group-hover:text-primary transition-colors">
-                      Dayton Mobile Notary
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription>
-                      Comprehensive notary services for the greater Dayton area including 
-                      Kettering, Beavercreek, and surrounding Montgomery County communities.
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* All Location Pages Index */}
+        <LocationIndex />
 
         {/* Service Information */}
         <section className="mb-16">
