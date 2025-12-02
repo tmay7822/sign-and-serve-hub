@@ -41,6 +41,7 @@ const BookNow = lazy(() => import('./pages/BookNow'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
+const DynamicLocationPage = lazy(() => import('./pages/DynamicLocationPage'));
 
 // Blog Posts
 const GeneralNotaryWhatToBring = lazy(() => import('./pages/blog/GeneralNotaryWhatToBring'));
@@ -196,19 +197,36 @@ export const routes: RouteRecord[] = [
       { path: 'blog/urgent-notary-same-day-ohio-hospitals', element: <UrgentNotarySameDayOhioHospitals /> },
       { path: 'blog/hospital-notary-id-problems-ohio', element: <HospitalNotaryIDProblemsOhio /> },
       
-      // Location Pages (Static routes)
-      { path: 'notary-cincinnati-45202', element: <LocalService /> },
-      { path: 'notary-mason-45040', element: <LocalService /> },
-      { path: 'notary-dayton-45402', element: <LocalService /> },
-      { path: 'notary-west-chester-45069', element: <LocalService /> },
-      { path: 'notary-springdale-45246', element: <LocalService /> },
-      { path: 'notary-kettering-45429', element: <LocalService /> },
-      { path: 'notary-lebanon-45036', element: <LocalService /> },
-      { path: 'general-notary/hamilton/blue-ash', element: <LocalService /> },
-      { path: 'power-of-attorney-warren-county-lebanon', element: <LocalService /> },
-      { path: 'loan-signing-dayton-montgomery-county', element: <LocalService /> },
-      { path: 'general-notary-hamilton-county-cincinnati', element: <LocalService /> },
-      { path: 'wills-estates-warren-county-mason', element: <LocalService /> },
+      // Location Pages - Using Dynamic Component
+      { path: 'notary-cincinnati-45202', element: <DynamicLocationPage /> },
+      { path: 'notary-mason-45040', element: <DynamicLocationPage /> },
+      { path: 'notary-dayton-45402', element: <DynamicLocationPage /> },
+      { path: 'notary-west-chester-45069', element: <DynamicLocationPage /> },
+      { path: 'notary-springdale-45246', element: <DynamicLocationPage /> },
+      { path: 'notary-kettering-45429', element: <DynamicLocationPage /> },
+      { path: 'notary-lebanon-45036', element: <DynamicLocationPage /> },
+      { path: 'general-notary-blue-ash-45242', element: <DynamicLocationPage /> },
+      { path: 'general-notary-hamilton-cincinnati', element: <DynamicLocationPage /> },
+      { path: 'loan-signing-dayton-montgomery', element: <DynamicLocationPage /> },
+      { path: 'poa-warren-lebanon', element: <DynamicLocationPage /> },
+      { path: 'wills-estates-warren-mason', element: <DynamicLocationPage /> },
+      // New 16 location pages
+      { path: 'notary-fairfield-45014', element: <DynamicLocationPage /> },
+      { path: 'notary-hamilton-45011', element: <DynamicLocationPage /> },
+      { path: 'notary-middletown-45042', element: <DynamicLocationPage /> },
+      { path: 'notary-oxford-45056', element: <DynamicLocationPage /> },
+      { path: 'notary-miamisburg-45342', element: <DynamicLocationPage /> },
+      { path: 'notary-centerville-45459', element: <DynamicLocationPage /> },
+      { path: 'notary-huber-heights-45424', element: <DynamicLocationPage /> },
+      { path: 'notary-troy-45373', element: <DynamicLocationPage /> },
+      { path: 'notary-loveland-45140', element: <DynamicLocationPage /> },
+      { path: 'notary-milford-45150', element: <DynamicLocationPage /> },
+      { path: 'notary-batavia-45103', element: <DynamicLocationPage /> },
+      { path: 'notary-wilmington-45177', element: <DynamicLocationPage /> },
+      { path: 'notary-hillsboro-45133', element: <DynamicLocationPage /> },
+      { path: 'notary-georgetown-45121', element: <DynamicLocationPage /> },
+      { path: 'notary-xenia-45385', element: <DynamicLocationPage /> },
+      { path: 'notary-beavercreek-45431', element: <DynamicLocationPage /> },
       
       // Dynamic routes - catch-all for service hubs
       { path: ':slug', element: <ServiceHub /> },
