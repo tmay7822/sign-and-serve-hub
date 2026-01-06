@@ -36,8 +36,9 @@ const getPriorityForRoute = (path: string): { priority: number; changefreq: Site
   
   // Blog Categories - High Priority
   const blogCategories = [
-    '/blog/loan-signing', '/blog/estate-planning', '/blog/real-estate',
-    '/blog/apostille', '/blog/business', '/blog/general-notary', '/blog/healthcare'
+    '/blog/general-notary-guides', '/blog/loan-signing-guides', 
+    '/blog/real-estate-guides', '/blog/estate-planning-guides',
+    '/blog/apostille-guides', '/blog/business-guides', '/blog/healthcare-guides'
   ];
   if (blogCategories.includes(path)) {
     return { priority: 0.8, changefreq: 'weekly' };
