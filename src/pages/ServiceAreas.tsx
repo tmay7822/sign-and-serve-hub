@@ -4,12 +4,12 @@ import { BasePageTemplate } from '@/components/templates/BasePageTemplate';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { MapPin, Phone, Clock, FileText, ChevronDown, ChevronUp, Home, Shield, Globe, Briefcase, Heart } from 'lucide-react';
+import { MapPin, Phone, Clock, FileText, ChevronDown, ChevronUp, Home, Shield, Globe, Briefcase, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
-import { getCountyData, CountyData } from '@/utils/parseRoutesCsv';
+import { getCountyData, CountyData, getCityServiceUrl } from '@/utils/parseRoutesCsv';
 
 // Get all county data from CSV
 const COUNTY_DATA = getCountyData();
@@ -126,9 +126,17 @@ const CountyCard = ({ county }: { county: CountyData }) => {
             </p>
             <div className="flex flex-wrap gap-2">
               {displayCities.map(({ city, zips }, cityIndex) => (
-                <Badge key={cityIndex} variant="secondary" className="text-xs">
-                  {city} ({zips.join(', ')})
-                </Badge>
+                <Link 
+                  key={cityIndex} 
+                  to={getCityServiceUrl(county.county, city, zips[0])}
+                >
+                  <Badge 
+                    variant="secondary" 
+                    className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    {city} ({zips.join(', ')}) →
+                  </Badge>
+                </Link>
               ))}
             </div>
             
@@ -136,9 +144,17 @@ const CountyCard = ({ county }: { county: CountyData }) => {
               {county.cities.length > 6 && (
                 <div className="flex flex-wrap gap-2">
                   {county.cities.slice(6).map(({ city, zips }, cityIndex) => (
-                    <Badge key={cityIndex + 6} variant="secondary" className="text-xs">
-                      {city} ({zips.join(', ')})
-                    </Badge>
+                    <Link 
+                      key={cityIndex + 6} 
+                      to={getCityServiceUrl(county.county, city, zips[0])}
+                    >
+                      <Badge 
+                        variant="secondary" 
+                        className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        {city} ({zips.join(', ')}) →
+                      </Badge>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -245,29 +261,35 @@ const AllLocationsDirectory = () => {
                 <CardContent className="p-6">
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                     {displayCities.map(({ city, zips, services }) => (
-                      <div
+                      <Link
                         key={city}
-                        className="p-3 rounded-lg border border-border bg-muted/30"
+                        to={getCityServiceUrl(county.county, city, zips[0])}
+                        className="block group"
                       >
-                        <div className="font-medium text-foreground">
-                          {city}
+                        <div className="p-3 rounded-lg border border-border bg-muted/30 hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all">
+                          <div className="flex items-center justify-between">
+                            <div className="font-medium text-foreground group-hover:text-primary transition-colors">
+                              {city}
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition-all" />
+                          </div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            ZIP: {zips.join(', ')}
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {services.slice(0, 3).map(service => (
+                              <Badge key={service} variant="secondary" className="text-xs">
+                                {service}
+                              </Badge>
+                            ))}
+                            {services.length > 3 && (
+                              <Badge variant="secondary" className="text-xs">
+                                +{services.length - 3}
+                              </Badge>
+                            )}
+                          </div>
                         </div>
-                        <div className="text-sm text-muted-foreground mt-1">
-                          ZIP: {zips.join(', ')}
-                        </div>
-                        <div className="flex flex-wrap gap-1 mt-2">
-                          {services.slice(0, 3).map(service => (
-                            <Badge key={service} variant="secondary" className="text-xs">
-                              {service}
-                            </Badge>
-                          ))}
-                          {services.length > 3 && (
-                            <Badge variant="secondary" className="text-xs">
-                              +{services.length - 3}
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                   

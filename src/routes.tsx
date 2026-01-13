@@ -43,6 +43,7 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
 const DynamicLocationPage = lazy(() => import('./pages/DynamicLocationPage'));
+const DynamicCityPage = lazy(() => import('./pages/DynamicCityPage'));
 
 // Blog Posts
 const GeneralNotaryWhatToBring = lazy(() => import('./pages/blog/GeneralNotaryWhatToBring'));
@@ -299,6 +300,9 @@ export const routes: RouteRecord[] = [
       
       // Dynamic routes - catch-all for service hubs
       { path: ':slug', element: <ServiceHub /> },
+      
+      // Dynamic city service pages (from Service Areas directory)
+      { path: 'service/:county/:cityZip', element: <DynamicCityPage /> },
       
       // Dynamic local service routes
       { path: ':serviceSlug/:county/:city', element: <LocalService /> },
