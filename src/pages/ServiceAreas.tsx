@@ -76,20 +76,28 @@ const CountyCard = ({ county }: { county: CountyData }) => {
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CollapsibleTrigger asChild>
-              <button 
-                type="button"
-                className="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer text-left"
+            <div className="flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-primary shrink-0" />
+              <Link 
+                to={`/service/${county.county.toLowerCase()}-county`}
+                className="hover:text-primary transition-colors"
               >
-                <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <CardTitle className="text-xl">{county.county} County</CardTitle>
-                {isOpen ? (
-                  <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                )}
-              </button>
-            </CollapsibleTrigger>
+                <CardTitle className="text-xl">{county.county} County →</CardTitle>
+              </Link>
+              <CollapsibleTrigger asChild>
+                <button 
+                  type="button"
+                  className="p-1 hover:bg-muted rounded cursor-pointer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {isOpen ? (
+                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </button>
+              </CollapsibleTrigger>
+            </div>
             {meta.featured && (
               <Badge variant="default">Core Area</Badge>
             )}
@@ -226,25 +234,34 @@ const AllLocationsDirectory = () => {
             return (
               <Card key={county.county} className="overflow-hidden">
                 <CardHeader 
-                  className="bg-primary/5 border-b cursor-pointer hover:bg-primary/10 transition-colors"
-                  onClick={() => toggleCounty(county.county)}
+                  className="bg-primary/5 border-b"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <CardTitle className="flex items-center gap-2 text-xl">
-                      <MapPin className="h-5 w-5 text-primary" />
-                      {county.county} County
+                    <div className="flex items-center gap-2">
+                      <Link 
+                        to={`/service/${county.county.toLowerCase()}-county`}
+                        className="flex items-center gap-2 hover:text-primary transition-colors"
+                      >
+                        <MapPin className="h-5 w-5 text-primary" />
+                        <CardTitle className="text-xl">{county.county} County →</CardTitle>
+                      </Link>
                       <Badge variant="secondary" className="ml-2">
                         {county.cities.length} cities
                       </Badge>
                       <Badge variant="outline" className="ml-1">
                         {county.allZips.length} ZIPs
                       </Badge>
-                      {isExpanded ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground ml-2" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground ml-2" />
-                      )}
-                    </CardTitle>
+                      <button
+                        onClick={() => toggleCounty(county.county)}
+                        className="p-1 hover:bg-muted rounded cursor-pointer ml-2"
+                      >
+                        {isExpanded ? (
+                          <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                        )}
+                      </button>
+                    </div>
                     <div className="flex flex-wrap gap-1">
                       {county.allServices.map(service => {
                         const Icon = SERVICE_ICONS[service] || FileText;

@@ -44,6 +44,7 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
 const DynamicLocationPage = lazy(() => import('./pages/DynamicLocationPage'));
 const DynamicCityPage = lazy(() => import('./pages/DynamicCityPage'));
+const DynamicCountyPage = lazy(() => import('./pages/DynamicCountyPage'));
 
 // Blog Posts
 const GeneralNotaryWhatToBring = lazy(() => import('./pages/blog/GeneralNotaryWhatToBring'));
@@ -298,14 +299,17 @@ export const routes: RouteRecord[] = [
       { path: 'notary-xenia-45385', element: <DynamicLocationPage /> },
       { path: 'notary-beavercreek-45431', element: <DynamicLocationPage /> },
       
-      // Dynamic routes - catch-all for service hubs
-      { path: ':slug', element: <ServiceHub /> },
-      
-      // Dynamic city service pages (from Service Areas directory)
+      // Dynamic city service pages (from Service Areas directory) - MUST be before :slug catch-all
       { path: 'service/:county/:cityZip', element: <DynamicCityPage /> },
+      
+      // Dynamic county service pages
+      { path: 'service/:county', element: <DynamicCountyPage /> },
       
       // Dynamic local service routes
       { path: ':serviceSlug/:county/:city', element: <LocalService /> },
+      
+      // Dynamic routes - catch-all for service hubs (MUST be last before *)
+      { path: ':slug', element: <ServiceHub /> },
       
       // 404 - Must be last
       { path: '*', element: <NotFound /> },
