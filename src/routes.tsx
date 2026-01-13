@@ -94,7 +94,7 @@ const HospitalNotaryChecklistOhio = lazy(() => import('./pages/blog/HospitalNota
 const SeniorCommunitiesNotaryPOAHealthcareOhio = lazy(() => import('./pages/blog/SeniorCommunitiesNotaryPOAHealthcareOhio'));
 const UrgentNotarySameDayOhioHospitals = lazy(() => import('./pages/blog/UrgentNotarySameDayOhioHospitals'));
 const HospitalNotaryIDProblemsOhio = lazy(() => import('./pages/blog/HospitalNotaryIDProblemsOhio'));
-
+const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
 export const routes: RouteRecord[] = [
   {
     path: '/',
@@ -206,6 +206,50 @@ export const routes: RouteRecord[] = [
       { path: 'blog/senior-communities-notary-poa-healthcare-ohio', element: <SeniorCommunitiesNotaryPOAHealthcareOhio /> },
       { path: 'blog/urgent-notary-same-day-ohio-hospitals', element: <UrgentNotarySameDayOhioHospitals /> },
       { path: 'blog/hospital-notary-id-problems-ohio', element: <HospitalNotaryIDProblemsOhio /> },
+      
+      // Location-Specific Blog Posts (42 total: 7 categories × 6 counties)
+      { path: 'blog/general-notary-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/apostille-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/apostille-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/apostille-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/apostille-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/apostille-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/apostille-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/business-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/business-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/business-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/business-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/business-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/business-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-clinton-county-ohio', element: <LocationBlogPost /> },
       
       // Location Pages - Using Dynamic Component
       { path: 'notary-cincinnati-45202', element: <DynamicLocationPage /> },
