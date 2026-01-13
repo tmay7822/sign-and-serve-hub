@@ -2,58 +2,199 @@ import Seo from '@/components/Seo';
 import { BasePageTemplate } from '@/components/templates/BasePageTemplate';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Phone, Clock } from 'lucide-react';
+import { MapPin, Phone, Clock, FileText, Home, Building, Shield, Globe, Briefcase, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import LocationIndex from '@/components/LocationIndex';
+import { LOCATION_PAGES } from '@/data/locationPages';
+import { getPrimaryServices, getSpecializedServices } from '@/data/services';
+
+// Build county data dynamically from LOCATION_PAGES
+const buildCountyData = () => {
+  const countyMap: Record<string, { cities: Map<string, string[]>; zips: Set<string> }> = {};
+  
+  LOCATION_PAGES.forEach(location => {
+    const county = location.county;
+    if (!countyMap[county]) {
+      countyMap[county] = { cities: new Map(), zips: new Set() };
+    }
+    
+    // Add city with its ZIP
+    const cityZips = countyMap[county].cities.get(location.city) || [];
+    if (!cityZips.includes(location.primaryZip)) {
+      cityZips.push(location.primaryZip);
+    }
+    countyMap[county].cities.set(location.city, cityZips);
+    countyMap[county].zips.add(location.primaryZip);
+  });
+
+  // County metadata with additional cities/zips not in location pages
+  const countyMeta: Record<string, { 
+    description: string; 
+    featured: boolean; 
+    additionalCities?: { city: string; zips: string[] }[];
+  }> = {
+    'Hamilton': {
+      description: 'Full mobile notary services throughout Hamilton County including downtown Cincinnati, emergency visits, and hospital/bedside service.',
+      featured: true,
+      additionalCities: [
+        { city: 'Norwood', zips: ['45212'] },
+        { city: 'Loveland', zips: ['45140'] },
+        { city: 'Montgomery', zips: ['45242'] },
+        { city: 'Reading', zips: ['45215'] },
+        { city: 'Wyoming', zips: ['45215'] },
+        { city: 'Madeira', zips: ['45243'] },
+        { city: 'Indian Hill', zips: ['45243'] },
+        { city: 'Mariemont', zips: ['45227'] },
+        { city: 'Terrace Park', zips: ['45174'] },
+        { city: 'Sharonville', zips: ['45241'] },
+        { city: 'Forest Park', zips: ['45240'] },
+        { city: 'Evendale', zips: ['45241'] }
+      ]
+    },
+    'Warren': {
+      description: 'Professional notary services for estate planning, real estate closings, and business documents throughout Warren County.',
+      featured: true,
+      additionalCities: [
+        { city: 'Springboro', zips: ['45066'] },
+        { city: 'Franklin', zips: ['45005'] },
+        { city: 'Waynesville', zips: ['45068'] },
+        { city: 'Morrow', zips: ['45152'] },
+        { city: 'South Lebanon', zips: ['45065'] },
+        { city: 'Maineville', zips: ['45039'] },
+        { city: 'Oregonia', zips: ['45054'] },
+        { city: 'Harveysburg', zips: ['45032'] }
+      ]
+    },
+    'Butler': {
+      description: 'Mobile notary and loan signing services for residential and commercial needs throughout Butler County.',
+      featured: true,
+      additionalCities: [
+        { city: 'Monroe', zips: ['45050'] },
+        { city: 'Trenton', zips: ['45067'] },
+        { city: 'Liberty Township', zips: ['45044'] },
+        { city: 'Seven Mile', zips: ['45062'] }
+      ]
+    },
+    'Montgomery': {
+      description: 'Same-day and emergency notary services throughout the Dayton metro area including Wright-Patterson AFB.',
+      featured: true,
+      additionalCities: [
+        { city: 'Beavercreek', zips: ['45430', '45431', '45432'] },
+        { city: 'Englewood', zips: ['45322'] },
+        { city: 'Trotwood', zips: ['45426'] },
+        { city: 'Vandalia', zips: ['45377'] },
+        { city: 'Riverside', zips: ['45431'] },
+        { city: 'West Carrollton', zips: ['45449'] },
+        { city: 'Germantown', zips: ['45327'] },
+        { city: 'Brookville', zips: ['45309'] }
+      ]
+    },
+    'Clermont': {
+      description: 'Professional mobile notary services for healthcare, legal, and financial documents throughout Clermont County.',
+      featured: false,
+      additionalCities: [
+        { city: 'Milford', zips: ['45150'] },
+        { city: 'Batavia', zips: ['45103'] },
+        { city: 'Amelia', zips: ['45102'] },
+        { city: 'Goshen', zips: ['45122'] },
+        { city: 'Bethel', zips: ['45106'] },
+        { city: 'New Richmond', zips: ['45157'] },
+        { city: 'Owensville', zips: ['45160'] },
+        { city: 'Williamsburg', zips: ['45176'] }
+      ]
+    },
+    'Greene': {
+      description: 'Mobile notary services near Wright-Patterson AFB and throughout Xenia, Beavercreek, and Fairborn areas.',
+      featured: false,
+      additionalCities: [
+        { city: 'Xenia', zips: ['45385'] },
+        { city: 'Fairborn', zips: ['45324'] },
+        { city: 'Yellow Springs', zips: ['45387'] },
+        { city: 'Bellbrook', zips: ['45305'] },
+        { city: 'Cedarville', zips: ['45314'] },
+        { city: 'Jamestown', zips: ['45335'] }
+      ]
+    },
+    'Clinton': {
+      description: 'Professional notary services for rural Clinton County communities with flexible scheduling and same-day availability.',
+      featured: false,
+      additionalCities: [
+        { city: 'Wilmington', zips: ['45177'] },
+        { city: 'Blanchester', zips: ['45107'] },
+        { city: 'Sabina', zips: ['45169'] },
+        { city: 'Clarksville', zips: ['45113'] },
+        { city: 'Port William', zips: ['45164'] }
+      ]
+    },
+    'Brown': {
+      description: 'Rural and residential notary services with flexible scheduling throughout Brown County.',
+      featured: false,
+      additionalCities: [
+        { city: 'Georgetown', zips: ['45121'] },
+        { city: 'Mount Orab', zips: ['45154'] },
+        { city: 'Ripley', zips: ['45167'] },
+        { city: 'Sardinia', zips: ['45171'] },
+        { city: 'Hamersville', zips: ['45130'] }
+      ]
+    },
+    'Miami': {
+      description: 'Mobile notary services serving Troy, Piqua, and the greater Miami County area with same-day availability.',
+      featured: false,
+      additionalCities: [
+        { city: 'Piqua', zips: ['45356'] },
+        { city: 'Tipp City', zips: ['45371'] },
+        { city: 'Covington', zips: ['45318'] },
+        { city: 'West Milton', zips: ['45383'] }
+      ]
+    }
+  };
+
+  // Build final county areas
+  const countyOrder = ['Hamilton', 'Warren', 'Butler', 'Montgomery', 'Greene', 'Clinton', 'Clermont', 'Brown', 'Miami'];
+  
+  return countyOrder.filter(county => countyMap[county] || countyMeta[county]).map(county => {
+    const data = countyMap[county] || { cities: new Map(), zips: new Set() };
+    const meta = countyMeta[county] || { description: '', featured: false };
+    
+    // Merge additional cities
+    if (meta.additionalCities) {
+      meta.additionalCities.forEach(({ city, zips }) => {
+        const existing = data.cities.get(city) || [];
+        zips.forEach(zip => {
+          if (!existing.includes(zip)) existing.push(zip);
+          data.zips.add(zip);
+        });
+        data.cities.set(city, existing);
+      });
+    }
+
+    // Convert to sorted arrays
+    const cities = Array.from(data.cities.entries())
+      .map(([city, zips]) => ({ city, zips: zips.sort() }))
+      .sort((a, b) => a.city.localeCompare(b.city));
+
+    return {
+      name: `${county} County`,
+      county,
+      cities,
+      zips: Array.from(data.zips).sort(),
+      description: meta.description,
+      featured: meta.featured
+    };
+  });
+};
+
+const COUNTY_AREAS = buildCountyData();
+
+// Get all available services for display
+const ALL_SERVICES = [
+  ...getPrimaryServices(),
+  ...getSpecializedServices().slice(0, 2) // Add Business & Healthcare
+];
 
 const ServiceAreas = () => {
-  const countyAreas = [
-    {
-      name: 'Hamilton County',
-      cities: ['Cincinnati', 'Blue Ash', 'Mason', 'Springdale', 'West Chester'],
-      description: 'Full mobile notary services throughout Hamilton County including emergency and hospital visits.',
-      featured: true
-    },
-    {
-      name: 'Warren County',
-      cities: ['Lebanon', 'Mason', 'Springboro', 'Franklin'],
-      description: 'Professional notary services for estate planning, real estate, and business documents.',
-      featured: true
-    },
-    {
-      name: 'Butler County',
-      cities: ['Hamilton', 'Fairfield', 'Oxford', 'Monroe'],
-      description: 'Mobile notary and loan signing services for residential and commercial needs.'
-    },
-    {
-      name: 'Montgomery County',
-      cities: ['Dayton', 'Kettering', 'Beavercreek', 'Centerville'],
-      description: 'Same-day and emergency notary services throughout the Dayton metro area.'
-    },
-    {
-      name: 'Clermont County',
-      cities: ['Milford', 'Loveland', 'Batavia'],
-      description: 'Professional mobile notary services for healthcare, legal, and financial documents.'
-    },
-    {
-      name: 'Greene County',
-      cities: ['Xenia', 'Beavercreek', 'Fairborn', 'Yellow Springs', 'Bellbrook'],
-      description: 'Mobile notary services near Wright-Patterson AFB and throughout the Xenia and Beavercreek areas.'
-    },
-    {
-      name: 'Clinton County',
-      cities: ['Wilmington', 'Blanchester', 'Sabina'],
-      description: 'Professional notary services for rural Clinton County communities with flexible scheduling.'
-    },
-    {
-      name: 'Brown County',
-      cities: ['Georgetown', 'Mount Orab', 'Ripley'],
-      description: 'Rural and residential notary services with flexible scheduling.'
-    }
-  ];
-
   return (
     <>
       <Seo
@@ -78,39 +219,71 @@ const ServiceAreas = () => {
           </section>
         }
         defaultService="general-notary"
+        showCTA={false}
       >
-        {/* Counties Overview */}
+        {/* Counties Overview - Now immediately after hero */}
         <section className="mb-16">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">Counties We Serve</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {countyAreas.map((area, index) => (
+            <h2 className="text-3xl font-bold text-center mb-4">Counties We Serve</h2>
+            <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
+              Click on any city to view local notary services, or browse all locations below.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {COUNTY_AREAS.map((area, index) => (
                 <Card key={index} className={`h-full ${area.featured ? 'ring-2 ring-primary/20' : ''}`}>
-                  <CardHeader>
+                  <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-xl flex items-center gap-2">
                         <MapPin className="h-5 w-5 text-primary" />
                         {area.name}
                       </CardTitle>
                       {area.featured && (
-                        <Badge variant="default">Featured</Badge>
+                        <Badge variant="default">Core Area</Badge>
                       )}
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="mb-4">
+                  <CardContent className="space-y-4">
+                    <CardDescription>
                       {area.description}
                     </CardDescription>
-                    <div className="space-y-2">
-                      <p className="font-medium text-sm">Major Cities:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {area.cities.map((city, cityIndex) => (
-                          <Badge key={cityIndex} variant="secondary" className="text-xs">
-                            {city}
+                    
+                    {/* Services Available */}
+                    <div>
+                      <p className="font-medium text-sm mb-2 flex items-center gap-1">
+                        <FileText className="h-4 w-4 text-primary" />
+                        Services Available:
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {ALL_SERVICES.map((service) => (
+                          <Badge key={service.id} variant="outline" className="text-xs">
+                            {service.serviceName}
                           </Badge>
                         ))}
                       </div>
                     </div>
+
+                    {/* Cities & ZIP Codes */}
+                    <div>
+                      <p className="font-medium text-sm mb-2">Cities & ZIP Codes:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {area.cities.slice(0, 8).map(({ city, zips }, cityIndex) => (
+                          <Badge key={cityIndex} variant="secondary" className="text-xs">
+                            {city} ({zips.join(', ')})
+                          </Badge>
+                        ))}
+                        {area.cities.length > 8 && (
+                          <Badge variant="secondary" className="text-xs bg-primary/10">
+                            +{area.cities.length - 8} more cities
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Total ZIP codes served */}
+                    <p className="text-xs text-muted-foreground">
+                      {area.zips.length} ZIP codes served in {area.name}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
