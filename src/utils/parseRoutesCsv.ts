@@ -1,5 +1,6 @@
 // Parse routes_city_corrected.csv to build comprehensive county/city/zip data
 import routesCsvRaw from '@/data/routes_city_corrected.csv?raw';
+import { LOCATION_PAGES } from '@/data/locationPages';
 
 export interface CityData {
   city: string;
@@ -13,6 +14,25 @@ export interface CountyData {
   allZips: string[];
   allServices: string[];
 }
+
+// Get URL for a specific city - checks LOCATION_PAGES first, then generates dynamic URL
+export const getCityServiceUrl = (county: string, city: string, zip: string): string => {
+  // First check if there's a dedicated page in LOCATION_PAGES
+  const existingPage = LOCATION_PAGES.find(page => {
+    const cityMatch = page.city.toLowerCase() === city.toLowerCase();
+    const zipMatch = page.primaryZip === zip;
+    return cityMatch && zipMatch;
+  });
+  
+  if (existingPage) {
+    return existingPage.path;
+  }
+  
+  // Generate dynamic URL for cities without dedicated pages
+  const countySlug = county.toLowerCase().replace(/\s+/g, '-') + '-county';
+  const citySlug = city.toLowerCase().replace(/\s+/g, '-') + '-' + zip;
+  return `/service/${countySlug}/${citySlug}`;
+};
 
 // Comprehensive fallback data for when CSV parsing fails
 const getFallbackCountyData = (): CountyData[] => {
