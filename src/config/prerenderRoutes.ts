@@ -95,6 +95,63 @@ export const PRERENDER_ROUTES = [
   '/blog/urgent-notary-same-day-ohio-hospitals',
   '/blog/hospital-notary-id-problems-ohio',
   
+  // Location-Specific Blog Posts (42 total: 7 categories × 6 counties)
+  // General Notary Guides by County
+  '/blog/general-notary-guides-hamilton-county-ohio',
+  '/blog/general-notary-guides-warren-county-ohio',
+  '/blog/general-notary-guides-montgomery-county-ohio',
+  '/blog/general-notary-guides-butler-county-ohio',
+  '/blog/general-notary-guides-greene-county-ohio',
+  '/blog/general-notary-guides-clinton-county-ohio',
+  
+  // Loan Signing Guides by County
+  '/blog/loan-signing-guides-hamilton-county-ohio',
+  '/blog/loan-signing-guides-warren-county-ohio',
+  '/blog/loan-signing-guides-montgomery-county-ohio',
+  '/blog/loan-signing-guides-butler-county-ohio',
+  '/blog/loan-signing-guides-greene-county-ohio',
+  '/blog/loan-signing-guides-clinton-county-ohio',
+  
+  // Real Estate Guides by County
+  '/blog/real-estate-guides-hamilton-county-ohio',
+  '/blog/real-estate-guides-warren-county-ohio',
+  '/blog/real-estate-guides-montgomery-county-ohio',
+  '/blog/real-estate-guides-butler-county-ohio',
+  '/blog/real-estate-guides-greene-county-ohio',
+  '/blog/real-estate-guides-clinton-county-ohio',
+  
+  // Estate Planning Guides by County
+  '/blog/estate-planning-guides-hamilton-county-ohio',
+  '/blog/estate-planning-guides-warren-county-ohio',
+  '/blog/estate-planning-guides-montgomery-county-ohio',
+  '/blog/estate-planning-guides-butler-county-ohio',
+  '/blog/estate-planning-guides-greene-county-ohio',
+  '/blog/estate-planning-guides-clinton-county-ohio',
+  
+  // Apostille Guides by County
+  '/blog/apostille-guides-hamilton-county-ohio',
+  '/blog/apostille-guides-warren-county-ohio',
+  '/blog/apostille-guides-montgomery-county-ohio',
+  '/blog/apostille-guides-butler-county-ohio',
+  '/blog/apostille-guides-greene-county-ohio',
+  '/blog/apostille-guides-clinton-county-ohio',
+  
+  // Business Guides by County
+  '/blog/business-guides-hamilton-county-ohio',
+  '/blog/business-guides-warren-county-ohio',
+  '/blog/business-guides-montgomery-county-ohio',
+  '/blog/business-guides-butler-county-ohio',
+  '/blog/business-guides-greene-county-ohio',
+  '/blog/business-guides-clinton-county-ohio',
+  
+  // Healthcare Guides by County
+  '/blog/healthcare-guides-hamilton-county-ohio',
+  '/blog/healthcare-guides-warren-county-ohio',
+  '/blog/healthcare-guides-montgomery-county-ohio',
+  '/blog/healthcare-guides-butler-county-ohio',
+  '/blog/healthcare-guides-greene-county-ohio',
+  '/blog/healthcare-guides-clinton-county-ohio',
+  
   // Location Pages - Existing
   '/notary-cincinnati-45202',
   '/notary-mason-45040',
