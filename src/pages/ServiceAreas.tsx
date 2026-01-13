@@ -1,198 +1,311 @@
+import { useState } from 'react';
 import Seo from '@/components/Seo';
 import { BasePageTemplate } from '@/components/templates/BasePageTemplate';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Phone, Clock, FileText, Home, Building, Shield, Globe, Briefcase, Heart } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { MapPin, Phone, Clock, FileText, ChevronDown, ChevronUp, Home, Shield, Globe, Briefcase, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
-import LocationIndex from '@/components/LocationIndex';
-import { LOCATION_PAGES } from '@/data/locationPages';
-import { getPrimaryServices, getSpecializedServices } from '@/data/services';
+import { StandardCTAButtons } from '@/components/StandardCTAButtons';
+import { getCountyData, CountyData } from '@/utils/parseRoutesCsv';
 
-// Build county data dynamically from LOCATION_PAGES
-const buildCountyData = () => {
-  const countyMap: Record<string, { cities: Map<string, string[]>; zips: Set<string> }> = {};
-  
-  LOCATION_PAGES.forEach(location => {
-    const county = location.county;
-    if (!countyMap[county]) {
-      countyMap[county] = { cities: new Map(), zips: new Set() };
-    }
-    
-    // Add city with its ZIP
-    const cityZips = countyMap[county].cities.get(location.city) || [];
-    if (!cityZips.includes(location.primaryZip)) {
-      cityZips.push(location.primaryZip);
-    }
-    countyMap[county].cities.set(location.city, cityZips);
-    countyMap[county].zips.add(location.primaryZip);
-  });
+// Get all county data from CSV
+const COUNTY_DATA = getCountyData();
 
-  // County metadata with additional cities/zips not in location pages
-  const countyMeta: Record<string, { 
-    description: string; 
-    featured: boolean; 
-    additionalCities?: { city: string; zips: string[] }[];
-  }> = {
-    'Hamilton': {
-      description: 'Full mobile notary services throughout Hamilton County including downtown Cincinnati, emergency visits, and hospital/bedside service.',
-      featured: true,
-      additionalCities: [
-        { city: 'Norwood', zips: ['45212'] },
-        { city: 'Loveland', zips: ['45140'] },
-        { city: 'Montgomery', zips: ['45242'] },
-        { city: 'Reading', zips: ['45215'] },
-        { city: 'Wyoming', zips: ['45215'] },
-        { city: 'Madeira', zips: ['45243'] },
-        { city: 'Indian Hill', zips: ['45243'] },
-        { city: 'Mariemont', zips: ['45227'] },
-        { city: 'Terrace Park', zips: ['45174'] },
-        { city: 'Sharonville', zips: ['45241'] },
-        { city: 'Forest Park', zips: ['45240'] },
-        { city: 'Evendale', zips: ['45241'] }
-      ]
-    },
-    'Warren': {
-      description: 'Professional notary services for estate planning, real estate closings, and business documents throughout Warren County.',
-      featured: true,
-      additionalCities: [
-        { city: 'Springboro', zips: ['45066'] },
-        { city: 'Franklin', zips: ['45005'] },
-        { city: 'Waynesville', zips: ['45068'] },
-        { city: 'Morrow', zips: ['45152'] },
-        { city: 'South Lebanon', zips: ['45065'] },
-        { city: 'Maineville', zips: ['45039'] },
-        { city: 'Oregonia', zips: ['45054'] },
-        { city: 'Harveysburg', zips: ['45032'] }
-      ]
-    },
-    'Butler': {
-      description: 'Mobile notary and loan signing services for residential and commercial needs throughout Butler County.',
-      featured: true,
-      additionalCities: [
-        { city: 'Monroe', zips: ['45050'] },
-        { city: 'Trenton', zips: ['45067'] },
-        { city: 'Liberty Township', zips: ['45044'] },
-        { city: 'Seven Mile', zips: ['45062'] }
-      ]
-    },
-    'Montgomery': {
-      description: 'Same-day and emergency notary services throughout the Dayton metro area including Wright-Patterson AFB.',
-      featured: true,
-      additionalCities: [
-        { city: 'Beavercreek', zips: ['45430', '45431', '45432'] },
-        { city: 'Englewood', zips: ['45322'] },
-        { city: 'Trotwood', zips: ['45426'] },
-        { city: 'Vandalia', zips: ['45377'] },
-        { city: 'Riverside', zips: ['45431'] },
-        { city: 'West Carrollton', zips: ['45449'] },
-        { city: 'Germantown', zips: ['45327'] },
-        { city: 'Brookville', zips: ['45309'] }
-      ]
-    },
-    'Clermont': {
-      description: 'Professional mobile notary services for healthcare, legal, and financial documents throughout Clermont County.',
-      featured: false,
-      additionalCities: [
-        { city: 'Milford', zips: ['45150'] },
-        { city: 'Batavia', zips: ['45103'] },
-        { city: 'Amelia', zips: ['45102'] },
-        { city: 'Goshen', zips: ['45122'] },
-        { city: 'Bethel', zips: ['45106'] },
-        { city: 'New Richmond', zips: ['45157'] },
-        { city: 'Owensville', zips: ['45160'] },
-        { city: 'Williamsburg', zips: ['45176'] }
-      ]
-    },
-    'Greene': {
-      description: 'Mobile notary services near Wright-Patterson AFB and throughout Xenia, Beavercreek, and Fairborn areas.',
-      featured: false,
-      additionalCities: [
-        { city: 'Xenia', zips: ['45385'] },
-        { city: 'Fairborn', zips: ['45324'] },
-        { city: 'Yellow Springs', zips: ['45387'] },
-        { city: 'Bellbrook', zips: ['45305'] },
-        { city: 'Cedarville', zips: ['45314'] },
-        { city: 'Jamestown', zips: ['45335'] }
-      ]
-    },
-    'Clinton': {
-      description: 'Professional notary services for rural Clinton County communities with flexible scheduling and same-day availability.',
-      featured: false,
-      additionalCities: [
-        { city: 'Wilmington', zips: ['45177'] },
-        { city: 'Blanchester', zips: ['45107'] },
-        { city: 'Sabina', zips: ['45169'] },
-        { city: 'Clarksville', zips: ['45113'] },
-        { city: 'Port William', zips: ['45164'] }
-      ]
-    },
-    'Brown': {
-      description: 'Rural and residential notary services with flexible scheduling throughout Brown County.',
-      featured: false,
-      additionalCities: [
-        { city: 'Georgetown', zips: ['45121'] },
-        { city: 'Mount Orab', zips: ['45154'] },
-        { city: 'Ripley', zips: ['45167'] },
-        { city: 'Sardinia', zips: ['45171'] },
-        { city: 'Hamersville', zips: ['45130'] }
-      ]
-    },
-    'Miami': {
-      description: 'Mobile notary services serving Troy, Piqua, and the greater Miami County area with same-day availability.',
-      featured: false,
-      additionalCities: [
-        { city: 'Piqua', zips: ['45356'] },
-        { city: 'Tipp City', zips: ['45371'] },
-        { city: 'Covington', zips: ['45318'] },
-        { city: 'West Milton', zips: ['45383'] }
-      ]
-    }
-  };
-
-  // Build final county areas
-  const countyOrder = ['Hamilton', 'Warren', 'Butler', 'Montgomery', 'Greene', 'Clinton', 'Clermont', 'Brown', 'Miami'];
-  
-  return countyOrder.filter(county => countyMap[county] || countyMeta[county]).map(county => {
-    const data = countyMap[county] || { cities: new Map(), zips: new Set() };
-    const meta = countyMeta[county] || { description: '', featured: false };
-    
-    // Merge additional cities
-    if (meta.additionalCities) {
-      meta.additionalCities.forEach(({ city, zips }) => {
-        const existing = data.cities.get(city) || [];
-        zips.forEach(zip => {
-          if (!existing.includes(zip)) existing.push(zip);
-          data.zips.add(zip);
-        });
-        data.cities.set(city, existing);
-      });
-    }
-
-    // Convert to sorted arrays
-    const cities = Array.from(data.cities.entries())
-      .map(([city, zips]) => ({ city, zips: zips.sort() }))
-      .sort((a, b) => a.city.localeCompare(b.city));
-
-    return {
-      name: `${county} County`,
-      county,
-      cities,
-      zips: Array.from(data.zips).sort(),
-      description: meta.description,
-      featured: meta.featured
-    };
-  });
+// County descriptions
+const COUNTY_DESCRIPTIONS: Record<string, { description: string; featured: boolean }> = {
+  'Hamilton': {
+    description: 'Full mobile notary services throughout Hamilton County including downtown Cincinnati, emergency visits, and hospital/bedside service.',
+    featured: true
+  },
+  'Warren': {
+    description: 'Professional notary services for estate planning, real estate closings, and business documents throughout Warren County.',
+    featured: true
+  },
+  'Butler': {
+    description: 'Mobile notary and loan signing services for residential and commercial needs throughout Butler County.',
+    featured: true
+  },
+  'Montgomery': {
+    description: 'Same-day and emergency notary services throughout the Dayton metro area including Wright-Patterson AFB.',
+    featured: true
+  },
+  'Greene': {
+    description: 'Mobile notary services near Wright-Patterson AFB and throughout Xenia, Beavercreek, and Fairborn areas.',
+    featured: false
+  },
+  'Clinton': {
+    description: 'Professional notary services for rural Clinton County communities with flexible scheduling and same-day availability.',
+    featured: false
+  },
+  'Clermont': {
+    description: 'Professional mobile notary services for healthcare, legal, and financial documents throughout Clermont County.',
+    featured: false
+  },
+  'Brown': {
+    description: 'Rural and residential notary services with flexible scheduling throughout Brown County.',
+    featured: false
+  },
+  'Miami': {
+    description: 'Mobile notary services serving Troy, Piqua, and the greater Miami County area with same-day availability.',
+    featured: false
+  }
 };
 
-const COUNTY_AREAS = buildCountyData();
+// Service icons mapping
+const SERVICE_ICONS: Record<string, React.ElementType> = {
+  'General Notary': FileText,
+  'Loan Signing': Home,
+  'Estate Planning': Shield,
+  'Real Estate': Home,
+  'Apostille': Globe,
+  'Business Services': Briefcase,
+  'Healthcare Notary': Heart,
+};
 
-// Get all available services for display
-const ALL_SERVICES = [
-  ...getPrimaryServices(),
-  ...getSpecializedServices().slice(0, 2) // Add Business & Healthcare
-];
+// County card component with expandable cities
+const CountyCard = ({ county }: { county: CountyData }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const meta = COUNTY_DESCRIPTIONS[county.county] || { description: '', featured: false };
+  const displayCities = isOpen ? county.cities : county.cities.slice(0, 6);
+
+  return (
+    <Card className={`h-full ${meta.featured ? 'ring-2 ring-primary/20' : ''}`}>
+      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between">
+            <CollapsibleTrigger className="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer text-left">
+              <MapPin className="h-5 w-5 text-primary shrink-0" />
+              <CardTitle className="text-xl">{county.county} County</CardTitle>
+              {isOpen ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </CollapsibleTrigger>
+            {meta.featured && (
+              <Badge variant="default">Core Area</Badge>
+            )}
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <CardDescription>
+            {meta.description}
+          </CardDescription>
+          
+          {/* Services Available */}
+          <div>
+            <p className="font-medium text-sm mb-2 flex items-center gap-1">
+              <FileText className="h-4 w-4 text-primary" />
+              Services Available:
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {county.allServices.map((service) => {
+                const Icon = SERVICE_ICONS[service] || FileText;
+                return (
+                  <Badge key={service} variant="outline" className="text-xs flex items-center gap-1">
+                    <Icon className="h-3 w-3" />
+                    {service}
+                  </Badge>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Cities & ZIP Codes */}
+          <div>
+            <p className="font-medium text-sm mb-2">
+              Cities & ZIP Codes ({county.cities.length} cities, {county.allZips.length} ZIPs):
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {displayCities.map(({ city, zips }, cityIndex) => (
+                <Badge key={cityIndex} variant="secondary" className="text-xs">
+                  {city} ({zips.join(', ')})
+                </Badge>
+              ))}
+            </div>
+            
+            <CollapsibleContent className="mt-2">
+              {county.cities.length > 6 && (
+                <div className="flex flex-wrap gap-2">
+                  {county.cities.slice(6).map(({ city, zips }, cityIndex) => (
+                    <Badge key={cityIndex + 6} variant="secondary" className="text-xs">
+                      {city} ({zips.join(', ')})
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </CollapsibleContent>
+            
+            {!isOpen && county.cities.length > 6 && (
+              <CollapsibleTrigger className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1">
+                <ChevronDown className="h-3 w-3" />
+                Show all {county.cities.length} cities
+              </CollapsibleTrigger>
+            )}
+            
+            {isOpen && county.cities.length > 6 && (
+              <CollapsibleTrigger className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1">
+                <ChevronUp className="h-3 w-3" />
+                Show less
+              </CollapsibleTrigger>
+            )}
+          </div>
+        </CardContent>
+      </Collapsible>
+    </Card>
+  );
+};
+
+// All Service Locations - comprehensive directory from CSV
+const AllLocationsDirectory = () => {
+  const [expandedCounties, setExpandedCounties] = useState<Set<string>>(new Set());
+
+  const toggleCounty = (county: string) => {
+    setExpandedCounties(prev => {
+      const next = new Set(prev);
+      if (next.has(county)) {
+        next.delete(county);
+      } else {
+        next.add(county);
+      }
+      return next;
+    });
+  };
+
+  // Calculate totals
+  const totalCities = COUNTY_DATA.reduce((sum, c) => sum + c.cities.length, 0);
+  const totalZips = new Set(COUNTY_DATA.flatMap(c => c.allZips)).size;
+
+  return (
+    <section id="all-locations" className="mb-16">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-4">All Service Locations</h2>
+        <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
+          Complete directory of all {totalCities} cities and {totalZips} ZIP codes we serve across {COUNTY_DATA.length} counties.
+        </p>
+        
+        <div className="space-y-4">
+          {COUNTY_DATA.map((county) => {
+            const isExpanded = expandedCounties.has(county.county);
+            const displayCities = isExpanded ? county.cities : county.cities.slice(0, 8);
+            
+            return (
+              <Card key={county.county} className="overflow-hidden">
+                <CardHeader 
+                  className="bg-primary/5 border-b cursor-pointer hover:bg-primary/10 transition-colors"
+                  onClick={() => toggleCounty(county.county)}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <MapPin className="h-5 w-5 text-primary" />
+                      {county.county} County
+                      <Badge variant="secondary" className="ml-2">
+                        {county.cities.length} cities
+                      </Badge>
+                      <Badge variant="outline" className="ml-1">
+                        {county.allZips.length} ZIPs
+                      </Badge>
+                      {isExpanded ? (
+                        <ChevronUp className="h-4 w-4 text-muted-foreground ml-2" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-muted-foreground ml-2" />
+                      )}
+                    </CardTitle>
+                    <div className="flex flex-wrap gap-1">
+                      {county.allServices.map(service => {
+                        const Icon = SERVICE_ICONS[service] || FileText;
+                        return (
+                          <Badge key={service} variant="outline" className="text-xs flex items-center gap-1">
+                            <Icon className="h-3 w-3" />
+                            {service}
+                          </Badge>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                    {displayCities.map(({ city, zips, services }) => (
+                      <div
+                        key={city}
+                        className="p-3 rounded-lg border border-border bg-muted/30"
+                      >
+                        <div className="font-medium text-foreground">
+                          {city}
+                        </div>
+                        <div className="text-sm text-muted-foreground mt-1">
+                          ZIP: {zips.join(', ')}
+                        </div>
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {services.slice(0, 3).map(service => (
+                            <Badge key={service} variant="secondary" className="text-xs">
+                              {service}
+                            </Badge>
+                          ))}
+                          {services.length > 3 && (
+                            <Badge variant="secondary" className="text-xs">
+                              +{services.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {county.cities.length > 8 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleCounty(county.county);
+                      }}
+                      className="mt-4 text-sm text-primary hover:underline flex items-center gap-1"
+                    >
+                      {isExpanded ? (
+                        <>
+                          <ChevronUp className="h-3 w-3" />
+                          Show less
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="h-3 w-3" />
+                          Show all {county.cities.length} cities in {county.county} County
+                        </>
+                      )}
+                    </button>
+                  )}
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Quick Stats */}
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card className="p-4 text-center">
+            <div className="text-3xl font-bold text-primary">{totalCities}</div>
+            <div className="text-sm text-muted-foreground">Cities Served</div>
+          </Card>
+          <Card className="p-4 text-center">
+            <div className="text-3xl font-bold text-primary">{totalZips}</div>
+            <div className="text-sm text-muted-foreground">ZIP Codes</div>
+          </Card>
+          <Card className="p-4 text-center">
+            <div className="text-3xl font-bold text-primary">{COUNTY_DATA.length}</div>
+            <div className="text-sm text-muted-foreground">Counties</div>
+          </Card>
+          <Card className="p-4 text-center">
+            <div className="text-3xl font-bold text-primary">Same Day</div>
+            <div className="text-sm text-muted-foreground">Availability</div>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const ServiceAreas = () => {
   return (
@@ -206,93 +319,53 @@ const ServiceAreas = () => {
 
       <BasePageTemplate
         heroSection={
-          <section className="bg-gradient-to-br from-primary/10 to-primary/5 py-16">
+          <section className="bg-gradient-to-br from-primary/10 to-primary/5 py-12 md:py-16">
             <div className="container mx-auto px-4">
               <BreadcrumbNav />
-              <div className="text-center mt-8">
+              <div className="text-center mt-6">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Service Areas</h1>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
                   Professional mobile notary services throughout Southwest Ohio. We come to you - home, office, or hospital.
                 </p>
+                
+                {/* CTAs in hero */}
+                <StandardCTAButtons defaultService="general-notary" className="max-w-2xl mx-auto mb-6" />
+                
+                {/* Jump link to counties */}
+                <a 
+                  href="#counties-we-serve" 
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+                >
+                  <MapPin className="h-4 w-4" />
+                  View all counties we serve
+                  <ChevronDown className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </section>
         }
         defaultService="general-notary"
         showCTA={false}
+        mainClassName="pt-8 pb-16"
       >
-        {/* Counties Overview - Now immediately after hero */}
-        <section className="mb-16">
+        {/* Counties Overview - Immediately visible */}
+        <section id="counties-we-serve" className="mb-16 scroll-mt-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-4">Counties We Serve</h2>
             <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
-              Click on any city to view local notary services, or browse all locations below.
+              Click on any county to expand and see all cities and ZIP codes. We offer the full range of notary services in every location.
             </p>
             
             <div className="grid md:grid-cols-2 gap-6">
-              {COUNTY_AREAS.map((area, index) => (
-                <Card key={index} className={`h-full ${area.featured ? 'ring-2 ring-primary/20' : ''}`}>
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="text-xl flex items-center gap-2">
-                        <MapPin className="h-5 w-5 text-primary" />
-                        {area.name}
-                      </CardTitle>
-                      {area.featured && (
-                        <Badge variant="default">Core Area</Badge>
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <CardDescription>
-                      {area.description}
-                    </CardDescription>
-                    
-                    {/* Services Available */}
-                    <div>
-                      <p className="font-medium text-sm mb-2 flex items-center gap-1">
-                        <FileText className="h-4 w-4 text-primary" />
-                        Services Available:
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {ALL_SERVICES.map((service) => (
-                          <Badge key={service.id} variant="outline" className="text-xs">
-                            {service.serviceName}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Cities & ZIP Codes */}
-                    <div>
-                      <p className="font-medium text-sm mb-2">Cities & ZIP Codes:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {area.cities.slice(0, 8).map(({ city, zips }, cityIndex) => (
-                          <Badge key={cityIndex} variant="secondary" className="text-xs">
-                            {city} ({zips.join(', ')})
-                          </Badge>
-                        ))}
-                        {area.cities.length > 8 && (
-                          <Badge variant="secondary" className="text-xs bg-primary/10">
-                            +{area.cities.length - 8} more cities
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Total ZIP codes served */}
-                    <p className="text-xs text-muted-foreground">
-                      {area.zips.length} ZIP codes served in {area.name}
-                    </p>
-                  </CardContent>
-                </Card>
+              {COUNTY_DATA.map((county, index) => (
+                <CountyCard key={index} county={county} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* All Location Pages Index */}
-        <LocationIndex />
+        {/* All Locations Directory */}
+        <AllLocationsDirectory />
 
         {/* Service Information */}
         <section className="mb-16">

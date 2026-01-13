@@ -9,6 +9,7 @@ interface BasePageTemplateProps {
   showCTA?: boolean;
   defaultService?: string;
   className?: string;
+  mainClassName?: string;
 }
 
 export const BasePageTemplate = ({ 
@@ -16,7 +17,8 @@ export const BasePageTemplate = ({
   heroSection,
   showCTA = true,
   defaultService = '',
-  className = '' 
+  className = '',
+  mainClassName = 'py-16'
 }: BasePageTemplateProps) => {
   return (
     <div className="min-h-screen bg-background">
@@ -24,7 +26,7 @@ export const BasePageTemplate = ({
       
       {heroSection}
 
-      <main className={`py-16 bg-background ${className}`}>
+      <main className={`${mainClassName} bg-background ${className}`}>
         <div className="container mx-auto px-4">
           {children}
         </div>
