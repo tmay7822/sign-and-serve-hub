@@ -251,6 +251,21 @@ export const routes: RouteRecord[] = [
       { path: 'blog/healthcare-guides-greene-county-ohio', element: <LocationBlogPost /> },
       { path: 'blog/healthcare-guides-clinton-county-ohio', element: <LocationBlogPost /> },
       
+      // City-Level Blog Posts (high-traffic cities)
+      { path: 'blog/general-notary-guides-cincinnati-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-mason-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-dayton-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/general-notary-guides-west-chester-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-cincinnati-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-mason-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/loan-signing-guides-dayton-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/real-estate-guides-cincinnati-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/estate-planning-guides-cincinnati-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/healthcare-guides-cincinnati-ohio', element: <LocationBlogPost /> },
+      
+      // Dynamic location blog catch-all (handles remaining city posts)
+      { path: 'blog/:slug', element: <LocationBlogPost /> },
+      
       // Location Pages - Using Dynamic Component
       { path: 'notary-cincinnati-45202', element: <DynamicLocationPage /> },
       { path: 'notary-mason-45040', element: <DynamicLocationPage /> },
