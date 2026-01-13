@@ -76,14 +76,19 @@ const CountyCard = ({ county }: { county: CountyData }) => {
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CollapsibleTrigger className="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer text-left">
-              <MapPin className="h-5 w-5 text-primary shrink-0" />
-              <CardTitle className="text-xl">{county.county} County</CardTitle>
-              {isOpen ? (
-                <ChevronUp className="h-4 w-4 text-muted-foreground" />
-              ) : (
-                <ChevronDown className="h-4 w-4 text-muted-foreground" />
-              )}
+            <CollapsibleTrigger asChild>
+              <button 
+                type="button"
+                className="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer text-left"
+              >
+                <MapPin className="h-5 w-5 text-primary shrink-0" />
+                <CardTitle className="text-xl">{county.county} County</CardTitle>
+                {isOpen ? (
+                  <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                )}
+              </button>
             </CollapsibleTrigger>
             {meta.featured && (
               <Badge variant="default">Core Area</Badge>
@@ -140,16 +145,26 @@ const CountyCard = ({ county }: { county: CountyData }) => {
             </CollapsibleContent>
             
             {!isOpen && county.cities.length > 6 && (
-              <CollapsibleTrigger className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1">
-                <ChevronDown className="h-3 w-3" />
-                Show all {county.cities.length} cities
+              <CollapsibleTrigger asChild>
+                <button 
+                  type="button"
+                  className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1"
+                >
+                  <ChevronDown className="h-3 w-3" />
+                  Show all {county.cities.length} cities
+                </button>
               </CollapsibleTrigger>
             )}
             
             {isOpen && county.cities.length > 6 && (
-              <CollapsibleTrigger className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1">
-                <ChevronUp className="h-3 w-3" />
-                Show less
+              <CollapsibleTrigger asChild>
+                <button 
+                  type="button"
+                  className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1"
+                >
+                  <ChevronUp className="h-3 w-3" />
+                  Show less
+                </button>
               </CollapsibleTrigger>
             )}
           </div>
