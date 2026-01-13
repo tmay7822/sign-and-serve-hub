@@ -1,5 +1,5 @@
 // LOCATION-SPECIFIC BLOG POSTS DATA
-// Generates SEO-optimized blog content for each county and category combination
+// Generates SEO-optimized blog content for county and city level targeting
 
 import { BLOG_CATEGORIES, BlogPost } from './blog';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -50,156 +50,302 @@ export const LOCATION_COUNTIES = [
   }
 ];
 
-// Category-specific content templates
-const CATEGORY_CONTENT_TEMPLATES: Record<string, {
+// All cities for city-level content (24 cities across all counties)
+export const LOCATION_CITIES = [
+  // Hamilton County
+  { name: 'Cincinnati', slug: 'cincinnati', county: 'Hamilton', zip: '45202' },
+  { name: 'Blue Ash', slug: 'blue-ash', county: 'Hamilton', zip: '45242' },
+  { name: 'Springdale', slug: 'springdale', county: 'Hamilton', zip: '45246' },
+  { name: 'Forest Park', slug: 'forest-park', county: 'Hamilton', zip: '45240' },
+  // Warren County
+  { name: 'Mason', slug: 'mason', county: 'Warren', zip: '45040' },
+  { name: 'Lebanon', slug: 'lebanon', county: 'Warren', zip: '45036' },
+  { name: 'Springboro', slug: 'springboro', county: 'Warren', zip: '45066' },
+  { name: 'West Chester', slug: 'west-chester', county: 'Warren', zip: '45069' },
+  // Montgomery County
+  { name: 'Dayton', slug: 'dayton', county: 'Montgomery', zip: '45402' },
+  { name: 'Kettering', slug: 'kettering', county: 'Montgomery', zip: '45429' },
+  { name: 'Centerville', slug: 'centerville', county: 'Montgomery', zip: '45459' },
+  { name: 'Miamisburg', slug: 'miamisburg', county: 'Montgomery', zip: '45342' },
+  // Butler County
+  { name: 'Hamilton', slug: 'hamilton-city', county: 'Butler', zip: '45011' },
+  { name: 'Fairfield', slug: 'fairfield', county: 'Butler', zip: '45014' },
+  { name: 'Oxford', slug: 'oxford', county: 'Butler', zip: '45056' },
+  { name: 'Middletown', slug: 'middletown', county: 'Butler', zip: '45042' },
+  // Greene County
+  { name: 'Beavercreek', slug: 'beavercreek', county: 'Greene', zip: '45431' },
+  { name: 'Fairborn', slug: 'fairborn', county: 'Greene', zip: '45324' },
+  { name: 'Xenia', slug: 'xenia', county: 'Greene', zip: '45385' },
+  { name: 'Yellow Springs', slug: 'yellow-springs', county: 'Greene', zip: '45387' },
+  // Clinton County
+  { name: 'Wilmington', slug: 'wilmington', county: 'Clinton', zip: '45177' },
+  { name: 'Blanchester', slug: 'blanchester', county: 'Clinton', zip: '45107' },
+  { name: 'Sabina', slug: 'sabina', county: 'Clinton', zip: '45169' },
+  { name: 'New Vienna', slug: 'new-vienna', county: 'Clinton', zip: '45159' }
+];
+
+// Category-specific content templates for counties
+const COUNTY_CONTENT_TEMPLATES: Record<string, {
   intro: (county: string, cities: string[]) => string;
-  services: string[];
   faqs: (county: string, majorCity: string) => Array<{ question: string; answer: string }>;
   quickAnswer: (county: string) => { question: string; answer: string };
 }> = {
   'general-notary-guides': {
     intro: (county, cities) => `
-      <p>Looking for reliable mobile notary services in <strong>${county} County, Ohio</strong>? Our certified notary professionals travel directly to your location throughout ${cities.slice(0, 4).join(', ')}, and surrounding areas. Whether you're at home, your office, or a healthcare facility, we bring convenience to document notarization.</p>
+      <p>Looking for reliable mobile notary services in <strong>${county} County, Ohio</strong>? Our certified notary professionals travel directly to your location throughout ${cities.slice(0, 4).join(', ')}, and surrounding areas.</p>
       
       <h2>Mobile Notary Services Across ${county} County</h2>
-      <p>We understand that your time is valuable. That's why we offer flexible scheduling including evenings and weekends for ${county} County residents. Our mobile notary service eliminates the need to search for parking, wait in lines, or take time off work.</p>
+      <p>We understand that your time is valuable. That's why we offer flexible scheduling including evenings and weekends for ${county} County residents.</p>
       
-      <h3>Documents We Notarize in ${county} County</h3>
+      <h3>Documents We Notarize</h3>
+      <ul>
+        <li><strong>Powers of Attorney</strong> – Financial, healthcare, and durable POA</li>
+        <li><strong>Affidavits</strong> – Sworn statements for legal matters</li>
+        <li><strong>Acknowledgments</strong> – Property deeds and contracts</li>
+        <li><strong>Oaths and Affirmations</strong> – Official declarations</li>
+      </ul>
+      
+      <h2>Service Areas in ${county} County</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `How quickly can a notary come to me in ${county} County?`, answer: `We offer same-day appointments throughout ${county} County. In ${majorCity}, we can often arrive within 2-4 hours.` },
+      { question: `What ID do I need for notarization in ${county} County?`, answer: `You need a valid government-issued photo ID such as a driver's license, passport, or state ID.` },
+      { question: `How much does mobile notary cost in ${county} County?`, answer: `Services start at $10 per notarization plus a travel fee based on your location.` }
+    ],
+    quickAnswer: (county) => ({ question: `Where can I find a mobile notary in ${county} County?`, answer: `Signed on Time provides professional mobile notary services throughout ${county} County with same-day availability.` })
+  },
+  'loan-signing-guides': {
+    intro: (county, cities) => `
+      <p>Need a professional <strong>loan signing agent in ${county} County, Ohio</strong>? Our NNA-certified signing agents handle all types of mortgage closings. We serve ${cities.slice(0, 4).join(', ')}, and all surrounding communities.</p>
+      
+      <h2>Loan Signing Services in ${county} County</h2>
+      <p>Our loan signing agents are trained to guide you through mortgage documents efficiently and accurately.</p>
+      
+      <h3>Types of Loan Signings</h3>
+      <ul>
+        <li><strong>Purchase Closings</strong> – Buyer and seller packages</li>
+        <li><strong>Refinance Signings</strong> – Streamline your mortgage</li>
+        <li><strong>HELOC Closings</strong> – Home equity documentation</li>
+        <li><strong>Reverse Mortgages</strong> – Senior homeowner signings</li>
+      </ul>
+      
+      <h2>Locations in ${county} County</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `How long does a loan signing take in ${county} County?`, answer: `Most residential loan signings take 45-60 minutes with adequate time for all documents.` },
+      { question: `Do you offer evening loan signings in ${county} County?`, answer: `Yes! We offer flexible scheduling including evenings and weekends throughout ${county} County.` },
+      { question: `What should I bring to my loan signing?`, answer: `Bring two forms of ID and any funds required for closing.` }
+    ],
+    quickAnswer: (county) => ({ question: `Who provides loan signing services in ${county} County?`, answer: `Signed on Time offers professional NNA-certified loan signing agent services throughout ${county} County.` })
+  },
+  'real-estate-guides': {
+    intro: (county, cities) => `
+      <p>Navigating <strong>real estate transactions in ${county} County, Ohio</strong> requires professional notary services. We serve ${cities.slice(0, 4).join(', ')}, for all property documents.</p>
+      
+      <h2>Real Estate Notary Services</h2>
+      <p>Our notaries understand Ohio property law and ensure your documents are executed correctly.</p>
+      
+      <h3>Documents We Notarize</h3>
+      <ul>
+        <li><strong>Property Deeds</strong> – Warranty, quitclaim, survivorship</li>
+        <li><strong>Purchase Agreements</strong> – Residential and commercial</li>
+        <li><strong>Title Documents</strong> – Transfers and affidavits</li>
+        <li><strong>Lease Agreements</strong> – Commercial and residential</li>
+      </ul>
+      
+      <h2>Service Areas</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `How do I transfer a property deed in ${county} County?`, answer: `Property deed transfers require signing before a notary, then recording with the ${county} County Recorder's Office.` },
+      { question: `Can you notarize at the title company?`, answer: `Yes, we work with title companies, attorney offices, and real estate agencies throughout ${county} County.` },
+      { question: `What's the difference between warranty and quitclaim deeds?`, answer: `A warranty deed guarantees clear title; a quitclaim deed transfers only the seller's interest without guarantees.` }
+    ],
+    quickAnswer: (county) => ({ question: `Where can I get real estate documents notarized in ${county} County?`, answer: `Signed on Time provides mobile real estate notary services throughout ${county} County for deed transfers and property transactions.` })
+  },
+  'estate-planning-guides': {
+    intro: (county, cities) => `
+      <p>Protect your family with properly executed <strong>estate planning documents in ${county} County, Ohio</strong>. We travel to ${cities.slice(0, 4).join(', ')}, for wills, POAs, and healthcare directives.</p>
+      
+      <h2>Estate Planning Notary Services</h2>
+      <p>Our notaries understand Ohio's legal requirements for estate documents and witness requirements.</p>
+      
+      <h3>Documents We Help Execute</h3>
+      <ul>
+        <li><strong>Wills</strong> – Proper witnessing and notarization</li>
+        <li><strong>Powers of Attorney</strong> – Financial and healthcare POAs</li>
+        <li><strong>Living Wills</strong> – Healthcare directives</li>
+        <li><strong>Trust Documents</strong> – Certifications and amendments</li>
+      </ul>
+      
+      <h2>Service Areas</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `Do I need a notary for my will in ${county} County?`, answer: `While Ohio doesn't require notarized wills, a notarized self-proving affidavit makes probate smoother.` },
+      { question: `Can you notarize at a hospital in ${county} County?`, answer: `Yes, we provide bedside notarization at hospitals and care facilities throughout ${county} County.` },
+      { question: `How many witnesses for a POA in Ohio?`, answer: `Ohio generally requires one witness for a power of attorney, plus notarization.` }
+    ],
+    quickAnswer: (county) => ({ question: `Who helps with estate documents in ${county} County?`, answer: `Signed on Time provides mobile notary for estate planning throughout ${county} County including wills, POAs, and healthcare directives.` })
+  },
+  'apostille-guides': {
+    intro: (county, cities) => `
+      <p>Need documents authenticated for international use in <strong>${county} County, Ohio</strong>? We help ${cities.slice(0, 4).join(', ')}, residents prepare documents for use abroad.</p>
+      
+      <h2>Apostille Services for ${county} County</h2>
+      <p>An apostille authenticates documents for use in Hague Convention countries. We guide you through the Ohio Secretary of State process.</p>
+      
+      <h3>Documents We Help Apostille</h3>
+      <ul>
+        <li><strong>Birth Certificates</strong> – For adoption, marriage, residency</li>
+        <li><strong>Marriage Certificates</strong> – For spouse visas</li>
+        <li><strong>Educational Documents</strong> – Diplomas and transcripts</li>
+        <li><strong>Business Documents</strong> – Corporate filings</li>
+      </ul>
+      
+      <h2>Service Areas</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `How long does apostille take for ${county} County documents?`, answer: `Ohio Secretary of State typically processes apostilles within 5-7 business days. Rush processing available.` },
+      { question: `What countries accept Ohio apostilles?`, answer: `All Hague Convention member countries accept Ohio apostilles including most of Europe, Australia, Japan, and Mexico.` },
+      { question: `Do all documents need notarization before apostille?`, answer: `Not all. State-issued documents don't need prior notarization; private documents usually do.` }
+    ],
+    quickAnswer: (county) => ({ question: `Where can I get apostille services in ${county} County?`, answer: `Signed on Time helps ${county} County residents with document notarization for apostille and Ohio Secretary of State submission.` })
+  },
+  'business-guides': {
+    intro: (county, cities) => `
+      <p>Keep your business moving with professional <strong>notary services for ${county} County businesses</strong>. We serve companies in ${cities.slice(0, 4).join(', ')}, with on-site mobile notarization.</p>
+      
+      <h2>Business Notary Services</h2>
+      <p>Business documents often require quick turnaround. Our mobile service comes directly to your office or job site.</p>
+      
+      <h3>Documents We Notarize</h3>
+      <ul>
+        <li><strong>Contracts</strong> – Agreements, vendor contracts, NDAs</li>
+        <li><strong>Corporate Documents</strong> – Articles, bylaws, resolutions</li>
+        <li><strong>Affidavits</strong> – Business sworn statements</li>
+        <li><strong>Banking Documents</strong> – Signature cards, resolutions</li>
+      </ul>
+      
+      <h2>Service Areas</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `Can you come to our office in ${county} County?`, answer: `Absolutely! We provide on-site mobile notary throughout ${county} County business districts.` },
+      { question: `What about multiple employees needing notarization?`, answer: `We offer volume pricing for businesses with multiple documents or signers.` },
+      { question: `Do you handle confidential documents?`, answer: `Yes, we maintain strict confidentiality. Our notaries are bonded and professional.` }
+    ],
+    quickAnswer: (county) => ({ question: `Where can businesses get notary services in ${county} County?`, answer: `Signed on Time provides mobile business notary throughout ${county} County for contracts, corporate documents, and all business needs.` })
+  },
+  'healthcare-guides': {
+    intro: (county, cities) => `
+      <p>When medical situations require urgent document signing, our <strong>healthcare notary services in ${county} County</strong> provide compassionate assistance. We serve hospitals and homes in ${cities.slice(0, 4).join(', ')}.</p>
+      
+      <h2>Healthcare Notary Services</h2>
+      <p>Healthcare needs often arise unexpectedly. Our mobile notaries provide calm, professional service at hospitals and care facilities.</p>
+      
+      <h3>Documents We Notarize</h3>
+      <ul>
+        <li><strong>Healthcare POA</strong> – Medical decision makers</li>
+        <li><strong>Living Wills</strong> – End-of-life care wishes</li>
+        <li><strong>HIPAA Authorizations</strong> – Medical record releases</li>
+        <li><strong>Medical Affidavits</strong> – Healthcare sworn statements</li>
+      </ul>
+      
+      <h2>Service Areas</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `Can you come to the hospital in ${county} County?`, answer: `Yes, we provide bedside notarization at hospitals throughout ${county} County including major facilities in ${majorCity}.` },
+      { question: `What if the patient can't hold a pen?`, answer: `Ohio law allows signature by mark (X) with proper witnessing. We can guide you through alternatives.` },
+      { question: `How quickly for urgent healthcare signing?`, answer: `For urgent healthcare situations, we prioritize availability and can often arrive within 2-4 hours.` }
+    ],
+    quickAnswer: (county) => ({ question: `Who provides hospital notary in ${county} County?`, answer: `Signed on Time offers compassionate healthcare notary throughout ${county} County including hospital bedside and nursing home visits.` })
+  }
+};
+
+// City-level content generator
+const generateCityContent = (city: { name: string; slug: string; county: string; zip: string }, categorySlug: string): string => {
+  const templates: Record<string, string> = {
+    'general-notary-guides': `
+      <p>Need a <strong>mobile notary in ${city.name}, Ohio ${city.zip}</strong>? Our certified notary professionals come directly to your home, office, or any convenient location in ${city.name} and throughout ${city.county} County.</p>
+      
+      <h2>Mobile Notary Services in ${city.name}</h2>
+      <p>Skip the drive to a shipping store. Our mobile notary travels to you in ${city.name} for all your document notarization needs. We offer same-day appointments and flexible scheduling including evenings and weekends.</p>
+      
+      <h3>Documents We Notarize in ${city.name}</h3>
       <ul>
         <li><strong>Powers of Attorney</strong> – Financial, healthcare, and durable POA documents</li>
         <li><strong>Affidavits</strong> – Sworn statements for legal, personal, or business matters</li>
         <li><strong>Acknowledgments</strong> – Property deeds, contracts, and agreements</li>
+        <li><strong>Jurats</strong> – Sworn or affirmed signature verification</li>
         <li><strong>Oaths and Affirmations</strong> – Official declarations under oath</li>
-        <li><strong>Certified Copies</strong> – For documents that require authentication</li>
       </ul>
       
-      <h3>Why Choose Our ${county} County Notary Service?</h3>
-      <p>With years of experience serving ${county} County, we've built a reputation for professionalism, accuracy, and reliability. Our notaries are background-checked, insured, and up-to-date on Ohio notary requirements.</p>
-      
-      <h2>Service Areas in ${county} County</h2>
-      <p>We proudly serve all communities in ${county} County including:</p>
+      <h3>Why Choose Our ${city.name} Notary Service?</h3>
+      <p>With years of experience serving ${city.county} County, we've built a reputation for professionalism and reliability. Our notaries are:</p>
       <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
+        <li>Background-checked and insured</li>
+        <li>NNA-certified for loan signings</li>
+        <li>Experienced with Ohio notary requirements</li>
+        <li>Available for same-day and emergency appointments</li>
       </ul>
+      
+      <h2>Convenient Locations in ${city.name}</h2>
+      <p>We meet you where it's convenient—your home, your office, coffee shops, libraries, hospitals, or any public location in the ${city.zip} area.</p>
     `,
-    services: ['Power of Attorney', 'Affidavits', 'Acknowledgments', 'Jurats', 'Oaths'],
-    faqs: (county, majorCity) => [
-      {
-        question: `How quickly can a notary come to me in ${county} County?`,
-        answer: `We offer same-day and next-day appointments throughout ${county} County. In ${majorCity} and nearby areas, we can often arrive within 2-4 hours for urgent requests.`
-      },
-      {
-        question: `What ID do I need for notarization in ${county} County?`,
-        answer: `You'll need a valid, unexpired government-issued photo ID such as a driver's license, passport, or state ID. Ohio law requires the notary to positively identify all signers.`
-      },
-      {
-        question: `How much does mobile notary service cost in ${county} County?`,
-        answer: `Our general notary services start at $10 per notarization plus a travel fee based on your location in ${county} County. Contact us for a specific quote based on your document needs.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Where can I find a mobile notary in ${county} County, Ohio?`,
-      answer: `Signed on Time provides professional mobile notary services throughout ${county} County with same-day availability. We travel to your home, office, or hospital for convenient document notarization.`
-    })
-  },
-  'loan-signing-guides': {
-    intro: (county, cities) => `
-      <p>Need a professional <strong>loan signing agent in ${county} County, Ohio</strong>? Our certified signing agents are experienced with all types of mortgage closings, refinances, and HELOCs. We serve ${cities.slice(0, 4).join(', ')}, and all surrounding communities.</p>
+    'loan-signing-guides': `
+      <p>Looking for a professional <strong>loan signing agent in ${city.name}, Ohio ${city.zip}</strong>? Our NNA-certified signing agents specialize in mortgage closings, refinances, and HELOCs throughout ${city.name} and ${city.county} County.</p>
       
-      <h2>Professional Loan Signing Services in ${county} County</h2>
-      <p>Closing on your home shouldn't be stressful. Our loan signing agents are trained to guide you through the mortgage documents efficiently and accurately. We work with all major title companies, lenders, and signing services.</p>
+      <h2>Professional Loan Signing Services in ${city.name}</h2>
+      <p>Closing on your home in ${city.name} shouldn't be stressful. Our experienced signing agents guide you through the mortgage documents efficiently and accurately. We work with all major title companies and lenders.</p>
       
-      <h3>Types of Loan Signings We Handle</h3>
+      <h3>Types of Loan Signings in ${city.name}</h3>
       <ul>
-        <li><strong>Purchase Closings</strong> – Buyer and seller packages for new home purchases</li>
-        <li><strong>Refinance Signings</strong> – Streamline your existing mortgage with ease</li>
+        <li><strong>Purchase Closings</strong> – Buyer and seller packages for ${city.name} home purchases</li>
+        <li><strong>Refinance Signings</strong> – Streamline your existing mortgage</li>
         <li><strong>HELOC Closings</strong> – Home equity line of credit documentation</li>
         <li><strong>Reverse Mortgages</strong> – Specialized signings for senior homeowners</li>
         <li><strong>Commercial Loans</strong> – Business property transactions</li>
       </ul>
       
-      <h3>Why ${county} County Lenders Trust Us</h3>
-      <p>We understand that loan signings require precision and attention to detail. Our agents are NNA-certified, background-checked, and experienced with the specific requirements of Ohio real estate transactions.</p>
+      <h3>What to Expect at Your ${city.name} Loan Signing</h3>
+      <p>We schedule adequate time (typically 45-60 minutes) to ensure all documents are signed correctly without rushing. Bring two forms of ID and review your closing disclosure beforehand.</p>
       
-      <h2>Loan Signing Locations in ${county} County</h2>
-      <p>We travel to signers throughout ${county} County at their preferred location:</p>
-      <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
-      </ul>
+      <h2>Flexible Scheduling for ${city.name} Closings</h2>
+      <p>We offer evening and weekend appointments throughout ${city.name} to accommodate your schedule. Many closings happen after regular business hours—we're here when you need us.</p>
     `,
-    services: ['Purchase Closings', 'Refinance Signings', 'HELOC', 'Reverse Mortgages', 'Commercial'],
-    faqs: (county, majorCity) => [
-      {
-        question: `How long does a loan signing take in ${county} County?`,
-        answer: `Most residential loan signings take 45-60 minutes. We schedule adequate time to ensure all documents are signed correctly without rushing.`
-      },
-      {
-        question: `Can you do evening or weekend loan signings in ${county} County?`,
-        answer: `Yes! We offer flexible scheduling including evenings and weekends throughout ${county} County. Many closings in ${majorCity} and surrounding areas are scheduled after regular business hours.`
-      },
-      {
-        question: `What should I bring to my loan signing in ${county} County?`,
-        answer: `Bring two forms of ID (one must be a valid photo ID), any funds required for closing, and review your closing disclosure beforehand if provided by your lender.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Who provides loan signing services in ${county} County, Ohio?`,
-      answer: `Signed on Time offers professional NNA-certified loan signing agent services throughout ${county} County. We handle purchase closings, refinances, and HELOCs with same-day availability.`
-    })
-  },
-  'real-estate-guides': {
-    intro: (county, cities) => `
-      <p>Navigating <strong>real estate transactions in ${county} County, Ohio</strong> requires professional notary services you can trust. From deed transfers to property contracts, our mobile notary team serves ${cities.slice(0, 4).join(', ')}, and all surrounding areas.</p>
+    'real-estate-guides': `
+      <p>Need a <strong>real estate notary in ${city.name}, Ohio ${city.zip}</strong>? Our mobile notary specializes in property documents including deed transfers, purchase agreements, and all real estate transactions in ${city.county} County.</p>
       
-      <h2>Real Estate Notary Services in ${county} County</h2>
-      <p>Real estate documents are among the most important papers you'll ever sign. Our notaries understand Ohio property law requirements and ensure your documents are executed correctly the first time.</p>
+      <h2>Real Estate Notary Services in ${city.name}</h2>
+      <p>Real estate documents are among the most important papers you'll sign. Our notaries understand Ohio property law and ensure your ${city.name} documents are executed correctly the first time.</p>
       
-      <h3>Real Estate Documents We Notarize</h3>
+      <h3>Real Estate Documents We Notarize in ${city.name}</h3>
       <ul>
-        <li><strong>Property Deeds</strong> – Warranty deeds, quitclaim deeds, and survivorship deeds</li>
+        <li><strong>Property Deeds</strong> – Warranty deeds, quitclaim deeds, survivorship deeds</li>
         <li><strong>Purchase Agreements</strong> – Residential and commercial contracts</li>
-        <li><strong>Title Documents</strong> – Title transfers and affidavits of title</li>
+        <li><strong>Title Documents</strong> – Title transfers and affidavits</li>
         <li><strong>Lease Agreements</strong> – Commercial and residential leases</li>
         <li><strong>Easements</strong> – Right-of-way and utility easement documents</li>
       </ul>
       
-      <h3>Understanding ${county} County Real Estate Requirements</h3>
-      <p>Ohio has specific requirements for property document notarization. Our team stays current on ${county} County Recorder's Office requirements to ensure your documents are accepted without issues.</p>
+      <h3>${city.county} County Recorder Requirements</h3>
+      <p>We stay current on ${city.county} County Recorder's Office requirements to ensure your ${city.name} property documents are accepted without issues.</p>
       
-      <h2>Real Estate Service Areas in ${county} County</h2>
-      <p>We provide real estate notary services throughout:</p>
-      <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
-      </ul>
+      <h2>Real Estate Closings Throughout ${city.name}</h2>
+      <p>We meet at title companies, attorney offices, real estate agencies, or your preferred location in ${city.name} for convenient document signing.</p>
     `,
-    services: ['Deeds', 'Purchase Agreements', 'Title Documents', 'Leases', 'Easements'],
-    faqs: (county, majorCity) => [
-      {
-        question: `How do I transfer a property deed in ${county} County?`,
-        answer: `Property deed transfers require the current owner to sign before a notary, then the deed must be recorded with the ${county} County Recorder's Office. We can notarize the deed and provide guidance on the recording process.`
-      },
-      {
-        question: `Can you notarize real estate documents at the title company in ${county} County?`,
-        answer: `Yes, we regularly work with title companies, attorney offices, and real estate agencies throughout ${county} County. We can meet at any professional location or your home.`
-      },
-      {
-        question: `What's the difference between a warranty deed and quitclaim deed in Ohio?`,
-        answer: `A warranty deed guarantees clear title and protects the buyer, while a quitclaim deed transfers only the interest the seller has without any guarantees. Both require notarization in Ohio.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Where can I get real estate documents notarized in ${county} County?`,
-      answer: `Signed on Time provides mobile real estate notary services throughout ${county} County for deed transfers, property contracts, and all real estate transactions. We come to your location.`
-    })
-  },
-  'estate-planning-guides': {
-    intro: (county, cities) => `
-      <p>Protect your family's future with properly executed <strong>estate planning documents in ${county} County, Ohio</strong>. Our mobile notary service travels to ${cities.slice(0, 4).join(', ')}, and surrounding communities for wills, powers of attorney, and healthcare directives.</p>
+    'estate-planning-guides': `
+      <p>Protect your family's future with properly executed <strong>estate planning documents in ${city.name}, Ohio ${city.zip}</strong>. Our mobile notary travels throughout ${city.name} for wills, powers of attorney, and healthcare directives.</p>
       
-      <h2>Estate Planning Notary Services in ${county} County</h2>
-      <p>Estate planning documents require careful attention to Ohio's legal requirements. Our notaries understand witness requirements, proper execution procedures, and the importance of these life-critical documents.</p>
+      <h2>Estate Planning Notary Services in ${city.name}</h2>
+      <p>Estate planning documents require careful attention to Ohio's legal requirements. Our notaries understand witness requirements and proper execution procedures for ${city.county} County residents.</p>
       
-      <h3>Estate Documents We Help Execute</h3>
+      <h3>Estate Documents We Help Execute in ${city.name}</h3>
       <ul>
         <li><strong>Last Will and Testament</strong> – Proper witnessing and notarization</li>
         <li><strong>Powers of Attorney</strong> – Financial, healthcare, and durable POAs</li>
@@ -208,43 +354,19 @@ const CATEGORY_CONTENT_TEMPLATES: Record<string, {
         <li><strong>Beneficiary Designations</strong> – Account and policy updates</li>
       </ul>
       
-      <h3>Ohio Estate Planning Requirements</h3>
-      <p>Ohio has specific requirements for estate documents. Wills must be witnessed by two disinterested adults. Powers of attorney have different witness requirements. We ensure proper execution for ${county} County residents.</p>
+      <h3>Hospital and Facility Visits in ${city.name}</h3>
+      <p>We provide bedside notarization at hospitals, nursing homes, and assisted living facilities in ${city.name}. We understand the urgency these situations require.</p>
       
-      <h2>Estate Planning Service Areas in ${county} County</h2>
-      <p>We provide estate document notarization throughout:</p>
-      <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
-      </ul>
+      <h2>Ohio Estate Planning Requirements</h2>
+      <p>Wills must be witnessed by two disinterested adults. Powers of attorney have different witness requirements. We ensure proper execution for all ${city.name} estate documents.</p>
     `,
-    services: ['Wills', 'Powers of Attorney', 'Living Wills', 'Trusts', 'Beneficiary Forms'],
-    faqs: (county, majorCity) => [
-      {
-        question: `Do I need a notary for my will in ${county} County?`,
-        answer: `While Ohio doesn't require wills to be notarized, adding a notarized self-proving affidavit makes probate smoother. We can witness and notarize your will for maximum legal protection.`
-      },
-      {
-        question: `Can you notarize estate documents at a hospital in ${county} County?`,
-        answer: `Yes, we regularly provide bedside notarization at hospitals, nursing homes, and assisted living facilities throughout ${county} County. We understand the urgency these situations require.`
-      },
-      {
-        question: `How many witnesses do I need for a power of attorney in Ohio?`,
-        answer: `Ohio generally requires one witness for a power of attorney (who cannot be the agent named). The document must also be notarized. We can provide witnesses if needed.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Who can help with estate planning documents in ${county} County, Ohio?`,
-      answer: `Signed on Time provides mobile notary services for estate planning documents throughout ${county} County including wills, powers of attorney, and healthcare directives. We travel to homes, hospitals, and care facilities.`
-    })
-  },
-  'apostille-guides': {
-    intro: (county, cities) => `
-      <p>Need documents authenticated for international use in <strong>${county} County, Ohio</strong>? Our apostille and authentication services help ${cities.slice(0, 4).join(', ')}, residents prepare documents for use abroad in Hague Convention countries.</p>
+    'apostille-guides': `
+      <p>Need documents authenticated for international use? Our <strong>apostille services in ${city.name}, Ohio ${city.zip}</strong> help you prepare documents for use abroad in Hague Convention countries.</p>
       
-      <h2>Apostille Services for ${county} County Residents</h2>
-      <p>An apostille is an international certification that authenticates documents for use in foreign countries. We help ${county} County residents navigate the apostille process with the Ohio Secretary of State.</p>
+      <h2>Apostille Services for ${city.name} Residents</h2>
+      <p>An apostille is an international certification that authenticates documents for use in foreign countries. We help ${city.name} residents navigate the apostille process with the Ohio Secretary of State.</p>
       
-      <h3>Documents We Help Apostille</h3>
+      <h3>Documents We Help Apostille in ${city.name}</h3>
       <ul>
         <li><strong>Birth Certificates</strong> – For international adoption, marriage, or residency</li>
         <li><strong>Marriage Certificates</strong> – For spouse visas and international records</li>
@@ -253,88 +375,40 @@ const CATEGORY_CONTENT_TEMPLATES: Record<string, {
         <li><strong>Legal Documents</strong> – Court orders, powers of attorney, and more</li>
       </ul>
       
-      <h3>Ohio Apostille Process for ${county} County</h3>
-      <p>Documents requiring apostilles must first be notarized (if applicable), then submitted to the Ohio Secretary of State. We can notarize your documents and guide you through the state submission process.</p>
+      <h3>Ohio Apostille Process</h3>
+      <p>Documents requiring apostilles must first be notarized (if applicable), then submitted to the Ohio Secretary of State. We notarize documents and guide you through state submission.</p>
       
-      <h2>Apostille Service Areas in ${county} County</h2>
-      <p>We assist clients throughout:</p>
-      <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
-      </ul>
+      <h2>Quick Service for ${city.name} Residents</h2>
+      <p>Standard processing takes 5-7 business days. Rush processing available. We notarize same-day to start your apostille process quickly.</p>
     `,
-    services: ['Birth Certificates', 'Marriage Certificates', 'Diplomas', 'Business Docs', 'Legal Docs'],
-    faqs: (county, majorCity) => [
-      {
-        question: `How long does the apostille process take for ${county} County documents?`,
-        answer: `The Ohio Secretary of State typically processes apostilles within 5-7 business days. Rush processing is available for an additional fee. We can notarize documents same-day to start the process quickly.`
-      },
-      {
-        question: `What countries accept Ohio apostilles?`,
-        answer: `All countries that are members of the Hague Apostille Convention accept Ohio apostilles. This includes most European countries, Australia, Japan, Mexico, and many others. Non-Hague countries require embassy authentication.`
-      },
-      {
-        question: `Do all documents need notarization before apostille?`,
-        answer: `Not all documents require notarization before apostille. State-issued documents (birth certificates, marriage certificates) typically don't need prior notarization. Private documents usually do require notarization first.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Where can I get apostille services in ${county} County, Ohio?`,
-      answer: `Signed on Time helps ${county} County residents with document notarization for apostille and guidance on Ohio Secretary of State submission. We serve all communities with mobile service.`
-    })
-  },
-  'business-guides': {
-    intro: (county, cities) => `
-      <p>Keep your business moving with professional <strong>notary services for ${county} County businesses</strong>. We serve companies in ${cities.slice(0, 4).join(', ')}, and throughout the region with on-site mobile notarization.</p>
+    'business-guides': `
+      <p>Keep your business moving with professional <strong>notary services in ${city.name}, Ohio ${city.zip}</strong>. We provide on-site mobile notarization for companies throughout ${city.name} and ${city.county} County.</p>
       
-      <h2>Business Notary Services in ${county} County</h2>
-      <p>Business documents often require quick turnaround and professional handling. Our mobile notary service comes directly to your ${county} County office, job site, or meeting location.</p>
+      <h2>Business Notary Services in ${city.name}</h2>
+      <p>Business documents often require quick turnaround and professional handling. Our mobile notary service comes directly to your ${city.name} office, job site, or meeting location.</p>
       
-      <h3>Business Documents We Notarize</h3>
+      <h3>Business Documents We Notarize in ${city.name}</h3>
       <ul>
         <li><strong>Contracts</strong> – Business agreements, vendor contracts, and NDAs</li>
-        <li><strong>Corporate Documents</strong> – Articles of incorporation, bylaws, and resolutions</li>
+        <li><strong>Corporate Documents</strong> – Articles of incorporation, bylaws, resolutions</li>
         <li><strong>Affidavits</strong> – Business affidavits and sworn statements</li>
         <li><strong>Permits and Licenses</strong> – Applications requiring notarization</li>
-        <li><strong>Banking Documents</strong> – Signature cards, corporate resolutions, and more</li>
+        <li><strong>Banking Documents</strong> – Signature cards, corporate resolutions</li>
       </ul>
       
-      <h3>Why ${county} County Businesses Choose Us</h3>
-      <p>We understand business timelines. Same-day service, professional appearance, and reliable scheduling make us the choice for ${county} County companies from startups to established corporations.</p>
+      <h3>Why ${city.name} Businesses Choose Us</h3>
+      <p>Same-day service, professional appearance, and reliable scheduling make us the choice for ${city.name} companies from startups to established corporations.</p>
       
-      <h2>Business Service Areas in ${county} County</h2>
-      <p>We serve businesses throughout:</p>
-      <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
-      </ul>
+      <h2>Volume Pricing for ${city.name} Businesses</h2>
+      <p>Multiple documents or employees? We offer competitive volume pricing for ${city.name} businesses with recurring notarization needs.</p>
     `,
-    services: ['Contracts', 'Corporate Docs', 'Affidavits', 'Permits', 'Banking Documents'],
-    faqs: (county, majorCity) => [
-      {
-        question: `Can you come to our office in ${county} County?`,
-        answer: `Absolutely! We provide on-site mobile notary services throughout ${county} County. We regularly visit offices in ${majorCity} and surrounding business districts for quick, professional notarization.`
-      },
-      {
-        question: `What if we need notarization for multiple employees?`,
-        answer: `We offer volume pricing for businesses with multiple documents or signers. Contact us to discuss your needs and we'll provide a competitive quote for your ${county} County location.`
-      },
-      {
-        question: `Do you handle confidential business documents?`,
-        answer: `Yes, we maintain strict confidentiality for all business documents. Our notaries are bonded and understand the sensitive nature of corporate documentation.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Where can businesses get notary services in ${county} County?`,
-      answer: `Signed on Time provides mobile business notary services throughout ${county} County. We come to your office for contracts, corporate documents, and all business notarization needs.`
-    })
-  },
-  'healthcare-guides': {
-    intro: (county, cities) => `
-      <p>When medical situations require urgent document signing, our <strong>healthcare notary services in ${county} County, Ohio</strong> provide compassionate, professional assistance. We serve hospitals, nursing homes, and private residences in ${cities.slice(0, 4).join(', ')}, and surrounding areas.</p>
+    'healthcare-guides': `
+      <p>When medical situations require urgent document signing, our <strong>healthcare notary services in ${city.name}, Ohio ${city.zip}</strong> provide compassionate, professional assistance at hospitals, nursing homes, and private residences.</p>
       
-      <h2>Healthcare Notary Services in ${county} County</h2>
-      <p>Healthcare document needs often arise unexpectedly. Our mobile notaries understand the sensitivity of medical situations and provide calm, professional service at hospitals and care facilities throughout ${county} County.</p>
+      <h2>Healthcare Notary Services in ${city.name}</h2>
+      <p>Healthcare document needs often arise unexpectedly. Our mobile notaries understand the sensitivity of medical situations and provide calm, professional service at healthcare facilities throughout ${city.name}.</p>
       
-      <h3>Healthcare Documents We Notarize</h3>
+      <h3>Healthcare Documents We Notarize in ${city.name}</h3>
       <ul>
         <li><strong>Healthcare Powers of Attorney</strong> – Designate medical decision makers</li>
         <li><strong>Living Wills</strong> – Document end-of-life care wishes</li>
@@ -343,45 +417,66 @@ const CATEGORY_CONTENT_TEMPLATES: Record<string, {
         <li><strong>Medical Affidavits</strong> – Sworn statements for healthcare matters</li>
       </ul>
       
-      <h3>Hospital and Facility Notarization in ${county} County</h3>
-      <p>We work with hospital staff and family members to coordinate notarization visits. We understand patient alertness requirements and work efficiently while maintaining proper legal standards.</p>
+      <h3>Hospital Visits in ${city.name}</h3>
+      <p>We coordinate with hospital staff and family members for bedside notarization. We understand patient alertness requirements and work efficiently while maintaining proper legal standards.</p>
       
-      <h2>Healthcare Service Areas in ${county} County</h2>
-      <p>We serve healthcare facilities and homes throughout:</p>
-      <ul>
-        ${cities.map(city => `<li>${city}</li>`).join('\n        ')}
-      </ul>
-    `,
-    services: ['Healthcare POA', 'Living Wills', 'HIPAA Forms', 'DNR Orders', 'Medical Affidavits'],
-    faqs: (county, majorCity) => [
-      {
-        question: `Can you come to the hospital in ${county} County?`,
-        answer: `Yes, we regularly provide bedside notarization at hospitals throughout ${county} County including major facilities in ${majorCity}. We coordinate with nursing staff for appropriate timing.`
-      },
-      {
-        question: `What if the patient can't hold a pen?`,
-        answer: `Ohio law allows for signature by mark (X) with proper witnessing. We can guide you through alternatives that meet legal requirements while accommodating physical limitations.`
-      },
-      {
-        question: `How quickly can you arrive for an urgent healthcare signing?`,
-        answer: `For urgent healthcare situations in ${county} County, we prioritize availability and can often arrive within 2-4 hours. Same-day service is available for most healthcare notarization needs.`
-      }
-    ],
-    quickAnswer: (county) => ({
-      question: `Who provides hospital notary services in ${county} County, Ohio?`,
-      answer: `Signed on Time offers compassionate healthcare notary services throughout ${county} County including hospital bedside signings, nursing home visits, and urgent healthcare document notarization.`
-    })
-  }
+      <h2>Urgent Healthcare Signings</h2>
+      <p>For urgent healthcare situations in ${city.name}, we prioritize availability and can often arrive within 2-4 hours. Same-day service available for most healthcare notarization needs.</p>
+    `
+  };
+  return templates[categorySlug] || templates['general-notary-guides'];
 };
 
-// Generate all location-specific blog posts
-export const generateLocationBlogPosts = (): BlogPost[] => {
+// Generate city-level FAQs
+const generateCityFaqs = (city: { name: string; county: string }, categorySlug: string): Array<{ question: string; answer: string }> => {
+  const faqTemplates: Record<string, Array<{ question: string; answer: string }>> = {
+    'general-notary-guides': [
+      { question: `How quickly can a notary arrive in ${city.name}?`, answer: `We offer same-day appointments throughout ${city.name}. For urgent requests, we can often arrive within 2-4 hours.` },
+      { question: `What ID do I need for notarization in ${city.name}?`, answer: `You need a valid, unexpired government-issued photo ID such as a driver's license, passport, or state ID.` },
+      { question: `How much does mobile notary cost in ${city.name}?`, answer: `General notary services start at $10 per notarization plus a travel fee. Contact us for a specific quote.` }
+    ],
+    'loan-signing-guides': [
+      { question: `How long does a loan signing take in ${city.name}?`, answer: `Most residential loan signings take 45-60 minutes with time for questions and proper document review.` },
+      { question: `Do you offer evening loan signings in ${city.name}?`, answer: `Yes! We offer flexible scheduling including evenings and weekends for ${city.name} closings.` },
+      { question: `What should I bring to my ${city.name} loan signing?`, answer: `Bring two forms of ID (one photo ID required), any closing funds, and review your closing disclosure beforehand.` }
+    ],
+    'real-estate-guides': [
+      { question: `How do I transfer property in ${city.name}?`, answer: `Property transfers require signing before a notary, then recording with ${city.county} County Recorder's Office.` },
+      { question: `Can you meet at my title company in ${city.name}?`, answer: `Yes, we regularly meet at title companies, attorney offices, and real estate agencies in ${city.name}.` },
+      { question: `What documents do I need for a deed transfer?`, answer: `Typically the deed document and valid photo ID. Your title company or attorney will provide the specific documents.` }
+    ],
+    'estate-planning-guides': [
+      { question: `Do I need a notary for my will in ${city.name}?`, answer: `While not required in Ohio, a notarized self-proving affidavit makes probate smoother. We recommend it.` },
+      { question: `Can you come to the hospital in ${city.name}?`, answer: `Yes, we provide bedside notarization at hospitals and care facilities throughout ${city.name}.` },
+      { question: `How many witnesses for a POA in ${city.name}?`, answer: `Ohio generally requires one witness for POA (not the agent named) plus notarization. We can provide witnesses.` }
+    ],
+    'apostille-guides': [
+      { question: `How long for apostille from ${city.name}?`, answer: `Ohio Secretary of State processes in 5-7 business days. Rush available. We notarize same-day.` },
+      { question: `What countries accept Ohio apostilles?`, answer: `All Hague Convention countries including most of Europe, Australia, Japan, Mexico, and many others.` },
+      { question: `Do ${city.name} documents need notarization before apostille?`, answer: `State-issued documents usually don't; private documents typically require notarization first.` }
+    ],
+    'business-guides': [
+      { question: `Can you come to our ${city.name} office?`, answer: `Absolutely! We provide on-site mobile notary throughout ${city.name} business districts.` },
+      { question: `What about multiple employees in ${city.name}?`, answer: `We offer volume pricing for businesses with multiple documents or signers.` },
+      { question: `Do you handle confidential business documents?`, answer: `Yes, we maintain strict confidentiality. Our notaries are bonded and professional.` }
+    ],
+    'healthcare-guides': [
+      { question: `Can you come to ${city.name} hospitals?`, answer: `Yes, we provide bedside notarization at all hospitals in ${city.name} and coordinate with nursing staff.` },
+      { question: `What if the patient in ${city.name} can't sign?`, answer: `Ohio law allows signature by mark (X) with proper witnessing. We guide you through alternatives.` },
+      { question: `How fast for urgent ${city.name} healthcare signing?`, answer: `For urgent healthcare situations, we prioritize availability and can often arrive within 2-4 hours.` }
+    ]
+  };
+  return faqTemplates[categorySlug] || faqTemplates['general-notary-guides'];
+};
+
+// Generate all county-level blog posts
+export const generateCountyBlogPosts = (): BlogPost[] => {
   const posts: BlogPost[] = [];
   const today = new Date().toISOString().split('T')[0];
   
   LOCATION_COUNTIES.forEach(county => {
     BLOG_CATEGORIES.forEach(category => {
-      const template = CATEGORY_CONTENT_TEMPLATES[category.slug];
+      const template = COUNTY_CONTENT_TEMPLATES[category.slug];
       if (!template) return;
       
       const slug = `${category.slug}-${county.slug}-ohio`;
@@ -412,8 +507,48 @@ export const generateLocationBlogPosts = (): BlogPost[] => {
   return posts;
 };
 
-// Get all location blog posts
-export const LOCATION_BLOG_POSTS = generateLocationBlogPosts();
+// Generate all city-level blog posts (168 total: 7 categories × 24 cities)
+export const generateCityBlogPosts = (): BlogPost[] => {
+  const posts: BlogPost[] = [];
+  const today = new Date().toISOString().split('T')[0];
+  
+  LOCATION_CITIES.forEach(city => {
+    BLOG_CATEGORIES.forEach(category => {
+      const slug = `${category.slug}-${city.slug}-ohio`;
+      const title = `${category.title} Services in ${city.name}, Ohio`;
+      
+      posts.push({
+        id: slug,
+        title,
+        slug,
+        serviceSlug: category.serviceSlug,
+        categorySlug: category.slug,
+        excerpt: `Professional ${category.title.toLowerCase()} in ${city.name}, Ohio ${city.zip}. Mobile notary traveling to your home, office, or hospital. Same-day appointments available.`,
+        content: generateCityContent(city, category.slug),
+        heroImage: `/assets/blog-${category.serviceSlug === 'general-notary' ? 'general-notary' : category.serviceSlug === 'loan-signings' ? 'loan-signing' : category.serviceSlug === 'estate-plans' ? 'estate-planning' : category.serviceSlug === 'real-estate' ? 'real-estate' : category.serviceSlug === 'apostille' ? 'apostille' : 'business'}.jpg`,
+        metaTitle: `${category.title} in ${city.name} OH ${city.zip} | Mobile Notary`,
+        metaDescription: `${category.title} in ${city.name}, Ohio ${city.zip}. Mobile notary comes to you. Same-day service. Call ${BUSINESS_CONFIG.phone}.`,
+        publishDate: today,
+        author: 'Terry May',
+        tags: [category.title, city.name, city.county + ' County', 'Ohio Notary', city.zip],
+        featured: false,
+        readTime: 5,
+        faqs: generateCityFaqs(city, category.slug),
+        quickAnswer: {
+          question: `Where can I find ${category.title.toLowerCase()} in ${city.name}, Ohio?`,
+          answer: `Signed on Time provides professional ${category.title.toLowerCase()} in ${city.name}, OH ${city.zip}. Our mobile notary travels to you for convenient same-day service.`
+        }
+      });
+    });
+  });
+  
+  return posts;
+};
+
+// Combined location blog posts (county + city level = 42 + 168 = 210 total)
+export const COUNTY_BLOG_POSTS = generateCountyBlogPosts();
+export const CITY_BLOG_POSTS = generateCityBlogPosts();
+export const LOCATION_BLOG_POSTS = [...COUNTY_BLOG_POSTS, ...CITY_BLOG_POSTS];
 
 // Get location blog post by slug
 export const getLocationPostBySlug = (slug: string): BlogPost | undefined => {
@@ -425,19 +560,22 @@ export const getLocationBlogSlugs = (): string[] => {
   return LOCATION_BLOG_POSTS.map(post => `/blog/${post.slug}`);
 };
 
-// Get posts by county
-export const getLocationPostsByCounty = (countySlug: string): BlogPost[] => {
-  const countyName = LOCATION_COUNTIES.find(c => c.slug === countySlug)?.name;
-  if (!countyName) return [];
-  return LOCATION_BLOG_POSTS.filter(post => 
-    post.tags?.includes(countyName + ' County')
-  );
+// Get county posts by category (for internal linking)
+export const getCountyPostsByCategory = (categorySlug: string): BlogPost[] => {
+  return COUNTY_BLOG_POSTS.filter(post => post.categorySlug === categorySlug);
 };
 
-// Get posts by category for a specific county
-export const getLocationPostsByCategoryAndCounty = (categorySlug: string, countySlug: string): BlogPost | undefined => {
-  const slug = `${categorySlug}-${countySlug}-ohio`;
-  return LOCATION_BLOG_POSTS.find(post => post.slug === slug);
+// Get city posts by category (for internal linking)
+export const getCityPostsByCategory = (categorySlug: string): BlogPost[] => {
+  return CITY_BLOG_POSTS.filter(post => post.categorySlug === categorySlug);
+};
+
+// Get city posts by county slug
+export const getCityPostsByCounty = (countyName: string, categorySlug?: string): BlogPost[] => {
+  return CITY_BLOG_POSTS.filter(post => {
+    const matchesCounty = post.tags?.includes(countyName + ' County');
+    return categorySlug ? matchesCounty && post.categorySlug === categorySlug : matchesCounty;
+  });
 };
 
 export default LOCATION_BLOG_POSTS;
