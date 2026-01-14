@@ -7,12 +7,62 @@ export interface GMBBlogPost {
   content: string;         // Max 1,500 chars for GMB
   callToAction: string;    // Button text
   ctaLink: string;         // Website URL
-  category: 'location' | 'service' | 'seasonal' | 'tips';
+  category: 'location' | 'major-city' | 'service' | 'seasonal' | 'tips';
   linkedPage: string;      // Internal page path
   publishDate?: string;    // Suggested publish date
   county?: string;         // For location posts
   city?: string;           // For city-specific posts
+  weekNumber?: number;     // For calendar scheduling
+  dayOfWeek?: 'Monday' | 'Wednesday' | 'Friday';
 }
+
+// Posting Calendar - 15 weeks, 2-3 posts per week
+export interface PostSchedule {
+  postId: number;
+  suggestedDate: string;
+  dayOfWeek: 'Monday' | 'Wednesday' | 'Friday';
+  weekNumber: number;
+  theme: string;
+}
+
+export const GMB_POSTING_CALENDAR: PostSchedule[] = [
+  // Week 1-2: Hamilton & Warren Counties
+  { postId: 1, suggestedDate: "2026-01-19", dayOfWeek: "Monday", weekNumber: 1, theme: "Location" },
+  { postId: 2, suggestedDate: "2026-01-21", dayOfWeek: "Wednesday", weekNumber: 1, theme: "Location" },
+  { postId: 3, suggestedDate: "2026-01-23", dayOfWeek: "Friday", weekNumber: 1, theme: "Location" },
+  { postId: 4, suggestedDate: "2026-01-26", dayOfWeek: "Monday", weekNumber: 2, theme: "Location" },
+  { postId: 5, suggestedDate: "2026-01-28", dayOfWeek: "Wednesday", weekNumber: 2, theme: "Location" },
+  // Week 3-4: Montgomery & Butler Counties
+  { postId: 6, suggestedDate: "2026-02-02", dayOfWeek: "Monday", weekNumber: 3, theme: "Location" },
+  { postId: 7, suggestedDate: "2026-02-04", dayOfWeek: "Wednesday", weekNumber: 3, theme: "Location" },
+  { postId: 8, suggestedDate: "2026-02-06", dayOfWeek: "Friday", weekNumber: 3, theme: "Location" },
+  { postId: 9, suggestedDate: "2026-02-09", dayOfWeek: "Monday", weekNumber: 4, theme: "Location" },
+  // Week 5-6: Major Cities Focus
+  { postId: 10, suggestedDate: "2026-02-16", dayOfWeek: "Monday", weekNumber: 5, theme: "Major City" },
+  { postId: 11, suggestedDate: "2026-02-18", dayOfWeek: "Wednesday", weekNumber: 5, theme: "Major City" },
+  { postId: 12, suggestedDate: "2026-02-20", dayOfWeek: "Friday", weekNumber: 5, theme: "Major City" },
+  { postId: 13, suggestedDate: "2026-02-23", dayOfWeek: "Monday", weekNumber: 6, theme: "Major City" },
+  { postId: 14, suggestedDate: "2026-02-25", dayOfWeek: "Wednesday", weekNumber: 6, theme: "Major City" },
+  { postId: 15, suggestedDate: "2026-02-27", dayOfWeek: "Friday", weekNumber: 6, theme: "Major City" },
+  // Week 7-9: Service Deep Dives
+  { postId: 16, suggestedDate: "2026-03-02", dayOfWeek: "Monday", weekNumber: 7, theme: "Service" },
+  { postId: 17, suggestedDate: "2026-03-04", dayOfWeek: "Wednesday", weekNumber: 7, theme: "Service" },
+  { postId: 18, suggestedDate: "2026-03-06", dayOfWeek: "Friday", weekNumber: 7, theme: "Service" },
+  { postId: 19, suggestedDate: "2026-03-09", dayOfWeek: "Monday", weekNumber: 8, theme: "Service" },
+  { postId: 20, suggestedDate: "2026-03-11", dayOfWeek: "Wednesday", weekNumber: 8, theme: "Service" },
+  { postId: 21, suggestedDate: "2026-03-13", dayOfWeek: "Friday", weekNumber: 8, theme: "Service" },
+  { postId: 22, suggestedDate: "2026-03-16", dayOfWeek: "Monday", weekNumber: 9, theme: "Service" },
+  { postId: 23, suggestedDate: "2026-03-18", dayOfWeek: "Wednesday", weekNumber: 9, theme: "Service" },
+  // Week 10-12: Seasonal Content
+  { postId: 24, suggestedDate: "2026-03-23", dayOfWeek: "Monday", weekNumber: 10, theme: "Seasonal" },
+  { postId: 25, suggestedDate: "2026-03-25", dayOfWeek: "Wednesday", weekNumber: 10, theme: "Seasonal" },
+  { postId: 26, suggestedDate: "2026-03-27", dayOfWeek: "Friday", weekNumber: 10, theme: "Seasonal" },
+  { postId: 27, suggestedDate: "2026-03-30", dayOfWeek: "Monday", weekNumber: 11, theme: "Seasonal" },
+  // Week 13-15: Educational Tips
+  { postId: 28, suggestedDate: "2026-04-06", dayOfWeek: "Monday", weekNumber: 13, theme: "Tips" },
+  { postId: 29, suggestedDate: "2026-04-08", dayOfWeek: "Wednesday", weekNumber: 13, theme: "Tips" },
+  { postId: 30, suggestedDate: "2026-04-10", dayOfWeek: "Friday", weekNumber: 13, theme: "Tips" },
+];
 
 export const GMB_BLOG_POSTS: GMBBlogPost[] = [
   // ============================================
