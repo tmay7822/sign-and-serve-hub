@@ -427,3 +427,74 @@ export const getDocumentCount = (): number => ALL_DOCUMENTS.length;
 
 // Get category count
 export const getCategoryCount = (): number => DOCUMENT_CATEGORIES.length;
+
+// =====================================
+// TRENDING DOCUMENTS - Seasonal/Timely
+// =====================================
+
+export interface TrendingDocument {
+  document: string;
+  trend: string;
+  reason: string;
+  peak: string;
+}
+
+export const TRENDING_DOCUMENTS: TrendingDocument[] = [
+  // Tax Season (Jan-Apr)
+  { document: "IRA/401k Beneficiary Change", trend: "Tax Season", reason: "Annual review during tax prep", peak: "Jan-Apr" },
+  { document: "Trust Certification", trend: "Tax Season", reason: "Bank account updates", peak: "Jan-Apr" },
+  { document: "Financial Statement", trend: "Tax Season", reason: "Loan applications", peak: "Jan-Apr" },
+  
+  // Spring Real Estate (Mar-Jun)
+  { document: "Property Deed", trend: "Home Buying Season", reason: "Peak real estate activity", peak: "Mar-Jun" },
+  { document: "Real Estate Contract", trend: "Home Buying Season", reason: "Spring home sales surge", peak: "Mar-Jun" },
+  { document: "Loan Agreement", trend: "Home Buying Season", reason: "Mortgage closings", peak: "Mar-Jun" },
+  
+  // Back to School (Jul-Sep)
+  { document: "School Enrollment Forms", trend: "Back to School", reason: "New school year enrollment", peak: "Jul-Sep" },
+  { document: "Study Abroad Consent", trend: "Back to School", reason: "Fall semester prep", peak: "Jul-Sep" },
+  { document: "Educational Power of Attorney", trend: "Back to School", reason: "College students turning 18", peak: "Jul-Sep" },
+  { document: "Authorization for Minor to Travel", trend: "Summer Travel", reason: "Summer vacation travel", peak: "Jun-Aug" },
+  
+  // Year-End Planning (Oct-Dec)
+  { document: "Simple Will", trend: "Year-End Planning", reason: "Annual estate review", peak: "Oct-Dec" },
+  { document: "Healthcare Power of Attorney", trend: "Year-End Planning", reason: "Holiday family discussions", peak: "Oct-Dec" },
+  { document: "Living Will", trend: "Year-End Planning", reason: "Year-end estate planning", peak: "Oct-Dec" },
+  { document: "Beneficiary Change Forms", trend: "Year-End Planning", reason: "Annual benefit enrollment", peak: "Oct-Dec" },
+  
+  // Military (Year-round with peaks)
+  { document: "Deployment POA", trend: "Deployment Season", reason: "Pre-deployment preparation", peak: "Year-round" },
+  { document: "VA Benefits Application", trend: "VA Benefits", reason: "Benefits enrollment periods", peak: "Oct-Nov" },
+  
+  // Immigration (Year-round)
+  { document: "Affidavit of Support (I-864)", trend: "Immigration", reason: "Visa sponsorship", peak: "Year-round" },
+  { document: "Naturalization Application (N-400)", trend: "Immigration", reason: "Citizenship applications", peak: "Year-round" }
+];
+
+// Get currently trending documents based on month
+export const getCurrentTrendingDocuments = (): TrendingDocument[] => {
+  const month = new Date().getMonth(); // 0-11
+  const monthRanges: Record<string, number[]> = {
+    "Jan-Apr": [0, 1, 2, 3],
+    "Mar-Jun": [2, 3, 4, 5],
+    "Jun-Aug": [5, 6, 7],
+    "Jul-Sep": [6, 7, 8],
+    "Oct-Dec": [9, 10, 11],
+    "Oct-Nov": [9, 10],
+    "Year-round": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  };
+  
+  return TRENDING_DOCUMENTS.filter(doc => {
+    const range = monthRanges[doc.peak] || [];
+    return range.includes(month);
+  });
+};
+
+// Get current season name for display
+export const getCurrentSeason = (): string => {
+  const month = new Date().getMonth();
+  if (month >= 0 && month <= 3) return "Tax Season";
+  if (month >= 3 && month <= 5) return "Home Buying Season";
+  if (month >= 5 && month <= 8) return "Back to School";
+  return "Year-End Planning";
+};

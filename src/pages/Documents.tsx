@@ -5,12 +5,13 @@ import { DocumentSearch } from '@/components/DocumentSearch';
 import TrustSignals from '@/components/TrustSignals';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getDocumentCount, getCategoryCount } from '@/data/documents';
-import { FileText, Search, CheckCircle2, Clock } from 'lucide-react';
+import { getDocumentCount, getCategoryCount, getCurrentSeason } from '@/data/documents';
+import { FileText, Search, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
 
 const Documents = () => {
   const documentCount = getDocumentCount();
   const categoryCount = getCategoryCount();
+  const currentSeason = getCurrentSeason();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,6 +63,10 @@ const Documents = () => {
                 <div className="flex items-center gap-2">
                   <Search className="h-5 w-5" />
                   <span className="font-semibold">{categoryCount} Categories</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5" />
+                  <span className="font-semibold">{currentSeason}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5" />
