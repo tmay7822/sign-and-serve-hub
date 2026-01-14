@@ -79,18 +79,6 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
         </div>
       </section>
 
-      {/* Quick Answer for AI Search */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <QuickAnswerSection
-            question={answerData.question}
-            answer={answerData.answer}
-            location={BUSINESS_CONFIG.serviceArea.primary}
-            service={service.serviceName.toLowerCase()}
-          />
-        </div>
-      </section>
-
       {/* Service Details with Document List */}
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -121,6 +109,16 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
                   </ul>
                 </div>
               )}
+              
+              {/* Quick Answer for AI Search - Below Document List */}
+              <div className="mt-8">
+                <QuickAnswerSection
+                  question={answerData.question}
+                  answer={answerData.answer}
+                  location={BUSINESS_CONFIG.serviceArea.primary}
+                  service={service.serviceName.toLowerCase()}
+                />
+              </div>
             </div>
             
             {/* Sidebar - Right column */}

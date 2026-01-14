@@ -116,19 +116,25 @@ const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            {/* Quick Answer Section for AI Search */}
+            <article className="prose prose-lg max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            </article>
+
+            {/* Quick Answer Section for AI Search - After Content */}
             {post.quickAnswer && (
-              <QuickAnswerSection
-                question={post.quickAnswer.question}
-                answer={post.quickAnswer.answer}
-                location="Cincinnati-Dayton Metro"
-                service="notary services"
-              />
+              <div className="mt-8">
+                <QuickAnswerSection
+                  question={post.quickAnswer.question}
+                  answer={post.quickAnswer.answer}
+                  location="Cincinnati-Dayton Metro"
+                  service="notary services"
+                />
+              </div>
             )}
 
-            {/* FAQ Section with Enhanced Schema */}
+            {/* FAQ Section with Enhanced Schema - After Content */}
             {post.faqs && post.faqs.length > 0 && (
-              <div className="mb-8">
+              <div className="mt-8">
                 <h2 className="text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2>
                 <div className="space-y-4">
                   {post.faqs.map((faq, index) => (
@@ -140,10 +146,6 @@ const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
                 </div>
               </div>
             )}
-
-            <article className="prose prose-lg max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
-            </article>
             
             {post.tags.length > 0 && (
               <div className="mt-8 pt-8 border-t">
