@@ -42,6 +42,7 @@ const BookNow = lazy(() => import('./pages/BookNow'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
+const SiteMapViewer = lazy(() => import('./pages/admin/SiteMapViewer'));
 const DynamicLocationPage = lazy(() => import('./pages/DynamicLocationPage'));
 const DynamicCityPage = lazy(() => import('./pages/DynamicCityPage'));
 const DynamicCountyPage = lazy(() => import('./pages/DynamicCountyPage'));
@@ -120,6 +121,7 @@ export const routes: RouteRecord[] = [
       
       // Admin (not pre-rendered)
       { path: 'admin', element: <AdminDashboard /> },
+      { path: 'admin/sitemap', element: <SiteMapViewer /> },
       
       // Main Service Hubs
       { path: 'general-notary', element: <GeneralNotary /> },
