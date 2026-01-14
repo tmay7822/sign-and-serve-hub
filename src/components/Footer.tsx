@@ -2,6 +2,7 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Link } from 'react-router-dom';
 import { SocialMediaLinks } from '@/components/SocialMediaLinks';
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 import trustDeliveryLogo from '@/assets/trust-delivery-logo.png';
 import lssLogo from '@/assets/lss-logo.png';
 import nnaLogo from '@/assets/nna-logo.png';
@@ -47,6 +48,9 @@ const Footer = () => {
               Certified, insured, and background-checked for your peace of mind.
             </p>
             <SocialMediaLinks className="justify-start" iconSize={18} variant="footer" />
+            <div className="mt-3">
+              <GoogleReviewsBadge variant="compact" className="text-white/80 hover:text-brand-gold [&_svg_path]:fill-current" />
+            </div>
           </div>
 
           {/* Combined Links */}

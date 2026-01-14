@@ -1,5 +1,6 @@
 import { BUSINESS_CONFIG } from '@/config/business';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 
 const HeroSection = () => {
   return (
@@ -44,6 +45,10 @@ const HeroSection = () => {
             <StandardCTAButtons 
               className="max-w-2xl mx-auto"
             />
+            
+            <div className="mt-4 flex justify-center">
+              <GoogleReviewsBadge variant="compact" />
+            </div>
           </div>
         </div>
       </div>

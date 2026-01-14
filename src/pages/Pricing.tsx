@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Clock, Shield, Phone } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { EMERGENCY_FEES } from '@/config/servicepricing';
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 
 export default function Pricing() {
   useEffect(() => {
@@ -37,6 +38,9 @@ export default function Pricing() {
                 Professional mobile notary services with clear, upfront pricing. 
                 No hidden fees, no surprises.
               </p>
+              <div className="flex justify-center mb-6">
+                <GoogleReviewsBadge variant="card" />
+              </div>
               <StandardCTAButtons />
             </div>
           </div>
