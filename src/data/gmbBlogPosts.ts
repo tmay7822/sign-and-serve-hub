@@ -62,6 +62,17 @@ export const GMB_POSTING_CALENDAR: PostSchedule[] = [
   { postId: 28, suggestedDate: "2026-04-06", dayOfWeek: "Monday", weekNumber: 13, theme: "Tips" },
   { postId: 29, suggestedDate: "2026-04-08", dayOfWeek: "Wednesday", weekNumber: 13, theme: "Tips" },
   { postId: 30, suggestedDate: "2026-04-10", dayOfWeek: "Friday", weekNumber: 13, theme: "Tips" },
+  // Week 14-16: Additional City Posts
+  { postId: 31, suggestedDate: "2026-04-13", dayOfWeek: "Monday", weekNumber: 14, theme: "Major City" },
+  { postId: 32, suggestedDate: "2026-04-15", dayOfWeek: "Wednesday", weekNumber: 14, theme: "Major City" },
+  { postId: 33, suggestedDate: "2026-04-17", dayOfWeek: "Friday", weekNumber: 14, theme: "Major City" },
+  { postId: 34, suggestedDate: "2026-04-20", dayOfWeek: "Monday", weekNumber: 15, theme: "Major City" },
+  { postId: 35, suggestedDate: "2026-04-22", dayOfWeek: "Wednesday", weekNumber: 15, theme: "Major City" },
+  { postId: 36, suggestedDate: "2026-04-24", dayOfWeek: "Friday", weekNumber: 15, theme: "Major City" },
+  { postId: 37, suggestedDate: "2026-04-27", dayOfWeek: "Monday", weekNumber: 16, theme: "Major City" },
+  { postId: 38, suggestedDate: "2026-04-29", dayOfWeek: "Wednesday", weekNumber: 16, theme: "Major City" },
+  { postId: 39, suggestedDate: "2026-05-01", dayOfWeek: "Friday", weekNumber: 16, theme: "Major City" },
+  { postId: 40, suggestedDate: "2026-05-04", dayOfWeek: "Monday", weekNumber: 17, theme: "Major City" },
 ];
 
 export const GMB_BLOG_POSTS: GMBBlogPost[] = [
@@ -1178,6 +1189,373 @@ Call (513) 226-9052 for transparent, upfront pricing!`,
     ctaLink: "https://www.signedontime.com/contact",
     category: "tips",
     linkedPage: "/blog/notary-fees-and-mobile-travel"
+  },
+
+  // ============================================
+  // ADDITIONAL MAJOR CITY POSTS (10 posts)
+  // ============================================
+  {
+    id: 31,
+    title: "Mobile Notary in Beavercreek, OH - Near Wright-Patt AFB",
+    content: `Need a notary in Beavercreek? Signed On Time provides professional mobile notary services to Beavercreek and the Wright-Patterson AFB area.
+
+We specialize in:
+• Military document notarizations
+• Real estate closings
+• Estate planning documents
+• Powers of attorney
+• I-9 employment verification
+
+CONVENIENT LOCATIONS WE SERVE:
+📍 Beavercreek neighborhoods
+📍 Wright-Patterson AFB housing
+📍 The Greene Town Center area
+📍 Fairfield Commons area
+
+WHY CHOOSE US:
+✅ Same-day appointments available
+✅ Evening and weekend service
+✅ NNA certified & background-checked
+✅ Military-friendly service
+
+We understand the unique needs of military families and civilians working at Wright-Patt. We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052 today!`,
+    callToAction: "Schedule Now",
+    ctaLink: "https://www.signedontime.com/book-now",
+    category: "major-city",
+    linkedPage: "/notary-beavercreek-45431",
+    county: "Greene",
+    city: "Beavercreek"
+  },
+  {
+    id: 32,
+    title: "Lebanon Ohio Mobile Notary - Warren County Seat",
+    content: `Looking for a notary in Lebanon, Ohio? Signed On Time serves Lebanon and surrounding Warren County communities with professional mobile notary services.
+
+OUR SERVICES IN LEBANON:
+• Loan signings & mortgage closings
+• Wills, trusts, and POA documents
+• Real estate deed transfers
+• Business contracts
+• Court document notarizations
+
+WE COME TO YOU:
+📍 Downtown Lebanon
+📍 Historic district
+📍 Lebanon business parks
+📍 Surrounding townships
+
+As the Warren County seat, Lebanon has unique notary needs - from courthouse filings to real estate transactions. Our certified notary understands local requirements.
+
+SAME-DAY AVAILABILITY:
+✅ 7 days a week service
+✅ Evening appointments
+✅ We Come To You Anytime And Anywhere
+
+Perfect for busy Lebanon residents and businesses!
+
+Call (513) 226-9052 for your free quote!`,
+    callToAction: "Get a Quote",
+    ctaLink: "https://www.signedontime.com/contact",
+    category: "major-city",
+    linkedPage: "/notary-lebanon-45036",
+    county: "Warren",
+    city: "Lebanon"
+  },
+  {
+    id: 33,
+    title: "Fairborn Mobile Notary - Wright State University Area",
+    content: `Signed On Time provides mobile notary services to Fairborn and the Wright State University community.
+
+PERFECT FOR:
+🎓 Wright State students (FERPA releases, study abroad docs)
+🎓 University staff & faculty
+🏠 Fairborn homeowners
+✈️ Wright-Patterson AFB personnel
+
+OUR SERVICES:
+• Student document notarization
+• Lease agreements
+• Powers of attorney for students
+• Real estate closings
+• Estate planning documents
+
+SERVING ALL FAIRBORN:
+📍 Wright State campus area
+📍 Downtown Fairborn
+📍 Residential neighborhoods
+📍 Business districts
+
+We understand the unique needs of college students turning 18 - including the essential documents young adults need.
+
+✅ Same-day appointments
+✅ Affordable student-friendly pricing
+✅ We Come To You Anytime And Anywhere
+
+Call (513) 226-9052!`,
+    callToAction: "Book Appointment",
+    ctaLink: "https://www.signedontime.com/book-now",
+    category: "major-city",
+    linkedPage: "/notary-fairborn-45324",
+    county: "Greene",
+    city: "Fairborn"
+  },
+  {
+    id: 34,
+    title: "Springboro Mobile Notary Services - Warren County",
+    content: `Need a notary in Springboro? Signed On Time brings professional mobile notary services directly to your Springboro home or office.
+
+SPRINGBORO SERVICES:
+• Loan signings & refinances
+• Estate planning documents
+• Real estate transactions
+• Business contract notarization
+• Healthcare directives
+
+WE SERVE:
+📍 Downtown Springboro
+📍 Clearcreek Township
+📍 Austin Landing area
+📍 All Springboro neighborhoods
+
+WHY SPRINGBORO RESIDENTS CHOOSE US:
+✅ No need to drive to a notary
+✅ Same-day appointments available
+✅ Evening and weekend service
+✅ NNA certified notary
+
+Springboro families trust us for their important document needs. From first-time homebuyers to estate planning, we handle it all.
+
+We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052 today!`,
+    callToAction: "Get Free Quote",
+    ctaLink: "https://www.signedontime.com/contact",
+    category: "major-city",
+    linkedPage: "/notary-springboro-45066",
+    county: "Warren",
+    city: "Springboro"
+  },
+  {
+    id: 35,
+    title: "Centerville Ohio Mobile Notary - Montgomery County",
+    content: `Serving Centerville and Washington Township with professional mobile notary services. Signed On Time comes to you!
+
+CENTERVILLE COVERAGE:
+📍 Uptown Centerville
+📍 Washington Township
+📍 The Greene area
+📍 All residential neighborhoods
+
+OUR NOTARY SERVICES:
+• Mortgage loan closings
+• Wills and trusts
+• Powers of attorney
+• Real estate deeds
+• Business documents
+• Healthcare directives
+
+WHY CENTERVILLE TRUSTS US:
+✅ Same-day service available
+✅ Evening & weekend appointments
+✅ NNA certified & insured
+✅ Background-checked notary
+
+Centerville is known for excellent schools and family-friendly neighborhoods. We help families protect what matters with properly notarized estate documents.
+
+We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052 for your appointment!`,
+    callToAction: "Schedule Now",
+    ctaLink: "https://www.signedontime.com/book-now",
+    category: "major-city",
+    linkedPage: "/notary-centerville-45459",
+    county: "Montgomery",
+    city: "Centerville"
+  },
+  {
+    id: 36,
+    title: "Miamisburg Mobile Notary - Same Day Service Available",
+    content: `Need a notary in Miamisburg? Signed On Time provides fast, professional mobile notary services throughout Miamisburg and Miami Township.
+
+MIAMISBURG SERVICES:
+• Loan document signings
+• Estate planning notarizations
+• Real estate closings
+• Business contracts
+• Affidavits and oaths
+
+AREAS WE COVER:
+📍 Downtown Miamisburg
+📍 Austin Landing
+📍 Miami Township
+📍 All Miamisburg neighborhoods
+
+SAME-DAY APPOINTMENTS:
+✅ Available 7 days a week
+✅ Morning, afternoon, or evening
+✅ We come to your home or office
+✅ No travel fee for many locations
+
+Our certified notary serves Miamisburg businesses and residents with quick, reliable service. Perfect for busy professionals who need documents notarized without leaving work.
+
+We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052 now!`,
+    callToAction: "Get a Quote",
+    ctaLink: "https://www.signedontime.com/contact",
+    category: "major-city",
+    linkedPage: "/notary-miamisburg-45342",
+    county: "Montgomery",
+    city: "Miamisburg"
+  },
+  {
+    id: 37,
+    title: "Milford Ohio Mobile Notary - Clermont County",
+    content: `Signed On Time serves Milford and eastern Clermont County with professional mobile notary services.
+
+MILFORD NOTARY SERVICES:
+• Real estate closings
+• Loan document signings
+• Estate planning documents
+• Powers of attorney
+• Business notarizations
+
+COVERAGE AREA:
+📍 Downtown Milford
+📍 Miami Township
+📍 Terrace Park nearby
+📍 Eastern Cincinnati suburbs
+
+CONVENIENT SERVICE:
+✅ Same-day appointments
+✅ Evening availability
+✅ Weekend service
+✅ We travel to you
+
+Milford residents enjoy our convenient mobile service. No need to fight traffic or find parking - we bring professional notary services to your door.
+
+Perfect for Milford homebuyers, families, and businesses.
+
+We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052!`,
+    callToAction: "Book Now",
+    ctaLink: "https://www.signedontime.com/book-now",
+    category: "major-city",
+    linkedPage: "/notary-milford-45150",
+    county: "Clermont",
+    city: "Milford"
+  },
+  {
+    id: 38,
+    title: "Huber Heights Mobile Notary - Montgomery County North",
+    content: `Need a notary in Huber Heights? Signed On Time provides mobile notary services to Huber Heights and northern Montgomery County.
+
+SERVING HUBER HEIGHTS:
+📍 All Huber Heights neighborhoods
+📍 Wayne Township area
+📍 Near Wright-Patterson AFB
+📍 Surrounding communities
+
+OUR SERVICES:
+• Mortgage closings & refinances
+• Wills and estate documents
+• Powers of attorney
+• Military document notarization
+• Business contracts
+• I-9 verification
+
+WHY CHOOSE US:
+✅ Same-day service available
+✅ Evening appointments
+✅ Weekend availability
+✅ NNA certified notary
+
+Huber Heights residents appreciate our flexible scheduling and professional service. We come to your home, office, or any convenient location.
+
+We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052 today!`,
+    callToAction: "Schedule Appointment",
+    ctaLink: "https://www.signedontime.com/book-now",
+    category: "major-city",
+    linkedPage: "/notary-huber-heights-45424",
+    county: "Montgomery",
+    city: "Huber Heights"
+  },
+  {
+    id: 39,
+    title: "Xenia Ohio Mobile Notary - Greene County Seat",
+    content: `Looking for a notary in Xenia? Signed On Time serves the Greene County seat with professional mobile notary services.
+
+XENIA NOTARY SERVICES:
+• Court document notarizations
+• Real estate transactions
+• Estate planning documents
+• Business contracts
+• Loan signings
+
+XENIA COVERAGE:
+📍 Downtown Xenia
+📍 Greene County Courthouse area
+📍 Xenia Township
+📍 All neighborhoods
+
+AS THE COUNTY SEAT:
+Xenia has unique notary needs for court filings, property transfers, and legal documents. Our certified notary understands local requirements.
+
+✅ Same-day availability
+✅ Court-ready documents
+✅ Professional service
+✅ We Come To You Anytime And Anywhere
+
+Perfect for Xenia attorneys, real estate professionals, and residents who need reliable notary service.
+
+Call (513) 226-9052!`,
+    callToAction: "Get a Quote",
+    ctaLink: "https://www.signedontime.com/contact",
+    category: "major-city",
+    linkedPage: "/notary-xenia-45385",
+    county: "Greene",
+    city: "Xenia"
+  },
+  {
+    id: 40,
+    title: "Middletown Ohio Mobile Notary - Butler County",
+    content: `Signed On Time provides mobile notary services to Middletown and surrounding Butler County communities.
+
+MIDDLETOWN SERVICES:
+• Loan document signings
+• Real estate closings
+• Estate planning notarizations
+• Business contracts
+• Healthcare directives
+
+WE SERVE:
+📍 Downtown Middletown
+📍 Middletown business district
+📍 Surrounding townships
+📍 Industrial areas
+
+FLEXIBLE SCHEDULING:
+✅ Same-day appointments available
+✅ Morning, afternoon, or evening
+✅ Weekend service
+✅ No travel fee for many locations
+
+Middletown businesses and residents trust us for professional, reliable notary service. We come to your location - home, office, factory, or anywhere convenient.
+
+We Come To You Anytime And Anywhere.
+
+Call (513) 226-9052 for your free quote!`,
+    callToAction: "Book Appointment",
+    ctaLink: "https://www.signedontime.com/book-now",
+    category: "major-city",
+    linkedPage: "/notary-middletown-45042",
+    county: "Butler",
+    city: "Middletown"
   }
 ];
 
