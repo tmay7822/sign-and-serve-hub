@@ -71,6 +71,7 @@ const blogContent = [
 // About dropdown content
 const aboutContent = [
   { name: 'Our Story', href: '/about', description: 'Meet Signed On Time' },
+  { name: 'Reviews', href: '/reviews', description: '35 verified Google reviews' },
   { name: 'Pricing', href: '/pricing', description: 'Transparent rates' },
   { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
 ];
@@ -101,6 +102,7 @@ const mobileNavItems = [
   { name: 'Service Areas', href: '/service-areas' },
   { name: 'Blog', href: '/blog' },
   { name: 'About Us', href: '/about' },
+  { name: 'Reviews', href: '/reviews' },
   { name: 'FAQ', href: '/faq' },
 ];
 

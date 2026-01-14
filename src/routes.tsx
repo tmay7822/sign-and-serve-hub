@@ -109,6 +109,7 @@ const MilitaryVeteransNotaryGuide = lazy(() => import('./pages/blog/MilitaryVete
 const HealthcareDocumentsNotaryGuide = lazy(() => import('./pages/blog/HealthcareDocumentsNotaryGuide'));
 const Documents = lazy(() => import('./pages/Documents'));
 const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
+const Reviews = lazy(() => import('./pages/Reviews'));
 export const routes: RouteRecord[] = [
   {
     path: '/',
@@ -150,6 +151,7 @@ export const routes: RouteRecord[] = [
       { path: 'contact', element: <Contact /> },
       { path: 'pricing', element: <Pricing /> },
       { path: 'documents', element: <Documents /> },
+      { path: 'reviews', element: <Reviews /> },
       { path: 'service-areas', element: <ServiceAreas /> },
       { path: 'privacy-policy', element: <PrivacyPolicy /> },
       { path: 'terms-of-service', element: <TermsOfService /> },
