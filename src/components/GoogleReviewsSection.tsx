@@ -4,7 +4,7 @@ import { Star, ExternalLink, MapPin } from 'lucide-react';
 import { GOOGLE_REVIEWS_AGGREGATE, getFeaturedReviews } from '@/data/googleReviews';
 
 const GoogleLogo = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+  <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
     <path
       fill="#4285F4"
       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -24,6 +24,18 @@ const GoogleLogo = () => (
   </svg>
 );
 
+const formatRelativeDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(now.getTime() - date.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays < 7) return `${diffDays} days ago`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+  return `${Math.floor(diffDays / 365)} years ago`;
+};
+
 const avatarColors = [
   'bg-blue-500',
   'bg-green-500',
@@ -31,46 +43,44 @@ const avatarColors = [
   'bg-orange-500',
   'bg-pink-500',
   'bg-teal-500',
+  'bg-indigo-500',
+  'bg-red-500',
 ];
 
-const TestimonialsSection = () => {
+const GoogleReviewsSection = () => {
   const reviews = getFeaturedReviews(6);
   const { averageRating, totalReviews, gmbProfileUrl, gmbViewUrl } = GOOGLE_REVIEWS_AGGREGATE;
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Header with Google branding */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <GoogleLogo />
-            <span className="text-muted-foreground">Reviews from Google</span>
+            <span className="text-lg text-muted-foreground">Reviews from Google</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            What Our Clients Say
-          </h2>
-          
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="text-2xl font-bold text-foreground">{averageRating.toFixed(1)}</span>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <span className="text-4xl font-bold text-foreground">{averageRating.toFixed(1)}</span>
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
+                <Star key={i} className="h-6 w-6 fill-brand-gold text-brand-gold" />
               ))}
             </div>
           </div>
           
           <p className="text-muted-foreground">
-            Based on {totalReviews} verified reviews
+            Based on {totalReviews} reviews
           </p>
         </div>
 
         {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {reviews.map((review, index) => (
             <Card 
               key={review.id}
-              className="border border-brand-light hover:shadow-card transition-all duration-300 hover:scale-105"
+              className="border border-border hover:shadow-lg transition-all duration-300"
             >
               <CardContent className="p-6">
                 {/* Reviewer info */}
@@ -84,17 +94,14 @@ const TestimonialsSection = () => {
                     <p className="font-medium text-foreground truncate">
                       {review.reviewerName}
                     </p>
-                    {review.location && (
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <MapPin className="h-3 w-3" />
-                        <span>{review.location}</span>
-                      </div>
-                    )}
+                    <p className="text-sm text-muted-foreground">
+                      {formatRelativeDate(review.date)}
+                    </p>
                   </div>
                 </div>
 
                 {/* Star Rating */}
-                <div className="flex items-center gap-1 mb-4">
+                <div className="flex items-center gap-1 mb-3">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star 
                       key={i} 
@@ -103,17 +110,25 @@ const TestimonialsSection = () => {
                   ))}
                 </div>
 
-                {/* Testimonial Text */}
-                <blockquote className="text-foreground leading-relaxed line-clamp-4">
+                {/* Review Text */}
+                <blockquote className="text-foreground leading-relaxed mb-3 line-clamp-4">
                   "{review.text}"
                 </blockquote>
+
+                {/* Location Badge */}
+                {review.location && (
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5" />
+                    <span>{review.location}</span>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             variant="outline"
             size="lg"
@@ -130,7 +145,7 @@ const TestimonialsSection = () => {
           <Button
             size="lg"
             asChild
-            className="gap-2"
+            className="gap-2 bg-primary hover:bg-primary/90"
           >
             <a href={gmbProfileUrl} target="_blank" rel="noopener noreferrer">
               <Star className="h-4 w-4" />
@@ -143,4 +158,4 @@ const TestimonialsSection = () => {
   );
 };
 
-export default TestimonialsSection;
+export default GoogleReviewsSection;

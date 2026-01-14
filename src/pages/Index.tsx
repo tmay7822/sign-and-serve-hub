@@ -10,6 +10,8 @@ import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
+import ReviewSchema from '@/components/SEO/ReviewSchema';
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const Index = () => {
@@ -100,71 +102,79 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <LocalBusinessSchema />
+      <ReviewSchema />
       <Header />
       <HeroSection />
+      
+      {/* Google Reviews Badge - Trust Signal */}
+      <div className="bg-muted/30 py-4">
+        <div className="container mx-auto px-4 flex justify-center">
+          <GoogleReviewsBadge variant="card" />
+        </div>
+      </div>
+      
       <ServicesSection />
       <TrustSignals />
-        <TestimonialsSection />
-        
-        {/* Related Services Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Explore Our Services</h2>
-              <p className="text-lg text-muted-foreground mb-12">
-                From simple notarizations to complex loan signings, we handle all your document needs
-              </p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Link to="/loan-signings" className="group">
-                  <Card className="p-6 h-full hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="text-left group-hover:text-primary transition-colors">
-                        Loan Signings
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-left">
-                        Professional mortgage and refinance document signing services at your location
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </Link>
-                <Link to="/estate-plans" className="group">
-                  <Card className="p-6 h-full hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="text-left group-hover:text-primary transition-colors">
-                        Estate Planning
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-left">
-                        Wills, trusts, and power of attorney documents notarized with care and precision
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </Link>
-                <Link to="/healthcare-notary" className="group">
-                  <Card className="p-6 h-full hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="text-left group-hover:text-primary transition-colors">
-                        Healthcare Notary
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-left">
-                        Hospital and healthcare facility notarizations for medical documents
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
+      <TestimonialsSection />
+      
+      {/* Related Services Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Explore Our Services</h2>
+            <p className="text-lg text-muted-foreground mb-12">
+              From simple notarizations to complex loan signings, we handle all your document needs
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link to="/loan-signings" className="group">
+                <Card className="p-6 h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="text-left group-hover:text-primary transition-colors">
+                      Loan Signings
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-left">
+                      Professional mortgage and refinance document signing services at your location
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to="/estate-plans" className="group">
+                <Card className="p-6 h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="text-left group-hover:text-primary transition-colors">
+                      Estate Planning
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-left">
+                      Wills, trusts, and power of attorney documents notarized with care and precision
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to="/healthcare-notary" className="group">
+                <Card className="p-6 h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="text-left group-hover:text-primary transition-colors">
+                      Healthcare Notary
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-left">
+                      Hospital and healthcare facility notarizations for medical documents
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
             </div>
           </div>
-        </section>
-        
-        <FAQSection />
-        <Footer />
+        </div>
+      </section>
       
+      <FAQSection />
+      <Footer />
     </div>
   );
 };
