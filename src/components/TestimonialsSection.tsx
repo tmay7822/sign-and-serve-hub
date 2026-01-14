@@ -1,6 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Star, ExternalLink, MapPin } from 'lucide-react';
+import { Star, MapPin } from 'lucide-react';
 import { GOOGLE_REVIEWS_AGGREGATE, getFeaturedReviews } from '@/data/googleReviews';
 
 const GoogleLogo = () => (
@@ -35,7 +34,7 @@ const avatarColors = [
 
 const TestimonialsSection = () => {
   const reviews = getFeaturedReviews(6);
-  const { averageRating, totalReviews, gmbProfileUrl, gmbViewUrl } = GOOGLE_REVIEWS_AGGREGATE;
+  const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
 
   return (
     <section className="py-20 bg-white">
@@ -110,33 +109,6 @@ const TestimonialsSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-          <Button
-            variant="outline"
-            size="lg"
-            asChild
-            className="gap-2"
-          >
-            <a href={gmbViewUrl} target="_blank" rel="noopener noreferrer">
-              <GoogleLogo />
-              See all reviews on Google
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </Button>
-          
-          <Button
-            size="lg"
-            asChild
-            className="gap-2"
-          >
-            <a href={gmbProfileUrl} target="_blank" rel="noopener noreferrer">
-              <Star className="h-4 w-4" />
-              Leave us a review
-            </a>
-          </Button>
         </div>
       </div>
     </section>

@@ -31,17 +31,12 @@ const avatarColors = [
 
 export const MiniTestimonials = () => {
   const reviews = getFeaturedReviews(3);
-  const { averageRating, totalReviews, gmbViewUrl } = GOOGLE_REVIEWS_AGGREGATE;
+  const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
 
   return (
     <div className="max-w-5xl mx-auto">
       <div className="text-center mb-8">
-        <a 
-          href={gmbViewUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity"
-        >
+        <div className="inline-flex items-center gap-2 mb-3">
           <GoogleLogo className="h-5 w-5" />
           <div className="flex">
             {[...Array(5)].map((_, i) => (
@@ -49,7 +44,7 @@ export const MiniTestimonials = () => {
             ))}
           </div>
           <span className="text-lg font-bold text-primary">{averageRating.toFixed(1)}</span>
-        </a>
+        </div>
         <p className="text-muted-foreground">Trusted by {totalReviews}+ satisfied clients</p>
       </div>
 
