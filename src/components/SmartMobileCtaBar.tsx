@@ -8,6 +8,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { usePageContext } from '@/hooks/usePageContext';
 import { BookingWidget } from './BookingWidget';
 import { QuoteCalculatorModal } from './QuoteCalculatorModal';
+import { haptic } from '@/utils/haptics';
 
 // Animation variants
 const containerVariants = {
@@ -80,7 +81,11 @@ export const SmartMobileCtaBar = () => {
       
       case 'call':
         return (
-          <a href={`tel:${BUSINESS_CONFIG.phone}`} className={baseClasses}>
+          <a 
+            href={`tel:${BUSINESS_CONFIG.phone}`} 
+            className={baseClasses}
+            onClick={() => haptic.medium()}
+          >
             <Phone className="h-5 w-5" />
             <span className="text-[10px] font-semibold leading-tight">Call Now</span>
           </a>
@@ -90,7 +95,10 @@ export const SmartMobileCtaBar = () => {
       default:
         return (
           <button
-            onClick={() => setShowCalculator(true)}
+            onClick={() => {
+              haptic.medium();
+              setShowCalculator(true);
+            }}
             className={baseClasses}
             aria-label="Open quote calculator"
           >
@@ -120,6 +128,7 @@ export const SmartMobileCtaBar = () => {
             aria-label={`Call ${BUSINESS_CONFIG.phone}`}
             variants={itemVariants}
             whileTap={{ scale: 0.92 }}
+            onClick={() => haptic.light()}
           >
             <Phone className="h-5 w-5" />
             <span className="text-[10px] font-medium">Call</span>
@@ -135,7 +144,10 @@ export const SmartMobileCtaBar = () => {
 
           {/* Chat Button */}
           <motion.button
-            onClick={handleChatClick}
+            onClick={() => {
+              haptic.light();
+              handleChatClick();
+            }}
             className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-brand-navy hover:text-brand-blue transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
             aria-label="Open chat assistant"
             variants={itemVariants}
