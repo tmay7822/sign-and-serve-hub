@@ -182,4 +182,36 @@ All colors MUST be HSL.
   .text-on-dark {
     color: hsl(var(--text-on-dark));
   }
+  
+  /* iOS Safe Area Support for mobile sticky bar */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  /* Skip to content link for accessibility */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    z-index: 9999;
+    padding: 1rem;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .skip-to-content:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .safe-area-bottom *,
+  [data-radix-navigation-menu-viewport] {
+    transition: none !important;
+    animation: none !important;
+  }
 }

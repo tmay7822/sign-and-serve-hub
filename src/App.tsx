@@ -12,6 +12,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
 import ScrollToTop from "@/components/ScrollToTop";
 import { AIChatWidget } from "@/components/AIChatWidget";
+import { SmartMobileCtaBar } from "@/components/SmartMobileCtaBar";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,7 @@ const Layout = () => (
             <ScrollToTop />
             <BreadcrumbNav />
             <Outlet />
+            <SmartMobileCtaBar />
             <AIChatWidget />
           </Suspense>
         </TooltipProvider>
