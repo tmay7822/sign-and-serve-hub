@@ -1,11 +1,14 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
 import TrustSignals from '@/components/TrustSignals';
+import LocationReviewsSection from '@/components/LocationReviewsSection';
 import { Button } from '@/components/ui/button';
-import { FileText, Clock, Shield, MapPin, Users, Home } from 'lucide-react';
+import { Clock, Shield, MapPin, Users, Home } from 'lucide-react';
+import { getReviewsByLocation } from '@/data/googleReviews';
 
 const NotaryWestChester45069 = () => {
+  const locationReviews = getReviewsByLocation('West Chester');
+  
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -158,6 +161,9 @@ const NotaryWestChester45069 = () => {
           </div>
         </div>
       </section>
+
+      {/* Location Reviews Section */}
+      <LocationReviewsSection reviews={locationReviews} locationName="West Chester" />
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-primary text-white">
