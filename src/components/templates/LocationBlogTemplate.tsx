@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import EnhancedFAQSchema from '@/components/SEO/EnhancedFAQSchema';
 import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
+import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import CrossCategoryLinks from '@/components/blog/CrossCategoryLinks';
 import { Badge } from '@/components/ui/badge';
@@ -40,6 +41,22 @@ const LocationBlogTemplate: React.FC<LocationBlogTemplateProps> = ({ post }) => 
     });
   };
 
+  // Generate breadcrumb items for structured data
+  const breadcrumbItems = [
+    { name: 'Home', url: '/', position: 1 },
+    { name: 'Blog', url: '/blog', position: 2 },
+    ...(category ? [{ 
+      name: category.title, 
+      url: `/blog/${category.slug}`, 
+      position: 3 
+    }] : []),
+    ...(county ? [{ 
+      name: `${county.name} County`, 
+      url: `/blog/${post.slug}`, 
+      position: category ? 4 : 3 
+    }] : [])
+  ];
+
   return (
     <>
       <Seo 
@@ -48,6 +65,9 @@ const LocationBlogTemplate: React.FC<LocationBlogTemplateProps> = ({ post }) => 
         keywords={post.tags?.join(', ')}
         canonical={`${BUSINESS_CONFIG.website}/blog/${post.slug}`}
       />
+      
+      {/* Breadcrumb Schema for enhanced Google search appearance */}
+      <BreadcrumbSchema items={breadcrumbItems} autoGenerate={false} />
       
       {/* FAQ Schema for SEO */}
       {post.faqs && post.faqs.length > 0 && (
