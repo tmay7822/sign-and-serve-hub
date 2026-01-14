@@ -92,7 +92,7 @@ const Documents = () => {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               We notarize many more document types. Contact us to confirm we can help with your specific document.
             </p>
-            <StandardCTAButtons variant="top" showIcons={true} className="justify-center" />
+            <StandardCTAButtons variant="top" className="justify-center" />
           </div>
         </section>
 
