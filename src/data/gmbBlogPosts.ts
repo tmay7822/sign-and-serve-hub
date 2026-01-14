@@ -1215,6 +1215,7 @@ export const getPostStats = () => {
   const posts = GMB_BLOG_POSTS;
   const categories = {
     location: posts.filter(p => p.category === 'location').length,
+    'major-city': posts.filter(p => p.category === 'major-city').length,
     service: posts.filter(p => p.category === 'service').length,
     seasonal: posts.filter(p => p.category === 'seasonal').length,
     tips: posts.filter(p => p.category === 'tips').length
@@ -1234,5 +1235,115 @@ export const getPostStats = () => {
     avgCharCount,
     invalidPosts: invalidPosts.length,
     allValid: invalidPosts.length === 0
+  };
+};
+
+// ============================================
+// CALENDAR HELPER FUNCTIONS
+// ============================================
+
+/**
+ * Get scheduled posts for a specific week
+ */
+export const getPostsByWeek = (week: number): (GMBBlogPost & { schedule: PostSchedule })[] => {
+  const weekSchedule = GMB_POSTING_CALENDAR.filter(s => s.weekNumber === week);
+  return weekSchedule.map(schedule => {
+    const post = GMB_BLOG_POSTS.find(p => p.id === schedule.postId);
+    return { ...post!, schedule };
+  }).filter(p => p !== undefined);
+};
+
+/**
+ * Get all scheduled posts with their calendar data
+ */
+export const getScheduledPosts = (): (GMBBlogPost & { schedule: PostSchedule })[] => {
+  return GMB_POSTING_CALENDAR.map(schedule => {
+    const post = GMB_BLOG_POSTS.find(p => p.id === schedule.postId);
+    return { ...post!, schedule };
+  }).filter(p => p !== undefined);
+};
+
+/**
+ * Get posts grouped by week
+ */
+export const getPostsGroupedByWeek = (): Record<number, (GMBBlogPost & { schedule: PostSchedule })[]> => {
+  const grouped: Record<number, (GMBBlogPost & { schedule: PostSchedule })[]> = {};
+  
+  GMB_POSTING_CALENDAR.forEach(schedule => {
+    const post = GMB_BLOG_POSTS.find(p => p.id === schedule.postId);
+    if (post) {
+      if (!grouped[schedule.weekNumber]) {
+        grouped[schedule.weekNumber] = [];
+      }
+      grouped[schedule.weekNumber].push({ ...post, schedule });
+    }
+  });
+  
+  return grouped;
+};
+
+/**
+ * Export calendar as CSV for scheduling tools
+ */
+export const exportCalendarAsCSV = (): string => {
+  const headers = 'Post ID,Title,Suggested Date,Day of Week,Week Number,Theme,Category,Content,CTA,CTA Link';
+  const rows = GMB_POSTING_CALENDAR.map(schedule => {
+    const post = GMB_BLOG_POSTS.find(p => p.id === schedule.postId);
+    if (!post) return '';
+    return `${schedule.postId},"${post.title.replace(/"/g, '""')}","${schedule.suggestedDate}","${schedule.dayOfWeek}",${schedule.weekNumber},"${schedule.theme}","${post.category}","${post.content.replace(/"/g, '""')}","${post.callToAction}","${post.ctaLink}"`;
+  }).filter(r => r !== '');
+  return [headers, ...rows].join('\n');
+};
+
+/**
+ * Export calendar as iCal format
+ */
+export const exportCalendarAsICS = (): string => {
+  let ics = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Signed On Time//GMB Posting Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+`;
+
+  GMB_POSTING_CALENDAR.forEach(schedule => {
+    const post = GMB_BLOG_POSTS.find(p => p.id === schedule.postId);
+    if (!post) return;
+    
+    const date = schedule.suggestedDate.replace(/-/g, '');
+    const uid = `gmb-post-${schedule.postId}@signedontime.com`;
+    
+    ics += `BEGIN:VEVENT
+UID:${uid}
+DTSTART:${date}
+DTEND:${date}
+SUMMARY:GMB Post: ${post.title}
+DESCRIPTION:Category: ${post.category}\\nCTA: ${post.callToAction}\\n\\nPost Content:\\n${post.content.substring(0, 200).replace(/\n/g, '\\n')}...
+STATUS:CONFIRMED
+END:VEVENT
+`;
+  });
+
+  ics += 'END:VCALENDAR';
+  return ics;
+};
+
+/**
+ * Get calendar statistics
+ */
+export const getCalendarStats = () => {
+  const weeks = [...new Set(GMB_POSTING_CALENDAR.map(s => s.weekNumber))];
+  const themes = GMB_POSTING_CALENDAR.reduce((acc, s) => {
+    acc[s.theme] = (acc[s.theme] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  
+  return {
+    totalWeeks: weeks.length,
+    totalScheduledPosts: GMB_POSTING_CALENDAR.length,
+    postsPerWeek: Math.round(GMB_POSTING_CALENDAR.length / weeks.length * 10) / 10,
+    themeBreakdown: themes,
+    startDate: GMB_POSTING_CALENDAR[0]?.suggestedDate,
+    endDate: GMB_POSTING_CALENDAR[GMB_POSTING_CALENDAR.length - 1]?.suggestedDate
   };
 };
