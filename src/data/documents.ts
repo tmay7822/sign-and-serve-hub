@@ -498,3 +498,12 @@ export const getCurrentSeason = (): string => {
   if (month >= 5 && month <= 8) return "Back to School";
   return "Year-End Planning";
 };
+
+// Get current season slug for linking
+export const getCurrentSeasonSlug = (): string => {
+  const month = new Date().getMonth();
+  if (month >= 0 && month <= 3) return "tax-season-notary";
+  if (month >= 3 && month <= 5) return "home-buying-season-notary";
+  if (month >= 5 && month <= 8) return "back-to-school-documents";
+  return "year-end-planning-notary";
+};
