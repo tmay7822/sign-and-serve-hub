@@ -108,6 +108,36 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     metaTitle: 'Healthcare Notary Guides & Tips',
     metaDescription: 'Expert healthcare notary guides for hospital and bedside signings, healthcare directives, and senior care facility notarizations.',
     order: 7
+  },
+  {
+    id: 'immigration-guides',
+    title: 'Immigration & Citizenship',
+    slug: 'immigration-guides',
+    serviceSlug: 'apostille',
+    description: 'Expert guides for immigration documents, citizenship paperwork, visa applications, and USCIS form notarization.',
+    metaTitle: 'Immigration Document Guides | Visa & Citizenship Notarization',
+    metaDescription: 'Expert immigration notary guides covering affidavits of support, citizenship documents, visa paperwork, and USCIS forms.',
+    order: 8
+  },
+  {
+    id: 'military-guides',
+    title: 'Military & Veterans',
+    slug: 'military-guides',
+    serviceSlug: 'general-notary',
+    description: 'Notarization guides for military families, veterans, and active duty personnel including POAs, VA documents, and deployment paperwork.',
+    metaTitle: 'Military & Veteran Notary Guides',
+    metaDescription: 'Notarization guides for military personnel and veterans covering deployment POAs, VA benefits, and military family documents.',
+    order: 9
+  },
+  {
+    id: 'education-guides',
+    title: 'Education & Academic',
+    slug: 'education-guides',
+    serviceSlug: 'college-18-plus',
+    description: 'Guides for academic document notarization including transcripts, diplomas, study abroad consent, and school enrollment.',
+    metaTitle: 'Education Document Notary Guides',
+    metaDescription: 'Academic document notarization guides covering transcripts, diplomas, study abroad, and school enrollment paperwork.',
+    order: 10
   }
 ];
 
@@ -524,6 +554,73 @@ export const BLOG_POSTS: BlogPost[] = [
     tags: ['business contracts', 'notarization', 'legal protection'],
     featured: false,
     readTime: 6
+  },
+  // NEW CATEGORY BLOG POSTS
+  {
+    id: 'immigration-documents-notary-guide',
+    title: 'Immigration Documents Notarization | Complete Ohio Guide',
+    slug: 'immigration-documents-notary-guide',
+    serviceSlug: 'apostille',
+    categorySlug: 'immigration-guides',
+    excerpt: 'Complete guide to notarizing immigration documents including Affidavit of Support (I-864), visa applications, and citizenship paperwork.',
+    content: 'Full immigration guide content...',
+    heroImage: '/assets/blog-apostille.jpg',
+    metaTitle: 'Immigration Documents Notarization | Complete Ohio Guide',
+    metaDescription: 'Expert guide to notarizing immigration documents including I-864, visa applications, and citizenship paperwork. Mobile notary service in Ohio.',
+    publishDate: '2025-01-14',
+    author: 'Terry May',
+    tags: ['Immigration', 'Apostille', 'USCIS', 'Citizenship'],
+    featured: true,
+    readTime: 10,
+    faqs: [
+      { question: 'Does the Affidavit of Support (I-864) need to be notarized?', answer: 'Yes, USCIS requires the I-864 Affidavit of Support to be signed in the presence of a notary public.' },
+      { question: 'Can a notary help with document translation?', answer: 'A notary cannot translate documents, but we can notarize a translator\'s affidavit certifying the accuracy of a translation.' },
+      { question: 'What\'s the difference between notarization and apostille?', answer: 'Notarization verifies the signer\'s identity. An apostille authenticates the notary\'s signature for international use.' }
+    ]
+  },
+  {
+    id: 'military-veterans-notary-guide',
+    title: 'Military & Veterans Notary Guide | Deployment POA & VA Documents',
+    slug: 'military-veterans-notary-guide',
+    serviceSlug: 'general-notary',
+    categorySlug: 'military-guides',
+    excerpt: 'Essential notarization guide for military families covering deployment POAs, VA benefits applications, and family care plans.',
+    content: 'Full military guide content...',
+    heroImage: '/assets/blog-general-notary.jpg',
+    metaTitle: 'Military & Veterans Notary Guide | Ohio Mobile Service',
+    metaDescription: 'Complete guide to military document notarization including deployment POAs, VA benefits, and family care plans. Mobile service in Ohio.',
+    publishDate: '2025-01-14',
+    author: 'Terry May',
+    tags: ['Military', 'Veterans', 'POA', 'VA Benefits'],
+    featured: true,
+    readTime: 8,
+    faqs: [
+      { question: 'What is a Deployment Power of Attorney?', answer: 'A Deployment POA grants a trusted person authority to handle legal, financial, and personal matters while you\'re deployed.' },
+      { question: 'Can I get documents notarized on base?', answer: 'Yes, most military installations have legal assistance offices. We offer mobile notary as a flexible alternative.' },
+      { question: 'Do you notarize VA benefit applications?', answer: 'Yes, we notarize VA benefit applications, claim forms, and supporting affidavits.' }
+    ]
+  },
+  {
+    id: 'healthcare-documents-notary-guide',
+    title: 'Healthcare Documents Notarization | Hospital & Medical Forms Guide',
+    slug: 'healthcare-documents-notary-guide',
+    serviceSlug: 'healthcare-notary',
+    categorySlug: 'healthcare-guides',
+    excerpt: 'Expert guide to healthcare document notarization including DNR orders, medical POAs, and hospital bedside signings.',
+    content: 'Full healthcare guide content...',
+    heroImage: '/assets/blog-estate-planning.jpg',
+    metaTitle: 'Healthcare Documents Notarization | Ohio Hospital & Bedside Service',
+    metaDescription: 'Expert guide to healthcare document notarization including DNR orders, medical POAs, and hospital bedside signings. Same-day service.',
+    publishDate: '2025-01-14',
+    author: 'Terry May',
+    tags: ['Healthcare', 'Hospital Notary', 'Medical POA', 'DNR'],
+    featured: true,
+    readTime: 9,
+    faqs: [
+      { question: 'Can a DNR order be notarized?', answer: 'Yes, DNR orders can be notarized in Ohio. The signer must be alert and understand what they\'re signing.' },
+      { question: 'What\'s the difference between a Healthcare POA and Living Will?', answer: 'A Healthcare POA designates someone to make decisions. A Living Will specifies your end-of-life care wishes.' },
+      { question: 'Can you notarize documents at the hospital bedside?', answer: 'Yes, bedside notarization is one of our specialties. We work with hospital staff to ensure patient comfort.' }
+    ]
   }
 ];
 
