@@ -16,42 +16,57 @@ import { cn } from '@/lib/utils';
 
 import logoImage from '@/assets/signed-on-time-logo-transparent.png';
 
-// Service categories for mega menu
+// Service categories for mega menu - 4 logical groupings
 const serviceCategories = [
   {
-    title: "Core Services",
+    title: "General Notary",
     items: [
       { name: 'General Notary', href: '/general-notary', description: 'Acknowledgments, jurats, oaths' },
-      { name: 'Loan Signings', href: '/loan-signings', description: 'Mortgage closings, refinances' },
-      { name: 'Estate Plans', href: '/estate-plans', description: 'Wills, trusts, POA' },
+      { name: 'Personal & Family', href: '/personal-family', description: 'Travel consent, family docs' },
+      { name: 'Legal & Court', href: '/legal-court', description: 'Court filings, affidavits' },
     ]
   },
   {
-    title: "Real Estate",
+    title: "Real Estate & Loans",
     items: [
+      { name: 'Loan Signings', href: '/loan-signings', description: 'Mortgage closings, refinances' },
       { name: 'Real Estate', href: '/real-estate', description: 'Deeds, property transfers' },
       { name: 'Real Estate Notary', href: '/real-estate-notary', description: 'Closing support' },
     ]
   },
   {
-    title: "Specialized",
+    title: "Estate & Healthcare",
     items: [
-      { name: 'Apostille', href: '/apostille', description: 'International authentication' },
+      { name: 'Estate Planning', href: '/estate-plans', description: 'Wills, trusts, POA' },
       { name: 'Healthcare Notary', href: '/healthcare-notary', description: 'Hospital & care facilities' },
-      { name: 'Business Services', href: '/business-services', description: 'Corporate documents' },
+      { name: 'Wills & Trusts', href: '/wills-trusts-estates', description: 'Probate & inheritance' },
+    ]
+  },
+  {
+    title: "Business & International",
+    items: [
+      { name: 'Business Services', href: '/business-services', description: 'Contracts & corporate docs' },
+      { name: 'Business Banking', href: '/business-banking', description: 'Loans & account docs' },
+      { name: 'Apostille', href: '/apostille', description: 'International authentication' },
     ]
   }
 ];
 
-// Mobile nav items (flat list)
+// Mobile nav items (flat list) - organized by category
 const mobileNavItems = [
+  // General
   { name: 'General Notary', href: '/general-notary' },
+  { name: 'Personal & Family', href: '/personal-family' },
+  // Real Estate & Loans
   { name: 'Loan Signings', href: '/loan-signings' },
-  { name: 'Estate Plans', href: '/estate-plans' },
   { name: 'Real Estate', href: '/real-estate' },
-  { name: 'Apostille', href: '/apostille' },
+  // Estate & Healthcare
+  { name: 'Estate Planning', href: '/estate-plans' },
   { name: 'Healthcare Notary', href: '/healthcare-notary' },
+  // Business & International
   { name: 'Business Services', href: '/business-services' },
+  { name: 'Apostille', href: '/apostille' },
+  // Other navigation
   { name: 'Documents', href: '/documents' },
   { name: 'Service Areas', href: '/service-areas' },
   { name: 'Blog', href: '/blog' },
@@ -118,8 +133,8 @@ const Header = () => {
                       Services
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="w-[550px] p-5 bg-white" role="menu" aria-label="Service categories">
-                        <div className="grid grid-cols-3 gap-4">
+                      <div className="w-[700px] p-5 bg-white" role="menu" aria-label="Service categories">
+                        <div className="grid grid-cols-4 gap-4">
                           {serviceCategories.map((category) => (
                             <div key={category.title} role="group" aria-labelledby={`category-${category.title.replace(/\s+/g, '-').toLowerCase()}`}>
                               <h4 
