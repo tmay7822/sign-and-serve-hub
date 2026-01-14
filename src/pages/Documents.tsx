@@ -5,13 +5,15 @@ import { DocumentSearch } from '@/components/DocumentSearch';
 import TrustSignals from '@/components/TrustSignals';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getDocumentCount, getCategoryCount, getCurrentSeason } from '@/data/documents';
+import { getDocumentCount, getCategoryCount, getCurrentSeason, getCurrentSeasonSlug } from '@/data/documents';
 import { FileText, Search, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Documents = () => {
   const documentCount = getDocumentCount();
   const categoryCount = getCategoryCount();
   const currentSeason = getCurrentSeason();
+  const seasonSlug = getCurrentSeasonSlug();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -66,7 +68,9 @@ const Documents = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <TrendingUp className="h-5 w-5" />
-                  <span className="font-semibold">{currentSeason}</span>
+                  <Link to={`/${seasonSlug}`} className="font-semibold hover:underline">
+                    {currentSeason}
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5" />

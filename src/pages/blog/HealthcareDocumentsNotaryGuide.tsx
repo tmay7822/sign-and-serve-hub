@@ -1,5 +1,6 @@
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { Link } from 'react-router-dom';
+import RelatedServicesSection from '@/components/blog/RelatedServicesSection';
 
 const HealthcareDocumentsNotaryGuide = () => {
   const faqs = [
@@ -220,6 +221,15 @@ const HealthcareDocumentsNotaryGuide = () => {
           scheduling assistance.
         </p>
       </div>
+
+      <RelatedServicesSection 
+        services={[
+          { slug: 'healthcare-notary', title: 'Hospital Notary Services', description: 'Bedside notarization at hospitals and facilities' },
+          { slug: 'estate-plans', title: 'Estate Planning', description: 'POAs, living wills, and advance directives' },
+          { slug: 'wills-trusts-estates', title: 'Wills & Estates', description: 'Complete estate document services' },
+          { slug: 'documents', title: 'Document Catalog', description: 'Browse all healthcare documents we notarize' }
+        ]}
+      />
     </BlogPostTemplate>
   );
 };

@@ -1,5 +1,6 @@
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { Link } from 'react-router-dom';
+import RelatedServicesSection from '@/components/blog/RelatedServicesSection';
 
 const ImmigrationDocumentsNotaryGuide = () => {
   const faqs = [
@@ -166,6 +167,15 @@ const ImmigrationDocumentsNotaryGuide = () => {
         <li>Butler County (Hamilton, Fairfield, West Chester)</li>
         <li>Clermont, Greene, Clinton, and Brown counties</li>
       </ul>
+
+      <RelatedServicesSection 
+        services={[
+          { slug: 'apostille', title: 'Apostille Services', description: 'Document authentication for international use' },
+          { slug: 'international-apostille', title: 'International Apostille', description: 'Hague Convention country certification' },
+          { slug: 'general-notary', title: 'General Notary', description: 'All document types notarized' },
+          { slug: 'documents', title: 'Document Catalog', description: 'Browse 200+ document types we notarize' }
+        ]}
+      />
     </BlogPostTemplate>
   );
 };

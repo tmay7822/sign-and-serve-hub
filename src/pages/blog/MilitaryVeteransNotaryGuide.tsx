@@ -1,5 +1,6 @@
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { Link } from 'react-router-dom';
+import RelatedServicesSection from '@/components/blog/RelatedServicesSection';
 
 const MilitaryVeteransNotaryGuide = () => {
   const faqs = [
@@ -202,6 +203,15 @@ const MilitaryVeteransNotaryGuide = () => {
           <li>✓ Witnesses (if required—we can often provide)</li>
         </ul>
       </div>
+
+      <RelatedServicesSection 
+        services={[
+          { slug: 'general-notary', title: 'General Notary', description: 'All document types including military POAs' },
+          { slug: 'estate-plans', title: 'Estate Planning', description: 'Wills, trusts, and healthcare directives' },
+          { slug: 'healthcare-notary', title: 'Hospital Notary', description: 'Bedside notarization at VA hospitals' },
+          { slug: 'documents', title: 'Document Catalog', description: 'Browse all military documents we notarize' }
+        ]}
+      />
     </BlogPostTemplate>
   );
 };

@@ -35,6 +35,12 @@ export const PRERENDER_ROUTES = [
   '/privacy-policy',
   '/terms-of-service',
   
+  // Seasonal Landing Pages
+  '/tax-season-notary',
+  '/back-to-school-documents',
+  '/home-buying-season-notary',
+  '/year-end-planning-notary',
+  
   // Blog Home & Categories
   '/blog',
   '/blog/general-notary-guides',
