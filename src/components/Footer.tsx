@@ -26,6 +26,13 @@ const Footer = () => {
     { name: 'Blog', href: '/blog' }
   ];
 
+  const seasonalLinks = [
+    { name: 'Tax Season Documents', href: '/tax-season-notary' },
+    { name: 'Back to School', href: '/back-to-school-documents' },
+    { name: 'Home Buying Season', href: '/home-buying-season-notary' },
+    { name: 'Year-End Planning', href: '/year-end-planning-notary' }
+  ];
+
   return (
     <footer className="bg-brand-navy text-white">
       <div className="container mx-auto px-4 py-8">
@@ -66,6 +73,43 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Seasonal Links */}
+          <div>
+            <h3 className="font-semibold mb-3">Seasonal Services</h3>
+            <div className="space-y-1.5 text-sm">
+              {seasonalLinks.map((link) => (
+                <div key={link.name}>
+                  <Link 
+                    to={link.href}
+                    className="text-white/80 hover:text-brand-gold transition-colors duration-300 block"
+                  >
+                    {link.name}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-3">Contact</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-brand-gold" />
+                <a 
+                  href={`tel:${BUSINESS_CONFIG.phone}`}
+                  className="text-white/80 hover:text-brand-gold transition-colors"
+                >
+                  {BUSINESS_CONFIG.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-brand-gold" />
+                <a 
+                  href={`mailto:${BUSINESS_CONFIG.email}`}
+                  className="text-white/80 hover:text-brand-gold transition-colors"
+                >
+                  {BUSINESS_CONFIG.email}
+                </a>
+              </div>
           {/* Contact Info */}
           <div>
             <h3 className="font-semibold mb-3">Contact</h3>

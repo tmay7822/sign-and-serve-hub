@@ -46,6 +46,12 @@ const DynamicLocationPage = lazy(() => import('./pages/DynamicLocationPage'));
 const DynamicCityPage = lazy(() => import('./pages/DynamicCityPage'));
 const DynamicCountyPage = lazy(() => import('./pages/DynamicCountyPage'));
 
+// Seasonal Landing Pages
+const TaxSeasonNotary = lazy(() => import('./pages/TaxSeasonNotary'));
+const BackToSchoolDocuments = lazy(() => import('./pages/BackToSchoolDocuments'));
+const HomeBuyingSeasonNotary = lazy(() => import('./pages/HomeBuyingSeasonNotary'));
+const YearEndPlanningNotary = lazy(() => import('./pages/YearEndPlanningNotary'));
+
 // Blog Posts
 const GeneralNotaryWhatToBring = lazy(() => import('./pages/blog/GeneralNotaryWhatToBring'));
 const MobileVsShippingStore = lazy(() => import('./pages/blog/MobileVsShippingStore'));
@@ -143,6 +149,12 @@ export const routes: RouteRecord[] = [
       { path: 'service-areas', element: <ServiceAreas /> },
       { path: 'privacy-policy', element: <PrivacyPolicy /> },
       { path: 'terms-of-service', element: <TermsOfService /> },
+      
+      // Seasonal Landing Pages
+      { path: 'tax-season-notary', element: <TaxSeasonNotary /> },
+      { path: 'back-to-school-documents', element: <BackToSchoolDocuments /> },
+      { path: 'home-buying-season-notary', element: <HomeBuyingSeasonNotary /> },
+      { path: 'year-end-planning-notary', element: <YearEndPlanningNotary /> },
       
       // Blog Home & Categories
       { path: 'blog', element: <BlogHome /> },
