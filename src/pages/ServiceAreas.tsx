@@ -3,9 +3,8 @@ import Seo from '@/components/Seo';
 import { BasePageTemplate } from '@/components/templates/BasePageTemplate';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { MapPin, Phone, Clock, FileText, ChevronDown, ChevronUp, Home, Shield, Globe, Briefcase, Heart, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BUSINESS_CONFIG } from '@/config/business';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
@@ -65,38 +64,24 @@ const SERVICE_ICONS: Record<string, React.ElementType> = {
   'Healthcare Notary': Heart,
 };
 
-// County card component with expandable cities
+// County card component - fully clickable like city cards
 const CountyCard = ({ county }: { county: CountyData }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const meta = COUNTY_DESCRIPTIONS[county.county] || { description: '', featured: false };
-  const displayCities = isOpen ? county.cities : county.cities.slice(0, 6);
+  const displayCities = county.cities.slice(0, 4); // Always show first 4 cities
+  const countyUrl = `/service/${county.county.toLowerCase()}-county`;
 
   return (
-    <Card className={`h-full ${meta.featured ? 'ring-2 ring-primary/20' : ''}`}>
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+    <Link to={countyUrl} className="block group h-full">
+      <Card className={`h-full hover:shadow-lg hover:border-primary/50 transition-all cursor-pointer ${meta.featured ? 'ring-2 ring-primary/20' : ''}`}>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MapPin className="h-5 w-5 text-primary shrink-0" />
-              <Link 
-                to={`/service/${county.county.toLowerCase()}-county`}
-                className="hover:text-primary transition-colors"
-              >
-                <CardTitle className="text-xl">{county.county} County →</CardTitle>
-              </Link>
-              <CollapsibleTrigger asChild>
-                <button 
-                  type="button"
-                  className="p-1 hover:bg-muted rounded cursor-pointer"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {isOpen ? (
-                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                  )}
-                </button>
-              </CollapsibleTrigger>
+              <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                {county.county} County
+              </CardTitle>
+              <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition-all" />
             </div>
             {meta.featured && (
               <Badge variant="default">Core Area</Badge>
@@ -108,6 +93,12 @@ const CountyCard = ({ county }: { county: CountyData }) => {
             {meta.description}
           </CardDescription>
           
+          {/* Stats */}
+          <div className="flex gap-4 text-sm text-muted-foreground">
+            <span>{county.cities.length} cities</span>
+            <span>{county.allZips.length} ZIP codes</span>
+          </div>
+          
           {/* Services Available */}
           <div>
             <p className="font-medium text-sm mb-2 flex items-center gap-1">
@@ -115,7 +106,7 @@ const CountyCard = ({ county }: { county: CountyData }) => {
               Services Available:
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {county.allServices.map((service) => {
+              {county.allServices.slice(0, 5).map((service) => {
                 const Icon = SERVICE_ICONS[service] || FileText;
                 return (
                   <Badge key={service} variant="outline" className="text-xs flex items-center gap-1">
@@ -124,80 +115,46 @@ const CountyCard = ({ county }: { county: CountyData }) => {
                   </Badge>
                 );
               })}
+              {county.allServices.length > 5 && (
+                <Badge variant="outline" className="text-xs">
+                  +{county.allServices.length - 5} more
+                </Badge>
+              )}
             </div>
           </div>
 
-          {/* Cities & ZIP Codes */}
+          {/* Preview Cities - clickable to individual city pages */}
           <div>
             <p className="font-medium text-sm mb-2">
-              Cities & ZIP Codes ({county.cities.length} cities, {county.allZips.length} ZIPs):
+              Popular Cities:
             </p>
             <div className="flex flex-wrap gap-2">
               {displayCities.map(({ city, zips }, cityIndex) => (
-                <Link 
-                  key={cityIndex} 
-                  to={getCityServiceUrl(county.county, city, zips[0])}
+                <Badge 
+                  key={cityIndex}
+                  variant="secondary" 
+                  className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navigate(getCityServiceUrl(county.county, city, zips[0]));
+                  }}
                 >
-                  <Badge 
-                    variant="secondary" 
-                    className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    {city} ({zips.join(', ')}) →
-                  </Badge>
-                </Link>
+                  {city} →
+                </Badge>
               ))}
-            </div>
-            
-            <CollapsibleContent className="mt-2">
-              {county.cities.length > 6 && (
-                <div className="flex flex-wrap gap-2">
-                  {county.cities.slice(6).map(({ city, zips }, cityIndex) => (
-                    <Link 
-                      key={cityIndex + 6} 
-                      to={getCityServiceUrl(county.county, city, zips[0])}
-                    >
-                      <Badge 
-                        variant="secondary" 
-                        className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        {city} ({zips.join(', ')}) →
-                      </Badge>
-                    </Link>
-                  ))}
-                </div>
+              {county.cities.length > 4 && (
+                <Badge variant="outline" className="text-xs">
+                  +{county.cities.length - 4} more cities
+                </Badge>
               )}
-            </CollapsibleContent>
-            
-            {!isOpen && county.cities.length > 6 && (
-              <CollapsibleTrigger asChild>
-                <button 
-                  type="button"
-                  className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1"
-                >
-                  <ChevronDown className="h-3 w-3" />
-                  Show all {county.cities.length} cities
-                </button>
-              </CollapsibleTrigger>
-            )}
-            
-            {isOpen && county.cities.length > 6 && (
-              <CollapsibleTrigger asChild>
-                <button 
-                  type="button"
-                  className="mt-2 text-sm text-primary hover:underline cursor-pointer flex items-center gap-1"
-                >
-                  <ChevronUp className="h-3 w-3" />
-                  Show less
-                </button>
-              </CollapsibleTrigger>
-            )}
+            </div>
           </div>
         </CardContent>
-      </Collapsible>
-    </Card>
+      </Card>
+    </Link>
   );
 };
-
 // All Service Locations - comprehensive directory from CSV
 const AllLocationsDirectory = () => {
   const [expandedCounties, setExpandedCounties] = useState<Set<string>>(new Set());

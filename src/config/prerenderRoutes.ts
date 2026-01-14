@@ -275,6 +275,125 @@ export const PRERENDER_ROUTES = [
   // Additional Clinton County locations
   '/notary-blanchester-45107',
   '/notary-sabina-45169',
+  
+  // ==========================================
+  // County Service Landing Pages (9 counties)
+  // ==========================================
+  '/service/hamilton-county',
+  '/service/warren-county',
+  '/service/butler-county',
+  '/service/montgomery-county',
+  '/service/greene-county',
+  '/service/clinton-county',
+  '/service/clermont-county',
+  '/service/brown-county',
+  '/service/miami-county',
+  
+  // ==========================================
+  // City Service Landing Pages (Key cities per county)
+  // ==========================================
+  
+  // Hamilton County Cities
+  '/service/hamilton-county/cincinnati-45202',
+  '/service/hamilton-county/blue-ash-45242',
+  '/service/hamilton-county/springdale-45246',
+  '/service/hamilton-county/forest-park-45240',
+  '/service/hamilton-county/sharonville-45241',
+  '/service/hamilton-county/montgomery-45242',
+  '/service/hamilton-county/indian-hill-45243',
+  '/service/hamilton-county/madeira-45243',
+  '/service/hamilton-county/loveland-45140',
+  '/service/hamilton-county/norwood-45212',
+  '/service/hamilton-county/deer-park-45236',
+  '/service/hamilton-county/reading-45215',
+  '/service/hamilton-county/evendale-45241',
+  '/service/hamilton-county/glendale-45246',
+  '/service/hamilton-county/mariemont-45227',
+  '/service/hamilton-county/terrace-park-45174',
+  '/service/hamilton-county/newtown-45244',
+  '/service/hamilton-county/harrison-45030',
+  '/service/hamilton-county/cleves-45002',
+  '/service/hamilton-county/mt.-healthy-45231',
+  '/service/hamilton-county/wyoming-45215',
+  
+  // Warren County Cities
+  '/service/warren-county/mason-45040',
+  '/service/warren-county/lebanon-45036',
+  '/service/warren-county/springboro-45066',
+  '/service/warren-county/franklin-45005',
+  '/service/warren-county/deerfield-township-45039',
+  '/service/warren-county/south-lebanon-45065',
+  '/service/warren-county/maineville-45039',
+  '/service/warren-county/morrow-45152',
+  '/service/warren-county/waynesville-45068',
+  '/service/warren-county/kings-mills-45034',
+  
+  // Butler County Cities
+  '/service/butler-county/hamilton-45011',
+  '/service/butler-county/fairfield-45014',
+  '/service/butler-county/west-chester-45069',
+  '/service/butler-county/liberty-township-45044',
+  '/service/butler-county/oxford-45056',
+  '/service/butler-county/middletown-45042',
+  '/service/butler-county/monroe-45050',
+  '/service/butler-county/trenton-45067',
+  
+  // Montgomery County Cities
+  '/service/montgomery-county/dayton-45402',
+  '/service/montgomery-county/kettering-45429',
+  '/service/montgomery-county/centerville-45458',
+  '/service/montgomery-county/miamisburg-45342',
+  '/service/montgomery-county/huber-heights-45424',
+  '/service/montgomery-county/vandalia-45377',
+  '/service/montgomery-county/trotwood-45426',
+  '/service/montgomery-county/englewood-45322',
+  '/service/montgomery-county/west-carrollton-45449',
+  '/service/montgomery-county/oakwood-45419',
+  '/service/montgomery-county/riverside-45431',
+  '/service/montgomery-county/brookville-45309',
+  '/service/montgomery-county/germantown-45327',
+  
+  // Greene County Cities
+  '/service/greene-county/beavercreek-45430',
+  '/service/greene-county/fairborn-45324',
+  '/service/greene-county/xenia-45385',
+  '/service/greene-county/yellow-springs-45387',
+  '/service/greene-county/bellbrook-45305',
+  '/service/greene-county/cedarville-45314',
+  '/service/greene-county/jamestown-45335',
+  
+  // Clinton County Cities
+  '/service/clinton-county/wilmington-45177',
+  '/service/clinton-county/blanchester-45107',
+  '/service/clinton-county/sabina-45169',
+  '/service/clinton-county/clarksville-45113',
+  '/service/clinton-county/new-vienna-45159',
+  
+  // Clermont County Cities
+  '/service/clermont-county/milford-45150',
+  '/service/clermont-county/batavia-45103',
+  '/service/clermont-county/amelia-45102',
+  '/service/clermont-county/goshen-45122',
+  '/service/clermont-county/bethel-45106',
+  '/service/clermont-county/williamsburg-45176',
+  '/service/clermont-county/new-richmond-45157',
+  '/service/clermont-county/mt.-orab-45154',
+  
+  // Brown County Cities
+  '/service/brown-county/georgetown-45121',
+  '/service/brown-county/mt.-orab-45154',
+  '/service/brown-county/ripley-45167',
+  '/service/brown-county/russellville-45168',
+  '/service/brown-county/sardinia-45171',
+  '/service/brown-county/fayetteville-45118',
+  '/service/brown-county/aberdeen-45101',
+  
+  // Miami County Cities
+  '/service/miami-county/troy-45373',
+  '/service/miami-county/piqua-45356',
+  '/service/miami-county/tipp-city-45371',
+  '/service/miami-county/covington-45318',
+  '/service/miami-county/west-milton-45383',
 ];
 
 export default PRERENDER_ROUTES;
