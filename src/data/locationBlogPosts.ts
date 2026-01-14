@@ -264,6 +264,87 @@ const COUNTY_CONTENT_TEMPLATES: Record<string, {
       { question: `How quickly for urgent healthcare signing?`, answer: `For urgent healthcare situations, we prioritize availability and can often arrive within 2-4 hours.` }
     ],
     quickAnswer: (county) => ({ question: `Who provides hospital notary in ${county} County?`, answer: `Signed on Time offers compassionate healthcare notary throughout ${county} County including hospital bedside and nursing home visits.` })
+  },
+  'immigration-guides': {
+    intro: (county, cities) => `
+      <p>Need immigration documents notarized in <strong>${county} County, Ohio</strong>? Our certified mobile notary professionals help with USCIS forms, affidavits of support, and citizenship paperwork throughout ${cities.slice(0, 4).join(', ')}.</p>
+      
+      <h2>Immigration Notary Services in ${county} County</h2>
+      <p>Immigration paperwork often has strict deadlines and precise requirements. Our experienced notaries understand USCIS form requirements and help ensure your documents are executed correctly.</p>
+      
+      <h3>Documents We Notarize</h3>
+      <ul>
+        <li><strong>Affidavit of Support (I-864)</strong> – Financial sponsorship documentation</li>
+        <li><strong>Affidavit of Relationship</strong> – Family connection verification</li>
+        <li><strong>Birth/Marriage Certificates</strong> – For authentication and apostille</li>
+        <li><strong>Passport Applications</strong> – Supporting documentation</li>
+        <li><strong>Translation Affidavits</strong> – Certifying translated documents</li>
+        <li><strong>USCIS Forms</strong> – I-130, I-485, N-400, and more</li>
+      </ul>
+      
+      <h2>Service Areas in ${county} County</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `Where can I get immigration documents notarized in ${county} County?`, answer: `We provide mobile notary services for immigration documents throughout ${county} County. We come to your home, office, or any convenient location in ${majorCity} and surrounding areas.` },
+      { question: `Can you notarize Affidavit of Support (I-864) in ${county} County?`, answer: `Yes! We regularly notarize I-864 forms and other USCIS documents for ${county} County residents. Same-day appointments often available.` },
+      { question: `Do you provide translation affidavits in ${county} County?`, answer: `Yes, we notarize translation affidavits certifying the accuracy of translated documents for immigration purposes.` }
+    ],
+    quickAnswer: (county) => ({ question: `Who provides immigration document notarization in ${county} County?`, answer: `Signed on Time offers mobile notary services for immigration documents throughout ${county} County including I-864, passport applications, and translation affidavits.` })
+  },
+  'military-guides': {
+    intro: (county, cities) => `
+      <p>Serving <strong>military families and veterans in ${county} County, Ohio</strong> with professional mobile notary services. We understand the unique document needs of service members, veterans, and their families throughout ${cities.slice(0, 4).join(', ')}.</p>
+      
+      <h2>Military & Veteran Notary Services</h2>
+      <p>Whether you're deploying, filing VA claims, or managing family documents while stationed away, our mobile notaries provide flexible scheduling and understand military-specific requirements.</p>
+      
+      <h3>Documents We Specialize In</h3>
+      <ul>
+        <li><strong>Deployment Power of Attorney</strong> – Essential pre-deployment paperwork</li>
+        <li><strong>VA Benefits Applications</strong> – Claims and appeals documentation</li>
+        <li><strong>Family Care Plans</strong> – Required military family documents</li>
+        <li><strong>DD-214 Authentication</strong> – Service record verification</li>
+        <li><strong>Military Healthcare POA</strong> – Medical decision authorization</li>
+        <li><strong>Survivor Benefit Forms</strong> – Beneficiary designations</li>
+      </ul>
+      
+      <h2>Service Areas in ${county} County</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `Can you notarize deployment POA in ${county} County?`, answer: `Yes! We specialize in deployment powers of attorney and can often accommodate last-minute appointments for service members in ${county} County.` },
+      { question: `Do you help with VA paperwork in ${county} County?`, answer: `Absolutely. We notarize VA benefits applications, claims, and appeals for veterans throughout ${county} County.` },
+      { question: `What military documents need notarization?`, answer: `Common military documents include deployment POAs, family care plans, VA forms, allotment documents, and beneficiary designations.` }
+    ],
+    quickAnswer: (county) => ({ question: `Where can military families get notary services in ${county} County?`, answer: `Signed on Time provides mobile notary for military families and veterans throughout ${county} County including deployment POAs, VA documents, and family care plans.` })
+  },
+  'education-guides': {
+    intro: (county, cities) => `
+      <p>Need academic documents notarized in <strong>${county} County, Ohio</strong>? We help students, parents, and educators with transcript releases, study abroad consent, and school enrollment documents throughout ${cities.slice(0, 4).join(', ')}.</p>
+      
+      <h2>Education & Academic Notary Services</h2>
+      <p>From college applications to study abroad programs, educational documents often require notarization for authentication. Our mobile notaries come to your home or school at convenient times.</p>
+      
+      <h3>Documents We Notarize</h3>
+      <ul>
+        <li><strong>Transcript Release Forms</strong> – Academic record authorization</li>
+        <li><strong>Study Abroad Consent</strong> – Parental permission for international programs</li>
+        <li><strong>School Enrollment Forms</strong> – Residency and guardian affidavits</li>
+        <li><strong>Scholarship Applications</strong> – Financial documentation</li>
+        <li><strong>Diploma Verification</strong> – Degree authentication for employers</li>
+        <li><strong>Educational Power of Attorney</strong> – For students turning 18</li>
+      </ul>
+      
+      <h2>Service Areas in ${county} County</h2>
+      <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
+    `,
+    faqs: (county, majorCity) => [
+      { question: `Where can I get school documents notarized in ${county} County?`, answer: `We provide mobile notary for all academic documents throughout ${county} County. We can meet at your home, school, or any convenient location.` },
+      { question: `Can you notarize study abroad consent forms in ${county} County?`, answer: `Yes! We regularly notarize parental consent forms for study abroad and international exchange programs.` },
+      { question: `Do you notarize homeschool documents in ${county} County?`, answer: `Yes, we help homeschool families with affidavits, transcript notarizations, and other required documentation.` }
+    ],
+    quickAnswer: (county) => ({ question: `Who provides education document notarization in ${county} County?`, answer: `Signed on Time offers mobile notary for students and families throughout ${county} County including transcripts, study abroad consent, and enrollment paperwork.` })
   }
 };
 
@@ -422,6 +503,60 @@ const generateCityContent = (city: { name: string; slug: string; county: string;
       
       <h2>Urgent Healthcare Signings</h2>
       <p>For urgent healthcare situations in ${city.name}, we prioritize availability and can often arrive within 2-4 hours. Same-day service available for most healthcare notarization needs.</p>
+    `,
+    'immigration-guides': `
+      <p>Need <strong>immigration documents notarized in ${city.name}, Ohio ${city.zip}</strong>? Our mobile notary professionals understand USCIS requirements and help ensure your immigration paperwork is executed correctly.</p>
+      
+      <h2>Immigration Notary Services in ${city.name}</h2>
+      <p>Immigration documents have strict requirements and deadlines. Our notaries are experienced with affidavits of support, translation certifications, and other USCIS forms.</p>
+      
+      <h3>Immigration Documents We Notarize in ${city.name}</h3>
+      <ul>
+        <li><strong>Affidavit of Support (I-864)</strong> – Financial sponsorship documentation</li>
+        <li><strong>Affidavit of Relationship</strong> – Family connection verification</li>
+        <li><strong>Translation Affidavits</strong> – Certifying translated documents</li>
+        <li><strong>Passport Applications</strong> – Supporting documentation</li>
+        <li><strong>USCIS Forms</strong> – I-130, I-485, N-400, and more</li>
+      </ul>
+      
+      <h2>Same-Day Immigration Notary in ${city.name}</h2>
+      <p>We understand immigration deadlines are often urgent. Same-day appointments available throughout ${city.name} and ${city.county} County.</p>
+    `,
+    'military-guides': `
+      <p>Serving <strong>military families and veterans in ${city.name}, Ohio ${city.zip}</strong> with professional mobile notary services. We understand the unique needs of service members and their families.</p>
+      
+      <h2>Military Notary Services in ${city.name}</h2>
+      <p>Whether you're preparing for deployment or filing VA claims, our mobile notaries offer flexible scheduling and understand military-specific document requirements.</p>
+      
+      <h3>Military Documents We Notarize in ${city.name}</h3>
+      <ul>
+        <li><strong>Deployment Power of Attorney</strong> – Pre-deployment paperwork</li>
+        <li><strong>VA Benefits Applications</strong> – Claims and appeals</li>
+        <li><strong>Family Care Plans</strong> – Required military family documents</li>
+        <li><strong>DD-214 Authentication</strong> – Service record verification</li>
+        <li><strong>Survivor Benefit Forms</strong> – Beneficiary designations</li>
+      </ul>
+      
+      <h2>Flexible Scheduling for Military Families</h2>
+      <p>We prioritize military families and can often accommodate last-minute deployment needs in ${city.name}. Evening and weekend appointments available.</p>
+    `,
+    'education-guides': `
+      <p>Need <strong>academic documents notarized in ${city.name}, Ohio ${city.zip}</strong>? We help students, parents, and educators with transcript releases, study abroad consent, and school enrollment documents.</p>
+      
+      <h2>Education Notary Services in ${city.name}</h2>
+      <p>From college applications to study abroad programs, our mobile notaries come to your home or school at convenient times.</p>
+      
+      <h3>Education Documents We Notarize in ${city.name}</h3>
+      <ul>
+        <li><strong>Transcript Release Forms</strong> – Academic record authorization</li>
+        <li><strong>Study Abroad Consent</strong> – Parental permission forms</li>
+        <li><strong>School Enrollment Forms</strong> – Residency and guardian affidavits</li>
+        <li><strong>Educational Power of Attorney</strong> – For students turning 18</li>
+        <li><strong>Scholarship Applications</strong> – Financial documentation</li>
+      </ul>
+      
+      <h2>Back-to-School and College Prep</h2>
+      <p>Busy during back-to-school season? We offer flexible scheduling including evenings and weekends throughout ${city.name}.</p>
     `
   };
   return templates[categorySlug] || templates['general-notary-guides'];
@@ -464,6 +599,21 @@ const generateCityFaqs = (city: { name: string; county: string }, categorySlug: 
       { question: `Can you come to ${city.name} hospitals?`, answer: `Yes, we provide bedside notarization at all hospitals in ${city.name} and coordinate with nursing staff.` },
       { question: `What if the patient in ${city.name} can't sign?`, answer: `Ohio law allows signature by mark (X) with proper witnessing. We guide you through alternatives.` },
       { question: `How fast for urgent ${city.name} healthcare signing?`, answer: `For urgent healthcare situations, we prioritize availability and can often arrive within 2-4 hours.` }
+    ],
+    'immigration-guides': [
+      { question: `Where can I get immigration documents notarized in ${city.name}?`, answer: `We provide mobile notary for immigration documents throughout ${city.name}. Same-day appointments often available.` },
+      { question: `Can you notarize I-864 in ${city.name}?`, answer: `Yes! We regularly notarize Affidavit of Support (I-864) and other USCIS forms in ${city.name}.` },
+      { question: `How much for immigration notarization in ${city.name}?`, answer: `Standard notary fees apply plus travel. Contact us for a quote specific to your ${city.name} location.` }
+    ],
+    'military-guides': [
+      { question: `Can you notarize deployment POA in ${city.name}?`, answer: `Yes! We specialize in deployment powers of attorney and offer flexible scheduling for military families in ${city.name}.` },
+      { question: `Do you help veterans with VA paperwork in ${city.name}?`, answer: `Absolutely. We notarize VA benefits applications and claims for veterans in ${city.name}.` },
+      { question: `How quickly can you come for military documents?`, answer: `We prioritize military families and can often provide same-day service in ${city.name}.` }
+    ],
+    'education-guides': [
+      { question: `Can you notarize school documents in ${city.name}?`, answer: `Yes! We notarize transcripts, enrollment forms, and study abroad consent in ${city.name}.` },
+      { question: `Do you come to schools in ${city.name}?`, answer: `Yes, we can meet at schools, homes, or any convenient location in ${city.name}.` },
+      { question: `What education documents need notarization?`, answer: `Common documents include transcript releases, study abroad consent, scholarship affidavits, and enrollment forms.` }
     ]
   };
   return faqTemplates[categorySlug] || faqTemplates['general-notary-guides'];

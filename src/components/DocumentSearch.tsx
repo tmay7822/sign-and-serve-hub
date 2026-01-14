@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { Search, FileText, Calendar, Phone, Star, ChevronRight } from 'lucide-react';
+import { Search, FileText, Calendar, Phone, Star, ChevronRight, Flame, TrendingUp } from 'lucide-react';
 import { 
   DOCUMENT_CATEGORIES, 
   POPULAR_DOCUMENTS,
@@ -12,7 +12,9 @@ import {
   getServicesForDocument,
   getDocumentBookingService,
   getCategoryForDocument,
-  ALL_DOCUMENTS
+  ALL_DOCUMENTS,
+  getCurrentTrendingDocuments,
+  TrendingDocument
 } from '@/data/documents';
 import { BookingWidget } from '@/components/BookingWidget';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -30,6 +32,9 @@ export const DocumentSearch = ({
 }: DocumentSearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  
+  // Get currently trending documents
+  const trendingDocs = getCurrentTrendingDocuments();
 
   const filteredDocuments = searchQuery.trim() 
     ? searchDocuments(searchQuery)
@@ -109,6 +114,46 @@ export const DocumentSearch = ({
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
+
+      {/* Trending Documents - Seasonal */}
+      {showPopular && !showResults && trendingDocs.length > 0 && (
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <Flame className="h-5 w-5 text-orange-500" />
+            <h4 className="text-lg font-semibold">Trending Now</h4>
+            <Badge variant="secondary" className="text-xs">
+              Based on seasonal demand
+            </Badge>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {trendingDocs.slice(0, 6).map((item) => {
+              const bookingService = getDocumentBookingService(item.document);
+              return (
+                <Card key={item.document} className="hover:shadow-md transition-shadow border-orange-200/50 bg-orange-50/30 dark:bg-orange-950/10">
+                  <CardContent className="pt-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="h-4 w-4 text-orange-500 shrink-0" />
+                        <span className="font-medium text-sm">{item.document}</span>
+                      </div>
+                      <Badge variant="outline" className="text-xs border-orange-300 text-orange-700 dark:text-orange-400">
+                        {item.trend}
+                      </Badge>
+                      <p className="text-xs text-muted-foreground">{item.reason}</p>
+                      <BookingWidget defaultService={bookingService} size="sm" variant="outline">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          Book
+                        </span>
+                      </BookingWidget>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Popular Documents - Quick Access */}
       {showPopular && !showResults && (
