@@ -9,6 +9,7 @@ import Seo from '@/components/Seo';
 import EnhancedFAQSchema from '@/components/SEO/EnhancedFAQSchema';
 import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
+import CrossCategoryLinks from '@/components/blog/CrossCategoryLinks';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, User, MapPin, ArrowRight } from 'lucide-react';
@@ -257,6 +258,15 @@ const LocationBlogTemplate: React.FC<LocationBlogTemplateProps> = ({ post }) => 
                         </ul>
                       </CardContent>
                     </Card>
+                  )}
+                  
+                  {/* Cross-Category Links (Immigration/Military/Education interconnections) */}
+                  {category && county && (
+                    <CrossCategoryLinks 
+                      currentCategorySlug={category.slug}
+                      countySlug={county.slug}
+                      countyName={county.name}
+                    />
                   )}
                   
                   {/* Related County Guides */}
