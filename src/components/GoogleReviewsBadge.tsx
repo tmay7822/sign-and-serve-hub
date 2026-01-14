@@ -32,15 +32,15 @@ const GoogleReviewsBadge = ({ variant = 'default', className = '' }: GoogleRevie
 
   if (variant === 'compact') {
     return (
-      <div className={`inline-flex items-center gap-1.5 text-sm ${className}`}>
-        <GoogleLogo className="h-4 w-4 flex-shrink-0" />
-        <div className="flex items-center gap-0.5">
+      <div className={`inline-flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm leading-tight ${className}`}>
+        <GoogleLogo className="h-4 w-4 shrink-0" />
+        <div className="flex items-center gap-0.5 shrink-0">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} className="h-3 w-3 fill-brand-gold text-brand-gold" />
+            <Star key={i} className="h-3 w-3 fill-brand-gold text-brand-gold shrink-0" />
           ))}
         </div>
-        <span className="font-medium text-foreground">{averageRating.toFixed(1)}</span>
-        <span className="text-muted-foreground">({totalReviews})</span>
+        <span className="font-medium text-foreground whitespace-nowrap">{averageRating.toFixed(1)}</span>
+        <span className="text-muted-foreground whitespace-nowrap">({totalReviews})</span>
       </div>
     );
   }

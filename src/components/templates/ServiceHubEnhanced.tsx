@@ -145,7 +145,7 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
                   </div>
                 </div>
                 
-                <div className="pt-4 border-t border-border">
+                <div className="pt-3 mt-3 border-t border-border">
                   <GoogleReviewsBadge variant="compact" />
                 </div>
                 
