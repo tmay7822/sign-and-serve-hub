@@ -89,27 +89,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div>
-            <h3 className="font-semibold mb-3">Contact</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-brand-gold" />
-                <a 
-                  href={`tel:${BUSINESS_CONFIG.phone}`}
-                  className="text-white/80 hover:text-brand-gold transition-colors"
-                >
-                  {BUSINESS_CONFIG.phone}
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-brand-gold" />
-                <a 
-                  href={`mailto:${BUSINESS_CONFIG.email}`}
-                  className="text-white/80 hover:text-brand-gold transition-colors"
-                >
-                  {BUSINESS_CONFIG.email}
-                </a>
-              </div>
+
           {/* Contact Info */}
           <div>
             <h3 className="font-semibold mb-3">Contact</h3>
