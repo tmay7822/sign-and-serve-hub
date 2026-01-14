@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import ReviewSchema from '@/components/SEO/ReviewSchema';
-import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
+
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const Index = () => {
@@ -105,14 +105,6 @@ const Index = () => {
       <ReviewSchema />
       <Header />
       <HeroSection />
-      
-      {/* Google Reviews Badge - Trust Signal */}
-      <div className="bg-muted/30 py-4">
-        <div className="container mx-auto px-4 flex justify-center">
-          <GoogleReviewsBadge variant="card" />
-        </div>
-      </div>
-      
       <ServicesSection />
       <TestimonialsSection />
       

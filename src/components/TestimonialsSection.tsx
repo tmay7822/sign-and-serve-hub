@@ -37,7 +37,7 @@ const TestimonialsSection = () => {
   const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
 
   return (
-    <section className="py-20 bg-white">
+    <section id="reviews" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Header with Google branding */}
         <div className="text-center mb-16">
