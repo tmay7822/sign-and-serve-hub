@@ -179,3 +179,15 @@ export const getReviewsByLocation = (location: string): GoogleReview[] => {
     review.location?.toLowerCase().includes(location.toLowerCase())
   );
 };
+
+// Get unique service types for filters
+export const getUniqueServices = (): string[] => {
+  const services = GOOGLE_REVIEWS.map(r => r.service).filter(Boolean) as string[];
+  return [...new Set(services)];
+};
+
+// Get unique locations for filters
+export const getUniqueLocations = (): string[] => {
+  const locations = GOOGLE_REVIEWS.map(r => r.location).filter(Boolean) as string[];
+  return [...new Set(locations)];
+};
