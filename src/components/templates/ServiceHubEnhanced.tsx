@@ -144,11 +144,11 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
                   </div>
                 </div>
                 
-                {showBooking && (
+{showBooking && (
                   <div className="mt-6 pt-6 border-t border-border">
                     <StandardCTAButtons 
                       defaultService={defaultService}
-                      className="flex-col gap-3"
+                      vertical={true}
                     />
                   </div>
                 )}

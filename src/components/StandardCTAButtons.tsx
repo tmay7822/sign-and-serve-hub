@@ -9,18 +9,26 @@ interface StandardCTAButtonsProps {
   variant?: 'top' | 'bottom';
   className?: string;
   showCalculator?: boolean;
+  vertical?: boolean;
 }
 
 export const StandardCTAButtons = ({ 
   defaultService = '', 
   variant = 'bottom',
   className = '',
-  showCalculator = true 
+  showCalculator = true,
+  vertical = false
 }: StandardCTAButtonsProps) => {
-  const baseButtonClasses = "flex-1 sm:flex-none sm:min-w-[140px]";
+  const baseButtonClasses = vertical 
+    ? "w-full"
+    : "flex-1 sm:flex-none sm:min-w-[140px]";
+
+  const layoutClasses = vertical 
+    ? "flex flex-col gap-3"
+    : "flex flex-col sm:flex-row gap-4 justify-center items-center";
 
   return (
-    <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${className}`}>
+    <div className={`${layoutClasses} ${className}`}>
       {/* Book Now Button */}
       <BookingWidget 
         defaultService={defaultService}
