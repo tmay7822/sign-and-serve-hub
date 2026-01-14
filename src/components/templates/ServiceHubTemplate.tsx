@@ -5,18 +5,13 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
+import FAQAccordion from '@/components/FAQAccordion';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Service } from '@/data/services';
@@ -288,42 +283,14 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
         </section>
       )}
 
-      {/* FAQ Section */}
-      {serviceContent?.faqs && serviceContent.faqs.length > 0 && (
-        <section className="py-16 bg-card/30" id="faq">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <HelpCircle className="h-6 w-6 text-primary" />
-                <h2 className="text-2xl lg:text-3xl font-bold text-foreground">
-                  Frequently Asked Questions
-                </h2>
-              </div>
-              <p className="text-lg text-muted-foreground">
-                Common questions about our {service.serviceName.toLowerCase()} services
-              </p>
-            </div>
-            
-            <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="space-y-4">
-                {serviceContent.faqs.map((faq, index) => (
-                  <AccordionItem 
-                    key={index} 
-                    value={`faq-${index}`}
-                    className="bg-card rounded-lg shadow-sm border px-6"
-                  >
-                    <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
+      {/* FAQ Section with Schema */}
+      {serviceContent?.faqs && (
+        <FAQAccordion
+          faqs={serviceContent.faqs}
+          subtitle={`Common questions about our ${service.serviceName.toLowerCase()} services`}
+          serviceName={service.serviceName}
+          className="bg-card/30"
+        />
       )}
 
       {/* Featured Posts Section */}
