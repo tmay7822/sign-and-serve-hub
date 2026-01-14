@@ -113,7 +113,7 @@ const Header = () => {
       <div className="bg-gradient-to-r from-brand-navy via-brand-navy to-brand-blue/90 text-white py-2.5 px-4">
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
           <div className="hidden md:block text-sm text-white/90 font-medium tracking-wide">
-            Professional Mobile Notary Services • Available Today
+            Signed On Time — We Come To You Anytime And Anywhere
           </div>
           <div className="flex items-center gap-2 text-sm font-semibold">
             <Phone className="h-4 w-4" />
