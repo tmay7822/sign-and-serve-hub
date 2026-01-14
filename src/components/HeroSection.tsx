@@ -7,8 +7,8 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center max-w-5xl mx-auto">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-            Signed Right.<br />
-            <span className="text-primary">Signed On Time.</span>
+            Signed On Time.<br />
+            <span className="text-primary">We Come To You Anytime And Anywhere.</span>
           </h1>
           
           <div className="bg-card rounded-lg p-4 lg:p-6 shadow-lg mb-4">
