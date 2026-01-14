@@ -276,6 +276,30 @@ export const routes: RouteRecord[] = [
       { path: 'blog/healthcare-guides-greene-county-ohio', element: <LocationBlogPost /> },
       { path: 'blog/healthcare-guides-clinton-county-ohio', element: <LocationBlogPost /> },
       
+      // Immigration Guides by County (6)
+      { path: 'blog/immigration-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/immigration-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/immigration-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/immigration-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/immigration-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/immigration-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      
+      // Military Guides by County (6)
+      { path: 'blog/military-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/military-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/military-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/military-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/military-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/military-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      
+      // Education Guides by County (6)
+      { path: 'blog/education-guides-hamilton-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/education-guides-warren-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/education-guides-montgomery-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/education-guides-butler-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/education-guides-greene-county-ohio', element: <LocationBlogPost /> },
+      { path: 'blog/education-guides-clinton-county-ohio', element: <LocationBlogPost /> },
+      
       // City-Level Blog Posts (high-traffic cities)
       { path: 'blog/general-notary-guides-cincinnati-ohio', element: <LocationBlogPost /> },
       { path: 'blog/general-notary-guides-mason-ohio', element: <LocationBlogPost /> },
