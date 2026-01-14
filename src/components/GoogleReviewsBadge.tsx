@@ -28,17 +28,12 @@ interface GoogleReviewsBadgeProps {
 }
 
 const GoogleReviewsBadge = ({ variant = 'default', className = '' }: GoogleReviewsBadgeProps) => {
-  const { averageRating, totalReviews, gmbViewUrl } = GOOGLE_REVIEWS_AGGREGATE;
+  const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
 
   if (variant === 'compact') {
     return (
-      <a
-        href={gmbViewUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity ${className}`}
-      >
-        <GoogleLogo className="h-4 w-4" />
+      <div className={`inline-flex items-center gap-1.5 text-sm ${className}`}>
+        <GoogleLogo className="h-4 w-4 flex-shrink-0" />
         <div className="flex items-center gap-0.5">
           {[...Array(5)].map((_, i) => (
             <Star key={i} className="h-3 w-3 fill-brand-gold text-brand-gold" />
@@ -46,19 +41,14 @@ const GoogleReviewsBadge = ({ variant = 'default', className = '' }: GoogleRevie
         </div>
         <span className="font-medium text-foreground">{averageRating.toFixed(1)}</span>
         <span className="text-muted-foreground">({totalReviews})</span>
-      </a>
+      </div>
     );
   }
 
   if (variant === 'card') {
     return (
-      <a
-        href={gmbViewUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-flex items-center gap-3 bg-background border border-border rounded-lg px-4 py-2.5 hover:shadow-md transition-shadow ${className}`}
-      >
-        <GoogleLogo className="h-5 w-5" />
+      <div className={`inline-flex items-center gap-3 bg-background border border-border rounded-lg px-4 py-2.5 ${className}`}>
+        <GoogleLogo className="h-5 w-5 flex-shrink-0" />
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
             <span className="font-bold text-foreground">{averageRating.toFixed(1)}</span>
@@ -70,19 +60,14 @@ const GoogleReviewsBadge = ({ variant = 'default', className = '' }: GoogleRevie
           </div>
           <span className="text-xs text-muted-foreground">{totalReviews} Google reviews</span>
         </div>
-      </a>
+      </div>
     );
   }
 
   // Default variant
   return (
-    <a
-      href={gmbViewUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 hover:opacity-80 transition-opacity ${className}`}
-    >
-      <GoogleLogo className="h-5 w-5" />
+    <div className={`inline-flex items-center gap-2 ${className}`}>
+      <GoogleLogo className="h-5 w-5 flex-shrink-0" />
       <div className="flex items-center gap-1">
         {[...Array(5)].map((_, i) => (
           <Star key={i} className="h-4 w-4 fill-brand-gold text-brand-gold" />
@@ -90,7 +75,7 @@ const GoogleReviewsBadge = ({ variant = 'default', className = '' }: GoogleRevie
       </div>
       <span className="font-semibold text-foreground">{averageRating.toFixed(1)}</span>
       <span className="text-muted-foreground">({totalReviews} reviews)</span>
-    </a>
+    </div>
   );
 };
 
