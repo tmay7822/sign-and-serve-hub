@@ -39,6 +39,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Company Info */}
           <div className="lg:col-span-1">
+            <p className="text-brand-gold font-semibold text-sm mb-2">
+              We Come To You Anytime And Anywhere.
+            </p>
             <p className="text-white/80 mb-4 text-sm leading-relaxed">
               Mobile notary services across {BUSINESS_CONFIG.serviceArea.primary}. 
               Certified, insured, and background-checked for your peace of mind.

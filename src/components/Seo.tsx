@@ -39,7 +39,7 @@ const Seo: React.FC<SeoProps> = ({
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content="Signed On Time Mobile Notary" />
+      <meta property="og:site_name" content="Signed On Time — We Come To You Anytime And Anywhere" />
       
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
