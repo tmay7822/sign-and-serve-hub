@@ -294,7 +294,7 @@ const DynamicCityPage: React.FC = () => {
 
                 <StandardCTAButtons 
                   defaultService="general-notary"
-                  className="flex-col gap-3"
+                  vertical={true}
                 />
               </Card>
             </div>

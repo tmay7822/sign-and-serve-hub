@@ -81,6 +81,26 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Do all parties need to be present for notarization?',
         answer: 'Yes, all parties whose signatures require notarization must be physically present before the notary at the time of signing.'
+      },
+      {
+        question: 'How much does mobile notary service cost?',
+        answer: 'Ohio allows notaries to charge up to $5 per notarial act. Mobile notary services typically include a travel fee of $25-75 depending on distance and time of day. We provide upfront pricing before every appointment.'
+      },
+      {
+        question: 'Can I use an expired ID for notarization?',
+        answer: 'Generally, no. Most notarizations require a current, valid ID. However, some exceptions exist for recently expired IDs (usually within 30 days) or in combination with secondary identification. Contact us to discuss your specific situation.'
+      },
+      {
+        question: 'What if I cannot physically sign my name?',
+        answer: 'Ohio law allows "signature by mark" where you can make an X or other mark in place of a signature. This must be witnessed and notarized with specific procedures we can guide you through.'
+      },
+      {
+        question: 'Do you offer same-day or emergency notary service?',
+        answer: 'Yes, we offer same-day appointments for most areas and emergency/after-hours service for urgent situations including hospital visits. Call or text for immediate availability.'
+      },
+      {
+        question: 'Can documents be notarized at my home or office?',
+        answer: 'Absolutely. Mobile notary service means we come to you—your home, office, hospital, coffee shop, or any convenient location throughout our service area.'
       }
     ],
     tips: [
@@ -151,6 +171,26 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'What if I find an error in the documents?',
         answer: 'We\'ll contact your lender immediately to resolve any errors before proceeding with the signing.'
+      },
+      {
+        question: 'What\'s the difference between a notary and a loan signing agent?',
+        answer: 'A loan signing agent is a notary with specialized training in mortgage documents. We are NNA-certified signing agents with background checks and E&O insurance, trained to handle the full loan package professionally.'
+      },
+      {
+        question: 'Who pays for the mobile notary at closing?',
+        answer: 'Typically the signing service or title company pays the notary fee as part of closing costs. In refinances, this is usually paid by the lender. You\'ll see any applicable fees on your Closing Disclosure.'
+      },
+      {
+        question: 'Can I reschedule my loan signing?',
+        answer: 'Yes, but notify us and your lender as early as possible. Last-minute changes may affect your closing date and rate lock. We\'re flexible and will work to accommodate schedule changes when possible.'
+      },
+      {
+        question: 'What happens after the loan signing is complete?',
+        answer: 'We return the signed documents to the title company or signing service via overnight courier (typically FedEx or UPS). After the lender reviews documents, funding usually occurs within 24-72 hours.'
+      },
+      {
+        question: 'Do both spouses need to sign mortgage documents?',
+        answer: 'In Ohio, both spouses typically sign mortgage documents even if only one is on the loan, due to homestead and dower rights. Specific requirements depend on your title situation and lender policies.'
       }
     ],
     tips: [
@@ -221,6 +261,26 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can family members serve as witnesses?',
         answer: 'It\'s best to use disinterested witnesses who are not beneficiaries. We can provide neutral witnesses for your documents.'
+      },
+      {
+        question: 'Can I make changes to my will after it\'s notarized?',
+        answer: 'Yes, you can modify your will through a codicil (amendment) or by creating a new will that revokes the previous one. Both options should be properly witnessed and notarized to be self-proving.'
+      },
+      {
+        question: 'What\'s the difference between a will and a living trust?',
+        answer: 'A will goes through probate court after death, while a living trust allows assets to transfer privately without probate. Trusts cost more to set up but can save time and money for larger estates.'
+      },
+      {
+        question: 'How do I revoke a power of attorney?',
+        answer: 'Execute a written revocation document, notify your agent and any institutions that received copies, and destroy all copies of the original POA. We can notarize revocation documents.'
+      },
+      {
+        question: 'Can a notary notarize their own family member\'s will?',
+        answer: 'Ohio law prohibits notaries from notarizing documents where they have a personal interest. We should not notarize documents for close relatives or where we are beneficiaries.'
+      },
+      {
+        question: 'What makes a will "self-proving" in Ohio?',
+        answer: 'A self-proving will includes notarized affidavits from the witnesses confirming they watched the testator sign. This eliminates the need to locate witnesses during probate.'
       }
     ],
     tips: [
@@ -291,6 +351,26 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you help with property transfers between family members?',
         answer: 'Yes, we regularly handle family property transfers including gifts, inheritance distributions, and transfers to trusts.'
+      },
+      {
+        question: 'Can I sign a deed without my spouse present?',
+        answer: 'In Ohio, your spouse typically must sign or release dower rights for property transfers. We can coordinate separate signings if needed, or help you understand when spousal signature is required.'
+      },
+      {
+        question: 'How do I add someone to my property deed?',
+        answer: 'You\'ll need a new deed (usually quit claim) that includes both current and new owners. We can notarize the deed, but recommend consulting an attorney about title and tax implications.'
+      },
+      {
+        question: 'What documents do I need to sell my house?',
+        answer: 'Sellers typically sign the deed, settlement statement, affidavits of title, and property disclosures. Your title company or attorney will prepare these documents for notarization.'
+      },
+      {
+        question: 'Can you notarize documents at the title company?',
+        answer: 'Yes, we provide mobile service to title companies, attorney offices, or any closing location. Many title companies also have their own notaries on staff.'
+      },
+      {
+        question: 'What is a transfer on death (TOD) deed in Ohio?',
+        answer: 'Ohio\'s TOD affidavit allows property to pass directly to beneficiaries at death without probate. The owner retains full control during life and can revoke or change beneficiaries anytime.'
       }
     ],
     tips: [
@@ -361,6 +441,26 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you apostille documents from other states?',
         answer: 'Documents must be apostilled by the state where they were issued. We can handle Ohio documents and coordinate with other states as needed.'
+      },
+      {
+        question: 'What\'s the difference between an apostille and embassy legalization?',
+        answer: 'Apostilles are for Hague Convention countries and are obtained from the Secretary of State. Non-Hague countries require embassy or consulate legalization, which is a separate, often longer process.'
+      },
+      {
+        question: 'Can I get an apostille the same day?',
+        answer: 'Ohio Secretary of State offers walk-in service in Columbus for same-day apostilles. We can coordinate expedited processing or in-person submissions for urgent needs.'
+      },
+      {
+        question: 'Do I need to notarize a document before getting an apostille?',
+        answer: 'It depends on the document type. Personal documents like affidavits need notarization first. Certified vital records (birth, marriage) from official sources typically don\'t need additional notarization.'
+      },
+      {
+        question: 'Can certified copies be apostilled?',
+        answer: 'Yes, you should always use certified copies rather than originals. Ohio vital records offices provide certified copies specifically for apostille purposes.'
+      },
+      {
+        question: 'How do I apostille an FBI background check?',
+        answer: 'FBI background checks require federal apostille from the U.S. State Department in Washington D.C., not the Ohio Secretary of State. This process takes 4-8 weeks or can be expedited.'
       }
     ],
     tips: [
@@ -431,6 +531,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Do you handle rush business banking documents?',
         answer: 'Yes, we provide same-day service for urgent business banking needs including loan closings and time-sensitive agreements.'
+      },
+      {
+        question: 'What is a certified copy of a corporate resolution?',
+        answer: 'A certified resolution is a copy of board minutes or resolution certified by the corporate secretary as true and accurate. Banks often require this to verify signing authority for loans and accounts.'
+      },
+      {
+        question: 'Can one officer sign on behalf of the company?',
+        answer: 'It depends on your corporate bylaws and the document type. Most banks require documentation showing who is authorized to sign, such as resolutions or signature cards.'
+      },
+      {
+        question: 'Do you offer after-hours service for business closings?',
+        answer: 'Yes, we accommodate business schedules with evening and weekend appointments for loan closings, equipment financing, and time-sensitive transactions.'
+      },
+      {
+        question: 'What if signers are in different locations?',
+        answer: 'We can coordinate multiple appointments across different business locations, or work with other notaries to facilitate multi-party signings across wider areas.'
       }
     ],
     tips: [
@@ -501,6 +617,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you notarize documents for out-of-state businesses?',
         answer: 'Yes, as long as the signers are physically present in Ohio and have valid identification.'
+      },
+      {
+        question: 'Can you notarize employee contracts and offer letters?',
+        answer: 'Yes, we regularly notarize employment agreements, non-compete agreements, confidentiality agreements, and other HR documents for businesses.'
+      },
+      {
+        question: 'Do you handle startup and LLC formation documents?',
+        answer: 'Yes, we notarize articles of organization, operating agreements, member certificates, and other formation documents for new businesses.'
+      },
+      {
+        question: 'What about non-disclosure agreements (NDAs)?',
+        answer: 'NDAs typically don\'t require notarization, but notarizing them adds an extra layer of authentication. We can notarize NDAs, non-compete agreements, and similar contracts.'
+      },
+      {
+        question: 'Can you visit our corporate office regularly?',
+        answer: 'Yes, we offer scheduled on-site service for businesses with regular notarization needs. Many companies set up weekly or monthly visits for ongoing document needs.'
       }
     ],
     tips: [
@@ -571,6 +703,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'What if my student is away at college in another state?',
         answer: 'We can coordinate timing when they\'re home, or help you find qualified notaries in their college town.'
+      },
+      {
+        question: 'What documents should every 18-year-old have?',
+        answer: 'Every young adult should have a healthcare power of attorney, HIPAA release, and financial power of attorney so parents can help in emergencies. Our "College 18+ Starter Pack" covers these essentials.'
+      },
+      {
+        question: 'Can parents still access medical records after a child turns 18?',
+        answer: 'No, HIPAA protects adult medical records regardless of parental relationship. A signed HIPAA authorization form allows parents continued access to their adult child\'s medical information.'
+      },
+      {
+        question: 'What documents are needed for study abroad programs?',
+        answer: 'Study abroad typically requires passport notarizations, consent forms, emergency contact authorizations, and sometimes apostilled documents depending on the destination country.'
+      },
+      {
+        question: 'Do dormitory or apartment agreements need notarization?',
+        answer: 'Most campus housing agreements don\'t require notarization, but off-campus lease co-signers (usually parents) may need notarized guarantor agreements.'
       }
     ],
     tips: [
@@ -641,6 +789,26 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Do healthcare documents need witnesses?',
         answer: 'Some healthcare documents require witnesses in addition to notarization. We can coordinate with medical staff or provide neutral witnesses.'
+      },
+      {
+        question: 'Can someone in the hospital sign legal documents?',
+        answer: 'Yes, as long as they are alert, aware, and understand what they are signing. We assess the signer\'s awareness and may defer if there are concerns about capacity.'
+      },
+      {
+        question: 'What if the patient cannot hold a pen?',
+        answer: 'Ohio allows signature by mark (an X or other mark) witnessed and notarized with proper procedures. We can guide patients and families through this process.'
+      },
+      {
+        question: 'Are DNR orders notarized in Ohio?',
+        answer: 'Ohio DNR/DNRO forms require physician signature and may require witnesses but typically don\'t need notarization. However, related healthcare directives often do.'
+      },
+      {
+        question: 'Can I appoint multiple healthcare agents?',
+        answer: 'Yes, you can name successor agents who take over if your primary agent is unavailable. You can also name co-agents, though this can create coordination challenges.'
+      },
+      {
+        question: 'What\'s the difference between HCPOA and a living will?',
+        answer: 'A healthcare power of attorney names someone to make medical decisions for you when you cannot. A living will documents your wishes for end-of-life care. Most people should have both.'
       }
     ],
     tips: [
@@ -711,6 +879,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Do life insurance beneficiary changes need witnesses?',
         answer: 'Most insurance companies only require notarization, but some may require witnesses. We can review specific requirements.'
+      },
+      {
+        question: 'Can I change beneficiaries without my spouse knowing?',
+        answer: 'Some accounts require spousal consent for beneficiary changes, particularly ERISA-governed retirement plans. We notarize what\'s presented but recommend discussing changes openly with family.'
+      },
+      {
+        question: 'What if I lost my original insurance policy?',
+        answer: 'Insurance companies typically accept notarized affidavits of lost policy to process claims or changes. We can notarize these statements for you.'
+      },
+      {
+        question: 'Do annuity contracts need witnesses in Ohio?',
+        answer: 'Requirements vary by insurance company. Some annuity contracts only need notarization while others require witnesses. Check with your insurance company for specific requirements.'
+      },
+      {
+        question: 'Can retirement plan rollovers be notarized?',
+        answer: 'Yes, we notarize IRA rollovers, 401(k) transfers, and pension distribution documents. These often require notarization to verify the account holder\'s identity and authorization.'
       }
     ],
     tips: [
@@ -781,6 +965,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you handle documents from multiple states?',
         answer: 'Yes, we coordinate apostille processing for documents from different states, which is common for international applications.'
+      },
+      {
+        question: 'How do I get documents apostilled for immigration?',
+        answer: 'Immigration documents like birth certificates, marriage certificates, and police clearances often need apostilles. The process depends on the issuing state and destination country requirements.'
+      },
+      {
+        question: 'What about documents in foreign languages?',
+        answer: 'Foreign-language documents may need certified translation in addition to apostille. Some countries require the translation to be apostilled separately.'
+      },
+      {
+        question: 'Can you apostille documents for dual citizenship applications?',
+        answer: 'Yes, we handle apostilles for citizenship applications in countries like Italy, Ireland, and Germany. Requirements vary by country, and we can help navigate the process.'
+      },
+      {
+        question: 'How long are apostilles valid?',
+        answer: 'Apostilles themselves don\'t expire, but the underlying documents may have validity periods. Some countries require documents apostilled within a certain timeframe (often 3-6 months).'
       }
     ],
     tips: [
@@ -851,6 +1051,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you handle rush orders for court deadlines?',
         answer: 'Yes, we understand legal deadlines are critical and offer same-day and emergency service for urgent court filings.'
+      },
+      {
+        question: 'Can you notarize documents for out-of-state court cases?',
+        answer: 'Yes, as long as signers are present in Ohio, we can notarize documents for courts in any state. Each state may have different formatting requirements.'
+      },
+      {
+        question: 'What about documents for federal court?',
+        answer: 'We notarize affidavits, declarations, and other documents for federal court proceedings. Federal courts generally accept Ohio notarizations.'
+      },
+      {
+        question: 'Do depositions need notarization?',
+        answer: 'Deposition transcripts are typically certified by the court reporter. However, related affidavits, exhibits, and declarations may need notarization. We coordinate with court reporters as needed.'
+      },
+      {
+        question: 'Can you visit a law firm after regular business hours?',
+        answer: 'Yes, we accommodate attorney schedules with evening and weekend appointments for depositions, closings, and document signings at your office.'
       }
     ],
     tips: [
@@ -921,6 +1137,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you help with documents I\'ve never seen before?',
         answer: 'Absolutely. We research unfamiliar documents to ensure we provide the correct notarial service.'
+      },
+      {
+        question: 'Can you notarize documents for someone in jail or prison?',
+        answer: 'Yes, we provide notary services at correctional facilities. This requires coordination with the facility and may have additional requirements and fees.'
+      },
+      {
+        question: 'What about notarizing at a hospital bedside?',
+        answer: 'We regularly visit patients in hospitals, rehabilitation centers, and long-term care facilities. We work around medical schedules and equipment.'
+      },
+      {
+        question: 'Do you handle documents for the VA or military?',
+        answer: 'Yes, we notarize VA benefits applications, military powers of attorney, and other documents for veterans and active-duty service members.'
+      },
+      {
+        question: 'Can you notarize lottery or contest claims?',
+        answer: 'Yes, prize claims often require notarized affidavits for identity verification. We can notarize these documents for lottery winners and contest participants.'
       }
     ],
     tips: [
@@ -991,6 +1223,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Can you coordinate with family court requirements?',
         answer: 'Yes, we ensure documents meet family court standards and can coordinate with court schedules when needed.'
+      },
+      {
+        question: 'Can you notarize documents for child custody matters?',
+        answer: 'Yes, we notarize custody agreements, visitation schedules, parental consent forms, and related family court documents.'
+      },
+      {
+        question: 'What about minor consent for tattoos or piercings?',
+        answer: 'Yes, parental consent forms for minors often require notarization. Both parents may need to sign depending on custody arrangements.'
+      },
+      {
+        question: 'Do I need a notarized letter for my child to travel internationally?',
+        answer: 'Yes, when a minor travels internationally without both parents, a notarized travel consent letter is strongly recommended and often required by airlines and border officials.'
+      },
+      {
+        question: 'Can step-parents sign school or medical documents?',
+        answer: 'It depends on the document and custody situation. Notarized authorization forms can grant step-parents authority to make certain decisions.'
       }
     ],
     tips: [
@@ -1061,6 +1309,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'Do you service both residential and commercial properties?',
         answer: 'Yes, we handle all types of real estate transactions from residential purchases to complex commercial property deals.'
+      },
+      {
+        question: 'Do you work with property investors?',
+        answer: 'Yes, we support real estate investors with bulk property purchases, wholesale deals, and investment partnership documents.'
+      },
+      {
+        question: 'Can you handle commercial lease signings?',
+        answer: 'Yes, we notarize commercial leases, amendments, and related documents for landlords, tenants, and property management companies.'
+      },
+      {
+        question: 'What about foreclosure or short sale documents?',
+        answer: 'We handle distressed property documentation including foreclosure affidavits, short sale packages, and deed-in-lieu documents.'
+      },
+      {
+        question: 'Do you coordinate with title companies?',
+        answer: 'Yes, we work regularly with title companies throughout the region and can provide signing services at their offices or client locations.'
       }
     ],
     tips: [
@@ -1131,6 +1395,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'What if the buyer and seller can\'t meet at the same time?',
         answer: 'We can coordinate separate appointments or meet at neutral locations like the BMV office to facilitate the transfer.'
+      },
+      {
+        question: 'Can I transfer a title without the seller present?',
+        answer: 'Ohio requires the seller\'s signature on the title. If the seller cannot be present, a notarized power of attorney may allow someone else to sign on their behalf.'
+      },
+      {
+        question: 'What about motorcycle or boat titles?',
+        answer: 'Yes, we handle title transfers and registrations for motorcycles, boats, RVs, and other recreational vehicles using the same process as car titles.'
+      },
+      {
+        question: 'Do auto dealers get special rates?',
+        answer: 'We offer volume pricing for dealers with regular notarization needs. Contact us to discuss ongoing service arrangements for your dealership.'
+      },
+      {
+        question: 'Can you meet at the BMV?',
+        answer: 'Yes, we can meet buyers and sellers at BMV locations to notarize documents on-site before registration, making the process more convenient.'
       }
     ],
     tips: [
@@ -1201,6 +1481,22 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       {
         question: 'What about probate court documents?',
         answer: 'We notarize probate affidavits, executor appointments, and other court documents required for estate administration.'
+      },
+      {
+        question: 'What happens if a witness dies before probate?',
+        answer: 'This is why self-proving wills are important. With notarized witness affidavits, the court can validate the will without locating witnesses.'
+      },
+      {
+        question: 'Can I be both executor and beneficiary?',
+        answer: 'Yes, it\'s common for a beneficiary to also serve as executor. However, the executor cannot serve as a witness to the will signing.'
+      },
+      {
+        question: 'What is a small estate affidavit?',
+        answer: 'Ohio allows estates under $35,000 to use a simplified affidavit process instead of full probate. We can notarize these small estate affidavits.'
+      },
+      {
+        question: 'How do I fund a trust after signing?',
+        answer: 'After the trust is signed, assets must be transferred into it. This may require additional notarized documents like deeds for real estate or assignment documents for accounts.'
       }
     ],
     tips: [
