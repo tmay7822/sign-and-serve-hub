@@ -6,9 +6,11 @@ const HeroSection = () => {
     <section className="bg-background py-8 lg:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-            Signed On Time.<br />
-            <span className="text-primary">We Come To You Anytime And Anywhere.</span>
+          <h1 className="font-bold text-foreground mb-4 lg:mb-6 leading-tight">
+            <span className="block text-4xl sm:text-5xl lg:text-6xl">Signed On Time.</span>
+            <span className="block text-xl sm:text-2xl lg:text-3xl text-primary mt-2">
+              We Come To You Anytime And Anywhere.
+            </span>
           </h1>
           
           <div className="bg-card rounded-lg p-4 lg:p-6 shadow-lg mb-4">

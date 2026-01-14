@@ -133,9 +133,9 @@ export const BUSINESS_CONFIG = {
   
   // SEO Information
   seo: {
-    metaTitle: "Mobile Notary Cincinnati | Signed On Time", 
-    metaDescription: "Same-day mobile notary in Cincinnati-Dayton. NNA certified, insured. Loan signings, POA, wills, apostille. Call (513) 226-9052 for free quote!", 
-    keywords: "mobile notary, loan signing agent, Cincinnati notary, Dayton notary, power of attorney, notary public Ohio, Hamilton County, Warren County, Montgomery County", 
+    metaTitle: "Signed On Time | We Come To You Anytime And Anywhere | Mobile Notary Cincinnati", 
+    metaDescription: "Signed On Time - We Come To You Anytime And Anywhere. Same-day mobile notary in Cincinnati-Dayton. NNA certified, insured. Loan signings, POA, wills, apostille. Call (513) 226-9052!", 
+    keywords: "Signed On Time, mobile notary, we come to you, loan signing agent, Cincinnati notary, Dayton notary, power of attorney, notary public Ohio, Hamilton County, Warren County, Montgomery County", 
   }
 };
 
