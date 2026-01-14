@@ -9,7 +9,7 @@ export const BUSINESS_CONFIG = {
   // Contact Information
   phone: "(513) 226-9052", 
   email: "Terry@SignedOnTime.com", 
-  website: "https://www.SignedOnTime.com", 
+  website: "https://www.signedontime.com", 
   
   // Location & Service Area
   address: {

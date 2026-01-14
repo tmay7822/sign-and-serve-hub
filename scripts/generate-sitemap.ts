@@ -13,7 +13,7 @@ const prerenderRoutesContent = readFileSync(prerenderRoutesPath, 'utf-8');
 const routeMatches = prerenderRoutesContent.match(/['"`]\/[^'"`]*['"`]/g) || [];
 const PRERENDER_ROUTES = routeMatches.map(match => match.slice(1, -1));
 
-const BUSINESS_WEBSITE = 'https://signedontime.com';
+const BUSINESS_WEBSITE = 'https://www.signedontime.com';
 
 interface SitemapUrl {
   url: string;
