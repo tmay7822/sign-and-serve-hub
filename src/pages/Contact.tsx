@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MapPin, Clock, Calculator } from 'lucide-react';
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 
 const Contact = () => {
   return (
@@ -41,6 +42,9 @@ const Contact = () => {
               >
                 Calculate Your Quote
               </QuoteButton>
+              <div className="mt-4 flex justify-center">
+                <GoogleReviewsBadge variant="compact" className="text-white/90" />
+              </div>
             </div>
           </div>
         </div>

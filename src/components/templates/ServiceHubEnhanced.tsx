@@ -19,6 +19,7 @@ import { getRoutesByService } from '@/data/locations';
 import { getServiceContent } from '@/data/serviceContent';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { ArrowRight, MapPin, FileText, Users, Clock, CheckCircle, Lightbulb } from 'lucide-react';
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 
 interface ServiceHubEnhancedProps {
   service: Service;
@@ -142,6 +143,10 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
                     <Users className="h-5 w-5 text-primary" />
                     <span>Licensed & insured notary</span>
                   </div>
+                </div>
+                
+                <div className="pt-4 border-t border-border">
+                  <GoogleReviewsBadge variant="compact" />
                 </div>
                 
 {showBooking && (
