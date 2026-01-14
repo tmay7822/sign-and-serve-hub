@@ -134,12 +134,12 @@ const Header = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-between h-24 lg:h-32">
             {/* Logo - larger and more prominent */}
-            <div className="flex items-center flex-shrink-0 -my-2 lg:-my-4">
+            <div className="flex items-center flex-shrink-0 -my-4 lg:-my-8">
               <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
                 <img 
                   src={logoImage} 
                   alt={BUSINESS_CONFIG.logo.alt}
-                  className="h-24 lg:h-36 w-auto max-h-none"
+                  className="h-28 lg:h-44 w-auto max-h-none"
                 />
               </Link>
             </div>
