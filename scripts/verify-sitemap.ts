@@ -14,7 +14,7 @@ interface VerificationResult {
   isValid: boolean;
 }
 
-const BUSINESS_WEBSITE = 'https://signedontime.com';
+const BUSINESS_WEBSITE = 'https://www.signedontime.com';
 
 // Extract routes from prerenderRoutes.ts
 const extractPrerenderRoutes = (): string[] => {

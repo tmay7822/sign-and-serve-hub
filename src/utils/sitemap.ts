@@ -117,6 +117,14 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /.well-known/
 
+# Allow important resources
+Allow: /assets/
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+
 # Sitemap location
 Sitemap: ${baseUrl}/sitemap.xml
 
