@@ -96,6 +96,10 @@ const HospitalNotaryChecklistOhio = lazy(() => import('./pages/blog/HospitalNota
 const SeniorCommunitiesNotaryPOAHealthcareOhio = lazy(() => import('./pages/blog/SeniorCommunitiesNotaryPOAHealthcareOhio'));
 const UrgentNotarySameDayOhioHospitals = lazy(() => import('./pages/blog/UrgentNotarySameDayOhioHospitals'));
 const HospitalNotaryIDProblemsOhio = lazy(() => import('./pages/blog/HospitalNotaryIDProblemsOhio'));
+const ImmigrationDocumentsNotaryGuide = lazy(() => import('./pages/blog/ImmigrationDocumentsNotaryGuide'));
+const MilitaryVeteransNotaryGuide = lazy(() => import('./pages/blog/MilitaryVeteransNotaryGuide'));
+const HealthcareDocumentsNotaryGuide = lazy(() => import('./pages/blog/HealthcareDocumentsNotaryGuide'));
+const Documents = lazy(() => import('./pages/Documents'));
 const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
 export const routes: RouteRecord[] = [
   {
@@ -135,6 +139,7 @@ export const routes: RouteRecord[] = [
       { path: 'about', element: <AboutUs /> },
       { path: 'contact', element: <Contact /> },
       { path: 'pricing', element: <Pricing /> },
+      { path: 'documents', element: <Documents /> },
       { path: 'service-areas', element: <ServiceAreas /> },
       { path: 'privacy-policy', element: <PrivacyPolicy /> },
       { path: 'terms-of-service', element: <TermsOfService /> },
@@ -148,6 +153,9 @@ export const routes: RouteRecord[] = [
       { path: 'blog/apostille-guides', element: <BlogCategory /> },
       { path: 'blog/business-guides', element: <BlogCategory /> },
       { path: 'blog/healthcare-guides', element: <BlogCategory /> },
+      { path: 'blog/immigration-guides', element: <BlogCategory /> },
+      { path: 'blog/military-guides', element: <BlogCategory /> },
+      { path: 'blog/education-guides', element: <BlogCategory /> },
       
       // Legacy blog category redirects
       { path: 'blog/general-notary', element: <Navigate to="/blog/general-notary-guides" replace /> },
@@ -208,6 +216,9 @@ export const routes: RouteRecord[] = [
       { path: 'blog/senior-communities-notary-poa-healthcare-ohio', element: <SeniorCommunitiesNotaryPOAHealthcareOhio /> },
       { path: 'blog/urgent-notary-same-day-ohio-hospitals', element: <UrgentNotarySameDayOhioHospitals /> },
       { path: 'blog/hospital-notary-id-problems-ohio', element: <HospitalNotaryIDProblemsOhio /> },
+      { path: 'blog/immigration-documents-notary-guide', element: <ImmigrationDocumentsNotaryGuide /> },
+      { path: 'blog/military-veterans-notary-guide', element: <MilitaryVeteransNotaryGuide /> },
+      { path: 'blog/healthcare-documents-notary-guide', element: <HealthcareDocumentsNotaryGuide /> },
       
       // Location-Specific Blog Posts (42 total: 7 categories × 6 counties)
       { path: 'blog/general-notary-guides-hamilton-county-ohio', element: <LocationBlogPost /> },

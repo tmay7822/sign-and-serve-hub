@@ -29,6 +29,7 @@ export const PRERENDER_ROUTES = [
   '/about',
   '/contact',
   '/pricing',
+  '/documents',
   '/service-areas',
   '/book-now',
   '/privacy-policy',
@@ -43,6 +44,9 @@ export const PRERENDER_ROUTES = [
   '/blog/apostille-guides',
   '/blog/business-guides',
   '/blog/healthcare-guides',
+  '/blog/immigration-guides',
+  '/blog/military-guides',
+  '/blog/education-guides',
   
   // Individual Blog Posts
   '/blog/general-notary-what-to-bring',
@@ -94,6 +98,9 @@ export const PRERENDER_ROUTES = [
   '/blog/senior-communities-notary-poa-healthcare-ohio',
   '/blog/urgent-notary-same-day-ohio-hospitals',
   '/blog/hospital-notary-id-problems-ohio',
+  '/blog/immigration-documents-notary-guide',
+  '/blog/military-veterans-notary-guide',
+  '/blog/healthcare-documents-notary-guide',
   
   // Location-Specific Blog Posts (42 total: 7 categories × 6 counties)
   // General Notary Guides by County
