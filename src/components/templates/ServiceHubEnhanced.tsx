@@ -18,8 +18,9 @@ import { BlogPost, getPostsByService } from '@/data/blog';
 import { getRoutesByService } from '@/data/locations';
 import { getServiceContent } from '@/data/serviceContent';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { ArrowRight, MapPin, FileText, Users, Clock, CheckCircle, Lightbulb } from 'lucide-react';
+import { ArrowRight, MapPin, FileText, Users, Clock, CheckCircle, Lightbulb, Star } from 'lucide-react';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
+import { getReviewsByServiceTypes, GOOGLE_REVIEWS_AGGREGATE, GoogleReview } from '@/data/googleReviews';
 
 interface ServiceHubEnhancedProps {
   service: Service;
@@ -40,6 +41,28 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
   const blogPosts = getPostsByService(service.slug).slice(0, 6);
   const localRoutes = getRoutesByService(service.slug).slice(0, 8);
   const serviceContent = getServiceContent(service.id);
+  
+  // Service type mapping for reviews
+  const serviceTypeMap: Record<string, string[]> = {
+    'loan-signings': ['loan-signing', 'mortgage', 'refinance', 'first-home'],
+    'real-estate': ['real-estate'],
+    'wills-trusts-estates': ['estate'],
+    'estate-plans': ['estate'],
+    'apostille': ['apostille'],
+    'mobile-notary': ['mobile-notary'],
+    'general-notary': ['general'],
+    'title-transfer': ['title-transfer'],
+  };
+  
+  const serviceTypes = serviceTypeMap[service.slug] || [];
+  const serviceReviews = getReviewsByServiceTypes(serviceTypes).slice(0, 4);
+  
+  const avatarColors = [
+    'bg-blue-500',
+    'bg-green-500',
+    'bg-purple-500',
+    'bg-orange-500',
+  ];
   
   const defaultQuickAnswer = {
     question: `What is ${service.serviceName}?`,
@@ -215,6 +238,60 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
           subtitle={`Common questions about ${service.serviceName.toLowerCase()}`}
           serviceName={service.serviceName}
         />
+      )}
+
+      {/* Service-Specific Testimonials */}
+      {serviceReviews.length > 0 && (
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                What {service.serviceName} Clients Say
+              </h2>
+              <p className="text-muted-foreground">
+                Real reviews from clients who used our {service.serviceName.toLowerCase()} services
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {serviceReviews.map((review, index) => (
+                <Card key={review.id} className="border border-border hover:shadow-lg transition-all duration-300">
+                  <CardContent className="p-5">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div 
+                        className={`${avatarColors[index % avatarColors.length]} h-9 w-9 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0`}
+                      >
+                        {review.reviewerInitial}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-foreground text-sm truncate">
+                          {review.reviewerName}
+                        </p>
+                        {review.location && (
+                          <p className="text-xs text-muted-foreground">{review.location}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex mb-3">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-brand-gold text-brand-gold" />
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      "{review.text}"
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <Link to="/reviews" className="text-primary hover:underline font-medium">
+                See all {GOOGLE_REVIEWS_AGGREGATE.totalReviews} reviews →
+              </Link>
+            </div>
+          </div>
+        </section>
       )}
 
       {/* Local Service Areas */}

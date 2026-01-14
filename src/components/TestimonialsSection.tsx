@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import { Star, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Star, MapPin, ArrowRight } from 'lucide-react';
 import { GOOGLE_REVIEWS_AGGREGATE, getFeaturedReviews } from '@/data/googleReviews';
 
 const GoogleLogo = () => (
@@ -39,30 +41,32 @@ const TestimonialsSection = () => {
   return (
     <section id="reviews" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        {/* Header with Google branding */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <GoogleLogo />
-            <span className="text-muted-foreground">Reviews from Google</span>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            What Our Clients Say
-          </h2>
-          
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="text-2xl font-bold text-foreground">{averageRating.toFixed(1)}</span>
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
-              ))}
+        {/* Header with Google branding - Clickable */}
+        <Link to="/reviews" className="block group">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <GoogleLogo />
+              <span className="text-muted-foreground group-hover:text-primary transition-colors">Reviews from Google</span>
             </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4 group-hover:text-primary transition-colors">
+              What Our Clients Say
+            </h2>
+            
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="text-2xl font-bold text-foreground">{averageRating.toFixed(1)}</span>
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
+                ))}
+              </div>
+            </div>
+            
+            <p className="text-muted-foreground group-hover:text-primary/80 transition-colors">
+              Based on {totalReviews} verified reviews — Click to see all
+            </p>
           </div>
-          
-          <p className="text-muted-foreground">
-            Based on {totalReviews} verified reviews
-          </p>
-        </div>
+        </Link>
 
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -109,6 +113,16 @@ const TestimonialsSection = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* View All Reviews Button */}
+        <div className="text-center mt-10">
+          <Button asChild variant="outline" size="lg">
+            <Link to="/reviews" className="gap-2">
+              View All {totalReviews} Reviews
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

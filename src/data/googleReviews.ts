@@ -434,6 +434,13 @@ export const getReviewsByService = (service: string): GoogleReview[] => {
   return GOOGLE_REVIEWS.filter(review => review.service === service);
 };
 
+// Get reviews by multiple service types (for service hub pages)
+export const getReviewsByServiceTypes = (serviceTypes: string[]): GoogleReview[] => {
+  return GOOGLE_REVIEWS.filter(review => 
+    review.service && serviceTypes.includes(review.service)
+  );
+};
+
 // Get reviews by location
 export const getReviewsByLocation = (location: string): GoogleReview[] => {
   return GOOGLE_REVIEWS.filter(review => 
