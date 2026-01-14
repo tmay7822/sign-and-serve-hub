@@ -282,6 +282,9 @@ const COUNTY_CONTENT_TEMPLATES: Record<string, {
         <li><strong>USCIS Forms</strong> – I-130, I-485, N-400, and more</li>
       </ul>
       
+      <h3>Related Services You May Need</h3>
+      <p>Many immigration clients also need <a href="/blog/military-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">military family documentation</a> for service member spouses, or <a href="/blog/apostille-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">apostille services</a> for documents going abroad. Students may also need our <a href="/blog/education-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">education notary services</a> for F-1 visa documents.</p>
+      
       <h2>Service Areas in ${county} County</h2>
       <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
     `,
@@ -309,6 +312,9 @@ const COUNTY_CONTENT_TEMPLATES: Record<string, {
         <li><strong>Survivor Benefit Forms</strong> – Beneficiary designations</li>
       </ul>
       
+      <h3>Related Services for Military Families</h3>
+      <p>Military spouses often need <a href="/blog/immigration-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">immigration document notarization</a> for citizenship applications. Veterans may need <a href="/blog/estate-planning-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">estate planning services</a> for wills and POAs. Military families using GI Bill benefits can find our <a href="/blog/education-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">education notary services</a> helpful.</p>
+      
       <h2>Service Areas in ${county} County</h2>
       <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>
     `,
@@ -335,6 +341,9 @@ const COUNTY_CONTENT_TEMPLATES: Record<string, {
         <li><strong>Diploma Verification</strong> – Degree authentication for employers</li>
         <li><strong>Educational Power of Attorney</strong> – For students turning 18</li>
       </ul>
+      
+      <h3>Related Services for Students & Families</h3>
+      <p>International students often need <a href="/blog/immigration-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">immigration document services</a> for F-1 visas. Students going abroad should see our <a href="/blog/apostille-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">apostille services</a> for diploma authentication. Military families using GI Bill can also find helpful resources in our <a href="/blog/military-guides-${county.toLowerCase().replace(' ', '-')}-county-ohio">military & veterans guides</a>.</p>
       
       <h2>Service Areas in ${county} County</h2>
       <ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>

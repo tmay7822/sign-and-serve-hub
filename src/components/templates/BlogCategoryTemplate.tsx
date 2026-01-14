@@ -11,10 +11,10 @@ import Footer from '@/components/Footer';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { BlogCategory, BlogPost, getPostsByCategory } from '@/data/blog';
+import { BlogCategory, BlogPost, getPostsByCategory, BLOG_CATEGORIES } from '@/data/blog';
 import { getCountyPostsByCategory, getCityPostsByCategory, LOCATION_COUNTIES } from '@/data/locationBlogPosts';
 import { getServiceBySlug } from '@/data/services';
-import { Calendar, Clock, ArrowLeft, ArrowRight, User, MapPin, ChevronRight } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, ArrowRight, User, MapPin, ChevronRight, Globe, Shield, GraduationCap, BookOpen, FileText } from 'lucide-react';
 
 interface BlogCategoryTemplateProps {
   category: BlogCategory;
@@ -194,6 +194,71 @@ const BlogCategoryTemplate: React.FC<BlogCategoryTemplateProps> = ({
                   </Card>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Related Categories Section (for Immigration, Military, Education) */}
+      {['immigration-guides', 'military-guides', 'education-guides'].includes(category.slug) && (
+        <section className="py-8 border-b">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-primary" />
+              Explore Related Topics
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {category.slug !== 'immigration-guides' && (
+                <Link 
+                  to="/blog/immigration-guides"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-card border hover:border-primary hover:shadow-md transition-all group"
+                >
+                  <Globe className="h-8 w-8 text-primary shrink-0" />
+                  <div>
+                    <h3 className="font-semibold group-hover:text-primary transition-colors">Immigration Guides</h3>
+                    <p className="text-sm text-muted-foreground">USCIS forms, visa documents, affidavits</p>
+                  </div>
+                  <ChevronRight className="h-5 w-5 ml-auto text-muted-foreground group-hover:text-primary" />
+                </Link>
+              )}
+              {category.slug !== 'military-guides' && (
+                <Link 
+                  to="/blog/military-guides"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-card border hover:border-primary hover:shadow-md transition-all group"
+                >
+                  <Shield className="h-8 w-8 text-primary shrink-0" />
+                  <div>
+                    <h3 className="font-semibold group-hover:text-primary transition-colors">Military & Veterans</h3>
+                    <p className="text-sm text-muted-foreground">Deployment POAs, VA documents, DD-214</p>
+                  </div>
+                  <ChevronRight className="h-5 w-5 ml-auto text-muted-foreground group-hover:text-primary" />
+                </Link>
+              )}
+              {category.slug !== 'education-guides' && (
+                <Link 
+                  to="/blog/education-guides"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-card border hover:border-primary hover:shadow-md transition-all group"
+                >
+                  <GraduationCap className="h-8 w-8 text-primary shrink-0" />
+                  <div>
+                    <h3 className="font-semibold group-hover:text-primary transition-colors">Education & Academic</h3>
+                    <p className="text-sm text-muted-foreground">Transcripts, study abroad, diplomas</p>
+                  </div>
+                  <ChevronRight className="h-5 w-5 ml-auto text-muted-foreground group-hover:text-primary" />
+                </Link>
+              )}
+              {/* Also link to Apostille for document authentication context */}
+              <Link 
+                to="/blog/apostille-guides"
+                className="flex items-center gap-3 p-4 rounded-lg bg-card border hover:border-primary hover:shadow-md transition-all group"
+              >
+                <FileText className="h-8 w-8 text-primary shrink-0" />
+                <div>
+                  <h3 className="font-semibold group-hover:text-primary transition-colors">Apostille Services</h3>
+                  <p className="text-sm text-muted-foreground">International document authentication</p>
+                </div>
+                <ChevronRight className="h-5 w-5 ml-auto text-muted-foreground group-hover:text-primary" />
+              </Link>
             </div>
           </div>
         </section>
