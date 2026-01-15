@@ -235,31 +235,142 @@ const getPagePriority = (url: string): 'high' | 'medium' | 'low' => {
 const buildLinksTo = (url: string): string[] => {
   const links: string[] = [];
   const serviceSlug = getServiceSlug(url);
+  const pageType = categorizeRoute(url);
   
-  // Service pages link to related services
-  if (serviceSlug) {
+  // === HOMEPAGE links to main sections ===
+  if (url === '/') {
+    // Homepage links to all service hubs
+    SERVICES.forEach(s => links.push(`/${s.slug}`));
+    // Homepage links to key pages
+    links.push('/service-areas', '/book-now', '/reviews', '/about', '/contact', '/pricing', '/documents', '/faq');
+    // Homepage links to blog
+    links.push('/blog');
+    BLOG_CATEGORIES.slice(0, 4).forEach(c => links.push(`/blog/${c.slug}`));
+  }
+  
+  // === SERVICE HUBS link to related content ===
+  if (pageType === 'Service Hub' && serviceSlug) {
     const serviceContent = SERVICE_CONTENT[serviceSlug];
     if (serviceContent?.relatedServices) {
       links.push(...serviceContent.relatedServices.map(s => `/${s}`));
     }
+    // Service hubs link to their blog posts
+    const relatedPosts = BLOG_POSTS.filter(p => p.serviceSlug === serviceSlug);
+    links.push(...relatedPosts.slice(0, 3).map(p => `/blog/${p.slug}`));
+    // Service hubs link to service areas
+    links.push('/service-areas');
   }
   
-  // Blog posts link to their service hub
+  // === SERVICE AREAS page links to all counties ===
+  if (url === '/service-areas') {
+    // Extract unique counties from PRERENDER_ROUTES
+    const countyRoutes = PRERENDER_ROUTES.filter(r => 
+      r.match(/^\/service\/[\w-]+-county$/)
+    );
+    links.push(...countyRoutes);
+  }
+  
+  // === COUNTY PAGES link to their cities ===
+  if (url.match(/^\/service\/[\w-]+-county$/)) {
+    const countySlug = url.replace('/service/', '');
+    // Find all city pages under this county
+    const cityPages = PRERENDER_ROUTES.filter(r => 
+      r.startsWith(`/service/${countySlug}/`)
+    );
+    links.push(...cityPages);
+    // Breadcrumb link back to service-areas
+    links.push('/service-areas');
+  }
+  
+  // === CITY/ZIP PAGES link to services and breadcrumbs ===
+  if (url.match(/^\/service\/[\w-]+\/[\w-]+-\d{5}$/)) {
+    // Links to primary service hubs (Popular Services section)
+    const primaryServices = ['general-notary', 'loan-signings', 'estate-plans', 'real-estate', 'apostille', 'business-services'];
+    primaryServices.forEach(s => links.push(`/${s}`));
+    // Breadcrumb links
+    const parts = url.split('/');
+    links.push(`/service/${parts[2]}`); // County page
+    links.push('/service-areas');
+    links.push('/');
+  }
+  
+  // === BLOG POSTS link to their service hub and category ===
   const blogPost = BLOG_POSTS.find(p => url === `/blog/${p.slug}`);
   if (blogPost) {
     links.push(`/${blogPost.serviceSlug}`);
     links.push(`/blog/${blogPost.categorySlug}`);
+    links.push('/blog');
   }
   
-  // Blog categories link to their posts
+  // === BLOG CATEGORIES link to their posts and service hub ===
   const blogCat = BLOG_CATEGORIES.find(c => url === `/blog/${c.slug}`);
   if (blogCat) {
     const catPosts = BLOG_POSTS.filter(p => p.categorySlug === blogCat.slug);
-    links.push(...catPosts.slice(0, 5).map(p => `/blog/${p.slug}`));
+    links.push(...catPosts.map(p => `/blog/${p.slug}`));
     links.push(`/${blogCat.serviceSlug}`);
+    links.push('/blog');
   }
   
-  return [...new Set(links)];
+  // === BLOG HOME links to all categories ===
+  if (url === '/blog') {
+    BLOG_CATEGORIES.forEach(c => links.push(`/blog/${c.slug}`));
+    // Featured posts
+    BLOG_POSTS.slice(0, 6).forEach(p => links.push(`/blog/${p.slug}`));
+  }
+  
+  // === STATIC PAGES link to relevant content ===
+  if (pageType === 'Static Page') {
+    links.push('/');
+    links.push('/book-now');
+    if (url === '/documents') {
+      links.push('/service-areas');
+      SERVICES.slice(0, 6).forEach(s => links.push(`/${s.slug}`));
+    }
+    if (url === '/faq') {
+      SERVICES.slice(0, 6).forEach(s => links.push(`/${s.slug}`));
+    }
+  }
+  
+  // === SEASONAL PAGES link to related services ===
+  if (pageType === 'Seasonal') {
+    links.push('/');
+    links.push('/service-areas');
+    links.push('/book-now');
+    // Link to related service hubs based on season
+    if (url.includes('tax-season')) {
+      links.push('/general-notary', '/business-services');
+    } else if (url.includes('home-buying')) {
+      links.push('/loan-signings', '/real-estate', '/real-estate-notary');
+    } else if (url.includes('back-to-school')) {
+      links.push('/apostille', '/international-apostille', '/general-notary');
+    } else if (url.includes('year-end')) {
+      links.push('/estate-plans', '/wills-trusts-estates', '/business-services');
+    }
+  }
+  
+  // === LOCATION BLOG POSTS link to location pages and services ===
+  if (pageType === 'Location Blog') {
+    const location = extractLocationInfo(url);
+    if (location.county) {
+      links.push(`/service/${location.county.toLowerCase()}-county`);
+    }
+    links.push('/service-areas');
+    links.push('/blog');
+  }
+  
+  // === ZIP LANDING PAGES link to services and service areas ===
+  if (pageType === 'ZIP Landing') {
+    links.push('/service-areas');
+    links.push('/');
+    SERVICES.slice(0, 4).forEach(s => links.push(`/${s.slug}`));
+  }
+  
+  // === ALL NON-HOMEPAGE PAGES link back to homepage (via header) ===
+  if (url !== '/') {
+    links.push('/');
+  }
+  
+  return [...new Set(links.filter(l => PRERENDER_ROUTES.includes(l)))];
 };
 
 // Build all page data
