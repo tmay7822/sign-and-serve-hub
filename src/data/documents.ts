@@ -494,16 +494,159 @@ export const getCurrentTrendingDocuments = (): TrendingDocument[] => {
 export const getCurrentSeason = (): string => {
   const month = new Date().getMonth();
   if (month >= 0 && month <= 3) return "Tax Season";
-  if (month >= 3 && month <= 5) return "Home Buying Season";
-  if (month >= 5 && month <= 8) return "Back to School";
-  return "Year-End Planning";
+  if (month >= 2 && month <= 5) return "Home Buying Season";
+  if (month >= 5 && month <= 7) return "Summer Travel";
+  if (month >= 6 && month <= 8) return "Back to School";
+  if (month >= 9 && month <= 11) return "Year-End Planning";
+  return "Popular Documents";
 };
 
-// Get current season slug for linking
+// Get current season slug for URLs
 export const getCurrentSeasonSlug = (): string => {
-  const month = new Date().getMonth();
-  if (month >= 0 && month <= 3) return "tax-season-notary";
-  if (month >= 3 && month <= 5) return "home-buying-season-notary";
-  if (month >= 5 && month <= 8) return "back-to-school-documents";
-  return "year-end-planning-notary";
+  return getCurrentSeason().toLowerCase().replace(/\s+/g, '-');
+};
+
+// =====================================
+// DOCUMENT COMPARISONS
+// =====================================
+
+export interface DocumentComparison {
+  documents: [string, string];
+  title: string;
+  differences: {
+    aspect: string;
+    doc1: string;
+    doc2: string;
+  }[];
+  whenToUse: {
+    doc1: string;
+    doc2: string;
+  };
+}
+
+export const DOCUMENT_COMPARISONS: DocumentComparison[] = [
+  {
+    documents: ["Durable Power of Attorney", "Healthcare Power of Attorney"],
+    title: "Durable POA vs. Healthcare POA",
+    differences: [
+      { aspect: "Scope", doc1: "Financial and legal decisions", doc2: "Medical decisions only" },
+      { aspect: "When Active", doc1: "Immediately or upon incapacity", doc2: "Upon incapacity only" },
+      { aspect: "Decisions Covered", doc1: "Banking, property, taxes, contracts", doc2: "Treatment, care, end-of-life" },
+      { aspect: "Revocation", doc1: "Can revoke anytime if competent", doc2: "Can revoke anytime if competent" }
+    ],
+    whenToUse: {
+      doc1: "Need someone to manage finances, pay bills, or handle legal matters if you're incapacitated",
+      doc2: "Need someone to make medical decisions and communicate with doctors if you're unable"
+    }
+  },
+  {
+    documents: ["Simple Will", "Living Trust"],
+    title: "Will vs. Living Trust",
+    differences: [
+      { aspect: "Probate", doc1: "Goes through probate court", doc2: "Avoids probate entirely" },
+      { aspect: "Privacy", doc1: "Becomes public record", doc2: "Stays completely private" },
+      { aspect: "Cost", doc1: "Less expensive to create", doc2: "Higher upfront, lower long-term" },
+      { aspect: "Effectiveness", doc1: "Only effective after death", doc2: "Effective immediately" }
+    ],
+    whenToUse: {
+      doc1: "Simpler estates, fewer assets, straightforward distribution wishes",
+      doc2: "Complex estates, privacy concerns, multiple properties, or want to avoid probate"
+    }
+  },
+  {
+    documents: ["Warranty Deed", "Quitclaim Deed"],
+    title: "Warranty Deed vs. Quitclaim Deed",
+    differences: [
+      { aspect: "Guarantees", doc1: "Full title guarantee, seller warrants ownership", doc2: "No guarantees whatsoever" },
+      { aspect: "Protection", doc1: "Buyer protected against title issues", doc2: "Buyer assumes all risk" },
+      { aspect: "Common Use", doc1: "Standard real estate sales", doc2: "Family transfers, divorces" },
+      { aspect: "Title Insurance", doc1: "Usually required/available", doc2: "Often not available" }
+    ],
+    whenToUse: {
+      doc1: "Purchasing property from someone you don't know, want full protection",
+      doc2: "Transferring property between family members, adding spouse to deed, divorce settlements"
+    }
+  },
+  {
+    documents: ["Living Will", "Healthcare Power of Attorney"],
+    title: "Living Will vs. Healthcare POA",
+    differences: [
+      { aspect: "Purpose", doc1: "States YOUR wishes for end-of-life care", doc2: "Appoints SOMEONE ELSE to decide" },
+      { aspect: "Scope", doc1: "Only end-of-life situations", doc2: "All medical decisions when incapacitated" },
+      { aspect: "Flexibility", doc1: "Fixed instructions, less flexible", doc2: "Agent can adapt to situations" },
+      { aspect: "Best For", doc1: "Clear, specific wishes about life support", doc2: "Trusting someone to decide for you" }
+    ],
+    whenToUse: {
+      doc1: "You have specific wishes about life support, feeding tubes, or resuscitation",
+      doc2: "You want a trusted person to make all medical decisions if you can't communicate"
+    }
+  },
+  {
+    documents: ["Affidavit", "Jurat"],
+    title: "Affidavit vs. Jurat",
+    differences: [
+      { aspect: "What It Is", doc1: "The document itself (sworn statement)", doc2: "The notary certificate attached" },
+      { aspect: "Content", doc1: "Contains facts and statements", doc2: "Certifies oath was administered" },
+      { aspect: "Required", doc1: "Must be signed before notary", doc2: "Must include oath or affirmation" },
+      { aspect: "Legal Effect", doc1: "Creates legal statement of fact", doc2: "Proves statement was sworn" }
+    ],
+    whenToUse: {
+      doc1: "You need to make a sworn statement of facts for legal, court, or official purposes",
+      doc2: "The document requires the signer to swear or affirm the contents are true"
+    }
+  },
+  {
+    documents: ["Power of Attorney (POA)", "Limited Power of Attorney"],
+    title: "General POA vs. Limited POA",
+    differences: [
+      { aspect: "Scope", doc1: "Broad authority over all matters", doc2: "Specific, defined authority only" },
+      { aspect: "Duration", doc1: "Until revoked or incapacity", doc2: "Usually for specific transaction" },
+      { aspect: "Risk Level", doc1: "Higher risk, more trust needed", doc2: "Lower risk, limited exposure" },
+      { aspect: "Common Use", doc1: "Long-term planning, elder care", doc2: "Real estate closing, single transaction" }
+    ],
+    whenToUse: {
+      doc1: "Need comprehensive authority for someone to handle all your affairs",
+      doc2: "Need someone to handle one specific transaction like selling a property"
+    }
+  },
+  {
+    documents: ["Trust Certification", "Trust Amendment"],
+    title: "Trust Certification vs. Trust Amendment",
+    differences: [
+      { aspect: "Purpose", doc1: "Proves trust exists without full disclosure", doc2: "Changes terms of existing trust" },
+      { aspect: "Content", doc1: "Summary of trust provisions", doc2: "Specific modifications to trust" },
+      { aspect: "Privacy", doc1: "Protects trust privacy", doc2: "Becomes part of trust document" },
+      { aspect: "Common Use", doc1: "Banks, title companies, financial institutions", doc2: "Updating beneficiaries, trustees, terms" }
+    ],
+    whenToUse: {
+      doc1: "Bank or institution needs proof of trust without seeing the full document",
+      doc2: "You need to change beneficiaries, add/remove trustees, or modify trust terms"
+    }
+  },
+  {
+    documents: ["Vehicle Title Transfer", "Vehicle Bill of Sale"],
+    title: "Title Transfer vs. Bill of Sale",
+    differences: [
+      { aspect: "Purpose", doc1: "Transfers legal ownership", doc2: "Documents the sale transaction" },
+      { aspect: "Required By", doc1: "DMV/state for registration", doc2: "Both parties for records" },
+      { aspect: "Legal Effect", doc1: "Changes who owns the vehicle", doc2: "Proves payment and agreement" },
+      { aspect: "Notarization", doc1: "Often required by state", doc2: "Recommended but not always required" }
+    ],
+    whenToUse: {
+      doc1: "Transferring vehicle ownership to new owner at DMV",
+      doc2: "Documenting the purchase price, terms, and protecting both buyer and seller"
+    }
+  }
+];
+
+// Get comparison for a specific document
+export const getDocumentComparison = (document: string): DocumentComparison | null => {
+  return DOCUMENT_COMPARISONS.find(comp => 
+    comp.documents.includes(document)
+  ) || null;
+};
+
+// Get all documents that have comparisons available
+export const getDocumentsWithComparisons = (): string[] => {
+  return [...new Set(DOCUMENT_COMPARISONS.flatMap(comp => comp.documents))];
 };
