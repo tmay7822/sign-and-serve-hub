@@ -62,7 +62,6 @@ export const BookingWidget = ({
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={variant} size={size} className={className}>
-          <Calendar className="w-4 h-4 mr-2" />
           {children}
         </Button>
       </DialogTrigger>
