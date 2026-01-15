@@ -298,7 +298,6 @@ export function AdminDashboard() {
           })}
         </div>
 
-        {/* Quick Actions */}
         <Card className="mt-8">
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
@@ -308,17 +307,21 @@ export function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" onClick={() => window.location.href = '/admin/content-map'}>
+                <Download className="w-4 h-4 mr-2" />
+                Content Map Export
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => window.location.href = '/admin/gmb-export'}>
+                <FileText className="w-4 h-4 mr-2" />
+                GMB Export
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => window.location.href = '/admin/sitemap'}>
+                <Eye className="w-4 h-4 mr-2" />
+                View Sitemap
+              </Button>
               <Button variant="outline" size="sm">
                 <Upload className="w-4 h-4 mr-2" />
                 Upload Logo
-              </Button>
-              <Button variant="outline" size="sm">
-                <Eye className="w-4 h-4 mr-2" />
-                Preview Changes
-              </Button>
-              <Button variant="outline" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Backup Config
               </Button>
               <Button variant="outline" size="sm">
                 <Settings className="w-4 h-4 mr-2" />
