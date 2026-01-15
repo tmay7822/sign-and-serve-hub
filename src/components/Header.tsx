@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 
 import logoImage from '@/assets/signed-on-time-logo-transparent.png';
 
-// Service categories for mega menu - 4 logical groupings
+// Service categories for mega menu - 5 logical groupings
 const serviceCategories = [
   {
     title: "General Notary",
@@ -24,6 +24,13 @@ const serviceCategories = [
       { name: 'General Notary', href: '/general-notary', description: 'Acknowledgments, jurats, oaths' },
       { name: 'Personal & Family', href: '/personal-family', description: 'Travel consent, family docs' },
       { name: 'Legal & Court', href: '/legal-court', description: 'Court filings, affidavits' },
+    ]
+  },
+  {
+    title: "Vehicles & DMV",
+    items: [
+      { name: 'Car Title & Bill of Sale', href: '/vehicles-dmv', description: 'Title transfers, auto sales' },
+      { name: 'DMV Documents', href: '/vehicles-dmv', description: 'Registrations, lien releases' },
     ]
   },
   {
@@ -39,14 +46,12 @@ const serviceCategories = [
     items: [
       { name: 'Estate Planning', href: '/estate-plans', description: 'Wills, trusts, POA' },
       { name: 'Healthcare Notary', href: '/healthcare-notary', description: 'Hospital & care facilities' },
-      { name: 'Wills & Trusts', href: '/wills-trusts-estates', description: 'Probate & inheritance' },
     ]
   },
   {
     title: "Business & International",
     items: [
       { name: 'Business Services', href: '/business-services', description: 'Contracts & corporate docs' },
-      { name: 'Business Banking', href: '/business-banking', description: 'Loans & account docs' },
       { name: 'Apostille', href: '/apostille', description: 'International authentication' },
     ]
   }
@@ -88,6 +93,8 @@ const mobileNavItems = [
   // General
   { name: 'General Notary', href: '/general-notary' },
   { name: 'Personal & Family', href: '/personal-family' },
+  // Vehicles & DMV - PROMINENT
+  { name: 'Car Title & Bill of Sale', href: '/vehicles-dmv' },
   // Real Estate & Loans
   { name: 'Loan Signings', href: '/loan-signings' },
   { name: 'Real Estate', href: '/real-estate' },
@@ -158,8 +165,8 @@ const Header = () => {
                         Services
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <div className="w-[720px] p-6 bg-white" role="menu" aria-label="Service categories">
-                          <div className="grid grid-cols-4 gap-5">
+                        <div className="w-[850px] p-6 bg-white" role="menu" aria-label="Service categories">
+                          <div className="grid grid-cols-5 gap-4">
                             {serviceCategories.map((category) => (
                               <div key={category.title} role="group" aria-labelledby={`category-${category.title.replace(/\s+/g, '-').toLowerCase()}`}>
                                 <h4 

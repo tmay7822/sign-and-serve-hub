@@ -1,5 +1,5 @@
 import { getServiceBySlug } from '@/data/services';
-import ServiceHubTemplate from '@/components/templates/ServiceHubTemplate';
+import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
 import { Navigate } from 'react-router-dom';
 
 const VehiclesDMV = () => {
@@ -9,7 +9,15 @@ const VehiclesDMV = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} />;
+  return (
+    <ServiceHubEnhanced 
+      service={service} 
+      quickAnswer={{
+        question: "Do I need a notary for a car title transfer in Ohio?",
+        answer: "Yes, Ohio requires the seller's signature on the vehicle title to be notarized. The buyer's signature typically does not need notarization. We provide mobile notary service and can meet you at your home, office, or even the parking lot where the vehicle is located."
+      }}
+    />
+  );
 };
 
 export default VehiclesDMV;

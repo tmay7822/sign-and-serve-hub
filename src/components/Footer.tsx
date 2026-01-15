@@ -11,6 +11,7 @@ import nnaCertifiedLogo from '@/assets/nna-certified-logo.png';
 const Footer = () => {
   const serviceLinks = [
     { name: 'General Notary', href: '/general-notary' },
+    { name: 'Car Title & Bill of Sale', href: '/vehicles-dmv' },
     { name: 'Loan Signings', href: '/loan-signings' },
     { name: 'Estate Plans', href: '/estate-plans' },
     { name: 'Real Estate', href: '/real-estate' },

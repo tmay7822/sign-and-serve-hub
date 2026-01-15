@@ -1344,91 +1344,6 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
     relatedServices: ['real-estate', 'loan-signings']
   },
 
-  'vehicles-dmv': {
-    serviceId: 'vehicles-dmv',
-    specificServices: [
-      'Vehicle title transfers',
-      'DMV power of attorney forms',
-      'Car sale and purchase documents',
-      'Vehicle registration affidavits',
-      'Auto dealer support services',
-      'Motorcycle and boat titles'
-    ],
-    process: {
-      title: 'Vehicle & DMV Document Process',
-      steps: [
-        {
-          title: 'Title Verification',
-          description: 'Verify vehicle information and title requirements'
-        },
-        {
-          title: 'Buyer-Seller Coordination',
-          description: 'Coordinate between buyers, sellers, and dealers'
-        },
-        {
-          title: 'DMV-Compliant Notarization',
-          description: 'Execute documents meeting BMV/DMV standards'
-        },
-        {
-          title: 'Registration Support',
-          description: 'Ensure documents are ready for registration'
-        }
-      ]
-    },
-    commonDocuments: [
-      'Vehicle titles and title transfers',
-      'Bill of sale documents',
-      'DMV power of attorney forms',
-      'Vehicle registration affidavits',
-      'Auto dealer wholesale documents',
-      'Boat and motorcycle titles'
-    ],
-    faqs: [
-      {
-        question: 'Can you help with vehicle title transfers?',
-        answer: 'Yes, we regularly notarize vehicle titles, bills of sale, and other DMV documents for car sales and transfers.'
-      },
-      {
-        question: 'Do you work with auto dealers?',
-        answer: 'Absolutely. We provide regular notary services to auto dealers for wholesale purchases, title work, and customer transactions.'
-      },
-      {
-        question: 'What if the buyer and seller can\'t meet at the same time?',
-        answer: 'We can coordinate separate appointments or meet at neutral locations like the BMV office to facilitate the transfer.'
-      },
-      {
-        question: 'Can I transfer a title without the seller present?',
-        answer: 'Ohio requires the seller\'s signature on the title. If the seller cannot be present, a notarized power of attorney may allow someone else to sign on their behalf.'
-      },
-      {
-        question: 'What about motorcycle or boat titles?',
-        answer: 'Yes, we handle title transfers and registrations for motorcycles, boats, RVs, and other recreational vehicles using the same process as car titles.'
-      },
-      {
-        question: 'Do auto dealers get special rates?',
-        answer: 'We offer volume pricing for dealers with regular notarization needs. Contact us to discuss ongoing service arrangements for your dealership.'
-      },
-      {
-        question: 'Can you meet at the BMV?',
-        answer: 'Yes, we can meet buyers and sellers at BMV locations to notarize documents on-site before registration, making the process more convenient.'
-      }
-    ],
-    tips: [
-      {
-        title: 'Bring Current Title',
-        description: 'Ensure the current title is available and properly signed'
-      },
-      {
-        title: 'Verify VIN Numbers',
-        description: 'Double-check vehicle identification numbers match all documents'
-      },
-      {
-        title: 'Plan BMV Visit',
-        description: 'Schedule BMV appointment soon after notarization'
-      }
-    ],
-    relatedServices: ['general-notary', 'business-services']
-  },
 
   'wills-trusts-estates': {
     serviceId: 'wills-trusts-estates',
@@ -1514,6 +1429,108 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       }
     ],
     relatedServices: ['estate-plans', 'healthcare-notary']
+  },
+
+  'vehicles-dmv': {
+    serviceId: 'vehicles-dmv',
+    specificServices: [
+      'Vehicle title transfers (buyer & seller)',
+      'Bill of sale notarization for private car sales',
+      'Car sale purchase agreements',
+      'Lien release documents',
+      'DMV power of attorney forms',
+      'Odometer disclosure statements',
+      'Out-of-state title transfers',
+      'Motorcycle & boat titles',
+      'Gift affidavits for vehicles',
+      'Dealer & wholesale documents',
+      'RV and trailer title transfers',
+      'Duplicate title applications'
+    ],
+    process: {
+      title: 'Vehicle Document Notarization Process',
+      steps: [
+        {
+          title: 'Schedule Your Appointment',
+          description: 'Book online or call - we can often meet same-day at your home, office, or parking lot'
+        },
+        {
+          title: 'Gather Your Documents',
+          description: 'Have your title, ID, and any other DMV-required forms ready'
+        },
+        {
+          title: 'We Come to You',
+          description: 'Our mobile notary arrives at your location with all necessary supplies'
+        },
+        {
+          title: 'Sign & Notarize',
+          description: 'Complete your title transfer or bill of sale with proper notarization'
+        }
+      ]
+    },
+    commonDocuments: [
+      'Vehicle Title (Certificate of Title)',
+      'Bill of Sale',
+      'Odometer Disclosure Statement',
+      'Vehicle Power of Attorney',
+      'Lien Release / Satisfaction of Lien',
+      'Gift Affidavit (for gifted vehicles)',
+      'Out-of-State Title Transfer Forms',
+      'Duplicate Title Application'
+    ],
+    faqs: [
+      {
+        question: 'Do I need a notary for a car title transfer in Ohio?',
+        answer: 'Yes, Ohio requires the seller\'s signature on the title to be notarized for vehicle title transfers. The buyer\'s signature typically does not need notarization, but having both parties present ensures a smooth transaction.'
+      },
+      {
+        question: 'Can you notarize a bill of sale for a private car sale?',
+        answer: 'Yes, we notarize bills of sale for private vehicle sales. While Ohio doesn\'t always require a notarized bill of sale, having one protects both buyer and seller and is often required for financing or insurance purposes.'
+      },
+      {
+        question: 'Do you come to where the car is located?',
+        answer: 'Absolutely! We\'re a mobile notary service. We can meet you at your home, the buyer\'s/seller\'s location, a dealership parking lot, or anywhere convenient for both parties to complete the transaction.'
+      },
+      {
+        question: 'What do I need to bring for a vehicle title notarization?',
+        answer: 'Bring the vehicle title, valid government-issued photo IDs for all signing parties, the sale price/odometer reading, and any additional forms required by Ohio BMV.'
+      },
+      {
+        question: 'Can you help with motorcycle, boat, or RV titles?',
+        answer: 'Yes! We notarize titles for all vehicle types including motorcycles, boats, RVs, trailers, ATVs, and other recreational vehicles.'
+      },
+      {
+        question: 'How much does vehicle title notarization cost?',
+        answer: 'Our standard notary fee applies plus mobile travel fee. We provide upfront pricing before every appointment - no hidden fees. Call or text for a quick quote based on your location.'
+      },
+      {
+        question: 'Can both buyer and seller sign at different times?',
+        answer: 'The seller\'s signature must be notarized at the time of signing. If the buyer and seller cannot meet together, we can arrange separate appointments. The seller signs first, then the buyer can take the notarized title to complete their portion.'
+      },
+      {
+        question: 'What if there\'s a lien on the vehicle?',
+        answer: 'The lien must be satisfied before the title can be transferred. We can notarize lien release documents once the lender provides the release. Check with your lender about their payoff and release process.'
+      }
+    ],
+    tips: [
+      {
+        title: 'Have All Parties Present',
+        description: 'Ohio requires seller\'s title signature to be notarized - bring valid photo ID'
+      },
+      {
+        title: 'Know the Sale Details',
+        description: 'Have the sale price and exact odometer reading ready before signing'
+      },
+      {
+        title: 'Check for Liens First',
+        description: 'Verify there are no existing liens on the vehicle before completing sale'
+      },
+      {
+        title: 'Keep Copies',
+        description: 'Make copies of the bill of sale and title for your records'
+      }
+    ],
+    relatedServices: ['general-notary', 'personal-family', 'business-services']
   }
 };
 

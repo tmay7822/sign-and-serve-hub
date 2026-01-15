@@ -145,17 +145,17 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'vehicles-dmv',
-    serviceName: 'Vehicles & DMV',
+    serviceName: 'Car Title & Bill of Sale',
     slug: 'vehicles-dmv',
-    summary: 'Vehicle title transfers, DMV forms, and automotive document notarization.',
-    description: 'Complete vehicle and DMV document services including title transfers, bill of sale notarization, lien releases, and automotive affidavits.',
+    summary: 'Fast, professional notarization for car title transfers, vehicle bills of sale, lien releases, and all DMV documents.',
+    description: 'Professional notarization for car title transfers, vehicle bills of sale, lien releases, and all DMV documents. Mobile service available - we come to you at your home, office, or parking lot for convenient vehicle transactions.',
     enabled: true,
-    order: 10,
+    order: 3,
     icon: 'Car',
-    category: 'supplemental',
-    keywords: ['vehicle notary', 'title transfer', 'DMV documents', 'bill of sale'],
-    metaTitle: 'Vehicle & DMV Notary Services | Title Transfers',
-    metaDescription: 'Vehicle and DMV document notarization including title transfers, bills of sale, and lien releases. Mobile service available.'
+    category: 'primary',
+    keywords: ['car title notary', 'vehicle bill of sale', 'DMV notary', 'title transfer', 'auto notary', 'car sale notarization', 'vehicle notary Ohio'],
+    metaTitle: 'Car Title & Bill of Sale Notary | Vehicle Title Transfers Ohio',
+    metaDescription: 'Professional notary for car title transfers, vehicle bills of sale, and DMV documents. Mobile service throughout Cincinnati-Dayton. Same-day available.'
   },
   {
     id: 'wills-trusts-estates',
