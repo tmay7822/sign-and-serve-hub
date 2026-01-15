@@ -8,6 +8,7 @@ import {
   Building, 
   Globe, 
   Briefcase,
+  Car,
   ArrowRight
 } from 'lucide-react';
 
@@ -18,6 +19,13 @@ const ServicesSection = () => {
       title: "General Notary",
       description: "Acknowledgments, oaths, affirmations, and document witnessing.",
       link: "/general-notary"
+    },
+    {
+      icon: Car,
+      title: "Car Title & Bill of Sale",
+      description: "Vehicle title transfers, bills of sale, and all DMV documents notarized.",
+      link: "/vehicles-dmv",
+      featured: true
     },
     {
       icon: Home,
