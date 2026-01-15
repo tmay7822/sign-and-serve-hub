@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { BookingWidget } from "./BookingWidget";
 import { QuoteCalculatorModal } from "./QuoteCalculatorModal";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Calendar } from "lucide-react";
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface QuoteButtonProps {
@@ -72,6 +73,7 @@ export const QuoteButton = ({
           size={size === "icon" ? "default" : size}
           className={className}
         >
+          <Calendar className="mr-2 h-4 w-4" />
           Book Now
         </BookingWidget>
         <Button 

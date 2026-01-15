@@ -6,7 +6,7 @@ import { CompactServicesGrid } from '@/components/landing/CompactServicesGrid';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
 import { MiniTestimonials } from '@/components/landing/MiniTestimonials';
 import { QuoteCalculatorModal } from '@/components/QuoteCalculatorModal';
-import { Phone, ArrowRight, Calculator, Shield, Award, CheckCircle, Clock } from 'lucide-react';
+import { Phone, ArrowRight, Calculator, Shield, Award, CheckCircle, Clock, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import logoImage from '@/assets/signed-on-time-logo.jpg';
@@ -95,6 +95,7 @@ const BookNow = () => {
                   size="lg"
                   className="w-full"
                 >
+                  <Calendar className="mr-2 h-5 w-5" />
                   Book Now
                 </BookingWidget>
               </div>
@@ -220,6 +221,7 @@ const BookNow = () => {
                 size="lg"
                 className="text-lg min-w-[200px]"
               >
+                <Calendar className="mr-2 h-5 w-5" />
                 Book Now
               </BookingWidget>
               <Button 
