@@ -19,6 +19,7 @@ import { BlogPost, getPostsByService, getCategoryByServiceSlug } from '@/data/bl
 import { RouteCity, getRoutesByService } from '@/data/locations';
 import { getServiceContent } from '@/data/serviceContent';
 import { FileText, MapPin, Clock, Shield, Star, ArrowRight, CheckCircle, HelpCircle } from 'lucide-react';
+import DocumentLibrarySection from '@/components/DocumentLibrarySection';
 
 interface ServiceHubTemplateProps {
   service: Service;
@@ -292,6 +293,12 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
           className="bg-card/30"
         />
       )}
+
+      {/* Full Document Library */}
+      <DocumentLibrarySection 
+        highlightService={service.slug}
+        title={`All Documents We Notarize for ${service.serviceName}`}
+      />
 
       {/* Featured Posts Section */}
       {posts.length > 0 && (
