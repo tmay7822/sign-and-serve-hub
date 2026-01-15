@@ -16,6 +16,7 @@ import { RouteCity } from '@/data/locations';
 import { Service, getServiceBySlug } from '@/data/services';
 import { BlogPost, getPostsByService, getCategoryByServiceSlug } from '@/data/blog';
 import { MapPin, Clock, Shield, Star, ArrowRight, FileText, Users, Building } from 'lucide-react';
+import DocumentLibrarySection from '@/components/DocumentLibrarySection';
 
 interface LocalServiceTemplateProps {
   route: RouteCity;
@@ -304,6 +305,13 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
           </div>
         </div>
       </section>
+
+      {/* Full Document Library */}
+      <DocumentLibrarySection 
+        highlightService={route.serviceSlug}
+        title={`Documents We Notarize in ${route.city}`}
+        className="bg-background"
+      />
 
       {/* Related Posts Section */}
       {posts.length > 0 && (

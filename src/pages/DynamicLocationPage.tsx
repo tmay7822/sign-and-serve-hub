@@ -17,6 +17,7 @@ import { getServiceBySlug } from '@/data/services';
 import { getPostsByService } from '@/data/blog';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { MapPin, Clock, Shield, Star, Home, Users, Building, Phone, ChevronRight, ArrowRight } from 'lucide-react';
+import DocumentLibrarySection from '@/components/DocumentLibrarySection';
 import { Link } from 'react-router-dom';
 import {
   Breadcrumb,
@@ -323,6 +324,13 @@ const DynamicLocationPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Full Document Library */}
+      <DocumentLibrarySection 
+        highlightService={pageData.serviceSlug}
+        title={`Documents We Notarize in ${pageData.city}`}
+        className="bg-background"
+      />
 
       {/* Related Blog Posts */}
       {relatedPosts.length > 0 && (
