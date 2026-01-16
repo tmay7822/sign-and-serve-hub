@@ -16,21 +16,20 @@ import { cn } from '@/lib/utils';
 
 import logoImage from '@/assets/signed-on-time-logo-transparent.png';
 
-// Service categories for mega menu - 5 logical groupings
+// Service categories for mega menu - 5 logical groupings (ordered by priority)
 const serviceCategories = [
-  {
-    title: "General Notary",
-    items: [
-      { name: 'General Notary', href: '/general-notary', description: 'Acknowledgments, jurats, oaths' },
-      { name: 'Personal & Family', href: '/personal-family', description: 'Travel consent, family docs' },
-      { name: 'Legal & Court', href: '/legal-court', description: 'Court filings, affidavits' },
-    ]
-  },
   {
     title: "Vehicles & DMV",
     items: [
       { name: 'Car Title & Bill of Sale', href: '/vehicles-dmv', description: 'Title transfers, auto sales' },
       { name: 'DMV Documents', href: '/vehicles-dmv', description: 'Registrations, lien releases' },
+    ]
+  },
+  {
+    title: "Estate & Healthcare",
+    items: [
+      { name: 'Healthcare Notary', href: '/healthcare-notary', description: 'Hospital & care facilities' },
+      { name: 'Estate Planning & POA', href: '/estate-plans', description: 'Wills, trusts, POA' },
     ]
   },
   {
@@ -42,10 +41,11 @@ const serviceCategories = [
     ]
   },
   {
-    title: "Estate & Healthcare",
+    title: "General Notary",
     items: [
-      { name: 'Estate Planning', href: '/estate-plans', description: 'Wills, trusts, POA' },
-      { name: 'Healthcare Notary', href: '/healthcare-notary', description: 'Hospital & care facilities' },
+      { name: 'General Notary', href: '/general-notary', description: 'Acknowledgments, jurats, oaths' },
+      { name: 'Personal & Family', href: '/personal-family', description: 'Travel consent, family docs' },
+      { name: 'Legal & Court', href: '/legal-court', description: 'Court filings, affidavits' },
     ]
   },
   {
@@ -88,21 +88,19 @@ const faqContent = [
   { question: 'Do you come to hospitals?', answer: 'Yes, we serve all facilities' },
 ];
 
-// Mobile nav items (flat list) - organized by category
+// Mobile nav items (flat list) - ordered by priority: DMV, Healthcare, POA, Loan, Real Estate first
 const mobileNavItems = [
-  // General
-  { name: 'General Notary', href: '/general-notary' },
-  { name: 'Personal & Family', href: '/personal-family' },
-  // Vehicles & DMV - PROMINENT
+  // Most Requested - TOP
   { name: 'Car Title & Bill of Sale', href: '/vehicles-dmv' },
-  // Real Estate & Loans
+  { name: 'Healthcare Notary', href: '/healthcare-notary' },
+  { name: 'Estate Planning & POA', href: '/estate-plans' },
   { name: 'Loan Signings', href: '/loan-signings' },
   { name: 'Real Estate', href: '/real-estate' },
-  // Estate & Healthcare
-  { name: 'Estate Planning', href: '/estate-plans' },
-  { name: 'Healthcare Notary', href: '/healthcare-notary' },
-  // Business & International
+  // Secondary
+  { name: 'General Notary', href: '/general-notary' },
+  { name: 'Personal & Family', href: '/personal-family' },
   { name: 'Business Services', href: '/business-services' },
+  // Apostille near bottom
   { name: 'Apostille', href: '/apostille' },
   // Other navigation
   { name: 'Documents', href: '/documents' },
