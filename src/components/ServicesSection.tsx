@@ -62,7 +62,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-6 bg-brand-light/30">
+    <section className="py-6 bg-gradient-to-br from-white via-slate-50 to-red-50/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">

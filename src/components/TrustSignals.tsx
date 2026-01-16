@@ -25,7 +25,7 @@ const TrustSignals = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-4">

@@ -5,7 +5,7 @@ import { CheckCircle } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="bg-gradient-to-b from-background to-muted/30 py-8 lg:py-12">
+    <section className="bg-gradient-to-b from-slate-100 via-white to-slate-50 py-8 lg:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center max-w-5xl mx-auto">
           {/* SEO-Optimized H1 with Brand Tagline */}
@@ -18,7 +18,7 @@ const HeroSection = () => {
             </span>
           </h1>
           
-          <div className="bg-card rounded-xl p-4 lg:p-6 shadow-card mb-4">
+          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-slate-200/50 mb-4">
             {/* SEO-Enhanced H2 with Service Keywords */}
             <h2 className="text-lg lg:text-xl font-semibold text-foreground mb-3">
               Certified Loan Signing Agent | Car Title Notary | Estate Planning & Healthcare Documents
