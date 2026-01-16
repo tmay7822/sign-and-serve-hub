@@ -9,15 +9,16 @@ import nnaLogo from '@/assets/nna-logo.png';
 import nnaCertifiedLogo from '@/assets/nna-certified-logo.png';
 
 const Footer = () => {
+  // Services ordered by priority: DMV, Healthcare, POA, Loan, Real Estate at top; Apostille at bottom
   const serviceLinks = [
-    { name: 'General Notary', href: '/general-notary' },
     { name: 'Car Title & Bill of Sale', href: '/vehicles-dmv' },
-    { name: 'Loan Signings', href: '/loan-signings' },
-    { name: 'Estate Plans', href: '/estate-plans' },
-    { name: 'Real Estate', href: '/real-estate' },
     { name: 'Healthcare Notary', href: '/healthcare-notary' },
-    { name: 'Apostille', href: '/apostille' },
-    { name: 'Business Services', href: '/business-services' }
+    { name: 'Estate Plans & POA', href: '/estate-plans' },
+    { name: 'Loan Signings', href: '/loan-signings' },
+    { name: 'Real Estate', href: '/real-estate' },
+    { name: 'General Notary', href: '/general-notary' },
+    { name: 'Business Services', href: '/business-services' },
+    { name: 'Apostille', href: '/apostille' }
   ];
 
   const quickLinks = [

@@ -9,17 +9,13 @@ import {
   Globe, 
   Briefcase,
   Car,
+  Heart,
   ArrowRight
 } from 'lucide-react';
 
 const ServicesSection = () => {
+  // Services ordered by priority: DMV, Healthcare, POA, Loan, Real Estate at top; Apostille at bottom
   const services = [
-    {
-      icon: FileText,
-      title: "General Notary",
-      description: "Acknowledgments, oaths, affirmations, and document witnessing.",
-      link: "/general-notary"
-    },
     {
       icon: Car,
       title: "Car Title & Bill of Sale",
@@ -28,16 +24,22 @@ const ServicesSection = () => {
       featured: true
     },
     {
+      icon: Heart,
+      title: "Healthcare Notary",
+      description: "Hospital, nursing home, and bedside notarization for medical documents.",
+      link: "/healthcare-notary"
+    },
+    {
+      icon: FileSignature,
+      title: "Estate Plans & POA",
+      description: "Wills, trusts, power of attorney, healthcare directives, and medical document signings.",
+      link: "/estate-plans"
+    },
+    {
       icon: Home,
       title: "Loan Signings",
       description: "Buyer, seller, refinance, HELOC, and investor loan document signings.",
       link: "/loan-signings"
-    },
-    {
-      icon: FileSignature,
-      title: "Estate Plans & Health Care",
-      description: "Wills, trusts, power of attorney, healthcare directives, and medical document signings.",
-      link: "/estate-plans"
     },
     {
       icon: Building,
@@ -46,16 +48,16 @@ const ServicesSection = () => {
       link: "/real-estate"
     },
     {
-      icon: Globe,
-      title: "Apostille",
-      description: "Document authentication for international use and recognition.",
-      link: "/apostille"
-    },
-    {
       icon: Briefcase,
       title: "Business Services",
       description: "I-9 verification, vendor agreements, and corporate documents.",
       link: "/business-services"
+    },
+    {
+      icon: Globe,
+      title: "Apostille",
+      description: "Document authentication for international use and recognition.",
+      link: "/apostille"
     }
   ];
 
