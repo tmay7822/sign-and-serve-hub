@@ -1,7 +1,7 @@
 // SMART MOBILE CTA BAR
 // Context-aware sticky bottom bar for mobile devices with smooth animations
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Calendar, Calculator, MessageCircle } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -53,6 +53,21 @@ const primaryVariants = {
 export const SmartMobileCtaBar = () => {
   const context = usePageContext();
   const [showCalculator, setShowCalculator] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show bar after scrolling 200px
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial position
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Scroll to AI chat widget
   const handleChatClick = () => {
@@ -118,7 +133,7 @@ export const SmartMobileCtaBar = () => {
         aria-label="Quick actions"
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        animate={isVisible ? "visible" : "hidden"}
       >
         <div className="flex items-center justify-around py-2.5 px-4 max-w-md mx-auto">
           {/* Call Button */}
@@ -160,7 +175,7 @@ export const SmartMobileCtaBar = () => {
       </motion.div>
 
       {/* Spacer to prevent content from being hidden behind the bar */}
-      <div className="h-16 lg:hidden" aria-hidden="true" />
+      {isVisible && <div className="h-16 lg:hidden" aria-hidden="true" />}
 
       {/* Quote Calculator Modal */}
       <QuoteCalculatorModal 
