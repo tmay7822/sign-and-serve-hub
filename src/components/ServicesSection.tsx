@@ -54,6 +54,12 @@ const ServicesSection = () => {
       link: "/business-services"
     },
     {
+      icon: FileText,
+      title: "General Notary",
+      description: "Affidavits, acknowledgments, oaths, and all standard notarization services.",
+      link: "/general-notary"
+    },
+    {
       icon: Globe,
       title: "Apostille",
       description: "Document authentication for international use and recognition.",
