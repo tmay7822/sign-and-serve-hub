@@ -11,7 +11,10 @@ const HeroSection = () => {
           {/* SEO-Optimized H1 with Brand Tagline */}
           <h1 className="font-bold text-foreground mb-4 lg:mb-6 leading-tight">
             <span className="block text-3xl sm:text-4xl lg:text-5xl">
-              Mobile Notary Services in Cincinnati & Dayton, Ohio
+              Mobile Notary Services
+            </span>
+            <span className="block text-2xl sm:text-3xl lg:text-4xl mt-1">
+              in Cincinnati & Dayton, Ohio
             </span>
             <span className="block text-xl sm:text-2xl lg:text-3xl text-primary mt-3 font-semibold">
               Signed On Time — We Come To You Anytime And Anywhere
