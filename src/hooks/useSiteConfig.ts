@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import type { Json } from '@/integrations/supabase/types';
 
 export interface SiteConfigData {
   businessInfo?: {
@@ -71,14 +72,26 @@ export function useSiteConfig(tenantId?: string) {
   const saveConfig = async (key: keyof SiteConfigData, value: unknown) => {
     setSaving(true);
     try {
+      // Build the upsert object with proper typing
+      const upsertData: {
+        config_key: string;
+        config_value: Json;
+        updated_at: string;
+        tenant_id?: string;
+      } = {
+        config_key: key as string,
+        config_value: value as Json,
+        updated_at: new Date().toISOString(),
+      };
+      
+      // Only include tenant_id if it's defined
+      if (tenantId) {
+        upsertData.tenant_id = tenantId;
+      }
+
       const { error } = await supabase
         .from('site_config')
-        .upsert({
-          tenant_id: tenantId ?? null,
-          config_key: key as string,
-          config_value: value as Record<string, unknown>,
-          updated_at: new Date().toISOString(),
-        }, {
+        .upsert(upsertData, {
           onConflict: 'tenant_id,config_key'
         });
 
@@ -105,12 +118,24 @@ export function useSiteConfig(tenantId?: string) {
   const saveAllConfig = async (newConfig: Partial<SiteConfigData>) => {
     setSaving(true);
     try {
-      const upserts = Object.entries(newConfig).map(([key, value]) => ({
-        tenant_id: tenantId ?? null,
-        config_key: key,
-        config_value: value as Record<string, unknown>,
-        updated_at: new Date().toISOString(),
-      }));
+      const upserts = Object.entries(newConfig).map(([key, value]) => {
+        const item: {
+          config_key: string;
+          config_value: Json;
+          updated_at: string;
+          tenant_id?: string;
+        } = {
+          config_key: key,
+          config_value: value as Json,
+          updated_at: new Date().toISOString(),
+        };
+        
+        if (tenantId) {
+          item.tenant_id = tenantId;
+        }
+        
+        return item;
+      });
 
       const { error } = await supabase
         .from('site_config')
