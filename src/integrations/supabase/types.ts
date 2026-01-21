@@ -120,15 +120,372 @@ export type Database = {
           },
         ]
       }
+      blog_posts: {
+        Row: {
+          author: string | null
+          category: string | null
+          content: string
+          created_at: string | null
+          excerpt: string | null
+          featured: boolean | null
+          featured_image_url: string | null
+          focus_keyword: string | null
+          id: string
+          meta_description: string | null
+          publish_date: string | null
+          service_slug: string | null
+          slug: string
+          status: string | null
+          tags: string[] | null
+          tenant_id: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author?: string | null
+          category?: string | null
+          content: string
+          created_at?: string | null
+          excerpt?: string | null
+          featured?: boolean | null
+          featured_image_url?: string | null
+          focus_keyword?: string | null
+          id?: string
+          meta_description?: string | null
+          publish_date?: string | null
+          service_slug?: string | null
+          slug: string
+          status?: string | null
+          tags?: string[] | null
+          tenant_id?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author?: string | null
+          category?: string | null
+          content?: string
+          created_at?: string | null
+          excerpt?: string | null
+          featured?: boolean | null
+          featured_image_url?: string | null
+          focus_keyword?: string | null
+          id?: string
+          meta_description?: string | null
+          publish_date?: string | null
+          service_slug?: string | null
+          slug?: string
+          status?: string | null
+          tags?: string[] | null
+          tenant_id?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_locations: {
+        Row: {
+          city: string
+          county: string
+          created_at: string | null
+          custom_content: Json | null
+          enabled: boolean | null
+          id: string
+          priority: string | null
+          state: string
+          tenant_id: string | null
+          zip: string
+        }
+        Insert: {
+          city: string
+          county: string
+          created_at?: string | null
+          custom_content?: Json | null
+          enabled?: boolean | null
+          id?: string
+          priority?: string | null
+          state: string
+          tenant_id?: string | null
+          zip: string
+        }
+        Update: {
+          city?: string
+          county?: string
+          created_at?: string | null
+          custom_content?: Json | null
+          enabled?: boolean | null
+          id?: string
+          priority?: string | null
+          state?: string
+          tenant_id?: string | null
+          zip?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_locations_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_config: {
+        Row: {
+          config_key: string
+          config_value: Json
+          id: string
+          tenant_id: string | null
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          config_key: string
+          config_value: Json
+          id?: string
+          tenant_id?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          config_key?: string
+          config_value?: Json
+          id?: string
+          tenant_id?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "site_config_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscriptions: {
+        Row: {
+          created_at: string | null
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          monthly_price: number | null
+          plan_tier: string | null
+          status: string | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          tenant_id: string | null
+          trial_ends_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          monthly_price?: number | null
+          plan_tier?: string | null
+          status?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          tenant_id?: string | null
+          trial_ends_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          monthly_price?: number | null
+          plan_tier?: string | null
+          status?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          tenant_id?: string | null
+          trial_ends_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenant_users: {
+        Row: {
+          accepted_at: string | null
+          id: string
+          invited_at: string | null
+          role: string | null
+          tenant_id: string
+          user_id: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          id?: string
+          invited_at?: string | null
+          role?: string | null
+          tenant_id: string
+          user_id: string
+        }
+        Update: {
+          accepted_at?: string | null
+          id?: string
+          invited_at?: string | null
+          role?: string | null
+          tenant_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_users_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenants: {
+        Row: {
+          business_name: string
+          created_at: string | null
+          custom_domain: string | null
+          ghl_contact_id: string | null
+          id: string
+          owner_email: string
+          owner_user_id: string | null
+          pricing_tier: string | null
+          status: string | null
+          subdomain: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_name: string
+          created_at?: string | null
+          custom_domain?: string | null
+          ghl_contact_id?: string | null
+          id?: string
+          owner_email: string
+          owner_user_id?: string | null
+          pricing_tier?: string | null
+          status?: string | null
+          subdomain?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_name?: string
+          created_at?: string | null
+          custom_domain?: string | null
+          ghl_contact_id?: string | null
+          id?: string
+          owner_email?: string
+          owner_user_id?: string | null
+          pricing_tier?: string | null
+          status?: string | null
+          subdomain?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          created_at: string | null
+          id: string
+          location: string | null
+          rating: number | null
+          review_date: string | null
+          review_text: string
+          reviewer_name: string
+          service_type: string | null
+          source: string | null
+          tenant_id: string | null
+          verified: boolean | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          rating?: number | null
+          review_date?: string | null
+          review_text: string
+          reviewer_name: string
+          service_type?: string | null
+          source?: string | null
+          tenant_id?: string | null
+          verified?: boolean | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          rating?: number | null
+          review_date?: string | null
+          review_text?: string
+          reviewer_name?: string
+          service_type?: string | null
+          source?: string | null
+          tenant_id?: string | null
+          verified?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "testimonials_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -255,6 +612,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
