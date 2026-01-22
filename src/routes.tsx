@@ -6,11 +6,12 @@ import type { RouteRecord } from 'vite-react-ssg';
 import { Navigate } from 'react-router-dom';
 import Layout from './App';
 import { PRERENDER_ROUTES } from '@/config/prerenderRoutes';
+import { ProtectedAdminRoute } from '@/components/admin/ProtectedAdminRoute';
 
 // Eager imports for critical pages (faster initial load)
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
-
+import Auth from './pages/Auth';
 // Lazy imports for other pages
 const GeneralNotary = lazy(() => import('./pages/GeneralNotary'));
 const FAQ = lazy(() => import('./pages/FAQ'));
@@ -122,11 +123,14 @@ export const routes: RouteRecord[] = [
       // Quick Booking
       { path: 'book-now', element: <BookNow /> },
       
-      // Admin (not pre-rendered)
-      { path: 'admin', element: <AdminDashboard /> },
-      { path: 'admin/sitemap', element: <SiteMapViewer /> },
-      { path: 'admin/gmb-export', element: <GMBExport /> },
-      { path: 'admin/content-map', element: <ContentMap /> },
+      // Auth page
+      { path: 'auth', element: <Auth /> },
+      
+      // Admin (protected routes - not pre-rendered)
+      { path: 'admin', element: <ProtectedAdminRoute><Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><AdminDashboard /></Suspense></ProtectedAdminRoute> },
+      { path: 'admin/sitemap', element: <ProtectedAdminRoute><Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><SiteMapViewer /></Suspense></ProtectedAdminRoute> },
+      { path: 'admin/gmb-export', element: <ProtectedAdminRoute><Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><GMBExport /></Suspense></ProtectedAdminRoute> },
+      { path: 'admin/content-map', element: <ProtectedAdminRoute><Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><ContentMap /></Suspense></ProtectedAdminRoute> },
       
       // Main Service Hubs
       { path: 'general-notary', element: <GeneralNotary /> },
