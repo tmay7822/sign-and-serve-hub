@@ -1,8 +1,8 @@
-// ROUTES CONFIGURATION FOR SSG
-// Centralized route definitions for vite-react-ssg pre-rendering
+// ROUTES CONFIGURATION
+// Centralized route definitions for React Router
 
 import { lazy, Suspense } from 'react';
-import type { RouteRecord } from 'vite-react-ssg';
+import type { RouteObject } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Layout from './App';
 import { PRERENDER_ROUTES } from '@/config/prerenderRoutes';
