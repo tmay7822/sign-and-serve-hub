@@ -112,7 +112,7 @@ const HealthcareDocumentsNotaryGuide = lazy(() => import('./pages/blog/Healthcar
 const Documents = lazy(() => import('./pages/Documents'));
 const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
 const Reviews = lazy(() => import('./pages/Reviews'));
-export const routes: RouteRecord[] = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <Layout />,
