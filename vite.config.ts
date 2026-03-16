@@ -67,6 +67,7 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    dedupe: ["react", "react-dom", "react/jsx-runtime"],
   },
   build: {
     rollupOptions: {
@@ -77,15 +78,5 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-  },
-  ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
-    crittersOptions: {
-      preload: 'swap',
-      pruneSource: false,
-    },
-    // Entry point for SSG
-    entry: './src/main.tsx',
   },
 }));
