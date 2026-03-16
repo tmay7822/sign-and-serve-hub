@@ -1,8 +1,8 @@
-// ROUTES CONFIGURATION FOR SSG
-// Centralized route definitions for vite-react-ssg pre-rendering
+// ROUTES CONFIGURATION
+// Centralized route definitions for React Router
 
 import { lazy, Suspense } from 'react';
-import type { RouteRecord } from 'vite-react-ssg';
+import type { RouteObject } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Layout from './App';
 import { PRERENDER_ROUTES } from '@/config/prerenderRoutes';
@@ -112,7 +112,7 @@ const HealthcareDocumentsNotaryGuide = lazy(() => import('./pages/blog/Healthcar
 const Documents = lazy(() => import('./pages/Documents'));
 const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
 const Reviews = lazy(() => import('./pages/Reviews'));
-export const routes: RouteRecord[] = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <Layout />,
@@ -375,8 +375,5 @@ export const routes: RouteRecord[] = [
     ],
   },
 ];
-
-// Export paths for SSG pre-rendering
-export const getStaticPaths = () => PRERENDER_ROUTES;
 
 export default routes;
