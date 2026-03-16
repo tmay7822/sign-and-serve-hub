@@ -376,7 +376,4 @@ export const routes: RouteRecord[] = [
   },
 ];
 
-// Export paths for SSG pre-rendering
-export const getStaticPaths = () => PRERENDER_ROUTES;
-
 export default routes;
