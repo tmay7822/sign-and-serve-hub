@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -7,7 +6,6 @@ import TrustSignals from '@/components/TrustSignals';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import ReviewSchema from '@/components/SEO/ReviewSchema';
@@ -16,7 +14,6 @@ import { BUSINESS_CONFIG } from '@/config/business';
 
 const Index = () => {
   useEffect(() => {
-    // Set page title and meta description
     document.title = BUSINESS_CONFIG.seo.metaTitle;
     
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -29,7 +26,6 @@ const Index = () => {
       document.head.appendChild(meta);
     }
 
-    // Add keywords meta tag
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
       metaKeywords.setAttribute('content', BUSINESS_CONFIG.seo.keywords);
@@ -40,7 +36,6 @@ const Index = () => {
       document.head.appendChild(keywordsMeta);
     }
 
-    // Add viewport meta tag
     const viewport = document.querySelector('meta[name="viewport"]');
     if (!viewport) {
       const viewportMeta = document.createElement('meta');
@@ -49,7 +44,6 @@ const Index = () => {
       document.head.appendChild(viewportMeta);
     }
 
-    // Add robots meta tag
     const robots = document.querySelector('meta[name="robots"]');
     if (!robots) {
       const robotsMeta = document.createElement('meta');
@@ -58,7 +52,6 @@ const Index = () => {
       document.head.appendChild(robotsMeta);
     }
 
-    // Add structured data for local business
     const localBusinessSchema = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -77,10 +70,7 @@ const Index = () => {
       },
       "description": BUSINESS_CONFIG.seo.metaDescription,
       "priceRange": "$$",
-      "openingHours": [
-        "Mo-Fr 08:00-20:00",
-        "Sa-Su 09:00-18:00"
-      ],
+      "openingHours": ["Mo-Fr 08:00-20:00", "Sa-Su 09:00-18:00"],
       "areaServed": BUSINESS_CONFIG.serviceArea.counties.split(', ').map(county => ({
         "@type": "AdministrativeArea",
         "name": county.trim() + " County, OH"
@@ -105,9 +95,9 @@ const Index = () => {
       <ReviewSchema />
       <Header />
       <HeroSection />
-      <ServicesSection />
       <TrustSignals />
       <TestimonialsSection />
+      <ServicesSection />
       <FAQSection />
       <Footer />
     </div>

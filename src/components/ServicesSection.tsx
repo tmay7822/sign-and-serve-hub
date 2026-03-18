@@ -1,121 +1,86 @@
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { 
-  FileText, 
-  Home, 
-  FileSignature, 
-  Building, 
-  Globe, 
-  Briefcase,
-  Car,
-  Heart,
-  ArrowRight
+  FileText, Home, FileSignature, Building, Globe, Briefcase, Car, Heart, ArrowRight, ChevronDown, ChevronUp
 } from 'lucide-react';
 
 const ServicesSection = () => {
-  // Services ordered by priority: DMV, Healthcare, POA, Loan, Real Estate at top; Apostille at bottom
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const services = [
-    {
-      icon: Car,
-      title: "Car Title & Bill of Sale",
-      description: "Vehicle title transfers, bills of sale, and all DMV documents notarized.",
-      link: "/vehicles-dmv",
-      featured: true
-    },
-    {
-      icon: Heart,
-      title: "Healthcare Notary",
-      description: "Hospital, nursing home, and bedside notarization for medical documents.",
-      link: "/healthcare-notary"
-    },
-    {
-      icon: FileSignature,
-      title: "Estate Plans & POA",
-      description: "Wills, trusts, power of attorney, healthcare directives, and medical document signings.",
-      link: "/estate-plans"
-    },
-    {
-      icon: Home,
-      title: "Loan Signings",
-      description: "Buyer, seller, refinance, HELOC, and investor loan document signings.",
-      link: "/loan-signings"
-    },
-    {
-      icon: Building,
-      title: "Real Estate",
-      description: "Deeds, closings, investor documents, and property transfers.",
-      link: "/real-estate"
-    },
-    {
-      icon: Briefcase,
-      title: "Business Services",
-      description: "I-9 verification, vendor agreements, and corporate documents.",
-      link: "/business-services"
-    },
-    {
-      icon: FileText,
-      title: "General Notary",
-      description: "Affidavits, acknowledgments, oaths, and all standard notarization services.",
-      link: "/general-notary"
-    },
-    {
-      icon: Globe,
-      title: "Apostille",
-      description: "Document authentication for international use and recognition.",
-      link: "/apostille"
-    }
+    { icon: Car, title: "Car Title & Bill of Sale", description: "Vehicle title transfers, bills of sale, and all DMV documents notarized.", link: "/vehicles-dmv" },
+    { icon: Heart, title: "Healthcare Notary", description: "Hospital, nursing home, and bedside notarization for medical documents.", link: "/healthcare-notary" },
+    { icon: FileSignature, title: "Estate Plans & POA", description: "Wills, trusts, power of attorney, healthcare directives, and medical document signings.", link: "/estate-plans" },
+    { icon: Home, title: "Loan Signings", description: "Buyer, seller, refinance, HELOC, and investor loan document signings.", link: "/loan-signings" },
+    { icon: Building, title: "Real Estate", description: "Deeds, closings, investor documents, and property transfers.", link: "/real-estate" },
+    { icon: Briefcase, title: "Business Services", description: "I-9 verification, vendor agreements, and corporate documents.", link: "/business-services" },
+    { icon: FileText, title: "General Notary", description: "Affidavits, acknowledgments, oaths, and all standard notarization services.", link: "/general-notary" },
+    { icon: Globe, title: "Apostille", description: "Document authentication for international use and recognition.", link: "/apostille" }
   ];
 
   return (
     <section className="py-6 bg-gradient-to-br from-white via-slate-50 to-red-50/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            Our Professional Services
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive notary and signing services delivered to your location 
-            with precision and professionalism.
+        <div className="text-center mb-6">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="inline-flex items-center gap-2 text-2xl md:text-3xl font-bold text-brand-navy hover:text-brand-blue transition-colors"
+            aria-expanded={isExpanded}
+            aria-controls="all-services-grid"
+          >
+            View All Services
+            {isExpanded ? <ChevronUp className="h-6 w-6" /> : <ChevronDown className="h-6 w-6" />}
+          </button>
+          <p className="text-muted-foreground mt-2">
+            Comprehensive notary and signing services delivered to your location.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
-            return (
-              <Card 
-                key={index} 
-                className="gradient-card border-2 border-black/10 hover:border-brand-blue/30 hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group bg-white/80 backdrop-blur-sm min-h-[280px] flex flex-col"
-              >
-                <CardHeader className="text-center pb-4 flex-shrink-0">
-                  <div className="mx-auto w-16 h-16 lg:w-18 lg:h-18 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <IconComponent className="h-7 w-7 lg:h-9 lg:w-9 text-white" />
-                  </div>
-                  <CardTitle className="text-xl lg:text-2xl text-brand-navy leading-tight font-semibold">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center pt-0 flex flex-col flex-grow">
-                  <CardDescription className="text-base lg:text-lg mb-6 flex-grow text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </CardDescription>
-                  <div className="mt-auto pt-4">
-                    <Button 
-                      variant="outline" 
-                      className="w-full bg-primary/5 border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 font-medium py-3"
-                      asChild
-                    >
-                      <Link to={service.link}>
-                        Learn More
-                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+        {/* Grid renders in DOM for SEO but visually hidden when collapsed */}
+        <div 
+          id="all-services-grid"
+          className={`transition-all duration-500 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
+          aria-hidden={!isExpanded}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 pt-4">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <Card 
+                  key={index} 
+                  className="gradient-card border-2 border-black/10 hover:border-brand-blue/30 hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group bg-white/80 backdrop-blur-sm min-h-[280px] flex flex-col"
+                >
+                  <CardHeader className="text-center pb-4 flex-shrink-0">
+                    <div className="mx-auto w-16 h-16 lg:w-18 lg:h-18 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <IconComponent className="h-7 w-7 lg:h-9 lg:w-9 text-white" />
+                    </div>
+                    <CardTitle className="text-xl lg:text-2xl text-brand-navy leading-tight font-semibold">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center pt-0 flex flex-col flex-grow">
+                    <CardDescription className="text-base lg:text-lg mb-6 flex-grow text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                    <div className="mt-auto pt-4">
+                      <Button 
+                        variant="outline" 
+                        className="w-full bg-primary/5 border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 font-medium py-3"
+                        asChild
+                      >
+                        <Link to={service.link}>
+                          Learn More
+                          <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
