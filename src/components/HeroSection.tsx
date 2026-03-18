@@ -1,7 +1,35 @@
 import { BUSINESS_CONFIG } from '@/config/business';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
-import { CheckCircle } from 'lucide-react';
+import { FileText, Car, Home, Heart, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const intentOptions = [
+  {
+    icon: FileText,
+    label: "I Need a Document Notarized",
+    description: "Affidavits, acknowledgments, oaths & more",
+    link: "/general-notary",
+  },
+  {
+    icon: Car,
+    label: "I'm Buying or Selling a Car",
+    description: "Title transfers, bills of sale & DMV docs",
+    link: "/vehicles-dmv",
+  },
+  {
+    icon: Home,
+    label: "I Have a Real Estate Closing",
+    description: "Loan signings, deeds & property transfers",
+    link: "/loan-signings",
+  },
+  {
+    icon: Heart,
+    label: "I Need Hospital or Bedside Notary",
+    description: "Healthcare directives, POA & medical docs",
+    link: "/healthcare-notary",
+  },
+];
 
 const HeroSection = () => {
   return (
@@ -21,52 +49,32 @@ const HeroSection = () => {
             </span>
           </h1>
           
-          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-slate-200/50 mb-4">
-            {/* SEO-Enhanced H2 with Service Keywords */}
+          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-slate-200/50 mb-6">
+            {/* SEO-Enhanced H2 */}
             <h2 className="text-lg lg:text-xl font-semibold text-foreground mb-3">
               Certified Loan Signing Agent | Car Title Notary | Estate Planning & Healthcare Documents
             </h2>
             
-            <p className="text-xl lg:text-2xl font-bold text-primary mb-4">
+            <p className="text-xl lg:text-2xl font-bold text-primary mb-3">
               Terry May with Signed On Time
             </p>
             
-            <div className="mb-4">
-              {/* SEO-Enhanced H3 with County Keywords */}
-              <h3 className="text-base font-semibold text-foreground mb-2">
-                Serving Hamilton, Butler, Warren, Montgomery & 5 More Ohio Counties
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Fast, professional mobile notary service — we come to your home, office, hospital, or anywhere you need us.
-              </p>
-            </div>
-
-            {/* Value Propositions with Keywords */}
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm mb-4">
-              <span className="flex items-center gap-1.5 text-foreground">
-                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                Same-Day Notary Service
-              </span>
-              <span className="flex items-center gap-1.5 text-foreground">
-                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                NNA Certified & Background Checked
-              </span>
-              <span className="flex items-center gap-1.5 text-foreground">
-                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                Evenings & Weekends Available
-              </span>
-            </div>
+            {/* SEO-Enhanced H3 */}
+            <h3 className="text-base font-semibold text-foreground mb-2">
+              Serving Hamilton, Butler, Warren, Montgomery & 5 More Ohio Counties
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              Fast, professional mobile notary service — we come to your home, office, hospital, or anywhere you need us.
+            </p>
 
             {/* Trust Badges */}
             <div className="mb-4">
               <QuickTrustBadges />
             </div>
 
-            <StandardCTAButtons 
-              className="max-w-2xl mx-auto"
-            />
+            <StandardCTAButtons className="max-w-2xl mx-auto" />
             
-            {/* Enhanced Google Reviews Badge */}
+            {/* Google Reviews Badge */}
             <div className="mt-4 flex flex-col items-center gap-1">
               <a 
                 href="#reviews" 
@@ -92,6 +100,38 @@ const HeroSection = () => {
                 <span className="font-bold text-lg text-foreground">5.0</span>
                 <span className="text-muted-foreground">• 35 Reviews</span>
               </a>
+            </div>
+          </div>
+
+          {/* Intent-Based Routing Buttons */}
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
+              What Do You Need Notarized?
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {intentOptions.map((option) => {
+                const IconComponent = option.icon;
+                return (
+                  <Link
+                    key={option.link}
+                    to={option.link}
+                    className="flex items-center gap-4 p-5 lg:p-6 bg-white rounded-xl border-2 border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300 group text-left min-h-[72px]"
+                  >
+                    <div className="flex-shrink-0 w-14 h-14 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
+                      <IconComponent className="h-7 w-7 text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="block text-lg lg:text-xl font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
+                        {option.label}
+                      </span>
+                      <span className="block text-sm text-muted-foreground mt-1">
+                        {option.description}
+                      </span>
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" />
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

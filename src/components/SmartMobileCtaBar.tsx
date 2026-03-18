@@ -1,132 +1,38 @@
-// SMART MOBILE CTA BAR
-// Context-aware sticky bottom bar for mobile devices with smooth animations
+// SIMPLIFIED MOBILE CTA BAR
+// Two large buttons: Call Now and Book Online
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Calendar, Calculator, MessageCircle } from 'lucide-react';
+import { Phone, Calendar } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { usePageContext } from '@/hooks/usePageContext';
 import { BookingWidget } from './BookingWidget';
-import { QuoteCalculatorModal } from './QuoteCalculatorModal';
 import { haptic } from '@/utils/haptics';
 
-// Animation variants
 const containerVariants = {
   hidden: { y: 100, opacity: 0 },
   visible: { 
     y: 0, 
     opacity: 1,
-    transition: {
-      type: "spring" as const,
-      damping: 25,
-      stiffness: 300,
-      staggerChildren: 0.08
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { scale: 0.8, opacity: 0, y: 10 },
-  visible: { 
-    scale: 1, 
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, damping: 20, stiffness: 400 }
-  }
-};
-
-const primaryVariants = {
-  hidden: { scale: 0.5, opacity: 0, y: 20 },
-  visible: { 
-    scale: 1, 
-    opacity: 1, 
-    y: 0,
-    transition: { 
-      type: "spring" as const, 
-      damping: 15, 
-      stiffness: 400,
-      delay: 0.1
-    }
+    transition: { type: "spring" as const, damping: 25, stiffness: 300 }
   }
 };
 
 export const SmartMobileCtaBar = () => {
-  const context = usePageContext();
-  const [showCalculator, setShowCalculator] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show bar after scrolling 200px
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
         setIsVisible(true);
       }
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial position
-    
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Scroll to AI chat widget
-  const handleChatClick = () => {
-    window.dispatchEvent(new CustomEvent('openAIChat'));
-  };
-
-  // Render the primary action based on page context
-  const renderPrimaryAction = () => {
-    const baseClasses = "flex flex-col items-center gap-0.5 px-5 py-2 bg-brand-navy text-white rounded-full -mt-4 shadow-lg hover:bg-brand-blue transition-colors min-w-[110px]";
-    
-    switch (context.ctaAction) {
-      case 'book':
-        return (
-          <BookingWidget
-            defaultService={context.serviceId}
-            variant="ghost"
-            size="sm"
-            className={`${baseClasses} h-auto`}
-          >
-            <Calendar className="h-5 w-5" />
-            <span className="text-[10px] font-semibold leading-tight text-center max-w-[90px] truncate">
-              {context.ctaLabel}
-            </span>
-          </BookingWidget>
-        );
-      
-      case 'call':
-        return (
-          <a 
-            href={`tel:${BUSINESS_CONFIG.phone}`} 
-            className={baseClasses}
-            onClick={() => haptic.medium()}
-          >
-            <Phone className="h-5 w-5" />
-            <span className="text-[10px] font-semibold leading-tight">Call Now</span>
-          </a>
-        );
-      
-      case 'quote':
-      default:
-        return (
-          <button
-            onClick={() => {
-              haptic.medium();
-              setShowCalculator(true);
-            }}
-            className={baseClasses}
-            aria-label="Open quote calculator"
-          >
-            <Calculator className="h-5 w-5" />
-            <span className="text-[10px] font-semibold leading-tight">{context.ctaLabel}</span>
-          </button>
-        );
-    }
-  };
-
   return (
     <>
-      {/* Sticky CTA bar - only visible on mobile */}
       <motion.div 
         className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] safe-area-bottom"
         role="navigation"
@@ -135,53 +41,32 @@ export const SmartMobileCtaBar = () => {
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
       >
-        <div className="flex items-center justify-around py-2.5 px-4 max-w-md mx-auto">
-          {/* Call Button */}
-          <motion.a
+        <div className="flex items-center gap-3 py-3 px-4 max-w-md mx-auto">
+          {/* Call Now */}
+          <a
             href={`tel:${BUSINESS_CONFIG.phone}`}
-            className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-brand-navy hover:text-brand-blue transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+            className="flex-1 flex items-center justify-center gap-2 py-4 bg-green-600 hover:bg-green-700 text-white font-bold text-base rounded-xl transition-colors min-h-[56px] shadow-md"
             aria-label={`Call ${BUSINESS_CONFIG.phone}`}
-            variants={itemVariants}
-            whileTap={{ scale: 0.92 }}
-            onClick={() => haptic.light()}
+            onClick={() => haptic.medium()}
           >
             <Phone className="h-5 w-5" />
-            <span className="text-[10px] font-medium">Call</span>
-          </motion.a>
+            Call Now
+          </a>
 
-          {/* Primary Action - contextual with bounce animation */}
-          <motion.div
-            variants={primaryVariants}
-            whileTap={{ scale: 0.95 }}
+          {/* Book Online */}
+          <BookingWidget
+            variant="ghost"
+            size="sm"
+            className="flex-1 flex items-center justify-center gap-2 py-4 bg-primary hover:bg-primary/90 text-white font-bold text-base rounded-xl transition-colors min-h-[56px] shadow-md h-auto"
           >
-            {renderPrimaryAction()}
-          </motion.div>
-
-          {/* Chat Button */}
-          <motion.button
-            onClick={() => {
-              haptic.light();
-              handleChatClick();
-            }}
-            className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-brand-navy hover:text-brand-blue transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-            aria-label="Open chat assistant"
-            variants={itemVariants}
-            whileTap={{ scale: 0.92 }}
-          >
-            <MessageCircle className="h-5 w-5" />
-            <span className="text-[10px] font-medium">Chat</span>
-          </motion.button>
+            <Calendar className="h-5 w-5" />
+            Book Online
+          </BookingWidget>
         </div>
       </motion.div>
 
-      {/* Spacer to prevent content from being hidden behind the bar */}
-      {isVisible && <div className="h-16 lg:hidden" aria-hidden="true" />}
-
-      {/* Quote Calculator Modal */}
-      <QuoteCalculatorModal 
-        isOpen={showCalculator} 
-        onClose={() => setShowCalculator(false)} 
-      />
+      {/* Spacer */}
+      {isVisible && <div className="h-20 lg:hidden" aria-hidden="true" />}
     </>
   );
 };
