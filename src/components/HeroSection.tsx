@@ -31,15 +31,30 @@ const intentOptions = [
   },
 ];
 
+export const aeoQuestions = [
+  {
+    question: "What does a mobile notary do?",
+    answer: "A mobile notary travels to your location — home, office, hospital, or anywhere — to notarize documents in person. This saves you time and is especially helpful for people who can't easily travel to a notary office."
+  },
+  {
+    question: "How much does a mobile notary cost in Ohio?",
+    answer: "Ohio notary fees start at $5 per notarization by law, plus a travel fee that typically ranges from $25–$75 depending on distance. Loan signing appointments may cost $100–$200 depending on the package size."
+  },
+  {
+    question: "Do you offer same-day notary service?",
+    answer: "Yes, Signed On Time offers same-day and emergency mobile notary service across the Cincinnati and Dayton metro areas. Call or book online and we can often be there within 1–2 hours."
+  },
+];
+
 const HeroSection = () => {
   return (
     <section className="bg-gradient-to-b from-slate-100 via-white to-slate-50 py-8 lg:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center max-w-5xl mx-auto">
-          {/* SEO-Optimized H1 with Brand Tagline */}
+          {/* GMB-Aligned H1 */}
           <h1 className="font-bold text-foreground mb-4 lg:mb-6 leading-tight">
             <span className="block text-3xl sm:text-4xl lg:text-5xl">
-              Mobile Notary Services
+              Notary Public & Mobile Notary Service
             </span>
             <span className="block text-2xl sm:text-3xl lg:text-4xl mt-1">
               in Cincinnati & Dayton, Ohio
@@ -50,16 +65,15 @@ const HeroSection = () => {
           </h1>
           
           <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-slate-200/50 mb-6">
-            {/* SEO-Enhanced H2 */}
+            {/* GMB-Aligned H2 */}
             <h2 className="text-lg lg:text-xl font-semibold text-foreground mb-3">
-              Certified Loan Signing Agent | Car Title Notary | Estate Planning & Healthcare Documents
+              Loan Signing Agent | Notary Public | Mobile Notary Near You
             </h2>
             
             <p className="text-xl lg:text-2xl font-bold text-primary mb-3">
               Terry May with Signed On Time
             </p>
             
-            {/* SEO-Enhanced H3 */}
             <h3 className="text-base font-semibold text-foreground mb-2">
               Serving Hamilton, Butler, Warren, Montgomery & 5 More Ohio Counties
             </h3>
@@ -67,14 +81,12 @@ const HeroSection = () => {
               Fast, professional mobile notary service — we come to your home, office, hospital, or anywhere you need us.
             </p>
 
-            {/* Trust Badges */}
             <div className="mb-4">
               <QuickTrustBadges />
             </div>
 
             <StandardCTAButtons className="max-w-2xl mx-auto" />
             
-            {/* Google Reviews Badge */}
             <div className="mt-4 flex flex-col items-center gap-1">
               <a 
                 href="#reviews" 
@@ -133,6 +145,20 @@ const HeroSection = () => {
                 );
               })}
             </div>
+          </div>
+
+          {/* AEO Q&A Block — visible to AI extractors */}
+          <div className="max-w-3xl mx-auto mt-10 text-left space-y-6">
+            {aeoQuestions.map((item, index) => (
+              <div key={index} className="bg-muted/30 rounded-lg p-4 lg:p-5">
+                <h3 className="text-base lg:text-lg font-semibold text-foreground mb-2">
+                  {item.question}
+                </h3>
+                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

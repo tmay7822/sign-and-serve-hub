@@ -1,6 +1,3 @@
-// LOCAL BUSINESS SCHEMA COMPONENT
-// Generates Schema.org/LocalBusiness structured data
-
 import { useEffect } from 'react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { isBrowser, getHref } from '@/utils/ssg';
@@ -17,10 +14,8 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
   url 
 }) => {
   useEffect(() => {
-    // Only run in browser
     if (!isBrowser) return;
 
-    // Remove any existing business schema
     const existingSchema = document.querySelector('script[data-type="business-schema"]');
     if (existingSchema) {
       existingSchema.remove();
@@ -31,14 +26,13 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
     let schema;
 
     if (serviceName) {
-      // Service-specific schema
       schema = {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": serviceName,
         "description": serviceDescription,
         "provider": {
-          "@type": "LocalBusiness",
+          "@type": ["LocalBusiness", "Notary"],
           "name": BUSINESS_CONFIG.name,
           "image": BUSINESS_CONFIG.logo.url,
           "telephone": BUSINESS_CONFIG.phone,
@@ -86,10 +80,13 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
         "url": pageUrl
       };
     } else {
-      // Main LocalBusiness schema for homepage
       schema = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "Notary"],
+        "additionalType": [
+          "https://schema.org/LegalService",
+          "https://schema.org/ProfessionalService"
+        ],
         "name": BUSINESS_CONFIG.name,
         "image": BUSINESS_CONFIG.logo.url,
         "telephone": BUSINESS_CONFIG.phone,
@@ -123,6 +120,18 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
           "geoRadius": "50000"
         },
         "paymentAccepted": ["Cash", "Check", "Credit Card", "Venmo", "Zelle"],
+        "knowsAbout": [
+          "Notary Public Services",
+          "Mobile Notary",
+          "Loan Signing Agent",
+          "Legal Document Notarization",
+          "Apostille Services",
+          "Real Estate Closings",
+          "Estate Planning Documents",
+          "Healthcare Directives",
+          "Vehicle Title Transfers",
+          "Same-Day Notary Service"
+        ],
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "5.0",
@@ -160,7 +169,6 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
       };
     }
 
-    // Add schema to head
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.setAttribute('data-type', 'business-schema');
@@ -174,7 +182,7 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
     };
   }, [serviceName, serviceDescription, url]);
 
-  return null; // This component only adds schema, no visual output
+  return null;
 };
 
 export default LocalBusinessSchema;

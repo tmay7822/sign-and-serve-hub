@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
+import HeroSection, { aeoQuestions } from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import TrustSignals from '@/components/TrustSignals';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import ReviewSchema from '@/components/SEO/ReviewSchema';
+import EnhancedFAQSchema from '@/components/SEO/EnhancedFAQSchema';
 
 import { BUSINESS_CONFIG } from '@/config/business';
 
@@ -93,6 +94,13 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <LocalBusinessSchema />
       <ReviewSchema />
+      <EnhancedFAQSchema 
+        faqs={aeoQuestions} 
+        mainEntity={{ 
+          name: "Signed On Time Mobile Notary", 
+          description: "Mobile notary public and loan signing agent serving Cincinnati, Dayton, and surrounding Ohio counties." 
+        }} 
+      />
       <Header />
       <HeroSection />
       <TrustSignals />
