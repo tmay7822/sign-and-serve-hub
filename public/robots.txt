@@ -1,5 +1,13 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Disallow query parameters and admin pages
+Disallow: /*?*
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
 Sitemap: https://www.signedontime.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
