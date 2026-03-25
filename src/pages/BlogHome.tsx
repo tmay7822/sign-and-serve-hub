@@ -54,6 +54,10 @@ const BlogHome: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Expert Notary Guides & Resources | ${BUSINESS_CONFIG.name}`}
+        description="Professional notary guides and expert tips for all your document needs. Learn about loan signings, estate planning, apostille services, and more from certified notaries."
+      />
       <BreadcrumbSchema />
       <Header />
       

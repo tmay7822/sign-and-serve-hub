@@ -418,7 +418,7 @@ const DynamicLocationPage: React.FC = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+          <h2 className="text-2xl lg:text-3xl font-bold mb-6">
             Need Mobile Notary Service in {pageData.city}?
           </h3>
           <p className="text-lg mb-8 opacity-90">

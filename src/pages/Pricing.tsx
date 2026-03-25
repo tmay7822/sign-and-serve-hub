@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 
 import { PricingDisplay } from '@/components/PricingDisplay';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
@@ -12,18 +12,12 @@ import { EMERGENCY_FEES } from '@/config/servicepricing';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 
 export default function Pricing() {
-  useEffect(() => {
-    document.title = `Pricing - ${BUSINESS_CONFIG.name}`;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        'Transparent pricing for mobile notary services. Base rates starting at $75 with clear travel fees. Same-day appointments available.'
-      );
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Pricing - ${BUSINESS_CONFIG.name}`}
+        description="Transparent pricing for mobile notary services. Base rates starting at $75 with clear travel fees. Same-day appointments available."
+      />
       <Header />
       
       <main className="pt-20">
