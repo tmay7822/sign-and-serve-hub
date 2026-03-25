@@ -496,7 +496,7 @@ export const PRERENDER_ROUTES = [
   
   // Brown County Cities
   '/service/brown-county/georgetown-45121',
-  '/service/brown-county/mt.-orab-45154',
+  '/service/brown-county/mt-orab-45154',
   '/service/brown-county/ripley-45167',
   '/service/brown-county/russellville-45168',
   '/service/brown-county/sardinia-45171',
