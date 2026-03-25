@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Badge } from '@/components/ui/badge';
@@ -39,17 +39,27 @@ interface DynamicBlogPostTemplateProps {
 }
 
 const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
-  useEffect(() => {
-    document.title = `${post.title} | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', post.metaDescription || post.excerpt);
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "datePublished": post.publishDate,
+    "author": { "@type": "Organization", "name": BUSINESS_CONFIG.name },
+    "publisher": { "@type": "Organization", "name": BUSINESS_CONFIG.name },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${BUSINESS_CONFIG.website}/blog/${post.slug}`
     }
-  }, [post]);
+  };
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={post.metaTitle || `${post.title} | ${BUSINESS_CONFIG.name}`}
+        description={post.metaDescription || post.excerpt}
+        jsonLd={articleSchema}
+      />
+
       {/* Enhanced FAQ Schema */}
       {post.faqs && post.faqs.length > 0 && (
         <EnhancedFAQSchema 

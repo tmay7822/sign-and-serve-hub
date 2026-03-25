@@ -1,18 +1,20 @@
 // SERVICE HUB TEMPLATE
 // Template for service landing pages (/{slug})
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
 import FAQAccordion from '@/components/FAQAccordion';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
+import InternalLinkingHub from '@/components/InternalLinkingHub';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { Service } from '@/data/services';
 import { BlogPost, getPostsByService, getCategoryByServiceSlug } from '@/data/blog';
@@ -41,42 +43,15 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
   const routes = localRoutes || getRoutesByService(service.slug).slice(0, 12);
   const serviceContent = getServiceContent(service.id);
 
-  useEffect(() => {
-    // Only run in browser
-    if (typeof window === 'undefined') return;
-
-    // Set page title and meta description
-    const title = service.metaTitle || `${service.serviceName} in ${BUSINESS_CONFIG.address.city}, ${BUSINESS_CONFIG.address.state} | ${BUSINESS_CONFIG.name}`;
-    document.title = title;
-    
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const description = service.metaDescription || `${service.summary} Same-day mobile ${service.serviceName.toLowerCase()} in ${BUSINESS_CONFIG.serviceArea.primary}. Call ${BUSINESS_CONFIG.phone}.`;
-    
-    if (metaDesc) {
-      metaDesc.setAttribute('content', description);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
-
-    // Set canonical URL
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const currentUrl = `${window.location.origin}/${service.slug}`;
-    
-    if (canonical) {
-      canonical.setAttribute('href', currentUrl);
-    } else {
-      const link = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = currentUrl;
-      document.head.appendChild(link);
-    }
-  }, [service]);
+  const seoTitle = service.metaTitle || `${service.serviceName} in ${BUSINESS_CONFIG.address.city}, ${BUSINESS_CONFIG.address.state} | ${BUSINESS_CONFIG.name}`;
+  const seoDescription = service.metaDescription || `${service.summary} Same-day mobile ${service.serviceName.toLowerCase()} in ${BUSINESS_CONFIG.serviceArea.primary}. Call ${BUSINESS_CONFIG.phone}.`;
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+      />
       <LocalBusinessSchema 
         serviceName={service.serviceName}
         serviceDescription={service.description}
@@ -394,6 +369,19 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
           </div>
         </section>
       )}
+
+      {/* Internal Linking Hub */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <InternalLinkingHub
+            currentPage={{
+              type: 'service',
+              serviceSlug: service.slug,
+              title: service.serviceName
+            }}
+          />
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-16">

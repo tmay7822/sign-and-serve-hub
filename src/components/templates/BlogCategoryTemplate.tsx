@@ -1,13 +1,14 @@
 // BLOG CATEGORY TEMPLATE
 // Template for blog category pages (/blog/{slug}) with location internal linking
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -33,55 +34,9 @@ const BlogCategoryTemplate: React.FC<BlogCategoryTemplateProps> = ({
   const categoryPosts = posts || getPostsByCategory(category.slug);
   const countyPosts = getCountyPostsByCategory(category.slug);
   const cityPosts = getCityPostsByCategory(category.slug);
-  
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
 
-    const title = category.metaTitle || `${category.title} Guides & Tips | ${BUSINESS_CONFIG.name}`;
-    document.title = title;
-    
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const description = category.metaDescription || category.description;
-    
-    if (metaDesc) {
-      metaDesc.setAttribute('content', description);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const currentUrl = `${window.location.origin}/blog/${category.slug}`;
-    
-    if (canonical) {
-      canonical.setAttribute('href', currentUrl);
-    } else {
-      const link = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = currentUrl;
-      document.head.appendChild(link);
-    }
-
-    if (totalPages > 1) {
-      document.querySelectorAll('link[rel="prev"], link[rel="next"]').forEach(el => el.remove());
-      
-      if (page > 1) {
-        const prevLink = document.createElement('link');
-        prevLink.rel = 'prev';
-        prevLink.href = page === 2 ? currentUrl : `${currentUrl}?page=${page - 1}`;
-        document.head.appendChild(prevLink);
-      }
-      
-      if (page < totalPages) {
-        const nextLink = document.createElement('link');
-        nextLink.rel = 'next';
-        nextLink.href = `${currentUrl}?page=${page + 1}`;
-        document.head.appendChild(nextLink);
-      }
-    }
-  }, [category, page, totalPages]);
+  const seoTitle = category.metaTitle || `${category.title} Guides & Tips | ${BUSINESS_CONFIG.name}`;
+  const seoDescription = category.metaDescription || category.description;
 
   // Group city posts by county for organized display
   const cityPostsByCounty = LOCATION_COUNTIES.map(county => ({
@@ -92,6 +47,10 @@ const BlogCategoryTemplate: React.FC<BlogCategoryTemplateProps> = ({
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+      />
       <BreadcrumbSchema />
       <Header />
       <BreadcrumbNav />

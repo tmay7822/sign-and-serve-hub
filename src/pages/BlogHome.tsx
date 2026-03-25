@@ -39,35 +39,6 @@ const BlogHome: React.FC = () => {
     setDisplayedPosts(12);
   };
 
-  useEffect(() => {
-    // Set page title and meta description
-    document.title = `Expert Notary Guides & Resources | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const description = `Professional notary guides and expert tips for all your document needs. Learn about loan signings, estate planning, apostille services, and more from certified notaries.`;
-    
-    if (metaDesc) {
-      metaDesc.setAttribute('content', description);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
-
-    // Set canonical URL
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const currentUrl = `${window.location.origin}/blog`;
-    
-    if (canonical) {
-      canonical.setAttribute('href', currentUrl);
-    } else {
-      const link = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = currentUrl;
-      document.head.appendChild(link);
-    }
-  }, []);
 
   const getCategoryIcon = (serviceSlug: string) => {
     const icons: { [key: string]: React.ReactNode } = {
