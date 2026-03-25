@@ -370,7 +370,7 @@ const DynamicLocationPage: React.FC = () => {
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h3 className="text-2xl font-bold text-foreground mb-4 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-4 text-center">
                 Nearby Service Areas
               </h3>
               <p className="text-muted-foreground text-center mb-8">
