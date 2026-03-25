@@ -372,7 +372,7 @@ const DynamicLocationPage: React.FC = () => {
             <div className="max-w-5xl mx-auto">
               <h2 className="text-2xl font-bold text-foreground mb-4 text-center">
                 Nearby Service Areas
-              </h3>
+              </h2>
               <p className="text-muted-foreground text-center mb-8">
                 We also provide mobile notary services in these nearby locations
               </p>
