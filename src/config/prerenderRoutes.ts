@@ -492,7 +492,7 @@ export const PRERENDER_ROUTES = [
   '/service/clermont-county/bethel-45106',
   '/service/clermont-county/williamsburg-45176',
   '/service/clermont-county/new-richmond-45157',
-  '/service/clermont-county/mt.-orab-45154',
+  '/service/clermont-county/mt-orab-45154',
   
   // Brown County Cities
   '/service/brown-county/georgetown-45121',
