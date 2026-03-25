@@ -257,7 +257,7 @@ const DynamicLocationPage: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-8 text-center">
               Why {pageData.city} Residents Choose Our Service
-            </h3>
+            </h2>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
