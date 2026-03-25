@@ -1,3 +1,9 @@
+# Force www (prevent duplicate content)
+https://signedontime.com/* https://www.signedontime.com/:splat 301!
+
+# Strip trailing slashes (prevent duplicate content)
+/*/  /:splat  301!
+
 # Blog Category 301 Redirects (SEO preservation)
 /blog/general-notary    /blog/general-notary-guides    301
 /blog/loan-signing      /blog/loan-signing-guides      301

@@ -34,7 +34,7 @@ const Documents = () => {
         title="Documents We Notarize | 200+ Document Types | Signed On Time"
         description={`Complete list of ${documentCount}+ documents we notarize in Ohio. Search by category: Estate Planning, Real Estate, Healthcare, Business, Military, Immigration & more.`}
         keywords="documents notarized, notary documents list, what documents can be notarized, notarization services ohio"
-        canonical="https://sign-and-serve-hub.lovable.app/documents"
+        canonical="https://www.signedontime.com/documents"
         jsonLd={jsonLd}
       />
       

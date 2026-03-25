@@ -33,7 +33,7 @@ const YearEndPlanningNotary = () => {
         title="Year-End Estate Planning Notary | Wills & POA | Ohio"
         description="Year-end estate planning notary services for wills, powers of attorney, and healthcare directives. Mobile service for family discussions."
         keywords="year end estate planning, holiday POA notary, will notarization december, estate planning notary ohio"
-        canonical="https://sign-and-serve-hub.lovable.app/year-end-planning-notary"
+        canonical="https://www.signedontime.com/year-end-planning-notary"
         jsonLd={jsonLd}
       />
       

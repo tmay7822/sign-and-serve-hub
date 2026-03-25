@@ -35,7 +35,7 @@ const BackToSchoolDocuments = () => {
         title="Back to School Notary Services | Student Documents | Ohio"
         description="Notarize school enrollment forms, study abroad consent, educational POA for college students. Mobile service for families in Cincinnati-Dayton."
         keywords="back to school notary, student document notarization, college POA, study abroad consent, school enrollment notary"
-        canonical="https://sign-and-serve-hub.lovable.app/back-to-school-documents"
+        canonical="https://www.signedontime.com/back-to-school-documents"
         jsonLd={jsonLd}
       />
       
