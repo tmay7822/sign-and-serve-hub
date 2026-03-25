@@ -1,85 +1,80 @@
 
 
-## Fix Critical SEO Issues Found by SiteGuru
+## Remaining SEO Issues & Fixes
 
-SiteGuru flagged several sitewide and per-page issues. Here is a prioritized plan addressing the high and medium impact items that can be fixed in code.
-
----
-
-### Issue 1: www vs non-www duplicate content (HIGH)
-
-**Problem**: Site is accessible on both `signedontime.com` and `www.signedontime.com`. Search engines treat these as two separate sites.
-
-**Fix**: Add a redirect rule in `public/_redirects` to force all non-www traffic to www.
-
-```
-https://signedontime.com/* https://www.signedontime.com/:splat 301!
-```
+Based on the SiteGuru report and codebase analysis, here is what still needs correction:
 
 ---
 
-### Issue 2: Canonical URL issues (424 pages, MEDIUM)
-
-**Problem**: Most pages either have no canonical URL or use the wrong domain. Several pages still reference `sign-and-serve-hub.lovable.app` instead of `www.signedontime.com`. The `Seo.tsx` component falls back to `window.location.href` which returns whatever domain the user is on — not the canonical www domain.
-
-**Fix in `src/components/Seo.tsx`**: Always build the canonical URL from `BUSINESS_CONFIG.website` + the current pathname, never from `window.location.href`. This fixes all 400+ pages that use the `Seo` component.
-
-**Fix hardcoded URLs**: Update the ~5 pages that hardcode `sign-and-serve-hub.lovable.app` in their canonical prop to use `BUSINESS_CONFIG.website`.
-
-Files affected:
-- `src/components/Seo.tsx` — Fix canonical URL logic
-- `src/pages/HomeBuyingSeasonNotary.tsx`
-- `src/pages/BackToSchoolDocuments.tsx`
-- `src/pages/Documents.tsx`
-- `src/pages/YearEndPlanningNotary.tsx`
-- `src/pages/TaxSeasonNotary.tsx`
+### Already Fixed (no action needed)
+- www vs non-www redirect — done in `_redirects`
+- Trailing slash redirect — done in `_redirects`
+- Canonical URL logic in `Seo.tsx` — fixed to use `BUSINESS_CONFIG.website` + pathname
+- NotFound page noindex — done
+- Broken Mt. Healthy / Mt. Orab URLs — fixed
+- Legacy `sign-and-serve-hub.lovable.app` references — all removed
 
 ---
 
-### Issue 3: Trailing slash duplicate content (SITEWIDE, MEDIUM)
+### Still Broken: 36 pages use `document.title` instead of the `Seo` component
 
-**Problem**: `/general-notary` and `/general-notary/` both serve the same content.
+**Problem**: ~36 pages (most blog posts, `ServiceLocationTemplate`, `ServiceHubTemplate`, `BlogCategoryTemplate`, `DynamicBlogPostTemplate`, `Pricing`, `BlogHome`, `Index`) set SEO meta via `document.title = ...` and manual DOM manipulation in `useEffect` instead of using the `Seo` component. This means:
+- No canonical URL on those pages (424-page issue)
+- No structured data / JSON-LD (422-page issue)  
+- No OG/Twitter tags for social sharing
+- Duplicate/conflicting meta tags when both `Seo` and `document.title` are used
 
-**Fix**: Add a trailing-slash-to-no-slash redirect in `public/_redirects`:
+**Fix**: Add the `Seo` component to the major templates and pages that lack it. This covers the bulk of the 422+ affected pages because most are rendered through shared templates.
 
-```
-/*/  /:splat  301!
-```
+**Files to modify (8 templates/pages covering 400+ routes):**
 
-And ensure `Seo.tsx` strips trailing slashes from canonical URLs.
+| File | Routes Covered | Change |
+|------|---------------|--------|
+| `src/components/ServiceLocationTemplate.tsx` | ~200 location pages | Add `Seo` import + component; remove `useEffect` DOM manipulation |
+| `src/components/templates/ServiceHubTemplate.tsx` | ~17 service hubs | Add `Seo` component; remove `document.title` useEffect |
+| `src/components/templates/DynamicBlogPostTemplate.tsx` | ~50 dynamic blog posts | Add `Seo` component; remove `document.title` useEffect |
+| `src/components/templates/BlogCategoryTemplate.tsx` | ~10 blog categories | Add `Seo` component; remove `document.title` useEffect |
+| `src/pages/BlogHome.tsx` | 1 page | Add `Seo` component |
+| `src/pages/Pricing.tsx` | 1 page | Add `Seo` component |
+| `src/pages/Index.tsx` | Homepage | Add `Seo` component (already has schema, but no canonical) |
+| `src/pages/DynamicLocationPage.tsx` | ~100 dynamic location pages | Add `Seo` component |
 
----
-
-### Issue 4: Structured data missing on 422 pages (MEDIUM)
-
-**Problem**: Only the homepage and a few blog posts have JSON-LD structured data. Service hub pages, location pages, and most blog posts lack it.
-
-**Fix**: Add a `WebPage` JSON-LD schema automatically inside the `Seo` component for every page. This provides baseline structured data (name, description, url) to all 500+ pages without touching each file individually.
-
----
-
-### Issue 5: Error page status code (HIGH)
-
-**Problem**: The SPA always returns HTTP 200, even for the NotFound page. Google indexes these as real pages.
-
-**Reality**: This is an inherent limitation of client-side SPAs hosted on static CDNs. There is no server to return a 404 header. However, we can mitigate it by:
-- Adding `<meta name="robots" content="noindex">` to the NotFound page so Google drops it from the index
-- Adding `<meta name="prerender-status-code" content="404">` for prerender services
+**Also fix 20+ individual blog pages** that use `useEffect` for meta (e.g., `SellerSigningDay.tsx`, `InternationalTravelConsent.tsx`, etc.) — migrate each to the `BlogPostTemplate` wrapper or add `Seo` directly.
 
 ---
 
-### Summary of File Changes
+### Still Broken: Internal linking (ALL pages, MEDIUM)
 
+**Problem**: SiteGuru says pages lack internal links. The `InternalLinkingHub` component exists but is not used on most pages.
+
+**Fix**: Add a "Related Services & Guides" section to `ServiceLocationTemplate` and `ServiceHubTemplate` using the existing `InternalLinkingHub` component. This automatically cross-links blog posts, location pages, and service hubs based on the service slug.
+
+**Files to modify:**
 | File | Change |
 |------|--------|
-| `public/_redirects` | Add www redirect + trailing slash redirect |
-| `src/components/Seo.tsx` | Fix canonical to always use `BUSINESS_CONFIG.website` + pathname; add baseline `WebPage` JSON-LD |
-| `src/pages/NotFound.tsx` | Add `noindex` meta tag and prerender 404 status hint |
-| `src/pages/HomeBuyingSeasonNotary.tsx` | Fix hardcoded canonical URL |
-| `src/pages/BackToSchoolDocuments.tsx` | Fix hardcoded canonical URL |
-| `src/pages/Documents.tsx` | Fix hardcoded canonical URL |
-| `src/pages/YearEndPlanningNotary.tsx` | Fix hardcoded canonical URL |
-| `src/pages/TaxSeasonNotary.tsx` | Fix hardcoded canonical URL |
+| `src/components/ServiceLocationTemplate.tsx` | Add `InternalLinkingHub` before Footer |
+| `src/components/templates/ServiceHubTemplate.tsx` | Add `InternalLinkingHub` before Footer |
 
-This addresses 5 of the 6 high/medium issues in a single pass. The remaining issues (internal linking, headings, page speed) require page-by-page content work and can be tackled separately.
+---
+
+### Still Broken: Heading structure (422 pages, MEDIUM)
+
+**Problem**: Many pages have improper heading hierarchy (skipping H2, multiple H1s, or missing H1).
+
+**Fix**: Audit and fix heading hierarchy in the 3 main templates:
+- `ServiceLocationTemplate` — ensure single H1, sequential H2/H3
+- `ServiceHubTemplate` — ensure single H1, sequential H2/H3
+- `DynamicBlogPostTemplate` — ensure single H1
+
+Since most of the 422 pages render through these templates, fixing the templates fixes the majority.
+
+---
+
+### Summary: Priority Order
+
+1. **Add `Seo` component to 8 templates/pages** — fixes canonical URLs (424 pages), structured data (422 pages), and indexation (421 pages) in one pass
+2. **Add `InternalLinkingHub` to 2 templates** — fixes internal linking for ~300 pages
+3. **Fix heading hierarchy in 3 templates** — fixes heading issues for ~400 pages
+
+Total files to edit: ~13 files, covering 500+ pages.
 
