@@ -339,7 +339,7 @@ const DynamicLocationPage: React.FC = () => {
             <div className="max-w-5xl mx-auto">
               <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
                 Helpful Resources for {pageData.city} Residents
-              </h3>
+              </h2>
               
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map(post => (
