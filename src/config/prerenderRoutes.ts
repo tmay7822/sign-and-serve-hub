@@ -428,7 +428,7 @@ export const PRERENDER_ROUTES = [
   '/service/hamilton-county/newtown-45244',
   '/service/hamilton-county/harrison-45030',
   '/service/hamilton-county/cleves-45002',
-  '/service/hamilton-county/mt.-healthy-45231',
+  '/service/hamilton-county/mt-healthy-45231',
   '/service/hamilton-county/wyoming-45215',
   
   // Warren County Cities
@@ -492,11 +492,11 @@ export const PRERENDER_ROUTES = [
   '/service/clermont-county/bethel-45106',
   '/service/clermont-county/williamsburg-45176',
   '/service/clermont-county/new-richmond-45157',
-  '/service/clermont-county/mt.-orab-45154',
+  '/service/clermont-county/mt-orab-45154',
   
   // Brown County Cities
   '/service/brown-county/georgetown-45121',
-  '/service/brown-county/mt.-orab-45154',
+  '/service/brown-county/mt-orab-45154',
   '/service/brown-county/ripley-45167',
   '/service/brown-county/russellville-45168',
   '/service/brown-county/sardinia-45171',

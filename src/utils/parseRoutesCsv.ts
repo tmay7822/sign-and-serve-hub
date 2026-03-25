@@ -30,7 +30,7 @@ export const getCityServiceUrl = (county: string, city: string, zip: string): st
   
   // Generate dynamic URL for cities without dedicated pages
   const countySlug = county.toLowerCase().replace(/\s+/g, '-') + '-county';
-  const citySlug = city.toLowerCase().replace(/\s+/g, '-') + '-' + zip;
+  const citySlug = city.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-') + '-' + zip;
   return `/service/${countySlug}/${citySlug}`;
 };
 
