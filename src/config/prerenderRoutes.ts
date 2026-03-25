@@ -428,7 +428,7 @@ export const PRERENDER_ROUTES = [
   '/service/hamilton-county/newtown-45244',
   '/service/hamilton-county/harrison-45030',
   '/service/hamilton-county/cleves-45002',
-  '/service/hamilton-county/mt.-healthy-45231',
+  '/service/hamilton-county/mt-healthy-45231',
   '/service/hamilton-county/wyoming-45215',
   
   // Warren County Cities
