@@ -1,12 +1,13 @@
 // BLOG HOME PAGE
 // Main blog landing page with categories and featured posts
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
