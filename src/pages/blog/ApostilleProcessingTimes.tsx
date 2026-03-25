@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
 import { BookingWidget } from '@/components/BookingWidget';
@@ -20,6 +20,10 @@ const ApostilleProcessingTimes = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Apostille Processing Times | ${BUSINESS_CONFIG.name}`}
+        description="How long do apostilles take? Regular vs. rush processing times and what affects the timeline."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

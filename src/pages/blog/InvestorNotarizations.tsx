@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const InvestorNotarizations = () => {
@@ -18,6 +18,10 @@ const InvestorNotarizations = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Real Estate Investor Notary | ${BUSINESS_CONFIG.name}`}
+        description="Fast, accurate notarizations for investors—deeds, assignments, private lender docs, and more."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

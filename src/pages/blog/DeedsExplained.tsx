@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const DeedsExplained = () => {
@@ -18,6 +18,10 @@ const DeedsExplained = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Deed Notarization Guide | ${BUSINESS_CONFIG.name}`}
+        description="Deed Notarization Guide | ${BUSINESS_CONFIG.name} - Professional mobile notary services"
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

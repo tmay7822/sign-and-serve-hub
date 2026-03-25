@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const SellerSigningDay = () => {
@@ -18,6 +18,10 @@ const SellerSigningDay = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Home Seller Closing Checklist | ${BUSINESS_CONFIG.name}`}
+        description="Seller signing checklist—what to bring, expect, and sign on closing day. Mobile notary available."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">
