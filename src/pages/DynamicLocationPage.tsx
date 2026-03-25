@@ -420,7 +420,7 @@ const DynamicLocationPage: React.FC = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl lg:text-3xl font-bold mb-6">
             Need Mobile Notary Service in {pageData.city}?
-          </h3>
+          </h2>
           <p className="text-lg mb-8 opacity-90">
             Trusted by {pageData.city} families and businesses. {pageData.travelFee} for {pageData.primaryZip} area.
           </p>
