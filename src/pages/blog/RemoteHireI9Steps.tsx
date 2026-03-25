@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const RemoteHireI9Steps = () => {
@@ -18,6 +18,10 @@ const RemoteHireI9Steps = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Remote Hire I-9 Authorized Representative | ${BUSINESS_CONFIG.name}`}
+        description="Remote hire I-9 support. What employers and employees need, IDs, and quick appointments."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

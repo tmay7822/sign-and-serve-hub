@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const InternationalTravelConsent = () => {
@@ -18,6 +18,10 @@ const InternationalTravelConsent = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Travel Consent Letters | ${BUSINESS_CONFIG.name}`}
+        description="What to include in a minor or student travel consent letter—and when to notarize for international travel."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const TitleTransferChecklist = () => {
@@ -18,6 +18,10 @@ const TitleTransferChecklist = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Title Transfer Checklist | ${BUSINESS_CONFIG.name}`}
+        description="Avoid DMV rejections. Use this title transfer checklist: IDs, liens, odometer, signatures, and notarization."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const NotaryVsRONRIN = () => {
@@ -18,6 +18,10 @@ const NotaryVsRONRIN = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Mobile Notary vs RON vs RIN | ${BUSINESS_CONFIG.name}`}
+        description="Compare in-person, RON, and RIN notarization options. Which is right for your documents?"
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">

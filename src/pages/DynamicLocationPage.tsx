@@ -255,9 +255,9 @@ const DynamicLocationPage: React.FC = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-8 text-center">
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-8 text-center">
               Why {pageData.city} Residents Choose Our Service
-            </h3>
+            </h2>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
@@ -337,9 +337,9 @@ const DynamicLocationPage: React.FC = () => {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
                 Helpful Resources for {pageData.city} Residents
-              </h3>
+              </h2>
               
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map(post => (
@@ -370,9 +370,9 @@ const DynamicLocationPage: React.FC = () => {
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h3 className="text-2xl font-bold text-foreground mb-4 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-4 text-center">
                 Nearby Service Areas
-              </h3>
+              </h2>
               <p className="text-muted-foreground text-center mb-8">
                 We also provide mobile notary services in these nearby locations
               </p>
@@ -418,9 +418,9 @@ const DynamicLocationPage: React.FC = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+          <h2 className="text-2xl lg:text-3xl font-bold mb-6">
             Need Mobile Notary Service in {pageData.city}?
-          </h3>
+          </h2>
           <p className="text-lg mb-8 opacity-90">
             Trusted by {pageData.city} families and businesses. {pageData.travelFee} for {pageData.primaryZip} area.
           </p>

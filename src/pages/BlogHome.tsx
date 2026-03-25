@@ -1,12 +1,13 @@
 // BLOG HOME PAGE
 // Main blog landing page with categories and featured posts
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
@@ -38,35 +39,6 @@ const BlogHome: React.FC = () => {
     setDisplayedPosts(12);
   };
 
-  useEffect(() => {
-    // Set page title and meta description
-    document.title = `Expert Notary Guides & Resources | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const description = `Professional notary guides and expert tips for all your document needs. Learn about loan signings, estate planning, apostille services, and more from certified notaries.`;
-    
-    if (metaDesc) {
-      metaDesc.setAttribute('content', description);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
-
-    // Set canonical URL
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const currentUrl = `${window.location.origin}/blog`;
-    
-    if (canonical) {
-      canonical.setAttribute('href', currentUrl);
-    } else {
-      const link = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = currentUrl;
-      document.head.appendChild(link);
-    }
-  }, []);
 
   const getCategoryIcon = (serviceSlug: string) => {
     const icons: { [key: string]: React.ReactNode } = {
@@ -82,6 +54,10 @@ const BlogHome: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Expert Notary Guides & Resources | ${BUSINESS_CONFIG.name}`}
+        description="Professional notary guides and expert tips for all your document needs. Learn about loan signings, estate planning, apostille services, and more from certified notaries."
+      />
       <BreadcrumbSchema />
       <Header />
       

@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';  
 import { QuoteButton } from '@/components/QuoteButton';
 
@@ -19,6 +19,10 @@ const TranslatorAffidavits = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Translator Affidavit Notarization | ${BUSINESS_CONFIG.name}`}
+        description="When translations need an affidavit and notarization—process and requirements."
+      />
       <Header />
       
       <section className="py-20 bg-card/30">

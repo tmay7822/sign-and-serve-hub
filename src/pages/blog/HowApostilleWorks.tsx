@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const HowApostilleWorks = () => {
@@ -18,6 +18,10 @@ const HowApostilleWorks = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`How the Apostille Process Works | ${BUSINESS_CONFIG.name}`}
+        description="From notarization to state authentication—see the simple apostille path for Ohio residents."
+      />
       <Header />
       
       <section className="py-20 bg-brand-light text-brand-navy">
