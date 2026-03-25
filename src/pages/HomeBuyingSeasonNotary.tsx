@@ -33,7 +33,7 @@ const HomeBuyingSeasonNotary = () => {
         title="Home Buying Season Notary Services | Real Estate Closings | Ohio"
         description="Spring home buying season notary services for deeds, mortgages, and closing documents. Certified loan signing agent serving Cincinnati-Dayton."
         keywords="home buying notary, real estate closing notary, spring home sale notarization, mortgage notary ohio, loan signing agent"
-        canonical="https://sign-and-serve-hub.lovable.app/home-buying-season-notary"
+        canonical="https://www.signedontime.com/home-buying-season-notary"
         jsonLd={jsonLd}
       />
       

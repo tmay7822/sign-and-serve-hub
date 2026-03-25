@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import { getHref } from '@/utils/ssg';
+import { BUSINESS_CONFIG } from '@/config/business';
+import { getPathname } from '@/utils/ssg';
 
 interface SeoProps {
   title: string;
@@ -18,8 +19,25 @@ const Seo: React.FC<SeoProps> = ({
   ogImage = '/hero-notary.jpg',
   jsonLd
 }) => {
-  // SSG-safe URL handling
-  const url = canonical || getHref(canonical);
+  // Always build canonical from the configured website + current pathname
+  // Strip trailing slashes for consistency
+  const pathname = getPathname().replace(/\/+$/, '') || '';
+  const url = canonical || `${BUSINESS_CONFIG.website}${pathname}`;
+  const cleanUrl = url.replace(/\/+$/, '') || BUSINESS_CONFIG.website;
+
+  // Baseline WebPage structured data for every page
+  const baseJsonLd = jsonLd || {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": title,
+    "description": description,
+    "url": cleanUrl,
+    "publisher": {
+      "@type": "LocalBusiness",
+      "name": BUSINESS_CONFIG.name,
+      "telephone": BUSINESS_CONFIG.phone
+    }
+  };
 
   return (
     <Helmet>
@@ -31,15 +49,15 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       
       {/* Canonical URL */}
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={cleanUrl} />
       
       {/* Open Graph Meta Tags */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={cleanUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content="Signed On Time — We Come To You Anytime And Anywhere" />
+      <meta property="og:site_name" content={`${BUSINESS_CONFIG.name} — ${BUSINESS_CONFIG.tagline}`} />
       
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -48,11 +66,9 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="twitter:image" content={ogImage} />
       
       {/* JSON-LD Structured Data */}
-      {jsonLd && (
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
-      )}
+      <script type="application/ld+json">
+        {JSON.stringify(baseJsonLd)}
+      </script>
     </Helmet>
   );
 };

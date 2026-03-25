@@ -33,7 +33,7 @@ const TaxSeasonNotary = () => {
         title="Tax Season Notary Services | Financial Documents | Ohio"
         description="Professional notary for tax season documents: trust certifications, IRA beneficiary changes, financial statements. Mobile service in Cincinnati-Dayton."
         keywords="tax season notary, financial document notarization, trust certification, IRA notary ohio, beneficiary change notary"
-        canonical="https://sign-and-serve-hub.lovable.app/tax-season-notary"
+        canonical="https://www.signedontime.com/tax-season-notary"
         jsonLd={jsonLd}
       />
       
