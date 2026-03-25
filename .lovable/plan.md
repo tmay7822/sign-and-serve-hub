@@ -1,28 +1,29 @@
 
 
-## Fix Sitemap Accessibility + URL Consistency
+## Fix 3 Broken Sitemap Pages (Mt. Healthy / Mt. Orab)
 
-**Problem**: Two issues preventing Google Search Console from fetching the sitemap:
+**Problem**: URLs containing periods (`mt.-healthy`, `mt.-orab`) return 404 because the period breaks route matching. Google Search Console flagged these 3 pages.
 
-1. **`public/sitemap.xml`** contains URLs without `www` (e.g., `https://signedontime.com/general-notary`) but the canonical domain is `https://www.signedontime.com`. Google Search Console will flag these as mismatched.
-
-2. **`public/_redirects`** is missing the SPA catch-all fallback rule. Without `/* /index.html 200`, the deployed site can't serve client-side routes properly — and Google gets 404s on most pages.
+**Solution**: Replace the period in the slug with nothing — `mt-healthy` and `mt-orab` — in both the route definitions and the city data.
 
 ### Changes
 
-**1. `public/_redirects`** — Add the SPA fallback rule at the end (after existing 301 redirects). Static files like `sitemap.xml` and `robots.txt` are automatically served by Netlify before redirect rules apply, so they remain accessible.
+**1. `src/config/prerenderRoutes.ts`** — Fix 3 routes:
+- `/service/hamilton-county/mt.-healthy-45231` → `/service/hamilton-county/mt-healthy-45231`
+- `/service/clermont-county/mt.-orab-45154` → `/service/clermont-county/mt-orab-45154`
+- `/service/brown-county/mt.-orab-45154` → `/service/brown-county/mt-orab-45154`
 
-```
-/* /index.html 200
-```
+**2. `src/utils/parseRoutesCsv.ts`** — Update the fallback city names used for URL generation:
+- `Mt. Healthy` → slug generates as `mt-healthy` (display name stays "Mt. Healthy")
+- `Mt. Orab` → slug generates as `mt-orab` (display name stays "Mt. Orab")
 
-**2. `public/sitemap.xml`** — Regenerate with `www` prefix on all 669 lines. Replace every `https://signedontime.com` with `https://www.signedontime.com`.
+This requires updating the `getCityServiceUrl` function or the slug generation logic to strip periods before slugifying.
 
-**3. `public/robots.txt`** — Verify the sitemap URL uses `www`. Update if needed.
+**3. `public/sitemap.xml`** — Will be regenerated with corrected URLs on next build. If a static copy exists, update the 3 URLs directly.
 
-### Result
-- Google Search Console can fetch `https://www.signedontime.com/sitemap.xml`
-- All sitemap URLs match the canonical `www` domain
-- SPA routing works on the deployed site
-- All 500+ pages remain indexed
+| File | Change |
+|------|--------|
+| `src/config/prerenderRoutes.ts` | Fix 3 route paths (remove period from `mt.`) |
+| `src/utils/parseRoutesCsv.ts` | Ensure slug generation strips periods from city names |
+| `public/sitemap.xml` | Update 3 URLs to match corrected routes |
 
