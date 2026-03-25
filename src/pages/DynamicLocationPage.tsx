@@ -337,7 +337,7 @@ const DynamicLocationPage: React.FC = () => {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
                 Helpful Resources for {pageData.city} Residents
               </h3>
               
