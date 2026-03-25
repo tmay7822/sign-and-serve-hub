@@ -6,3 +6,6 @@
 /blog/apostille         /blog/apostille-guides         301
 /blog/business          /blog/business-guides          301
 /blog/healthcare        /blog/healthcare-guides        301
+
+# SPA fallback — must be last
+/* /index.html 200
