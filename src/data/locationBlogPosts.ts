@@ -674,7 +674,9 @@ export const generateCityBlogPosts = (): BlogPost[] => {
   const today = new Date().toISOString().split('T')[0];
   
   LOCATION_CITIES.forEach(city => {
+    if (!city.slug || !city.name || !city.county) return;
     BLOG_CATEGORIES.forEach(category => {
+      if (!category.slug) return;
       const slug = `${category.slug}-${city.slug}-ohio`;
       const title = `${category.title} Services in ${city.name}, Ohio`;
       
