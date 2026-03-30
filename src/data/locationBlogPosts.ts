@@ -634,7 +634,9 @@ export const generateCountyBlogPosts = (): BlogPost[] => {
   const today = new Date().toISOString().split('T')[0];
   
   LOCATION_COUNTIES.forEach(county => {
+    if (!county.slug || !county.name) return;
     BLOG_CATEGORIES.forEach(category => {
+      if (!category.slug) return;
       const template = COUNTY_CONTENT_TEMPLATES[category.slug];
       if (!template) return;
       
