@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const NotaryVsRONRIN = () => {
-  useEffect(() => {
-    document.title = `Mobile Notary vs RON vs RIN | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Compare in-person, RON, and RIN notarization options. Which is right for your documents?');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

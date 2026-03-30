@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const BusinessContractNotarization = () => {
-  useEffect(() => {
-    document.title = `Business Contract Notarization | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'When do business contracts need notarization? Vendor agreements, NDAs, employment docs explained.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

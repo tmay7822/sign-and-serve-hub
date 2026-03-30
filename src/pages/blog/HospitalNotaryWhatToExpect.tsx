@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const HospitalNotaryWhatToExpect = () => {
-  useEffect(() => {
-    document.title = `Hospital & Care Facility Notary | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'On-site notarizations in hospitals, rehab, and nursing homes. What to expect, IDs, witnesses, and scheduling.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

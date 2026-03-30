@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const RemoteHireI9Steps = () => {
-  useEffect(() => {
-    document.title = `Remote Hire I-9 Authorized Representative | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Remote hire I-9 support. What employers and employees need, IDs, and quick appointments.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

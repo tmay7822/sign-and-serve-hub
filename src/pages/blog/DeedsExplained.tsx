@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const DeedsExplained = () => {
-  useEffect(() => {
-    document.title = `Deed Notarization Guide | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Understand deed types and what a notary does (and doesn\'t do) for warranty, quitclaim, and TOD deeds.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

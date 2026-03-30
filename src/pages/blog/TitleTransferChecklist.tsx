@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const TitleTransferChecklist = () => {
-  useEffect(() => {
-    document.title = `Title Transfer Checklist | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Avoid DMV rejections. Use this title transfer checklist: IDs, liens, odometer, signatures, and notarization.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

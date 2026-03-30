@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const JailNotarizationProcess = () => {
-  useEffect(() => {
-    document.title = `Jail Notary Services | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Step-by-step jail and detention notarizations—ID, scheduling, and facility rules.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

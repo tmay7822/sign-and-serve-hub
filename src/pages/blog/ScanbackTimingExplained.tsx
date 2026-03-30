@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const ScanbackTimingExplained = () => {
-  useEffect(() => {
-    document.title = `Loan Signing Scanback Timing | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'When do scanbacks happen after loan signings? Timeline from signing to funding explained.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

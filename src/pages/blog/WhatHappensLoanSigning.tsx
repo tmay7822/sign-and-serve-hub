@@ -8,14 +8,6 @@ import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
 
 const WhatHappensLoanSigning = () => {
-  useEffect(() => {
-    document.title = `What Happens at a Loan Signing | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Buyer, seller, refi, or HELOC—what to expect at your loan signing. IDs, signatures, scanbacks, and timing.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

@@ -9,14 +9,6 @@ import { QuoteButton } from '@/components/QuoteButton';
 import { BookingWidget } from '@/components/BookingWidget';
 
 const ApostilleProcessingTimes = () => {
-  useEffect(() => {
-    document.title = `Apostille Processing Times | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'How long do apostilles take? Regular vs. rush processing times and what affects the timeline.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

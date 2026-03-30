@@ -9,14 +9,6 @@ import { QuoteButton } from '@/components/QuoteButton';
 import { BookingWidget } from '@/components/BookingWidget';
 
 const ExpiredIDOptions = () => {
-  useEffect(() => {
-    document.title = `Expired ID Notary Options | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'What to do if your ID is expired—alternatives and tips for notarization.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

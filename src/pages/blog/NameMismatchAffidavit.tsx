@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const NameMismatchAffidavit = () => {
-  useEffect(() => {
-    document.title = `Name Mismatch Solutions | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'AKA/Formerly Known As, hyphens, and spelling—clean up name mismatches before you sign.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">
