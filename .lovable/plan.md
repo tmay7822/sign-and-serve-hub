@@ -1,80 +1,68 @@
 
 
-## Remaining SEO Issues & Fixes
+## Fix Google Search Console Indexing Errors + Build Errors
 
-Based on the SiteGuru report and codebase analysis, here is what still needs correction:
-
----
-
-### Already Fixed (no action needed)
-- www vs non-www redirect — done in `_redirects`
-- Trailing slash redirect — done in `_redirects`
-- Canonical URL logic in `Seo.tsx` — fixed to use `BUSINESS_CONFIG.website` + pathname
-- NotFound page noindex — done
-- Broken Mt. Healthy / Mt. Orab URLs — fixed
-- Legacy `sign-and-serve-hub.lovable.app` references — all removed
+Analysis of the 5 uploaded Google Search Console reports reveals multiple interconnected issues. There are also 24 build errors from a previous incomplete edit.
 
 ---
 
-### Still Broken: 36 pages use `document.title` instead of the `Seo` component
+### Issue 1: Build Errors — 24 blog files have `useEffect` without import (CRITICAL)
 
-**Problem**: ~36 pages (most blog posts, `ServiceLocationTemplate`, `ServiceHubTemplate`, `BlogCategoryTemplate`, `DynamicBlogPostTemplate`, `Pricing`, `BlogHome`, `Index`) set SEO meta via `document.title = ...` and manual DOM manipulation in `useEffect` instead of using the `Seo` component. This means:
-- No canonical URL on those pages (424-page issue)
-- No structured data / JSON-LD (422-page issue)  
-- No OG/Twitter tags for social sharing
-- Duplicate/conflicting meta tags when both `Seo` and `document.title` are used
+The previous SEO edit added the `Seo` component but left behind the old `useEffect` blocks without importing `useEffect` from React.
 
-**Fix**: Add the `Seo` component to the major templates and pages that lack it. This covers the bulk of the 422+ affected pages because most are rendered through shared templates.
+**Fix**: Remove the entire `useEffect(() => { document.title = ...; }, [])` block from all 24 files. The `Seo` component already handles title and meta description.
 
-**Files to modify (8 templates/pages covering 400+ routes):**
-
-| File | Routes Covered | Change |
-|------|---------------|--------|
-| `src/components/ServiceLocationTemplate.tsx` | ~200 location pages | Add `Seo` import + component; remove `useEffect` DOM manipulation |
-| `src/components/templates/ServiceHubTemplate.tsx` | ~17 service hubs | Add `Seo` component; remove `document.title` useEffect |
-| `src/components/templates/DynamicBlogPostTemplate.tsx` | ~50 dynamic blog posts | Add `Seo` component; remove `document.title` useEffect |
-| `src/components/templates/BlogCategoryTemplate.tsx` | ~10 blog categories | Add `Seo` component; remove `document.title` useEffect |
-| `src/pages/BlogHome.tsx` | 1 page | Add `Seo` component |
-| `src/pages/Pricing.tsx` | 1 page | Add `Seo` component |
-| `src/pages/Index.tsx` | Homepage | Add `Seo` component (already has schema, but no canonical) |
-| `src/pages/DynamicLocationPage.tsx` | ~100 dynamic location pages | Add `Seo` component |
-
-**Also fix 20+ individual blog pages** that use `useEffect` for meta (e.g., `SellerSigningDay.tsx`, `InternationalTravelConsent.tsx`, etc.) — migrate each to the `BlogPostTemplate` wrapper or add `Seo` directly.
+**Files**: All 24 files listed in the build errors (AffidavitJuratAcknowledgment.tsx through WhatHappensLoanSigning.tsx)
 
 ---
 
-### Still Broken: Internal linking (ALL pages, MEDIUM)
+### Issue 2: Location Blog Posts All Redirect to /blog (CRITICAL — affects ~200 pages)
 
-**Problem**: SiteGuru says pages lack internal links. The `InternalLinkingHub` component exists but is not used on most pages.
+**Root cause**: `LocationBlogPost.tsx` uses `useParams()` to get `slug`, but the hardcoded routes (lines 248-313 of routes.tsx) like `blog/general-notary-guides-hamilton-county-ohio` don't have a `:slug` param — they're literal paths. So `slug` is always `undefined`, and the component redirects to `/blog`.
 
-**Fix**: Add a "Related Services & Guides" section to `ServiceLocationTemplate` and `ServiceHubTemplate` using the existing `InternalLinkingHub` component. This automatically cross-links blog posts, location pages, and service hubs based on the service slug.
+Only the catch-all `blog/:slug` at line 328 works correctly, but it only catches routes not already matched by hardcoded ones.
 
-**Files to modify:**
+This explains:
+- **"Page with redirect"** — Google sees these pages redirecting to `/blog`
+- **"Discovered - currently not indexed"** — Google found them but they redirect
+- **"Soft 404"** — thin/empty content from redirects
+
+**Fix**: Change `LocationBlogPost.tsx` to extract the slug from `useLocation().pathname` instead of `useParams()`:
+```tsx
+const location = useLocation();
+const slug = location.pathname.replace('/blog/', '');
+```
+
+---
+
+### Issue 3: "Excluded by noindex" — County Service URLs Hit NotFound (6 pages)
+
+URLs like `/loan-signings/montgomery` and `/estate-plans/butler` don't match any 2-segment route. They fall through to the `*` catch-all, rendering the `NotFound` page (which has `noindex`).
+
+**Fix**: Add dynamic 2-segment routes for service/county combos:
+```
+{ path: ':serviceSlug/:county', element: <LocalService /> }
+```
+Place this before the existing `:serviceSlug/:county/:city` route. The `LocalService` component already handles county-level pages.
+
+---
+
+### Issue 4: "undefined-ohio" URLs in Redirects
+
+Google found URLs like `/blog/general-notary-guides-undefined-ohio` and `/blog/estate-planning-guides-undefined-ohio`. Some internal link generation code is producing `undefined` when a city/county name is missing.
+
+**Fix**: Add a guard in the location blog post slug generation in `src/data/locationBlogPosts.ts` to skip entries where city or county is undefined/falsy.
+
+---
+
+### Summary of Changes
+
 | File | Change |
 |------|--------|
-| `src/components/ServiceLocationTemplate.tsx` | Add `InternalLinkingHub` before Footer |
-| `src/components/templates/ServiceHubTemplate.tsx` | Add `InternalLinkingHub` before Footer |
+| 24 blog files in `src/pages/blog/` | Remove orphaned `useEffect` blocks (build fix) |
+| `src/pages/LocationBlogPost.tsx` | Use `useLocation()` pathname instead of `useParams()` |
+| `src/routes.tsx` | Add `:serviceSlug/:county` route for 2-segment service URLs |
+| `src/data/locationBlogPosts.ts` | Guard against undefined city/county in slug generation |
 
----
-
-### Still Broken: Heading structure (422 pages, MEDIUM)
-
-**Problem**: Many pages have improper heading hierarchy (skipping H2, multiple H1s, or missing H1).
-
-**Fix**: Audit and fix heading hierarchy in the 3 main templates:
-- `ServiceLocationTemplate` — ensure single H1, sequential H2/H3
-- `ServiceHubTemplate` — ensure single H1, sequential H2/H3
-- `DynamicBlogPostTemplate` — ensure single H1
-
-Since most of the 422 pages render through these templates, fixing the templates fixes the majority.
-
----
-
-### Summary: Priority Order
-
-1. **Add `Seo` component to 8 templates/pages** — fixes canonical URLs (424 pages), structured data (422 pages), and indexation (421 pages) in one pass
-2. **Add `InternalLinkingHub` to 2 templates** — fixes internal linking for ~300 pages
-3. **Fix heading hierarchy in 3 templates** — fixes heading issues for ~400 pages
-
-Total files to edit: ~13 files, covering 500+ pages.
+This fixes the build, unblocks ~200 location blog pages from indexing, resolves the 6 noindex county pages, and eliminates undefined-ohio URLs.
 
