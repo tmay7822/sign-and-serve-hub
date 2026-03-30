@@ -10,14 +10,14 @@ const LocalService: React.FC = () => {
   const { serviceSlug, county, city } = useParams<{ 
     serviceSlug: string; 
     county: string; 
-    city: string; 
+    city?: string; 
   }>();
   
-  if (!serviceSlug || !county || !city) {
+  if (!serviceSlug || !county) {
     return <Navigate to="/" replace />;
   }
 
-  const path = `/${serviceSlug}/${county}/${city}`;
+  const path = city ? `/${serviceSlug}/${county}/${city}` : `/${serviceSlug}/${county}`;
   const route = getRouteByPath(path);
   
   if (!route) {
