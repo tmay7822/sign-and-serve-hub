@@ -366,6 +366,7 @@ export const routes: RouteObject[] = [
       
       // Dynamic local service routes
       { path: ':serviceSlug/:county/:city', element: <LocalService /> },
+      { path: ':serviceSlug/:county', element: <LocalService /> },
       
       // Dynamic routes - catch-all for service hubs (MUST be last before *)
       { path: ':slug', element: <ServiceHub /> },
