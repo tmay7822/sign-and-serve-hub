@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const InvestorNotarizations = () => {
-  useEffect(() => {
-    document.title = `Real Estate Investor Notary | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Fast, accurate notarizations for investors—deeds, assignments, private lender docs, and more.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

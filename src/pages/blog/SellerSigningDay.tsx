@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const SellerSigningDay = () => {
-  useEffect(() => {
-    document.title = `Home Seller Closing Checklist | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Seller signing checklist—what to bring, expect, and sign on closing day. Mobile notary available.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

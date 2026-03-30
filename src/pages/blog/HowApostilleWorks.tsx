@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const HowApostilleWorks = () => {
-  useEffect(() => {
-    document.title = `How the Apostille Process Works | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'From notarization to state authentication—see the simple apostille path for Ohio residents.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const InternationalTravelConsent = () => {
-  useEffect(() => {
-    document.title = `Travel Consent Letters | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'What to include in a minor or student travel consent letter—and when to notarize for international travel.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

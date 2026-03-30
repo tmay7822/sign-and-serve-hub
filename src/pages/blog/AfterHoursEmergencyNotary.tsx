@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const AfterHoursEmergencyNotary = () => {
-  useEffect(() => {
-    document.title = `After-Hours Emergency Notary | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Nights, weekends, and urgent notarizations—what\'s possible and how to book fast.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

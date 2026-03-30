@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const ApostilleSchoolDocs = () => {
-  useEffect(() => {
-    document.title = `Apostille for Diplomas & Transcripts | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'How to notarize and apostille school records for use overseas—simple steps and tips.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

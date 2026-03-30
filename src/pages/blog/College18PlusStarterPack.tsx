@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const College18PlusStarterPack = () => {
-  useEffect(() => {
-    document.title = `FERPA, HIPAA & POA for College Students | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Turned 18 or heading to college? What parents can and can\'t access—FERPA, HIPAA, and POA explained in plain English.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const BeneficiaryChangeForms = () => {
-  useEffect(() => {
-    document.title = `Beneficiary Changes | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Avoid insurer rejections. Names, IDs, witnesses, and notarization tips for beneficiary change forms.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const SmallEstateAffidavitExecutorTips = () => {
-  useEffect(() => {
-    document.title = `Small Estate Affidavits | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Executor tips for small estate affidavits—eligibility, common errors, and notarization requirements.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

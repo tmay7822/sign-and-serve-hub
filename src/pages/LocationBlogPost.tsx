@@ -2,12 +2,13 @@
 // Dynamic page for location-specific blog posts
 
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 import LocationBlogTemplate from '@/components/templates/LocationBlogTemplate';
 import { getLocationPostBySlug } from '@/data/locationBlogPosts';
 
 const LocationBlogPost: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
+  const slug = location.pathname.replace('/blog/', '');
   
   if (!slug) {
     return <Navigate to="/blog" replace />;

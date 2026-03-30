@@ -8,14 +8,6 @@ import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
 
 const TranslatorAffidavits = () => {
-  useEffect(() => {
-    document.title = `Translator Affidavit Notarization | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'When translations need an affidavit and notarization—process and requirements.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

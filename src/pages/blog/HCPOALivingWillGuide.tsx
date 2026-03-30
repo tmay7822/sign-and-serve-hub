@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const HCPOALivingWillGuide = () => {
-  useEffect(() => {
-    document.title = `HCPOA & Living Will Guide | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Understand Healthcare Power of Attorney and Living Will, who signs, witnesses, and how a mobile notary helps.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

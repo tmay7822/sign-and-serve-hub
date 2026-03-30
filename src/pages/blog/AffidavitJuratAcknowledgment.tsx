@@ -7,14 +7,6 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 
 const AffidavitJuratAcknowledgment = () => {
-  useEffect(() => {
-    document.title = `Affidavit vs Jurat vs Acknowledgment | ${BUSINESS_CONFIG.name}`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'What\'s the difference between an affidavit, jurat, and acknowledgment—and which one you need.');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">
