@@ -1,36 +1,28 @@
 
-Goal: make the homepage hero review badge use live review data instead of hardcoded text.
 
-What I found
-- `src/components/HeroSection.tsx` is still hardcoded:
-  - rating: `5.0`
-  - count: `• 35 Reviews`
-- Your realtime-enabled hook already exists in `src/hooks/useGoogleReviews.ts`, so the hero just needs to consume it.
+## Add Consistent CTA to Reviews Page
 
-Implementation plan
-1. Update HeroSection to use live review stats
-- In `src/components/HeroSection.tsx`:
-  - import `useGoogleReviews`
-  - read `averageRating` and `totalReviews` from the hook
-  - replace hardcoded `5.0` and `• 35 Reviews` with dynamic values:
-    - rating: `averageRating.toFixed(1)`
-    - count: `• {totalReviews} Review(s)` (pluralize correctly)
+You already have a `StandardCTAButtons` component used across the site (blog pages, service hubs, bottom of `BasePageTemplate`). The reviews page is missing a top CTA.
 
-2. Keep visual design unchanged
-- Preserve the existing Google-style pill, stars, spacing, and typography.
-- Only swap the two text values to dynamic data so the section looks identical but updates automatically.
+### Plan
 
-3. Add safe display behavior
-- Keep fallback-friendly rendering (no blank values while data loads).
-- If needed, use the same formatting pattern used in `GoogleReviewsBadge`/`TestimonialsSection` for consistency.
+**1. Add a top CTA bar inside the Reviews hero section**
 
-4. Verify end-to-end behavior
-- Add a test review in `/admin` Review Manager.
-- Confirm hero count changes automatically on `/` without manual edits.
-- Confirm no console errors and no layout regressions at desktop/mobile widths.
+In `src/pages/Reviews.tsx`, add a `StandardCTAButtons` block right after the hero subtitle text (line ~127), inside the hero section. This mirrors the `TopMiniCTA` pattern used on blog posts — a subtle card with the tagline "Need a mobile notary in Southwest Ohio? We come to you." followed by the three standard buttons (Book Now, Get Quote, Call Now).
 
-Files to change
-- `src/components/HeroSection.tsx` (only)
+**2. No new components needed**
 
-Expected result
-- Hero section review badge always reflects the current database-backed review count/rating, just like other sections already using `useGoogleReviews`.
+The `StandardCTAButtons` component already renders the correct three buttons with consistent styling. The `BasePageTemplate` already renders a bottom CTA section. So the reviews page will have CTA at the top (in the hero) and bottom (from the template) — matching the pattern on other pages.
+
+### Files Changed
+
+| File | Change |
+|------|--------|
+| `src/pages/Reviews.tsx` | Add `StandardCTAButtons` inside the hero section after the subtitle |
+
+### Result
+
+- Top of reviews page shows Book Now / Get Quote / Call Now buttons
+- Bottom CTA from `BasePageTemplate` remains
+- Same button component used everywhere — any future style change applies globally
+
