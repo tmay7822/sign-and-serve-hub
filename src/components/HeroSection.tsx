@@ -112,8 +112,8 @@ const HeroSection = () => {
                     </svg>
                   ))}
                 </div>
-                <span className="font-bold text-lg text-foreground">5.0</span>
-                <span className="text-muted-foreground">• 35 Reviews</span>
+                <span className="font-bold text-lg text-foreground">{averageRating.toFixed(1)}</span>
+                <span className="text-muted-foreground">• {totalReviews} {totalReviews === 1 ? 'Review' : 'Reviews'}</span>
               </a>
             </div>
           </div>
