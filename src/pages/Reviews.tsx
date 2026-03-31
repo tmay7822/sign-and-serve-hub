@@ -65,20 +65,20 @@ const avatarColors = [
 ];
 
 const Reviews = () => {
-  const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
+  const { reviews: allReviews, averageRating, totalReviews, getUniqueServices, getUniqueLocations } = useGoogleReviews();
   const [serviceFilter, setServiceFilter] = useState<string>('all');
   const [locationFilter, setLocationFilter] = useState<string>('all');
   
-  const uniqueServices = useMemo(() => getUniqueServices(), []);
-  const uniqueLocations = useMemo(() => getUniqueLocations(), []);
+  const uniqueServices = useMemo(() => getUniqueServices(), [allReviews]);
+  const uniqueLocations = useMemo(() => getUniqueLocations(), [allReviews]);
   
   const filteredReviews = useMemo(() => {
-    return GOOGLE_REVIEWS.filter(review => {
+    return allReviews.filter(review => {
       const matchesService = serviceFilter === 'all' || review.service === serviceFilter;
       const matchesLocation = locationFilter === 'all' || review.location === locationFilter;
       return matchesService && matchesLocation;
     });
-  }, [serviceFilter, locationFilter]);
+  }, [serviceFilter, locationFilter, allReviews]);
   
   const hasFilters = serviceFilter !== 'all' || locationFilter !== 'all';
   
