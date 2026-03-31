@@ -119,7 +119,10 @@ export function ReviewManager({ onClose }: ReviewManagerProps) {
         .update(payload)
         .eq('id', editingReview.id);
       if (error) {
-        toast.error('Failed to update review');
+        const msg = error.code === '42501' || error.message?.includes('row-level security')
+          ? 'Permission denied — make sure you are logged in as an admin'
+          : `Failed to update review: ${error.message}`;
+        toast.error(msg);
         return;
       }
       toast.success('Review updated');
@@ -128,7 +131,10 @@ export function ReviewManager({ onClose }: ReviewManagerProps) {
         .from('testimonials')
         .insert(payload);
       if (error) {
-        toast.error('Failed to add review');
+        const msg = error.code === '42501' || error.message?.includes('row-level security')
+          ? 'Permission denied — make sure you are logged in as an admin'
+          : `Failed to add review: ${error.message}`;
+        toast.error(msg);
         return;
       }
       toast.success('Review added');

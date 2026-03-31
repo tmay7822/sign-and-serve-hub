@@ -83,6 +83,27 @@ export function useGoogleReviews(): UseGoogleReviewsReturn {
 
   useEffect(() => {
     fetchReviews();
+
+    // Subscribe to realtime changes so the site updates automatically
+    const channel = supabase
+      .channel('testimonials-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'testimonials',
+          filter: 'source=eq.google',
+        },
+        () => {
+          fetchReviews();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const averageRating = useMemo(() => {
