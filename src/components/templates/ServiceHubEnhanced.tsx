@@ -297,7 +297,7 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
             
             <div className="text-center mt-8">
               <Link to="/reviews" className="text-primary hover:underline font-medium">
-                See all {GOOGLE_REVIEWS_AGGREGATE.totalReviews} reviews →
+                See all {totalReviews} reviews →
               </Link>
             </div>
           </div>
