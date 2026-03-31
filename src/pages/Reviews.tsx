@@ -123,9 +123,10 @@ const Reviews = () => {
               </p>
               
               <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-4">What Our Clients Say</h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
                 Real feedback from real customers across Southwest Ohio
               </p>
+              <StandardCTAButtons defaultService="general-notary" variant="top" />
             </div>
           </section>
         }
