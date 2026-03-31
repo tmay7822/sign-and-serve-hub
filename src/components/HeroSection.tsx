@@ -48,6 +48,8 @@ export const aeoQuestions = [
 ];
 
 const HeroSection = () => {
+  const { averageRating, totalReviews } = useGoogleReviews();
+
   return (
     <section className="bg-gradient-to-b from-slate-100 via-white to-slate-50 py-8 lg:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
