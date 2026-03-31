@@ -90,7 +90,7 @@ const Reviews = () => {
   return (
     <>
       <Helmet>
-        <title>Customer Reviews | {BUSINESS_CONFIG.name} - {totalReviews} Verified 5-Star Google Reviews</title>
+        <title>{`Customer Reviews | ${BUSINESS_CONFIG.name} - ${totalReviews || 0} Verified 5-Star Google Reviews`}</title>
         <meta name="description" content={`Read ${totalReviews} verified 5-star Google reviews from real customers. See why Southwest Ohio trusts ${BUSINESS_CONFIG.name} for mobile notary and loan signing services.`} />
         <meta name="keywords" content="notary reviews, mobile notary reviews Ohio, loan signing agent reviews, customer testimonials, 5-star notary" />
       </Helmet>
