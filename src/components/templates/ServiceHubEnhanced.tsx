@@ -43,6 +43,8 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
   const localRoutes = getRoutesByService(service.slug).slice(0, 8);
   const serviceContent = getServiceContent(service.id);
   
+  const { getReviewsByServiceTypes, totalReviews } = useGoogleReviews();
+  
   // Service type mapping for reviews
   const serviceTypeMap: Record<string, string[]> = {
     'loan-signings': ['loan-signing', 'mortgage', 'refinance', 'first-home'],
