@@ -1,68 +1,92 @@
 
 
-## Fix Google Search Console Indexing Errors + Build Errors
+## Automate Google Reviews: Full Setup
 
-Analysis of the 5 uploaded Google Search Console reports reveals multiple interconnected issues. There are also 24 build errors from a previous incomplete edit.
-
----
-
-### Issue 1: Build Errors — 24 blog files have `useEffect` without import (CRITICAL)
-
-The previous SEO edit added the `Seo` component but left behind the old `useEffect` blocks without importing `useEffect` from React.
-
-**Fix**: Remove the entire `useEffect(() => { document.title = ...; }, [])` block from all 24 files. The `Seo` component already handles title and meta description.
-
-**Files**: All 24 files listed in the build errors (AffidavitJuratAcknowledgment.tsx through WhatHappensLoanSigning.tsx)
+Everything below is handled by me. You only need to do **one thing** at the end: paste a Google API key (I'll give you exact steps when we get there).
 
 ---
 
-### Issue 2: Location Blog Posts All Redirect to /blog (CRITICAL — affects ~200 pages)
+### What Gets Built
 
-**Root cause**: `LocationBlogPost.tsx` uses `useParams()` to get `slug`, but the hardcoded routes (lines 248-313 of routes.tsx) like `blog/general-notary-guides-hamilton-county-ohio` don't have a `:slug` param — they're literal paths. So `slug` is always `undefined`, and the component redirects to `/blog`.
-
-Only the catch-all `blog/:slug` at line 328 works correctly, but it only catches routes not already matched by hardcoded ones.
-
-This explains:
-- **"Page with redirect"** — Google sees these pages redirecting to `/blog`
-- **"Discovered - currently not indexed"** — Google found them but they redirect
-- **"Soft 404"** — thin/empty content from redirects
-
-**Fix**: Change `LocationBlogPost.tsx` to extract the slug from `useLocation().pathname` instead of `useParams()`:
-```tsx
-const location = useLocation();
-const slug = location.pathname.replace('/blog/', '');
-```
+1. **Seed your 35 existing reviews into the database** — bulk insert into the `testimonials` table that already exists
+2. **New `useGoogleReviews` hook** — replaces hardcoded data with live database queries; keeps hardcoded reviews as instant fallback while loading
+3. **Update 10 components** to use the new hook instead of hardcoded imports
+4. **Admin Review Manager** — new page in your admin dashboard to add/edit/delete reviews and trigger a Google sync
+5. **Edge function `fetch-google-reviews`** — calls Google Places API, inserts new reviews, skips duplicates
+6. **Daily auto-fetch** — scheduled via `pg_cron` so new reviews appear on your site within 24 hours
 
 ---
 
-### Issue 3: "Excluded by noindex" — County Service URLs Hit NotFound (6 pages)
+### Step 1: Seed existing reviews into Supabase
 
-URLs like `/loan-signings/montgomery` and `/estate-plans/butler` don't match any 2-segment route. They fall through to the `*` catch-all, rendering the `NotFound` page (which has `noindex`).
+Insert all 35 reviews from `googleReviews.ts` into the `testimonials` table with `source = 'google'`. Update aggregate to show 42 (you'll add the 7 new ones via the admin UI).
 
-**Fix**: Add dynamic 2-segment routes for service/county combos:
-```
-{ path: ':serviceSlug/:county', element: <LocalService /> }
-```
-Place this before the existing `:serviceSlug/:county/:city` route. The `LocalService` component already handles county-level pages.
+**Tool**: Supabase insert tool (bulk INSERT)
+
+### Step 2: Create `useGoogleReviews` hook
+
+**File**: `src/hooks/useGoogleReviews.ts`
+
+- Fetches from `testimonials` where `source = 'google'`
+- Computes `averageRating` and `totalReviews` dynamically
+- Exports same helper functions: `getFeaturedReviews`, `getReviewsByService`, `getReviewsByLocation`
+- Falls back to hardcoded data while loading (no blank screens)
+
+### Step 3: Update 10 components to use the hook
+
+| Component | Current Import |
+|-----------|---------------|
+| `TestimonialsSection.tsx` | `GOOGLE_REVIEWS`, `getFeaturedReviews`, `GOOGLE_REVIEWS_AGGREGATE` |
+| `GoogleReviewsSection.tsx` | Same |
+| `GoogleReviewsBadge.tsx` | `GOOGLE_REVIEWS_AGGREGATE` |
+| `MiniTestimonials.tsx` | `getFeaturedReviews`, `GOOGLE_REVIEWS_AGGREGATE` |
+| `LocationReviewsSection.tsx` | Uses passed props (no change needed) |
+| `ReviewSchema.tsx` | `GOOGLE_REVIEWS`, `GOOGLE_REVIEWS_AGGREGATE` |
+| `Reviews.tsx` | All helpers |
+| `AboutUs.tsx` | `getFeaturedReviews`, `GOOGLE_REVIEWS_AGGREGATE` |
+| `ServiceHubEnhanced.tsx` | `getReviewsByServiceTypes` |
+| `ServiceHubTemplate.tsx` | `getReviewsByServiceTypes` |
+
+Each file: replace static import with `useGoogleReviews()` hook call.
+
+### Step 4: Admin Review Manager
+
+**File**: `src/components/admin/ReviewManager.tsx`
+
+- Table showing all reviews (name, rating, date, service, location)
+- "Add Review" form — paste in reviewer name, rating, text, service type, location
+- Edit/delete buttons per row
+- "Sync from Google" button (calls the edge function)
+- Total count + average rating badge at top
+
+**File**: `src/components/admin/AdminDashboard.tsx` — add Review Manager to the menu
+
+### Step 5: Google Places API Edge Function
+
+**File**: `supabase/functions/fetch-google-reviews/index.ts`
+
+- Reads `GOOGLE_PLACES_API_KEY` from secrets
+- Calls Google Places API (New) to fetch reviews
+- Deduplicates by reviewer name + date
+- Inserts new reviews into `testimonials`
+- Returns count of new reviews added
+
+**Secret needed**: `GOOGLE_PLACES_API_KEY` (I'll walk you through getting this)
+
+### Step 6: Schedule daily auto-fetch
+
+Use `pg_cron` + `pg_net` to call the edge function once per day at 6 AM. New reviews appear on your site automatically.
 
 ---
 
-### Issue 4: "undefined-ohio" URLs in Redirects
+### Files Summary
 
-Google found URLs like `/blog/general-notary-guides-undefined-ohio` and `/blog/estate-planning-guides-undefined-ohio`. Some internal link generation code is producing `undefined` when a city/county name is missing.
-
-**Fix**: Add a guard in the location blog post slug generation in `src/data/locationBlogPosts.ts` to skip entries where city or county is undefined/falsy.
-
----
-
-### Summary of Changes
-
-| File | Change |
+| File | Action |
 |------|--------|
-| 24 blog files in `src/pages/blog/` | Remove orphaned `useEffect` blocks (build fix) |
-| `src/pages/LocationBlogPost.tsx` | Use `useLocation()` pathname instead of `useParams()` |
-| `src/routes.tsx` | Add `:serviceSlug/:county` route for 2-segment service URLs |
-| `src/data/locationBlogPosts.ts` | Guard against undefined city/county in slug generation |
-
-This fixes the build, unblocks ~200 location blog pages from indexing, resolves the 6 noindex county pages, and eliminates undefined-ohio URLs.
+| `src/hooks/useGoogleReviews.ts` | Create — new hook |
+| `src/components/admin/ReviewManager.tsx` | Create — admin UI |
+| `src/components/admin/AdminDashboard.tsx` | Edit — add menu item |
+| `supabase/functions/fetch-google-reviews/index.ts` | Create — edge function |
+| `src/data/googleReviews.ts` | Edit — update aggregate to 42, keep as fallback |
+| 9 components (listed above) | Edit — switch to hook |
 
