@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, MapPin, Filter, X, ArrowRight } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_AGGREGATE, getUniqueServices, getUniqueLocations } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import ReviewSchema from '@/components/SEO/ReviewSchema';
 import {
   Select,
