@@ -3,6 +3,7 @@ import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
 import { FileText, Car, Home, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 
 const intentOptions = [
   {
