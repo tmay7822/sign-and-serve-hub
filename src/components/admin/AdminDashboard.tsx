@@ -83,6 +83,13 @@ export function AdminDashboard() {
       component: LocationManager
     },
     {
+      id: 'reviews',
+      title: 'Review Manager',
+      description: 'Manage Google reviews and sync',
+      icon: Star,
+      component: ReviewManager
+    },
+    {
       id: 'theme',
       title: 'Theme Customizer',
       description: 'Customize colors and branding',
