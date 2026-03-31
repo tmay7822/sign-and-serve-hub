@@ -1,28 +1,23 @@
 
 
-## Add Consistent CTA to Reviews Page
+## Fix Contact Page: Add CTA and Remove Blank Space
 
-You already have a `StandardCTAButtons` component used across the site (blog pages, service hubs, bottom of `BasePageTemplate`). The reviews page is missing a top CTA.
+### Problem
+The Contact page has a tiny hero section that's mostly invisible (the gradient hero with "Calculate Your Quote" is barely showing), leaving a large blank gap before the contact cards. It also lacks the standard CTA buttons (Book Now, Get Quote, Call Now) that every other page uses.
 
 ### Plan
 
-**1. Add a top CTA bar inside the Reviews hero section**
+**Update `src/pages/Contact.tsx`:**
 
-In `src/pages/Reviews.tsx`, add a `StandardCTAButtons` block right after the hero subtitle text (line ~127), inside the hero section. This mirrors the `TopMiniCTA` pattern used on blog posts — a subtle card with the tagline "Need a mobile notary in Southwest Ohio? We come to you." followed by the three standard buttons (Book Now, Get Quote, Call Now).
+1. **Wrap in `BasePageTemplate`** — Replace the manual Header/Footer with `BasePageTemplate` to get the standard bottom CTA automatically (matching all other pages).
 
-**2. No new components needed**
+2. **Expand the hero section** — Move it into `BasePageTemplate`'s `heroSection` prop so it renders properly. Add `StandardCTAButtons` below the Google Reviews badge in the hero, giving users immediate action options.
 
-The `StandardCTAButtons` component already renders the correct three buttons with consistent styling. The `BasePageTemplate` already renders a bottom CTA section. So the reviews page will have CTA at the top (in the hero) and bottom (from the template) — matching the pattern on other pages.
+3. **Remove redundant spacing** — The `mb-16` on the contact cards grid creates excessive whitespace. Reduce to `mb-8`.
 
 ### Files Changed
 
 | File | Change |
 |------|--------|
-| `src/pages/Reviews.tsx` | Add `StandardCTAButtons` inside the hero section after the subtitle |
-
-### Result
-
-- Top of reviews page shows Book Now / Get Quote / Call Now buttons
-- Bottom CTA from `BasePageTemplate` remains
-- Same button component used everywhere — any future style change applies globally
+| `src/pages/Contact.tsx` | Switch to `BasePageTemplate`, add `StandardCTAButtons` in hero, tighten spacing |
 
