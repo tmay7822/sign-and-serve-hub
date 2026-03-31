@@ -32,6 +32,7 @@ const avatarColors = [
 ];
 
 const AboutUs = () => {
+  const { getFeaturedReviews, averageRating, totalReviews } = useGoogleReviews();
   const certifications = [
     {
       name: "National Notary Association Certified",
