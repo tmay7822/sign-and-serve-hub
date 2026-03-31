@@ -282,7 +282,7 @@ const AboutUs = () => {
             <div className="text-center mt-8">
               <Link to="/reviews">
                 <Button variant="outline" size="lg" className="font-semibold">
-                  See All {GOOGLE_REVIEWS_AGGREGATE.totalReviews} Reviews
+                  See All {totalReviews} Reviews
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
