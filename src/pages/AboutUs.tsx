@@ -243,8 +243,8 @@ const AboutUs = () => {
                     <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
                   ))}
                 </div>
-                <span className="text-xl font-bold text-foreground">{GOOGLE_REVIEWS_AGGREGATE.averageRating.toFixed(1)}</span>
-                <span className="text-muted-foreground">({GOOGLE_REVIEWS_AGGREGATE.totalReviews} reviews)</span>
+                <span className="text-xl font-bold text-foreground">{averageRating.toFixed(1)}</span>
+                <span className="text-muted-foreground">({totalReviews} reviews)</span>
               </div>
             </div>
             
