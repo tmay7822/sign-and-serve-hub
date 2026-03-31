@@ -20,7 +20,7 @@ import { getServiceContent } from '@/data/serviceContent';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { ArrowRight, MapPin, FileText, Users, Clock, CheckCircle, Lightbulb, Star } from 'lucide-react';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
-import { getReviewsByServiceTypes, GOOGLE_REVIEWS_AGGREGATE, GoogleReview } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import DocumentLibrarySection from '@/components/DocumentLibrarySection';
 
 interface ServiceHubEnhancedProps {

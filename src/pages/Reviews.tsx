@@ -176,7 +176,7 @@ const Reviews = () => {
                 )}
                 
                 <div className="ml-auto text-sm text-muted-foreground">
-                  Showing {filteredReviews.length} of {GOOGLE_REVIEWS.length} reviews
+                  Showing {filteredReviews.length} of {allReviews.length} reviews
                 </div>
               </div>
             </Card>

@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Award, MapPin, Clock, Users, Shield, Star, ArrowRight } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { GOOGLE_REVIEWS_AGGREGATE, getFeaturedReviews } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import nnaLogo from '@/assets/nna-logo.png';
 import lssLogo from '@/assets/lss-logo.png';
 
