@@ -3,6 +3,7 @@ import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
 import { FileText, Car, Home, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 
 const intentOptions = [
   {
@@ -47,6 +48,8 @@ export const aeoQuestions = [
 ];
 
 const HeroSection = () => {
+  const { averageRating, totalReviews } = useGoogleReviews();
+
   return (
     <section className="bg-gradient-to-b from-slate-100 via-white to-slate-50 py-8 lg:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -109,8 +112,8 @@ const HeroSection = () => {
                     </svg>
                   ))}
                 </div>
-                <span className="font-bold text-lg text-foreground">5.0</span>
-                <span className="text-muted-foreground">• 35 Reviews</span>
+                <span className="font-bold text-lg text-foreground">{averageRating.toFixed(1)}</span>
+                <span className="text-muted-foreground">• {totalReviews} {totalReviews === 1 ? 'Review' : 'Reviews'}</span>
               </a>
             </div>
           </div>
