@@ -14,12 +14,14 @@ import {
   Eye,
   CheckCircle,
   Clock,
-  AlertTriangle
+  AlertTriangle,
+  Star
 } from 'lucide-react';
 import { BusinessSetupWizard } from './BusinessSetupWizard';
 import { ContentManager } from './ContentManager';
 import { LocationManager } from './LocationManager';
 import { ThemeCustomizer } from './ThemeCustomizer';
+import { ReviewManager } from './ReviewManager';
 
 // Lazy load BlogManager to prevent TinyMCE crashes
 const LazyBlogManager = lazy(() => 
