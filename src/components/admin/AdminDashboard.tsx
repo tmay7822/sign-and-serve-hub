@@ -14,12 +14,14 @@ import {
   Eye,
   CheckCircle,
   Clock,
-  AlertTriangle
+  AlertTriangle,
+  Star
 } from 'lucide-react';
 import { BusinessSetupWizard } from './BusinessSetupWizard';
 import { ContentManager } from './ContentManager';
 import { LocationManager } from './LocationManager';
 import { ThemeCustomizer } from './ThemeCustomizer';
+import { ReviewManager } from './ReviewManager';
 
 // Lazy load BlogManager to prevent TinyMCE crashes
 const LazyBlogManager = lazy(() => 
@@ -79,6 +81,13 @@ export function AdminDashboard() {
       description: 'Manage service areas and locations',
       icon: MapPin,
       component: LocationManager
+    },
+    {
+      id: 'reviews',
+      title: 'Review Manager',
+      description: 'Manage Google reviews and sync',
+      icon: Star,
+      component: ReviewManager
     },
     {
       id: 'theme',

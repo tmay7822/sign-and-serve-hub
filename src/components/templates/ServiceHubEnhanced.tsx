@@ -20,7 +20,7 @@ import { getServiceContent } from '@/data/serviceContent';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { ArrowRight, MapPin, FileText, Users, Clock, CheckCircle, Lightbulb, Star } from 'lucide-react';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
-import { getReviewsByServiceTypes, GOOGLE_REVIEWS_AGGREGATE, GoogleReview } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import DocumentLibrarySection from '@/components/DocumentLibrarySection';
 
 interface ServiceHubEnhancedProps {
@@ -42,6 +42,8 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
   const blogPosts = getPostsByService(service.slug).slice(0, 6);
   const localRoutes = getRoutesByService(service.slug).slice(0, 8);
   const serviceContent = getServiceContent(service.id);
+  
+  const { getReviewsByServiceTypes, totalReviews } = useGoogleReviews();
   
   // Service type mapping for reviews
   const serviceTypeMap: Record<string, string[]> = {
@@ -295,7 +297,7 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
             
             <div className="text-center mt-8">
               <Link to="/reviews" className="text-primary hover:underline font-medium">
-                See all {GOOGLE_REVIEWS_AGGREGATE.totalReviews} reviews →
+                See all {totalReviews} reviews →
               </Link>
             </div>
           </div>

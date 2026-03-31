@@ -1,4 +1,4 @@
-import { GOOGLE_REVIEWS_AGGREGATE, GOOGLE_REVIEWS } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface ReviewSchemaProps {
@@ -7,10 +7,10 @@ interface ReviewSchemaProps {
 }
 
 const ReviewSchema = ({ includeIndividualReviews = true, maxReviews = 5 }: ReviewSchemaProps) => {
-  const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
+  const { reviews, averageRating, totalReviews } = useGoogleReviews();
   
   const reviewsToInclude = includeIndividualReviews 
-    ? GOOGLE_REVIEWS.slice(0, maxReviews).map(review => ({
+    ? reviews.slice(0, maxReviews).map(review => ({
         "@type": "Review",
         "author": {
           "@type": "Person",

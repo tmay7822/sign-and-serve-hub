@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Award, MapPin, Clock, Users, Shield, Star, ArrowRight } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { GOOGLE_REVIEWS_AGGREGATE, getFeaturedReviews } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import nnaLogo from '@/assets/nna-logo.png';
 import lssLogo from '@/assets/lss-logo.png';
 
@@ -32,6 +32,7 @@ const avatarColors = [
 ];
 
 const AboutUs = () => {
+  const { getFeaturedReviews, averageRating, totalReviews } = useGoogleReviews();
   const certifications = [
     {
       name: "National Notary Association Certified",
@@ -242,8 +243,8 @@ const AboutUs = () => {
                     <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
                   ))}
                 </div>
-                <span className="text-xl font-bold text-foreground">{GOOGLE_REVIEWS_AGGREGATE.averageRating.toFixed(1)}</span>
-                <span className="text-muted-foreground">({GOOGLE_REVIEWS_AGGREGATE.totalReviews} reviews)</span>
+                <span className="text-xl font-bold text-foreground">{averageRating.toFixed(1)}</span>
+                <span className="text-muted-foreground">({totalReviews} reviews)</span>
               </div>
             </div>
             
@@ -281,7 +282,7 @@ const AboutUs = () => {
             <div className="text-center mt-8">
               <Link to="/reviews">
                 <Button variant="outline" size="lg" className="font-semibold">
-                  See All {GOOGLE_REVIEWS_AGGREGATE.totalReviews} Reviews
+                  See All {totalReviews} Reviews
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>

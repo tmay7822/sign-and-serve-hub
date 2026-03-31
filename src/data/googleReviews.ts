@@ -13,7 +13,7 @@ export interface GoogleReview {
 
 export const GOOGLE_REVIEWS_AGGREGATE = {
   averageRating: 5.0,
-  totalReviews: 35,
+  totalReviews: 42,
   gmbProfileUrl: "https://g.page/r/CR2JzdLd8-5sEBM/review",
   gmbViewUrl: "https://g.page/r/CR2JzdLd8-5sEBM",
   lastUpdated: "2026-01-14"

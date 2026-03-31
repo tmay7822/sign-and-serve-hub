@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, MapPin, Filter, X, ArrowRight } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_AGGREGATE, getUniqueServices, getUniqueLocations } from '@/data/googleReviews';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import ReviewSchema from '@/components/SEO/ReviewSchema';
 import {
   Select,
@@ -65,20 +65,20 @@ const avatarColors = [
 ];
 
 const Reviews = () => {
-  const { averageRating, totalReviews } = GOOGLE_REVIEWS_AGGREGATE;
+  const { reviews: allReviews, averageRating, totalReviews, getUniqueServices, getUniqueLocations } = useGoogleReviews();
   const [serviceFilter, setServiceFilter] = useState<string>('all');
   const [locationFilter, setLocationFilter] = useState<string>('all');
   
-  const uniqueServices = useMemo(() => getUniqueServices(), []);
-  const uniqueLocations = useMemo(() => getUniqueLocations(), []);
+  const uniqueServices = useMemo(() => getUniqueServices(), [allReviews]);
+  const uniqueLocations = useMemo(() => getUniqueLocations(), [allReviews]);
   
   const filteredReviews = useMemo(() => {
-    return GOOGLE_REVIEWS.filter(review => {
+    return allReviews.filter(review => {
       const matchesService = serviceFilter === 'all' || review.service === serviceFilter;
       const matchesLocation = locationFilter === 'all' || review.location === locationFilter;
       return matchesService && matchesLocation;
     });
-  }, [serviceFilter, locationFilter]);
+  }, [serviceFilter, locationFilter, allReviews]);
   
   const hasFilters = serviceFilter !== 'all' || locationFilter !== 'all';
   
@@ -90,7 +90,7 @@ const Reviews = () => {
   return (
     <>
       <Helmet>
-        <title>Customer Reviews | {BUSINESS_CONFIG.name} - 35 Verified 5-Star Google Reviews</title>
+        <title>Customer Reviews | {BUSINESS_CONFIG.name} - {totalReviews} Verified 5-Star Google Reviews</title>
         <meta name="description" content={`Read ${totalReviews} verified 5-star Google reviews from real customers. See why Southwest Ohio trusts ${BUSINESS_CONFIG.name} for mobile notary and loan signing services.`} />
         <meta name="keywords" content="notary reviews, mobile notary reviews Ohio, loan signing agent reviews, customer testimonials, 5-star notary" />
       </Helmet>
@@ -176,7 +176,7 @@ const Reviews = () => {
                 )}
                 
                 <div className="ml-auto text-sm text-muted-foreground">
-                  Showing {filteredReviews.length} of {GOOGLE_REVIEWS.length} reviews
+                  Showing {filteredReviews.length} of {allReviews.length} reviews
                 </div>
               </div>
             </Card>
