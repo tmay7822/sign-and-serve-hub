@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Clock, Calculator } from 'lucide-react';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 
 const heroSection = (
-  <section className="py-8 <section className="py-8 gradient-primary text-white"> text-white">
+  <section className="py-8 gradient-primary text-white">
     <div className="container mx-auto px-4">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
