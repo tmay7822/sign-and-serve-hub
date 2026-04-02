@@ -1,23 +1,26 @@
 
 
-## Fix Contact Page: Add CTA and Remove Blank Space
+## Fix Contact Page Blank Space
 
-### Problem
-The Contact page has a tiny hero section that's mostly invisible (the gradient hero with "Calculate Your Quote" is barely showing), leaving a large blank gap before the contact cards. It also lacks the standard CTA buttons (Book Now, Get Quote, Call Now) that every other page uses.
+### Root Cause
+The hero section uses `bg-gradient-primary` as a CSS class, but the actual utility class defined in `index.css` is `.gradient-primary` (no `bg-` prefix). This means the gradient background never applies — the hero renders with a white/transparent background, making all the white text invisible. That's the "blank space" you see.
 
-### Plan
-
-**Update `src/pages/Contact.tsx`:**
-
-1. **Wrap in `BasePageTemplate`** — Replace the manual Header/Footer with `BasePageTemplate` to get the standard bottom CTA automatically (matching all other pages).
-
-2. **Expand the hero section** — Move it into `BasePageTemplate`'s `heroSection` prop so it renders properly. Add `StandardCTAButtons` below the Google Reviews badge in the hero, giving users immediate action options.
-
-3. **Remove redundant spacing** — The `mb-16` on the contact cards grid creates excessive whitespace. Reduce to `mb-8`.
+### Fix
+In `src/pages/Contact.tsx` line 12, change:
+```
+bg-gradient-primary
+```
+to:
+```
+gradient-primary
+```
 
 ### Files Changed
 
 | File | Change |
 |------|--------|
-| `src/pages/Contact.tsx` | Switch to `BasePageTemplate`, add `StandardCTAButtons` in hero, tighten spacing |
+| `src/pages/Contact.tsx` | Fix class name from `bg-gradient-primary` to `gradient-primary` on the hero section |
+
+### Result
+The hero section will show the dark gradient background, making the heading, subtitle, quote card, review badge, and CTA buttons all visible — eliminating the blank space appearance.
 
