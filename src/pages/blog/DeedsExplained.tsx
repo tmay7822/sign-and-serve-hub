@@ -12,7 +12,7 @@ const DeedsExplained = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title={`Deed Notarization Guide | ${BUSINESS_CONFIG.name}`}
-        description="Deed Notarization Guide | ${BUSINESS_CONFIG.name} - Professional mobile notary services"
+        description={`Deed Notarization Guide | ${BUSINESS_CONFIG.name} - Professional mobile notary services`}
       />
       <Header />
       

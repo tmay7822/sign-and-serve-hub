@@ -12,7 +12,7 @@ const College18PlusStarterPack = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title={`FERPA, HIPAA & POA for College Students | ${BUSINESS_CONFIG.name}`}
-        description="FERPA, HIPAA & POA for College Students | ${BUSINESS_CONFIG.name} - Professional mobile notary services"
+        description={`FERPA, HIPAA & POA for College Students | ${BUSINESS_CONFIG.name} - Professional mobile notary services`}
       />
       <Header />
       

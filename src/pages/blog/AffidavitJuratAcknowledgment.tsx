@@ -12,7 +12,7 @@ const AffidavitJuratAcknowledgment = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title={`Affidavit vs Jurat vs Acknowledgment | ${BUSINESS_CONFIG.name}`}
-        description="Affidavit vs Jurat vs Acknowledgment | ${BUSINESS_CONFIG.name} - Professional mobile notary services"
+        description={`Affidavit vs Jurat vs Acknowledgment | ${BUSINESS_CONFIG.name} - Professional mobile notary services`}
       />
       <Header />
       
