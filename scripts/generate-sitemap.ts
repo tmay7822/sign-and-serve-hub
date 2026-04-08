@@ -1,225 +1,152 @@
 // SITEMAP GENERATION SCRIPT
-// Run during build to generate sitemap.xml from centralized PRERENDER_ROUTES
-// Uses the source of truth from src/config/prerenderRoutes.ts
+// Merges routes from prerenderRoutes.ts + routes_city_corrected.csv
+// Excludes admin, auth, undefined routes
+// Generates sitemap.xml and robots.txt
 
 import { writeFileSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
-// Read routes from prerenderRoutes.ts (parse the file to extract routes)
-const prerenderRoutesPath = resolve(process.cwd(), 'src/config/prerenderRoutes.ts');
-const prerenderRoutesContent = readFileSync(prerenderRoutesPath, 'utf-8');
-
-// Extract routes from the TypeScript file
-const routeMatches = prerenderRoutesContent.match(/['"`]\/[^'"`]*['"`]/g) || [];
-const PRERENDER_ROUTES = routeMatches.map(match => match.slice(1, -1));
-
 const BUSINESS_WEBSITE = 'https://www.signedontime.com';
 
-interface SitemapUrl {
-  url: string;
-  lastmod: string;
-  changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority: number;
+// ── Source 1: Parse prerenderRoutes.ts ──────────────────────────
+function getPrerenderRoutes(): string[] {
+  const filePath = resolve(process.cwd(), 'src/config/prerenderRoutes.ts');
+  const content = readFileSync(filePath, 'utf-8');
+  const matches = content.match(/['"`]\/[^'"`]*['"`]/g) || [];
+  return matches.map(m => m.slice(1, -1));
 }
 
-interface RouteStats {
-  total: number;
-  homepage: number;
-  serviceHubs: number;
-  blogHome: number;
-  blogCategories: number;
-  blogPosts: number;
-  locationBlogCounty: number;
-  locationBlogCity: number;
-  locationPages: number;
-  servicePages: number;
-  staticPages: number;
-  other: number;
+// ── Source 2: Parse routes_city_corrected.csv ───────────────────
+function getCsvRoutes(): string[] {
+  const filePath = resolve(process.cwd(), 'src/data/routes_city_corrected.csv');
+  const content = readFileSync(filePath, 'utf-8');
+  const lines = content.trim().split('\n').slice(1); // skip header
+  const routes: string[] = [];
+  for (const line of lines) {
+    // First column is the path — handle quoted CSV fields
+    const match = line.match(/^"?([^",]+)"?/);
+    if (match && match[1].startsWith('/')) {
+      routes.push(match[1]);
+    }
+  }
+  return routes;
 }
 
-const categorizeRoute = (path: string): keyof Omit<RouteStats, 'total'> => {
-  if (path === '/') return 'homepage';
-  
+// ── Exclusion filter ────────────────────────────────────────────
+function shouldExclude(path: string): boolean {
+  if (path.startsWith('/admin')) return true;
+  if (path === '/auth') return true;
+  if (path.includes('undefined')) return true;
+  if (path.startsWith('/api')) return true;
+  return false;
+}
+
+// ── Priority assignment ─────────────────────────────────────────
+function getPriority(path: string): { priority: number; changefreq: string } {
+  if (path === '/') return { priority: 1.0, changefreq: 'weekly' };
+
+  // Service hubs
   const serviceHubs = [
-    '/general-notary', '/loan-signings', '/estate-plans', '/real-estate', 
+    '/general-notary', '/loan-signings', '/estate-plans', '/real-estate',
     '/apostille', '/business-services', '/college-18-plus', '/personal-family',
     '/healthcare-notary', '/real-estate-notary', '/business-banking', '/legal-court',
-    '/international-apostille', '/vehicles-dmv', '/insurance-retirement', 
+    '/international-apostille', '/vehicles-dmv', '/insurance-retirement',
     '/wills-trusts-estates', '/other-notary'
   ];
-  if (serviceHubs.includes(path)) return 'serviceHubs';
-  
-  if (path === '/blog') return 'blogHome';
-  
-  // Blog categories (ending in -guides as direct children of /blog)
+  if (serviceHubs.includes(path)) return { priority: 0.9, changefreq: 'monthly' };
+
+  // High-priority static pages
+  if (path === '/contact' || path === '/book-now') return { priority: 0.8, changefreq: 'monthly' };
+  if (path === '/blog') return { priority: 0.8, changefreq: 'weekly' };
+  if (path === '/pricing') return { priority: 0.7, changefreq: 'monthly' };
+  if (path === '/reviews') return { priority: 0.7, changefreq: 'monthly' };
+
+  // Blog categories
   if (path.match(/^\/blog\/[a-z-]+-guides$/) && !path.includes('-county-') && !path.includes('-ohio')) {
-    return 'blogCategories';
+    return { priority: 0.8, changefreq: 'weekly' };
   }
-  
-  // Location blog posts - county level
-  if (path.match(/^\/blog\/[a-z-]+-guides-[a-z-]+-county-ohio$/)) {
-    return 'locationBlogCounty';
+
+  // County service pages (from CSV: /service-slug/county)
+  if (path.match(/^\/[a-z-]+\/[a-z-]+$/) && !path.startsWith('/blog') && !path.startsWith('/service')) {
+    // Could be a 2-segment county route like /general-notary/hamilton
+    return { priority: 0.7, changefreq: 'monthly' };
   }
-  
-  // Location blog posts - city level
-  if (path.match(/^\/blog\/[a-z-]+-guides-[a-z-]+-ohio$/) && !path.includes('-county-')) {
-    return 'locationBlogCity';
+
+  // City service pages (from CSV: /service-slug/county/city)
+  if (path.match(/^\/[a-z-]+\/[a-z-]+\/[a-z-]+$/) && !path.startsWith('/blog')) {
+    return { priority: 0.6, changefreq: 'monthly' };
   }
-  
+
+  // Location blog posts
+  if (path.match(/^\/blog\/.*-county-ohio$/)) return { priority: 0.7, changefreq: 'monthly' };
+  if (path.match(/^\/blog\/.*-ohio$/)) return { priority: 0.6, changefreq: 'monthly' };
+
   // Regular blog posts
-  if (path.startsWith('/blog/')) return 'blogPosts';
-  
-  // Service pages (county/city)
-  if (path.startsWith('/service/')) return 'servicePages';
-  
-  // Location pages (notary-city-zip format)
-  if (path.match(/^\/[a-z-]+-\d{5}$/) || path.includes('notary-') || path.includes('signing-') || path.includes('poa-') || path.includes('wills-')) {
-    return 'locationPages';
-  }
-  
-  // Static pages
-  const staticPages = ['/faq', '/about', '/contact', '/pricing', '/documents', '/service-areas', 
-    '/book-now', '/privacy-policy', '/terms-of-service', '/tax-season-notary', 
-    '/back-to-school-documents', '/home-buying-season-notary', '/year-end-planning-notary'];
-  if (staticPages.includes(path)) return 'staticPages';
-  
-  return 'other';
-};
+  if (path.startsWith('/blog/')) return { priority: 0.6, changefreq: 'monthly' };
 
-const getPriorityForRoute = (path: string): { priority: number; changefreq: SitemapUrl['changefreq'] } => {
-  const category = categorizeRoute(path);
-  
-  switch (category) {
-    case 'homepage':
-      return { priority: 1.0, changefreq: 'weekly' };
-    case 'serviceHubs':
-      return { priority: 0.9, changefreq: 'monthly' };
-    case 'blogHome':
-      return { priority: 0.8, changefreq: 'weekly' };
-    case 'blogCategories':
-      return { priority: 0.8, changefreq: 'weekly' };
-    case 'blogPosts':
-      return { priority: 0.6, changefreq: 'monthly' };
-    case 'locationBlogCounty':
-      return { priority: 0.7, changefreq: 'monthly' };
-    case 'locationBlogCity':
-      return { priority: 0.6, changefreq: 'monthly' };
-    case 'servicePages':
-      return { priority: 0.7, changefreq: 'monthly' };
-    case 'locationPages':
-      return { priority: 0.7, changefreq: 'monthly' };
-    case 'staticPages':
-      if (path === '/contact' || path === '/book-now') {
-        return { priority: 0.8, changefreq: 'monthly' };
-      }
-      if (path === '/pricing') {
-        return { priority: 0.7, changefreq: 'monthly' };
-      }
-      if (path === '/privacy-policy' || path === '/terms-of-service') {
-        return { priority: 0.3, changefreq: 'yearly' };
-      }
-      return { priority: 0.5, changefreq: 'monthly' };
-    default:
-      return { priority: 0.5, changefreq: 'monthly' };
-  }
-};
+  // Service area pages
+  if (path.startsWith('/service/')) return { priority: 0.7, changefreq: 'monthly' };
 
-const generateSitemap = (): string => {
-  const today = new Date().toISOString().split('T')[0];
-  
-  const urls: SitemapUrl[] = PRERENDER_ROUTES.map(path => {
-    const { priority, changefreq } = getPriorityForRoute(path);
-    return {
-      url: `${BUSINESS_WEBSITE}${path === '/' ? '' : path}`,
-      lastmod: today,
-      changefreq,
-      priority
-    };
-  });
+  // Legacy location pages
+  if (path.match(/-\d{5}$/)) return { priority: 0.7, changefreq: 'monthly' };
 
-  const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-  const xmlFooter = '</urlset>';
-  
-  const xmlUrls = urls.map(urlObj => `
-  <url>
-    <loc>${urlObj.url}</loc>
-    <lastmod>${urlObj.lastmod}</lastmod>
-    <changefreq>${urlObj.changefreq}</changefreq>
-    <priority>${urlObj.priority}</priority>
-  </url>`).join('');
+  // Low priority
+  if (path === '/privacy-policy' || path === '/terms-of-service') return { priority: 0.3, changefreq: 'yearly' };
 
-  return `${xmlHeader}${xmlUrls}\n${xmlFooter}`;
-};
+  return { priority: 0.5, changefreq: 'monthly' };
+}
 
-const generateRobotsTxt = (): string => {
-  return `User-agent: *
+// ── Main ────────────────────────────────────────────────────────
+const prerenderRoutes = getPrerenderRoutes();
+const csvRoutes = getCsvRoutes();
+
+// Merge and deduplicate
+const allRoutes = [...new Set([...prerenderRoutes, ...csvRoutes])]
+  .filter(r => !shouldExclude(r))
+  .sort();
+
+const today = new Date().toISOString().split('T')[0];
+
+// Generate sitemap.xml
+const xmlUrls = allRoutes.map(path => {
+  const { priority, changefreq } = getPriority(path);
+  const loc = `${BUSINESS_WEBSITE}${path === '/' ? '' : path}`;
+  return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+}).join('\n');
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlUrls}\n</urlset>`;
+
+// Generate robots.txt
+const robots = `User-agent: *
 Allow: /
 
 # Disallow query parameters and admin pages
 Disallow: /*?*
 Disallow: /admin/
 Disallow: /api/
-Disallow: /.well-known/
 
 # Sitemap location
 Sitemap: ${BUSINESS_WEBSITE}/sitemap.xml
 
-# Crawl delay for respectful crawling
+# Crawl delay
 Crawl-delay: 1`;
-};
-
-const generateStats = (): RouteStats => {
-  const stats: RouteStats = {
-    total: PRERENDER_ROUTES.length,
-    homepage: 0,
-    serviceHubs: 0,
-    blogHome: 0,
-    blogCategories: 0,
-    blogPosts: 0,
-    locationBlogCounty: 0,
-    locationBlogCity: 0,
-    locationPages: 0,
-    servicePages: 0,
-    staticPages: 0,
-    other: 0
-  };
-
-  PRERENDER_ROUTES.forEach(route => {
-    const category = categorizeRoute(route);
-    stats[category]++;
-  });
-
-  return stats;
-};
-
-// Generate and write files
-const sitemap = generateSitemap();
-const robots = generateRobotsTxt();
-const stats = generateStats();
 
 writeFileSync(resolve(process.cwd(), 'public/sitemap.xml'), sitemap);
 writeFileSync(resolve(process.cwd(), 'public/robots.txt'), robots);
 
-// Output verification summary
+// Stats
+const stats = {
+  prerenderRoutes: prerenderRoutes.length,
+  csvRoutes: csvRoutes.length,
+  excluded: prerenderRoutes.length + csvRoutes.length - allRoutes.length,
+  total: allRoutes.length,
+};
+
 console.log('\n============================================');
 console.log('SITEMAP GENERATION REPORT');
 console.log('============================================');
-console.log(`✅ Generated sitemap.xml with ${stats.total} URLs`);
-console.log('✅ Generated robots.txt');
-console.log('');
-console.log('ROUTE BREAKDOWN:');
-console.log('--------------------------------------------');
-console.log(`Homepage:                 ${stats.homepage}`);
-console.log(`Service Hubs:             ${stats.serviceHubs}`);
-console.log(`Blog Home:                ${stats.blogHome}`);
-console.log(`Blog Categories:          ${stats.blogCategories}`);
-console.log(`Blog Posts:               ${stats.blogPosts}`);
-console.log(`Location Blog (County):   ${stats.locationBlogCounty}`);
-console.log(`Location Blog (City):     ${stats.locationBlogCity}`);
-console.log(`Service Pages:            ${stats.servicePages}`);
-console.log(`Location Pages:           ${stats.locationPages}`);
-console.log(`Static Pages:             ${stats.staticPages}`);
-console.log(`Other:                    ${stats.other}`);
-console.log('--------------------------------------------');
-console.log(`TOTAL:                    ${stats.total}`);
+console.log(`Prerender routes:    ${stats.prerenderRoutes}`);
+console.log(`CSV routes:          ${stats.csvRoutes}`);
+console.log(`Duplicates/excluded: ${stats.excluded}`);
+console.log(`TOTAL in sitemap:    ${stats.total}`);
 console.log('============================================\n');

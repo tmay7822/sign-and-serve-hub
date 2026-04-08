@@ -10,41 +10,59 @@ function sitemapGeneratorPlugin(): Plugin {
     name: 'sitemap-generator',
     buildStart() {
       try {
-        const prerenderRoutesPath = path.resolve(__dirname, 'src/config/prerenderRoutes.ts');
-        const prerenderRoutesContent = readFileSync(prerenderRoutesPath, 'utf-8');
-        
-        // Extract routes from the TypeScript file
-        const routeMatches = prerenderRoutesContent.match(/['"`]\/[^'"`]*['"`]/g) || [];
-        const routes = routeMatches.map(match => match.slice(1, -1));
-        
         const BUSINESS_WEBSITE = 'https://www.signedontime.com';
         const today = new Date().toISOString().split('T')[0];
-        
-        // Generate sitemap.xml
+
+        // Source 1: prerenderRoutes.ts
+        const prerenderRoutesPath = path.resolve(__dirname, 'src/config/prerenderRoutes.ts');
+        const prerenderRoutesContent = readFileSync(prerenderRoutesPath, 'utf-8');
+        const routeMatches = prerenderRoutesContent.match(/['"`]\/[^'"`]*['"`]/g) || [];
+        const prerenderRoutes = routeMatches.map(match => match.slice(1, -1));
+
+        // Source 2: routes_city_corrected.csv
+        const csvPath = path.resolve(__dirname, 'src/data/routes_city_corrected.csv');
+        const csvContent = readFileSync(csvPath, 'utf-8');
+        const csvRoutes = csvContent.trim().split('\n').slice(1)
+          .map(line => { const m = line.match(/^"?([^",]+)"?/); return m?.[1] || ''; })
+          .filter(r => r.startsWith('/'));
+
+        // Merge, deduplicate, exclude
+        const shouldExclude = (p: string) =>
+          p.startsWith('/admin') || p === '/auth' || p.includes('undefined') || p.startsWith('/api');
+
+        const allRoutes = [...new Set([...prerenderRoutes, ...csvRoutes])]
+          .filter(r => !shouldExclude(r))
+          .sort();
+
         const getPriority = (p: string) => {
           if (p === '/') return { priority: 1.0, changefreq: 'weekly' };
-          if (['/general-notary', '/loan-signings', '/estate-plans', '/real-estate', '/apostille', '/business-services'].includes(p)) 
-            return { priority: 0.9, changefreq: 'monthly' };
+          const hubs = ['/general-notary','/loan-signings','/estate-plans','/real-estate','/apostille','/business-services','/college-18-plus','/personal-family','/healthcare-notary','/real-estate-notary','/business-banking','/legal-court','/international-apostille','/vehicles-dmv','/insurance-retirement','/wills-trusts-estates','/other-notary'];
+          if (hubs.includes(p)) return { priority: 0.9, changefreq: 'monthly' };
+          if (p === '/contact' || p === '/book-now') return { priority: 0.8, changefreq: 'monthly' };
           if (p === '/blog') return { priority: 0.8, changefreq: 'weekly' };
+          if (p === '/pricing' || p === '/reviews') return { priority: 0.7, changefreq: 'monthly' };
+          if (p.match(/^\/blog\/[a-z-]+-guides$/) && !p.includes('-county-') && !p.includes('-ohio')) return { priority: 0.8, changefreq: 'weekly' };
+          if (p.match(/^\/blog\/.*-county-ohio$/)) return { priority: 0.7, changefreq: 'monthly' };
           if (p.startsWith('/blog/')) return { priority: 0.6, changefreq: 'monthly' };
           if (p.startsWith('/service/')) return { priority: 0.7, changefreq: 'monthly' };
-          if (p === '/contact' || p === '/book-now') return { priority: 0.8, changefreq: 'monthly' };
+          if (p.match(/-\d{5}$/)) return { priority: 0.7, changefreq: 'monthly' };
+          if (p === '/privacy-policy' || p === '/terms-of-service') return { priority: 0.3, changefreq: 'yearly' };
+          if (p.split('/').length >= 4) return { priority: 0.6, changefreq: 'monthly' };
           return { priority: 0.5, changefreq: 'monthly' };
         };
-        
-        const xmlUrls = routes.map(p => {
+
+        const xmlUrls = allRoutes.map(p => {
           const { priority, changefreq } = getPriority(p);
           return `  <url>\n    <loc>${BUSINESS_WEBSITE}${p === '/' ? '' : p}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
         }).join('\n');
-        
+
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlUrls}\n</urlset>`;
-        
         const robots = `User-agent: *\nAllow: /\n\n# Disallow query parameters and admin pages\nDisallow: /*?*\nDisallow: /admin/\nDisallow: /api/\n\n# Sitemap location\nSitemap: ${BUSINESS_WEBSITE}/sitemap.xml\n\n# Crawl delay\nCrawl-delay: 1`;
-        
+
         writeFileSync(path.resolve(__dirname, 'public/sitemap.xml'), sitemap);
         writeFileSync(path.resolve(__dirname, 'public/robots.txt'), robots);
-        
-        console.log(`✅ Sitemap generated with ${routes.length} URLs`);
+
+        console.log(`✅ Sitemap generated with ${allRoutes.length} URLs (${prerenderRoutes.length} prerender + ${csvRoutes.length} CSV, ${prerenderRoutes.length + csvRoutes.length - allRoutes.length} deduped/excluded)`);
       } catch (error) {
         console.error('⚠️ Sitemap generation failed:', error);
       }
