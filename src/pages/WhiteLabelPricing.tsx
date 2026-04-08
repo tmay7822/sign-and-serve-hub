@@ -31,6 +31,10 @@ Thank you!
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background/50 to-primary/5">
+      <Seo
+        title="White Label Notary Websites | Signed On Time"
+        description="Professional white-label notary website solution for mobile notaries. Launch your SEO-optimized notary website in 48 hours with local pages for every service area."
+      />
       {/* Hero Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
