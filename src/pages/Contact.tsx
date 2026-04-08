@@ -1,5 +1,6 @@
 import { BasePageTemplate } from '@/components/templates/BasePageTemplate';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
+import Seo from '@/components/Seo';
 import { QuoteButton } from '@/components/QuoteButton';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -13,7 +14,7 @@ const heroSection = (
     <div className="container mx-auto px-4">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Contact SignRight Mobile Notary
+          Contact Signed On Time Mobile Notary Services
         </h1>
         <p className="text-xl mb-6 opacity-90">
           Get an instant quote or contact us for detailed assistance.
@@ -49,7 +50,12 @@ const heroSection = (
 
 const Contact = () => {
   return (
-    <BasePageTemplate heroSection={heroSection} defaultService="general-notary">
+    <>
+      <Seo
+        title="Contact Us | Signed On Time Mobile Notary"
+        description="Contact Signed On Time Mobile Notary Services. Same-day appointments available across Southwest Ohio. Call (513) 226-9052 or book online."
+      />
+      <BasePageTemplate heroSection={heroSection} defaultService="general-notary">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="text-center">
@@ -262,6 +268,7 @@ const Contact = () => {
         </div>
       </div>
     </BasePageTemplate>
+    </>
   );
 };
 

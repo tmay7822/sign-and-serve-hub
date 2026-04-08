@@ -56,7 +56,7 @@ Update these in the HTML head section:
 ### Global Text Replacements
 Use your code editor's "Find & Replace" across all files:
 
-1. `SignRight Mobile Notary` → `[Your Business Name]`
+1. `Signed On Time Mobile Notary` → `[Your Business Name]`
 2. `Cincinnati–Dayton` → `[Your Service Area]`
 3. `(513) 555-SIGN` → `[Your Phone Number]`
 4. `Hamilton, Warren, Montgomery` → `[Your Counties]`
