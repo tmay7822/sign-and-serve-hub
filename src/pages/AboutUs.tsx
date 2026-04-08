@@ -77,8 +77,8 @@ const AboutUs = () => {
   return (
     <>
       <Helmet>
-        <title>About {BUSINESS_CONFIG.name} - Professional Mobile Notary Services</title>
-        <meta name="description" content={`Learn about ${BUSINESS_CONFIG.name}, your trusted mobile notary service in Southwest Ohio. Professional, certified, and available 7 days a week.`} />
+        <title>{`About Signed On Time | Certified Mobile Notary Cincinnati-Dayton Ohio`}</title>
+        <meta name="description" content="Certified, background-screened mobile notary serving Southwest Ohio for 25+ years. Available 7 days a week across Hamilton, Warren, Butler, Montgomery, Greene and Clinton counties." />
         <meta name="keywords" content="about mobile notary, notary public Southwest Ohio, certified notary, professional notary services" />
       </Helmet>
 

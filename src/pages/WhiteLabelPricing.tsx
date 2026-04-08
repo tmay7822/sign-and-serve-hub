@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Check, Star, ArrowRight, MapPin, Zap, Shield } from 'lucide-react';
 import { PRICING_TIERS, PricingTier } from '@/config/pricing';
+import Seo from '@/components/Seo';
 
 const WhiteLabelPricing = () => {
   const [selectedTier, setSelectedTier] = useState<string>('professional');

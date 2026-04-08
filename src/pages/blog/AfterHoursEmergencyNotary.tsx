@@ -12,7 +12,7 @@ const AfterHoursEmergencyNotary = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title={`After-Hours Emergency Notary | ${BUSINESS_CONFIG.name}`}
-        description="After-Hours Emergency Notary | ${BUSINESS_CONFIG.name} - Professional mobile notary services"
+        description={`After-Hours Emergency Notary | ${BUSINESS_CONFIG.name} - Professional mobile notary services`}
       />
       <Header />
       
