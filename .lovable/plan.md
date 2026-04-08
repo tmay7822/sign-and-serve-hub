@@ -1,39 +1,48 @@
 
 
-## Create Content Audit PDF (Not Code)
+## Regenerate Content Audit with All ~500+ Pages
 
-Generate a PDF that extracts and presents all user-facing content from every page in a readable, structured format — suitable for reviewing copy, messaging consistency, and CTA placement in Claude.
+### The gap
 
-### What the PDF will contain
+The previous audit exported only the 117 static `.tsx` files. The site actually has:
 
-For each page/component, organized by section:
+| Page type | Count | Source |
+|-----------|-------|--------|
+| Static pages (`.tsx` files) | 117 | `src/pages/` |
+| Dynamic city/service pages | ~1,404 | CSV (`routes_city_corrected.csv`) → rendered by `LocalService.tsx` |
+| Dynamic county pages | ~9 | CSV → rendered by `DynamicCountyPage.tsx` |
+| Dynamic city landing pages | ~80+ | CSV → rendered by `DynamicCityPage.tsx` |
+| Location blog posts | ~200 | Generated in `locationBlogPosts.ts` |
+| **Total** | **~500+** unique URLs |
 
-- **Page name and URL path**
-- **SEO**: Title tag, meta description, keywords
-- **Hero section**: Headline (H1), subheadline, CTA text
-- **Body content**: All headings (H2, H3), paragraph text, bullet points
-- **FAQs**: Question/answer pairs
-- **CTAs**: What buttons/actions appear and where
-- **Internal links**: Where the page links to
+### Plan
 
-### Document structure
+**1. Export all content into a single PDF + Markdown file**
 
-1. **Table of Contents** — all pages grouped by type
-2. **Main Pages** (Homepage, About, Contact, FAQ, Pricing, Reviews, Service Areas, Book Now)
-3. **Service Hub Pages** (General Notary, Loan Signings, Real Estate, Estate Plans, Apostille, Business Services, Healthcare, Vehicles/DMV)
-4. **Blog Posts** (~60+ posts — title, meta description, tags, FAQs, key content)
-5. **Location Pages** (~15 pages — city, services listed, areas served, FAQs)
-6. **Seasonal/Landing Pages** (Tax Season, Back to School, Year End, etc.)
-7. **Content Summary** — review count, FAQ count, service count, CTA audit
+A Python script will:
 
-### Implementation
+- **Static pages (117)**: Extract content from `.tsx` files as before
+- **CSV-driven service pages (1,404)**: Parse the CSV to extract each route's title, meta description, city, county, ZIP, and service name — then document the template content they share (from `LocalServiceTemplate.tsx` and `ServiceLocationTemplate.tsx`)
+- **County pages (9)**: List each county with its cities, pulled from `parseRoutesCsv.ts` fallback data + CSV
+- **City landing pages**: Extract from CSV grouped by county
+- **Location blog posts (~200)**: Parse `locationBlogPosts.ts` to extract generated titles, FAQs, and content templates
 
-- Python script using `reportlab` to generate the PDF
-- Parse each `.tsx` file to extract string literals (headings, paragraphs, FAQ arrays, meta descriptions)
-- Present content in clean, readable paragraphs — not code
-- Output to `/mnt/documents/site-content-audit.pdf`
+For the template-driven pages, instead of repeating identical template copy 1,404 times, the audit will:
+- Show the **template content once** (headings, body copy, CTAs, FAQs structure)
+- Then list **every route** with its unique data (city, county, ZIP, title, meta description)
 
-### Files
+**2. Output files**
+- `/mnt/documents/full-site-content-audit.pdf` — formatted PDF
+- `/mnt/documents/full-site-content-audit.md` — markdown for pasting into Claude
 
-No project files changed. Output: `/mnt/documents/site-content-audit.pdf`
+**3. Content included per page**
+- URL path
+- SEO title and meta description
+- Page type and template used
+- City, county, ZIP (for location pages)
+- Service name
+- Unique content (if any beyond template)
+
+### Files changed
+None — output only to `/mnt/documents/`
 
