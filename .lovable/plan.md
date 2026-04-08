@@ -1,42 +1,76 @@
 
 
-## Fix SEO Meta Issues Across Site
+## Complete Sitemap Rebuild — From 111 to ~1,700+ URLs
 
-### Issue 1: AboutUs page SEO (src/pages/AboutUs.tsx)
+### Current State
 
-Line 79-82 uses `<Helmet>` with title `"About {BUSINESS_CONFIG.name} - Professional Mobile Notary Services"` and a generic description.
+| Source | URL Count | In Sitemap? |
+|--------|-----------|-------------|
+| `prerenderRoutes.ts` | 510 | Partially (only 111 made it) |
+| CSV (`routes_city_corrected.csv`) | 1,404 | No — completely missing |
+| **Total live pages** | **~1,730** | **Only 111 indexed** |
 
-**Fix**: Replace the Helmet block with the requested title and description.
+The Vite plugin regex `match(/['"`]\/[^'"`]*['"`]/g)` works but only produces 111 URLs in the current `sitemap.xml` — this is because the sitemap was generated on a stale build date (2025-12-02) and hasn't been regenerated since routes were expanded. More critically, the 1,404 CSV-driven dynamic routes (`/general-notary/hamilton/blue-ash`, etc.) are not in `prerenderRoutes.ts` at all and have never been in the sitemap.
 
-### Issue 2: Broken `${BUSINESS_CONFIG.name}` in blog descriptions
+### What changes
 
-4 blog files have `description="... ${BUSINESS_CONFIG.name} ..."` — a regular string, not a template literal, so the variable renders as the literal text `${BUSINESS_CONFIG.name}`.
+**1. New build-time sitemap generator script (`scripts/generate-sitemap.ts`)**
 
-| File | Current broken description |
-|------|--------------------------|
-| `AfterHoursEmergencyNotary.tsx` | `"After-Hours Emergency Notary \| ${BUSINESS_CONFIG.name} - Professional mobile notary services"` |
-| `College18PlusStarterPack.tsx` | `"FERPA, HIPAA & POA for College Students \| ${BUSINESS_CONFIG.name} - Professional mobile notary services"` |
-| `AffidavitJuratAcknowledgment.tsx` | `"Affidavit vs Jurat vs Acknowledgment \| ${BUSINESS_CONFIG.name} - Professional mobile notary services"` |
-| `DeedsExplained.tsx` | `"Deed Notarization Guide \| ${BUSINESS_CONFIG.name} - Professional mobile notary services"` |
+Rewrite to pull from TWO sources:
+- Parse `prerenderRoutes.ts` (510 static/blog/location routes)
+- Parse `routes_city_corrected.csv` (1,404 service×city routes)
+- Deduplicate and merge into one list
+- Exclude: `/admin/*`, any route containing `undefined`, `/auth`
+- Generate `sitemap.xml` with proper `lastmod` (today's date), `changefreq`, and `priority`
+- Generate `robots.txt`
 
-**Fix**: Change each `description="..."` to `` description={`...${BUSINESS_CONFIG.name}...`} `` so the variable resolves.
+**2. Update `prerenderRoutes.ts`** — no changes needed here; the CSV routes are intentionally separate (dynamic routes). The sitemap script will read both sources.
 
-### Issue 3: WhiteLabelPricing page (src/pages/WhiteLabelPricing.tsx)
+**3. Update the Vite plugin (`vite.config.ts`)**
 
-No `<Seo>` component exists on this page at all — no meta title or description is set.
+Update `sitemapGeneratorPlugin` to also parse the CSV file during build, so production builds always produce a complete sitemap. Same logic as the standalone script.
 
-**Fix**: Import `Seo` and add it with:
-- Title: `"White Label Notary Websites | Signed On Time"`
-- Description: `"Professional white-label notary website solution for mobile notaries. Launch your SEO-optimized notary website in 48 hours with local pages for every service area."`
+**4. Regenerate `public/sitemap.xml`**
 
-### Files changed (6 total)
+Run the script to produce the new sitemap with all ~1,730 URLs. Priority tiers:
+- `1.0` — Homepage
+- `0.9` — Service hub pages (17)
+- `0.8` — Blog home, categories, Contact, Book Now
+- `0.7` — County service pages, location pages, pricing
+- `0.6` — Blog posts, city service pages, city blog posts
+- `0.5` — Static pages (FAQ, About, etc.)
+- `0.3` — Privacy, Terms
+
+**5. Verify `public/robots.txt`**
+
+Confirm it contains:
+```
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*
+Sitemap: https://www.signedontime.com/sitemap.xml
+Crawl-delay: 1
+```
+
+### Exclusions from sitemap
+
+- `/admin/*` routes
+- `/auth`
+- Any URL containing `undefined`
+- The 4 redirect-only `/blog/*-undefined-ohio` routes
+
+### Files changed
 
 | File | Change |
 |------|--------|
-| `src/pages/AboutUs.tsx` | Update title and meta description in Helmet |
-| `src/pages/blog/AfterHoursEmergencyNotary.tsx` | Fix description from string to template literal |
-| `src/pages/blog/College18PlusStarterPack.tsx` | Fix description from string to template literal |
-| `src/pages/blog/AffidavitJuratAcknowledgment.tsx` | Fix description from string to template literal |
-| `src/pages/blog/DeedsExplained.tsx` | Fix description from string to template literal |
-| `src/pages/WhiteLabelPricing.tsx` | Add Seo component with proper title and description |
+| `scripts/generate-sitemap.ts` | Rewrite to merge prerenderRoutes + CSV, exclude admin/undefined |
+| `vite.config.ts` | Update sitemapGeneratorPlugin to also read CSV |
+| `public/sitemap.xml` | Regenerated with ~1,730 URLs |
+| `public/robots.txt` | Verified/refreshed |
+
+### Expected result
+
+Google Search Console will see ~1,730 URLs in the sitemap instead of 111. After resubmission, crawl coverage should increase from 38 pages to the full site within 1-2 crawl cycles.
 
