@@ -312,6 +312,12 @@ export const routes: RouteObject[] = [
       { path: 'blog/education-guides-greene-county-ohio', element: <LocationBlogPost /> },
       { path: 'blog/education-guides-clinton-county-ohio', element: <LocationBlogPost /> },
       
+      // Redirects for broken Google-indexed URLs with "undefined"
+      { path: 'blog/general-notary-guides-undefined-ohio', element: <Navigate to="/blog/general-notary-guides" replace /> },
+      { path: 'blog/loan-signing-guides-undefined-ohio', element: <Navigate to="/blog/loan-signing-guides" replace /> },
+      { path: 'blog/real-estate-guides-undefined-ohio', element: <Navigate to="/blog/real-estate-guides" replace /> },
+      { path: 'blog/estate-planning-guides-undefined-ohio', element: <Navigate to="/blog/estate-planning-guides" replace /> },
+
       // City-Level Blog Posts (high-traffic cities)
       { path: 'blog/general-notary-guides-cincinnati-ohio', element: <LocationBlogPost /> },
       { path: 'blog/general-notary-guides-mason-ohio', element: <LocationBlogPost /> },

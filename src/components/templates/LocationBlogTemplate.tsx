@@ -14,8 +14,9 @@ import CrossCategoryLinks from '@/components/blog/CrossCategoryLinks';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, User, MapPin, ArrowRight } from 'lucide-react';
+import { Navigate } from 'react-router-dom';
 import { BlogPost, BLOG_CATEGORIES } from '@/data/blog';
-import { LOCATION_COUNTIES } from '@/data/locationBlogPosts';
+import { LOCATION_COUNTIES, LOCATION_CITIES } from '@/data/locationBlogPosts';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface LocationBlogTemplateProps {
@@ -23,10 +24,19 @@ interface LocationBlogTemplateProps {
 }
 
 const LocationBlogTemplate: React.FC<LocationBlogTemplateProps> = ({ post }) => {
-  // Extract county from slug
-  const countySlug = post.slug.replace(`${post.categorySlug}-`, '').replace('-ohio', '');
-  const county = LOCATION_COUNTIES.find(c => c.slug === countySlug);
+  // Extract county from slug — supports both county-level and city-level posts
+  const slugRemainder = post.slug.replace(`${post.categorySlug}-`, '').replace('-ohio', '');
+  let county = LOCATION_COUNTIES.find(c => c.slug === slugRemainder);
+  const city = !county ? LOCATION_CITIES.find(c => c.slug === slugRemainder) : undefined;
+  if (!county && city) {
+    county = LOCATION_COUNTIES.find(c => c.name === city.county);
+  }
   const category = BLOG_CATEGORIES.find(c => c.slug === post.categorySlug);
+
+  // Safety: if county still can't be resolved, redirect to blog
+  if (!county) {
+    return <Navigate to="/blog" replace />;
+  }
   
   // Get related location posts (other categories for same county)
   const relatedCategories = BLOG_CATEGORIES.filter(c => c.slug !== post.categorySlug).slice(0, 3);
@@ -290,26 +300,28 @@ const LocationBlogTemplate: React.FC<LocationBlogTemplateProps> = ({ post }) => 
                   )}
                   
                   {/* Related County Guides */}
-                  <Card>
-                    <CardContent className="p-6">
-                      <h3 className="font-semibold text-foreground mb-3">
-                        More {county?.name} County Guides
-                      </h3>
-                      <ul className="space-y-3">
-                        {relatedCategories.map((cat) => (
-                          <li key={cat.id}>
-                            <Link 
-                              to={`/blog/${cat.slug}-${county?.slug}-ohio`}
-                              className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-                            >
-                              <ArrowRight className="h-3 w-3" />
-                              {cat.title} in {county?.name} County
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
+                  {county && (
+                    <Card>
+                      <CardContent className="p-6">
+                        <h3 className="font-semibold text-foreground mb-3">
+                          More {county.name} County Guides
+                        </h3>
+                        <ul className="space-y-3">
+                          {relatedCategories.map((cat) => (
+                            <li key={cat.id}>
+                              <Link 
+                                to={`/blog/${cat.slug}-${county.slug}-ohio`}
+                                className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                              >
+                                <ArrowRight className="h-3 w-3" />
+                                {cat.title} in {county.name} County
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  )}
                   
                   {/* CTA Card */}
                   <Card className="bg-primary text-primary-foreground">
