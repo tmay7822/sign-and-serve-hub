@@ -1,117 +1,122 @@
 
 
-## Add Reliable JSON-LD FAQ Schema to 7 Pages
+## Add LocalBusiness, AggregateRating, and Breadcrumb Schema
 
-### Current State
+### Part 1 — LocalBusiness Schema on Homepage
 
-All 7 pages already have FAQ content and schema injection — but via `useEffect` DOM manipulation in `FAQAccordion` (6 service pages) and directly in `FAQ.tsx`. This approach is fragile for prerendering and may not be picked up by Google's crawler reliably.
+**`src/components/SEO/LocalBusinessSchema.tsx`** — Full rewrite from `useEffect` DOM injection to inline `dangerouslySetInnerHTML`. When rendered without `serviceName` prop (homepage case), output the exact user-specified LocalBusiness JSON-LD with:
+- `@type: "LocalBusiness"`, name, alternateName, full description
+- address: Waynesville, OH 45068
+- geo: 39.5318, -84.0955
+- openingHours: 7 days, 07:00-22:00
+- 6 areaServed County entries
+- hasOfferCatalog with 6 services (Loan Signing, Estate Planning, Apostille, Healthcare, Vehicle Title, General Notary) — each with descriptions
+- founder: Terry May with credentials
+- sameAs array with TODO comments for GMB, Facebook, LinkedIn URLs
+- Dynamic `aggregateRating` pulled from `useGoogleReviews` hook
 
-**Existing FAQ counts from `serviceContent.ts`:**
+When rendered with `serviceName` prop (service pages), keep existing Service schema but also switch to inline rendering.
 
-| Page | Service ID | Existing FAQs |
-|------|-----------|---------------|
-| GeneralNotary | `general-notary` | 8 |
-| LoanSignings | `loan-signings` | 8 |
-| EstatePlans | `estate-plans` | 8 |
-| VehiclesDMV | `vehicles-dmv` | 8 |
-| Apostille | `apostille` | 8 |
-| HealthcareNotary | `healthcare-notary` | 8 |
-| FAQ | (hardcoded) | 8 |
+**`src/pages/Index.tsx`** — No changes needed; already renders `<LocalBusinessSchema />`.
 
-All pages already exceed the 3-item minimum. No additional FAQ content is needed.
+### Part 2 — AggregateRating on Reviews Page
 
-### Problem
+**`src/pages/Reviews.tsx`** — Already renders `<ReviewSchema />` which already uses inline `dangerouslySetInnerHTML` and pulls dynamic `averageRating`/`totalReviews` from `useGoogleReviews`, including the first 5 individual reviews. This already satisfies the requirement. No changes needed.
 
-`FAQAccordion` injects schema via `useEffect` + `document.createElement('script')`. This:
-1. Only runs client-side after hydration
-2. May be missed by prerender crawlers
-3. Gets removed on unmount, creating race conditions with crawl timing
+### Part 3 — Breadcrumb Schema on Service Pages
 
-### Solution
+**`src/components/SEO/BreadcrumbSchema.tsx`** — Rewrite from `useEffect` DOM injection to inline `dangerouslySetInnerHTML`. Keep the same `generateBreadcrumbsFromPath` logic but render the schema inline. This fixes all 6 service pages at once since `ServiceHubEnhanced` already renders `<BreadcrumbSchema />`.
 
-Replace the `useEffect` DOM injection in `FAQAccordion` with inline `<script>` rendering via `dangerouslySetInnerHTML` in the component's JSX return. This ensures the schema is present in the initial HTML render and picked up by all crawlers.
-
-For `FAQ.tsx`, replace its `useEffect` schema injection with the same inline approach.
-
-### Changes — 2 files
-
-**1. `src/components/FAQAccordion.tsx`**
-- Remove the `useEffect` that creates/injects the schema script tag
-- Remove `isBrowser` import (no longer needed)
-- Add inline `<script type="application/ld+json" dangerouslySetInnerHTML={...} />` at the top of the component's return JSX, rendering the same FAQPage schema
-- This single change fixes all 6 service pages at once (GeneralNotary, LoanSignings, EstatePlans, VehiclesDMV, Apostille, HealthcareNotary)
-
-**2. `src/pages/FAQ.tsx`**
-- Remove the `useEffect` block that creates/injects the FAQ schema script tag
-- Add inline `<script type="application/ld+json" dangerouslySetInnerHTML={...} />` in the component return with the same 8 FAQ items
-- Keep the rest of the page unchanged
-
-### What this achieves
-- FAQ schema is in the DOM on first render, not deferred to useEffect
-- Google's crawler and prerender service will reliably see the structured data
-- All 7 pages get proper FAQPage schema with their real FAQ content (8 items each, 56 total)
-- No visible UI changes — only the schema delivery mechanism changes
-
-### JSON-LD example output (GeneralNotary page)
-
+The breadcrumb output for e.g. `/loan-signings` will be:
 ```json
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What ID do I need for notarization?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You need a current, government-issued photo ID such as a driver's license, passport, or state ID card. The ID must not be expired and must clearly show your photo and signature."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you notarize documents in languages other than English?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, as long as the notarial certificate is in English and you can communicate with the notary in English to confirm your identity and willingness to sign."
-      }
-    }
-    // ... 6 more items
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.signedontime.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Loan Signings", "item": "https://www.signedontime.com/loan-signings" }
   ]
 }
 ```
 
-### JSON-LD example output (FAQ page)
+### Complete JSON-LD for Part 1 (Homepage LocalBusiness)
 
 ```json
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Do you travel to me?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! We provide mobile notary services across Cincinnati–Dayton area. We come to your home, office, or any convenient location within our service area."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What IDs do I need?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You'll need a current, government-issued photo ID such as a driver's license, state ID, passport, or military ID. The ID must be unexpired and clearly show your photo and signature."
-      }
-    }
-    // ... 6 more items
-  ]
+  "@type": "LocalBusiness",
+  "name": "Signed On Time Mobile Notary Services",
+  "alternateName": "Signed On Time",
+  "description": "Certified mobile notary serving Southwest Ohio including Hamilton, Warren, Butler, Montgomery, Greene and Clinton counties. Loan signings, estate planning, apostille, healthcare directives, vehicle titles and general notary services. Same-day appointments available 7 days a week.",
+  "url": "https://www.signedontime.com",
+  "telephone": "+15132269052",
+  "email": "Terry@SignedOnTime.com",
+  "foundingDate": "1999",
+  "priceRange": "$$",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Cash, Credit Card, Check, Venmo, Zelle",
+  "openingHours": ["Mo 07:00-22:00","Tu 07:00-22:00","We 07:00-22:00","Th 07:00-22:00","Fr 07:00-22:00","Sa 07:00-22:00","Su 07:00-22:00"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Waynesville",
+    "addressRegion": "OH",
+    "postalCode": "45068",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 39.5318,
+    "longitude": -84.0955
+  },
+  "areaServed": [
+    {"@type": "County", "name": "Hamilton County", "containedIn": "Ohio"},
+    {"@type": "County", "name": "Warren County", "containedIn": "Ohio"},
+    {"@type": "County", "name": "Butler County", "containedIn": "Ohio"},
+    {"@type": "County", "name": "Montgomery County", "containedIn": "Ohio"},
+    {"@type": "County", "name": "Greene County", "containedIn": "Ohio"},
+    {"@type": "County", "name": "Clinton County", "containedIn": "Ohio"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Mobile Notary Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Loan Signing Services", "description": "Certified loan signing agent for mortgage closings, refinances, HELOCs and purchase transactions"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estate Planning Notarization", "description": "Mobile notary for wills, trusts, powers of attorney and healthcare directives"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Apostille Services", "description": "Document authentication and apostille preparation for international use"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Healthcare Document Notarization", "description": "Bedside notarization at hospitals, rehab facilities and senior communities"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vehicle Title Notarization", "description": "Ohio car title transfer notarization and bill of sale notary services"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "General Notary Services", "description": "Acknowledgments, jurats, oaths and affirmations for all document types"}}
+    ]
+  },
+  "sameAs": [
+    "https://www.google.com/maps?cid=YOUR_GMB_CID",
+    "https://www.facebook.com/signedontime",
+    "https://www.linkedin.com/company/signedontime"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Terry May",
+    "jobTitle": "Certified Notary Public and Loan Signing Agent",
+    "description": "25+ years experience in commercial and residential lending. NNA certified, background screened and fully insured."
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "bestRating": "5",
+    "worstRating": "1",
+    "reviewCount": "[dynamic from useGoogleReviews]"
+  }
 }
 ```
 
 ### Files changed (2 total)
 
-| File | Change | FAQ items |
-|------|--------|-----------|
-| `src/components/FAQAccordion.tsx` | Replace useEffect schema with inline dangerouslySetInnerHTML | Affects 6 pages (8 items each) |
-| `src/pages/FAQ.tsx` | Replace useEffect schema with inline dangerouslySetInnerHTML | 8 items |
+| File | Change |
+|------|--------|
+| `src/components/SEO/LocalBusinessSchema.tsx` | Rewrite to inline dangerouslySetInnerHTML with full user-specified schema |
+| `src/components/SEO/BreadcrumbSchema.tsx` | Rewrite from useEffect to inline dangerouslySetInnerHTML |
+
+`src/pages/Reviews.tsx` — no changes needed (ReviewSchema already inline with dynamic data).
+`src/pages/Index.tsx` — no changes needed (already renders LocalBusinessSchema).
+Service pages — no changes needed (already render BreadcrumbSchema via ServiceHubEnhanced).
 
