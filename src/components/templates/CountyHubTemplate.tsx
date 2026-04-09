@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, User, MapPin, ArrowRight, Timer, Map, CalendarDays, Award, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import NeedBasedNavigation from '@/components/NeedBasedNavigation';
 
 interface ServiceSection {
   icon: LucideIcon;
@@ -133,6 +134,16 @@ const CountyHubTemplate = ({
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Need-Based Navigation */}
+        <section className="py-10">
+          <div className="container mx-auto px-4">
+            <NeedBasedNavigation
+              heading={`What do you need notarized in ${county}?`}
+              variant="services"
+            />
           </div>
         </section>
 

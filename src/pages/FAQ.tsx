@@ -7,6 +7,7 @@ import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Calendar, Phone } from 'lucide-react';
+import NeedBasedNavigation from '@/components/NeedBasedNavigation';
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -52,6 +53,17 @@ const FAQ = () => {
               <StandardCTAButtons variant="top" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Need-Based Navigation */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <NeedBasedNavigation
+            heading="Find your answer faster"
+            subtext="Select your situation for relevant information"
+            variant="compact"
+          />
         </div>
       </section>
 

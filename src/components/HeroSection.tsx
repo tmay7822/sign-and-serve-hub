@@ -1,36 +1,7 @@
-import { BUSINESS_CONFIG } from '@/config/business';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
-import { FileText, Car, Home, Heart, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useGoogleReviews } from '@/hooks/useGoogleReviews';
-
-const intentOptions = [
-  {
-    icon: FileText,
-    label: "I Need a Document Notarized",
-    description: "Affidavits, acknowledgments, oaths & more",
-    link: "/general-notary",
-  },
-  {
-    icon: Car,
-    label: "I'm Buying or Selling a Car",
-    description: "Title transfers, bills of sale & DMV docs",
-    link: "/vehicles-dmv",
-  },
-  {
-    icon: Home,
-    label: "I Have a Real Estate Closing",
-    description: "Loan signings, deeds & property transfers",
-    link: "/loan-signings",
-  },
-  {
-    icon: Heart,
-    label: "I Need Hospital or Bedside Notary",
-    description: "Healthcare directives, POA & medical docs",
-    link: "/healthcare-notary",
-  },
-];
+import NeedBasedNavigation from '@/components/NeedBasedNavigation';
 
 export const aeoQuestions = [
   {
@@ -118,37 +89,10 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Intent-Based Routing Buttons */}
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">
-              What Do You Need Notarized?
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {intentOptions.map((option) => {
-                const IconComponent = option.icon;
-                return (
-                  <Link
-                    key={option.link}
-                    to={option.link}
-                    className="flex items-center gap-4 p-5 lg:p-6 bg-white rounded-xl border-2 border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300 group text-left min-h-[72px]"
-                  >
-                    <div className="flex-shrink-0 w-14 h-14 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
-                      <IconComponent className="h-7 w-7 text-white" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="block text-lg lg:text-xl font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
-                        {option.label}
-                      </span>
-                      <span className="block text-sm text-muted-foreground mt-1">
-                        {option.description}
-                      </span>
-                    </div>
-                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" />
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
+          <NeedBasedNavigation
+            heading="What Do You Need Notarized?"
+            variant="full"
+          />
 
           {/* AEO Q&A Block — visible to AI extractors */}
           <div className="max-w-3xl mx-auto mt-10 text-left space-y-6">
