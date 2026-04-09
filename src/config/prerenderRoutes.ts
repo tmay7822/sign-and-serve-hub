@@ -107,6 +107,10 @@ export const PRERENDER_ROUTES = [
   '/blog/immigration-documents-notary-guide',
   '/blog/military-veterans-notary-guide',
   '/blog/healthcare-documents-notary-guide',
+  '/blog/ohio-car-title-transfer-requirements',
+  
+  // Resources Hub
+  '/resources',
   
   // Location-Specific Blog Posts (42 total: 7 categories × 6 counties)
   // General Notary Guides by County
