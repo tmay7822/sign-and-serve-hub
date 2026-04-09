@@ -13,6 +13,7 @@ import BreadcrumbNav from "@/components/BreadcrumbNav";
 import ScrollToTop from "@/components/ScrollToTop";
 import { AIChatWidget } from "@/components/AIChatWidget";
 import { SmartMobileCtaBar } from "@/components/SmartMobileCtaBar";
+import ScrollLeadCapture from "@/components/ScrollLeadCapture";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +40,7 @@ const Layout = () => (
             <BreadcrumbNav />
             <Outlet />
             <SmartMobileCtaBar />
+            <ScrollLeadCapture />
             <AIChatWidget />
           </Suspense>
         </TooltipProvider>

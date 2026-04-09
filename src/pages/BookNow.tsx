@@ -6,6 +6,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Phone, MapPin, Clock, Calendar, CheckCircle, ArrowRight, Shield, Award } from 'lucide-react';
+import AvailabilityIndicator from '@/components/AvailabilityIndicator';
 import { Link } from 'react-router-dom';
 
 const breadcrumbSchema = {
@@ -39,6 +40,11 @@ const BookNow = () => {
             <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto">
               Same-day appointments available 7 days a week across Southwest Ohio. Select your service and preferred time below.
             </p>
+
+            {/* Availability */}
+            <div className="flex justify-center mb-4">
+              <AvailabilityIndicator />
+            </div>
 
             {/* Trust Bar */}
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-foreground">
