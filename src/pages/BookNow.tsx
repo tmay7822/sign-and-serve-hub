@@ -1,273 +1,167 @@
 import Seo from '@/components/Seo';
 import { BookingWidget } from '@/components/BookingWidget';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { CompactServicesGrid } from '@/components/landing/CompactServicesGrid';
-import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
-import { MiniTestimonials } from '@/components/landing/MiniTestimonials';
-import { QuoteCalculatorModal } from '@/components/QuoteCalculatorModal';
-import { Phone, ArrowRight, Calculator, Shield, Award, CheckCircle, Clock, Calendar } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Phone, MapPin, Clock, Calendar, CheckCircle, ArrowRight, Shield, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState, useRef } from 'react';
-import logoImage from '@/assets/signed-on-time-logo.jpg';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.signedontime.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Book Now", "item": "https://www.signedontime.com/book-now" }
+  ]
+};
 
 const BookNow = () => {
-  const [showQuoteModal, setShowQuoteModal] = useState(false);
-  const [showBookingModal, setShowBookingModal] = useState(false);
-  const [preSelectedService, setPreSelectedService] = useState<string>("");
-  const bookingWidgetRef = useRef<HTMLDivElement>(null);
-
-  const handleServiceSelect = (serviceName: string) => {
-    setPreSelectedService(serviceName);
-    // Scroll to booking widget
-    bookingWidgetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
-
   return (
     <>
       <Seo
-        title="Book Mobile Notary - Instant Quote & Scheduling | Signed On Time"
-        description="Get your quote and book online in 60 seconds. Professional mobile notary service across Cincinnati-Dayton metro. Same-day appointments available."
-        keywords="book notary, instant quote, mobile notary Cincinnati, schedule notary online, same day notary"
+        title="Book Your Mobile Notary Appointment | Signed On Time"
+        description="Book your mobile notary appointment online. Same-day service available 7 days a week across Southwest Ohio. Instant confirmation. Call (513) 226-9052."
         canonical="https://www.signedontime.com/book-now"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        {/* Minimal Header */}
-        <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-              <img 
-                src={logoImage} 
-                alt={BUSINESS_CONFIG.logo.alt}
-                className="h-12 md:h-14 w-auto object-contain"
-              />
-              <div className="hidden md:block">
-                <div className="text-xl font-bold text-primary">{BUSINESS_CONFIG.name}</div>
-                <div className="text-xs text-muted-foreground">{BUSINESS_CONFIG.tagline}</div>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Button 
-                asChild 
-                size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg"
-              >
-                <a href={`tel:${BUSINESS_CONFIG.phone}`} className="flex items-center gap-2">
-                  <Phone className="h-5 w-5" />
-                  <span className="hidden sm:inline">Call Now</span>
-                  <span className="sm:hidden">{BUSINESS_CONFIG.phone}</span>
-                </a>
-              </Button>
-              <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden md:inline">
-                Explore All Services →
-              </Link>
-            </div>
-          </div>
-        </header>
+      <Header />
 
-        {/* Hero Section with Booking Widget */}
-        <section className="py-4 md:py-8">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              {/* Headline */}
-              <div className="text-center mb-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2">
-                  Get Your Quote & Book Online
-                  <span className="block text-accent mt-2">in 60 Seconds</span>
-                </h1>
-                <p className="text-xl md:text-2xl font-semibold text-accent mb-1">
-                  {BUSINESS_CONFIG.tagline}
-                </p>
-                <p className="text-lg md:text-xl text-muted-foreground mb-3">
-                  Professional mobile notary service across {BUSINESS_CONFIG.serviceArea.primary}
-                </p>
-              </div>
-
-              {/* Main Booking Widget */}
-              <div ref={bookingWidgetRef} className="bg-card border-2 border-accent/20 rounded-xl shadow-2xl p-6 md:p-8">
-                <h2 className="text-2xl font-bold text-primary mb-6 text-center">
-                  Select Your Service & Get Instant Pricing
-                </h2>
-                <BookingWidget 
-                  defaultService={preSelectedService}
-                  variant="default"
-                  size="lg"
-                  className="w-full"
-                >
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Book Now
-                </BookingWidget>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Overview */}
-        <section className="py-12 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-primary mb-3">
-                Our Notary Services
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                From loan signings to estate planning, we handle all your notarization needs
-              </p>
-            </div>
-            <CompactServicesGrid onServiceSelect={handleServiceSelect} />
-          </div>
-        </section>
-
-        {/* Why Choose Us - Enhanced Trust & Credibility */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-primary mb-8 text-center">
-                Why Choose {BUSINESS_CONFIG.name}?
-              </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Background Checked */}
-                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
-                  <div className="flex justify-center mb-4">
-                    <div className="p-3 gradient-primary rounded-lg">
-                      <Shield className="h-6 w-6 text-white" />
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">Background Checked</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Fully vetted and background screened for your security and peace of mind
-                  </p>
-                </div>
-                
-                {/* NNA Certified */}
-                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
-                  <div className="flex justify-center mb-4">
-                    <div className="p-3 gradient-primary rounded-lg">
-                      <Award className="h-6 w-6 text-white" />
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">NNA Certified</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Professionally certified and insured for your protection
-                  </p>
-                </div>
-                
-                {/* Fully Insured */}
-                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
-                  <div className="flex justify-center mb-4">
-                    <div className="p-3 gradient-primary rounded-lg">
-                      <CheckCircle className="h-6 w-6 text-white" />
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">Fully Insured</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Protected with $100,000 E&O insurance and bonding
-                  </p>
-                </div>
-                
-                {/* Same Day Availability */}
-                <div className="text-center p-6 bg-card rounded-lg border hover:border-accent/50 transition-colors">
-                  <div className="flex justify-center mb-4">
-                    <div className="p-3 gradient-primary rounded-lg">
-                      <Clock className="h-6 w-6 text-white" />
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">Same Day Availability</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Urgent needs? We offer same-day and after-hours service
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Service Area */}
-        <section className="py-12 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl font-bold text-primary mb-4">
-                Serving {BUSINESS_CONFIG.serviceArea.primary}
-              </h2>
-              <p className="text-muted-foreground">
-                <strong>Counties:</strong> {BUSINESS_CONFIG.serviceArea.counties}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Service area extends {BUSINESS_CONFIG.serviceArea.radius} from Cincinnati
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Mini Testimonials */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <MiniTestimonials />
-          </div>
-        </section>
-
-        {/* Bottom CTA */}
-        <section className="py-16 bg-gradient-to-r from-primary to-accent text-primary-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Book your appointment now or call us for immediate assistance
+      <div className="min-h-screen bg-background">
+        {/* Hero */}
+        <section className="py-10 md:py-14 bg-gradient-to-br from-primary/10 via-background to-accent/5">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Book Your Mobile Notary Appointment
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Same-day appointments available 7 days a week across Southwest Ohio. Select your service and preferred time below.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-3xl mx-auto">
-              <BookingWidget 
-                variant="secondary"
+
+            {/* Trust Bar */}
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-foreground">
+              {['NNA Certified', 'Background Checked', 'Fully Insured', '25+ Years Experience', 'Same-Day Available'].map((item) => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <CheckCircle className="h-4 w-4 text-primary" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Booking Widget */}
+        <section className="py-8 md:py-12">
+          <div className="container mx-auto px-4 max-w-2xl">
+            <div className="bg-card border-2 border-primary/20 rounded-xl shadow-xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
+                Select Your Service & Book
+              </h2>
+              <BookingWidget
+                variant="default"
                 size="lg"
-                className="text-lg min-w-[200px]"
+                className="w-full"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Book Now
               </BookingWidget>
-              <Button 
-                size="lg"
-                variant="secondary"
-                onClick={() => setShowQuoteModal(true)}
-                className="text-lg min-w-[200px]"
-              >
-                <Calculator className="mr-2 h-5 w-5" />
-                Get Quick Quote
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                onClick={() => window.open(`tel:${BUSINESS_CONFIG.phone}`)}
-                className="text-lg min-w-[200px] bg-background/10 hover:bg-background/20 text-primary-foreground border-primary-foreground/30"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Call Now
-              </Button>
             </div>
           </div>
         </section>
 
-        {/* Quote Calculator Modal */}
-        <QuoteCalculatorModal 
-          isOpen={showQuoteModal}
-          onClose={() => setShowQuoteModal(false)}
-        />
+        {/* Prefer to Call or Text? */}
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+              Prefer to Call or Text?
+            </h2>
+            <div className="grid sm:grid-cols-3 gap-6">
+              <Card className="text-center">
+                <CardContent className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-primary/10 rounded-lg"><Phone className="h-6 w-6 text-primary" /></div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Call or Text</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Fastest response for same-day appointments</p>
+                  <Button className="w-full" asChild>
+                    <a href="tel:5132269052">Call (513) 226-9052</a>
+                  </Button>
+                </CardContent>
+              </Card>
 
-        {/* Minimal Footer */}
-        <footer className="py-6 border-t bg-background">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-              <p>&copy; {new Date().getFullYear()} {BUSINESS_CONFIG.name}. All rights reserved.</p>
-              <div className="flex gap-4">
-                <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-                <Link to="/about-us" className="hover:text-primary transition-colors">About</Link>
-                <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
-                <Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-                <Link to="/terms-of-service" className="hover:text-primary transition-colors">Terms of Service</Link>
-              </div>
+              <Card className="text-center">
+                <CardContent className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-primary/10 rounded-lg"><MapPin className="h-6 w-6 text-primary" /></div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Our Service Area</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Serving Hamilton, Warren, Butler, Montgomery, Greene and Clinton counties. Most locations reached within 30-45 minutes from Waynesville.</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link to="/service-areas">View Service Areas</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center">
+                <CardContent className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-primary/10 rounded-lg"><Clock className="h-6 w-6 text-primary" /></div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">Need It Today?</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Call now for immediate scheduling. We answer 7 days a week 7AM to 10PM.</p>
+                  <Button className="w-full" asChild>
+                    <a href="tel:5132269052">Call Now</a>
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
-        </footer>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-12">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+              How It Works
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { step: '1', title: 'Book Online or Call', desc: 'Select your service and preferred time above or call (513) 226-9052' },
+                { step: '2', title: 'Confirmation', desc: 'Receive immediate confirmation with appointment details and what to bring' },
+                { step: '3', title: 'We Come To You', desc: 'Terry arrives at your location on time with all necessary notary supplies' },
+                { step: '4', title: 'Done', desc: 'Documents notarized correctly the first time with same-day delivery options available' },
+              ].map((s) => (
+                <div key={s.step} className="text-center">
+                  <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mx-auto mb-4">
+                    {s.step}
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Service Pricing */}
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-3xl text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Service Pricing
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Ohio notary fees are regulated by state law. Our pricing includes the notarial act fee plus a transparent mobile travel fee based on your location.
+            </p>
+            <Link to="/pricing" className="inline-flex items-center text-primary font-semibold hover:underline text-lg">
+              View Complete Pricing <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+        </section>
       </div>
+
+      <Footer />
     </>
   );
 };

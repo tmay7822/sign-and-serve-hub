@@ -1,11 +1,8 @@
-// SIMPLIFIED MOBILE CTA BAR
-// Two large buttons: Call Now and Book Online
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Calendar } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { BookingWidget } from './BookingWidget';
+import { Link, useLocation } from 'react-router-dom';
 import { haptic } from '@/utils/haptics';
 
 const containerVariants = {
@@ -19,6 +16,10 @@ const containerVariants = {
 
 export const SmartMobileCtaBar = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { pathname } = useLocation();
+
+  // Hide on /book-now page
+  const isBookNowPage = pathname === '/book-now';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +32,8 @@ export const SmartMobileCtaBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (isBookNowPage) return null;
+
   return (
     <>
       <motion.div 
@@ -42,7 +45,6 @@ export const SmartMobileCtaBar = () => {
         animate={isVisible ? "visible" : "hidden"}
       >
         <div className="flex items-center gap-3 py-3 px-4 max-w-md mx-auto">
-          {/* Call Now */}
           <a
             href={`tel:${BUSINESS_CONFIG.phone}`}
             className="flex-1 flex items-center justify-center gap-2 py-4 bg-green-600 hover:bg-green-700 text-white font-bold text-base rounded-xl transition-colors min-h-[56px] shadow-md"
@@ -53,19 +55,17 @@ export const SmartMobileCtaBar = () => {
             Call Now
           </a>
 
-          {/* Book Online */}
-          <BookingWidget
-            variant="ghost"
-            size="sm"
-            className="flex-1 flex items-center justify-center gap-2 py-4 bg-primary hover:bg-primary/90 text-white font-bold text-base rounded-xl transition-colors min-h-[56px] shadow-md h-auto"
+          <Link
+            to="/book-now"
+            className="flex-1 flex items-center justify-center gap-2 py-4 bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold text-base rounded-xl transition-colors min-h-[56px] shadow-md"
+            onClick={() => haptic.medium()}
           >
             <Calendar className="h-5 w-5" />
             Book Online
-          </BookingWidget>
+          </Link>
         </div>
       </motion.div>
 
-      {/* Spacer */}
       {isVisible && <div className="h-20 lg:hidden" aria-hidden="true" />}
     </>
   );

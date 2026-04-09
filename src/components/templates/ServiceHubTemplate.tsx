@@ -22,6 +22,7 @@ import { RouteCity, getRoutesByService } from '@/data/locations';
 import { getServiceContent } from '@/data/serviceContent';
 import { FileText, MapPin, Clock, Shield, Star, ArrowRight, CheckCircle, HelpCircle } from 'lucide-react';
 import DocumentLibrarySection from '@/components/DocumentLibrarySection';
+import BookingCTASection from '@/components/BookingCTASection';
 
 interface ServiceHubTemplateProps {
   service: Service;
@@ -29,6 +30,7 @@ interface ServiceHubTemplateProps {
   localRoutes?: RouteCity[];
   showBooking?: boolean;
   defaultService?: string;
+  bookingServiceName?: string;
 }
 
 const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
@@ -36,7 +38,8 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
   featuredPosts,
   localRoutes,
   showBooking = false,
-  defaultService
+  defaultService,
+  bookingServiceName
 }) => {
   const category = getCategoryByServiceSlug(service.slug);
   const posts = featuredPosts || getPostsByService(service.slug).slice(0, 4);
@@ -257,6 +260,11 @@ const ServiceHubTemplate: React.FC<ServiceHubTemplateProps> = ({
             </div>
           </div>
         </section>
+      )}
+
+      {/* Booking CTA */}
+      {bookingServiceName && (
+        <BookingCTASection serviceName={bookingServiceName} />
       )}
 
       {/* FAQ Section with Schema */}

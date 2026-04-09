@@ -13,6 +13,7 @@ const LoanSignings = () => {
     service={service} 
     showBooking={true} 
     defaultService="loan-signings"
+    bookingServiceName="Loan Signing"
     quickAnswer={{
       question: "What happens during a loan signing?",
       answer: "A certified loan signing agent guides you through signing mortgage documents, reviews key terms, ensures proper notarization, and returns completed documents to your lender. We handle refinances, purchases, HELOCs, and reverse mortgages throughout Ohio."

@@ -22,6 +22,7 @@ import { ArrowRight, MapPin, FileText, Users, Clock, CheckCircle, Lightbulb, Sta
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge';
 import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import DocumentLibrarySection from '@/components/DocumentLibrarySection';
+import BookingCTASection from '@/components/BookingCTASection';
 
 interface ServiceHubEnhancedProps {
   service: Service;
@@ -32,6 +33,7 @@ interface ServiceHubEnhancedProps {
   showBooking?: boolean;
   defaultService?: string;
   relatedGuides?: { title: string; href: string }[];
+  bookingServiceName?: string;
 }
 
 const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
@@ -39,7 +41,8 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
   quickAnswer,
   showBooking = false,
   defaultService,
-  relatedGuides
+  relatedGuides,
+  bookingServiceName
 }) => {
   const blogPosts = getPostsByService(service.slug).slice(0, 6);
   const localRoutes = getRoutesByService(service.slug).slice(0, 8);
@@ -234,6 +237,11 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
             </div>
           </div>
         </section>
+      )}
+
+      {/* Booking CTA */}
+      {bookingServiceName && (
+        <BookingCTASection serviceName={bookingServiceName} />
       )}
 
       {/* FAQ Section with Schema */}

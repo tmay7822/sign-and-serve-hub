@@ -9,7 +9,7 @@ const HealthcareNotary = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} />;
+  return <ServiceHubTemplate service={service} bookingServiceName="Healthcare Document" />;
 };
 
 export default HealthcareNotary;
