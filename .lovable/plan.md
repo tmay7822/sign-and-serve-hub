@@ -1,85 +1,66 @@
 
 
-## Improve Lead Capture Across Site
+## Improve Internal Linking Across Site
 
-### Part 1 — Contact Page Rewrite
+### Audit Results
 
-**File: `src/pages/Contact.tsx`** — Full rewrite
+| Check | Status | Detail |
+|-------|--------|--------|
+| County hubs cross-link each other | MISSING | None of the 6 pages link to any other county hub |
+| Service pages → county hubs | MISSING | No service hub template links to county hub pages |
+| Homepage → county hubs | MISSING | No county section on homepage |
+| County hubs → /resources | MISSING | No link to /resources on any county page |
+| Resources → county hubs | WRONG TARGET | Links to `/service/hamilton-county` instead of `/blog/notary-guide-hamilton-county-ohio` |
+| Footer → county hubs | MISSING | Footer mentions counties in text only, no links |
 
-Replace current layout with:
-- `<Seo />` with new title/description
-- BreadcrumbList schema (Home → Contact) via `dangerouslySetInnerHTML`
-- `<Header />` + `<Footer />` (stop using `BasePageTemplate` — use standalone layout for full control)
-- Two-column desktop / single-column mobile layout:
-  - **Left column**: Contact info cards (Phone, Email, Service Area, Hours) + "Response Promise" box
-  - **Right column**: Contact form with controlled state, validation, service dropdown, GHL webhook placeholder
-- SMS "Prefer to Text?" card below the form
-- Form submission: attempt `fetch()` to `VITE_GHL_CONTACT_WEBHOOK` env var; if empty string, skip fetch, log console warning, show success message anyway
-- Success message: personalized with name, 30-minute promise, call CTA
-- Error message: fallback to call CTA
+### Changes
 
-Form fields (controlled via `useState`):
-- Full Name (required)
-- Phone Number (required) + helper text
-- Email (optional)
-- Service Needed (select dropdown, required) — 8 options
-- City or ZIP Code (required)
-- Preferred Date and Time (text input)
-- Message (textarea, optional)
+#### 1. Homepage — Add County Hubs Section (`src/pages/Index.tsx`)
 
-Submit button: red, full-width mobile, loading state via `isSubmitting` state.
+Add a new section between the Resources Preview and FAQ sections. Six county cards in a responsive grid, each linking to its hub page. Heading: "Serving 6 Southwest Ohio Counties". Each card shows county name and key cities.
 
-### Part 2 — Scroll-Triggered Lead Capture
+#### 2. County Hub Pages — Add Cross-Links + Resources Link (6 files)
 
-**File: `src/components/ScrollLeadCapture.tsx`** — Create new
+At the bottom of each county hub page's article content (before the FAQ H2), add:
+- **"Other Counties We Serve"** — 5 links to the other county hub pages
+- **"Free Notary Guides"** — link to `/resources`
 
-- Small floating card (320px desktop, full-width mobile)
-- Bottom-right on desktop, bottom slide-up on mobile
-- Triggers at 65% scroll depth
-- `sessionStorage` key `sot-lead-capture-shown` — show once per session
-- X close button with `aria-label="Close"`
-- Hidden on `/book-now`, `/contact`, and non-hub blog posts
-- Content: "Need a Notary Today?" headline, subtext, phone button, book button
-- z-index below SmartMobileCtaBar (z-40 vs z-50) to avoid overlap
-- Bottom offset on mobile to clear the floating CTA bar (bottom-24)
+This adds ~10 internal links per county page. Applied to all 6 files:
+- `NotaryGuideHamiltonCounty.tsx`
+- `NotaryGuideWarrenCounty.tsx`
+- `NotaryGuideMontgomeryCounty.tsx`
+- `NotaryGuideButlerCounty.tsx`
+- `NotaryGuideGreeneCounty.tsx`
+- `NotaryGuideClintonCounty.tsx`
 
-**File: `src/App.tsx`** — Add `<ScrollLeadCapture />` to Layout, positioned after `<SmartMobileCtaBar />`
+#### 3. Resources Page — Fix County Links (`src/pages/Resources.tsx`)
 
-### Part 3 — Availability Indicator
+Change the `counties` array hrefs from `/service/hamilton-county` to `/blog/notary-guide-hamilton-county-ohio` (and same for all 6). This links the Resources page to the content-rich county hubs instead of the thin service area pages.
 
-**File: `src/components/AvailabilityIndicator.tsx`** — Create new
+#### 4. Footer — Add County Hub Links (`src/components/Footer.tsx`)
 
-- Uses `new Date()` to check hour (7-22 = open)
-- Green dot + "We're available now — typical response within 30 minutes" during hours
-- Gray dot + "We're currently closed but check back at 7AM..." outside hours
-- Small inline component, no API calls
+Add a "County Guides" column (or append to existing columns) with 6 links to the county hub pages. This gives every page on the site a link to the county hubs.
 
-**Place on:**
-- `src/pages/Contact.tsx` — below H1
-- `src/pages/BookNow.tsx` — in trust bar area
+#### 5. Service Hub Templates — Add County Links
 
-### Part 4 — SMS Option on Contact Page
+**File: `src/components/templates/ServiceHubEnhanced.tsx`**
 
-Included in the Contact.tsx rewrite (Part 1). A card with `sms:5132269052` link below the form section.
-
-### Part 5 — FAQ Page Conversion
-
-**File: `src/pages/FAQ.tsx`** — Modify
-
-- Add note below H1: "Can't find your answer? Call or text (513) 226-9052..."
-- Replace "Still Have Questions?" section with "Ready to Schedule?" section containing two CTA buttons (Book Appointment + Call)
-- Replace `useEffect` meta tags with `<Seo />` component
+Add a small "Available Across Southwest Ohio" section before the BookingCTASection showing 6 county hub links. This appears on all 7 service pages automatically.
 
 ### Files Summary
 
 | File | Action |
 |------|--------|
-| `src/pages/Contact.tsx` | Rewrite — new form, two-column layout, GHL placeholder, SMS card |
-| `src/components/ScrollLeadCapture.tsx` | Create — scroll-triggered floating CTA |
-| `src/components/AvailabilityIndicator.tsx` | Create — business hours indicator |
-| `src/pages/FAQ.tsx` | Modify — add conversion CTAs, replace useEffect with Seo |
-| `src/pages/BookNow.tsx` | Modify — add AvailabilityIndicator |
-| `src/App.tsx` | Modify — add ScrollLeadCapture to Layout |
+| `src/pages/Index.tsx` | Add county hubs section |
+| `src/pages/Resources.tsx` | Fix county hrefs to hub pages |
+| `src/components/Footer.tsx` | Add county guide links |
+| `src/components/templates/ServiceHubEnhanced.tsx` | Add county links section |
+| `src/pages/blog/NotaryGuideHamiltonCounty.tsx` | Add cross-links + resources link |
+| `src/pages/blog/NotaryGuideWarrenCounty.tsx` | Add cross-links + resources link |
+| `src/pages/blog/NotaryGuideMontgomeryCounty.tsx` | Add cross-links + resources link |
+| `src/pages/blog/NotaryGuideButlerCounty.tsx` | Add cross-links + resources link |
+| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | Add cross-links + resources link |
+| `src/pages/blog/NotaryGuideClintonCounty.tsx` | Add cross-links + resources link |
 
-**Total: 6 files (2 created, 4 modified)**
+**Total: 10 files modified**
 
