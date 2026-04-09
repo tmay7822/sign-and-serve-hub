@@ -24,6 +24,16 @@ const topServices = [
   { name: 'Healthcare Notary', href: '/healthcare-notary', description: 'Hospital & bedside notarization' },
 ];
 
+const moreServices = [
+  { name: 'Real Estate Notary', href: '/real-estate-notary', description: 'Deeds, closings & title work' },
+  { name: 'Wills, Trusts & Estates', href: '/wills-trusts-estates', description: 'Probate & estate documents' },
+  { name: 'Legal & Court', href: '/legal-court', description: 'Court filings & legal documents' },
+  { name: 'Insurance & Retirement', href: '/insurance-retirement', description: 'Beneficiary & policy forms' },
+  { name: 'College & 18+', href: '/college-18-plus', description: 'Young adult starter documents' },
+  { name: 'Personal & Family', href: '/personal-family', description: 'Travel consent & family docs' },
+  { name: 'Other Notary', href: '/other-notary', description: 'Specialty & unique documents' },
+];
+
 // Mobile nav: intent options first, then "More"
 const mobileIntentItems = [
   { name: 'I Need a Document Notarized', href: '/general-notary' },
@@ -34,9 +44,15 @@ const mobileIntentItems = [
 
 const mobileMoreItems = [
   { name: 'Real Estate', href: '/real-estate' },
+  { name: 'Real Estate Notary', href: '/real-estate-notary' },
   { name: 'Business Services', href: '/business-services' },
   { name: 'Apostille', href: '/apostille' },
   { name: 'Personal & Family', href: '/personal-family' },
+  { name: 'Wills, Trusts & Estates', href: '/wills-trusts-estates' },
+  { name: 'Legal & Court', href: '/legal-court' },
+  { name: 'Insurance & Retirement', href: '/insurance-retirement' },
+  { name: 'College & 18+', href: '/college-18-plus' },
+  { name: 'Other Notary', href: '/other-notary' },
   { name: 'About Us', href: '/about' },
   { name: 'Reviews', href: '/reviews' },
   { name: 'Pricing', href: '/pricing' },
