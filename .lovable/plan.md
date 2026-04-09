@@ -1,98 +1,117 @@
 
 
-## Add Resources Navigation, Hub Page, and Related Guides
+## Add Reliable JSON-LD FAQ Schema to 7 Pages
 
-### Discovery: Missing Route Bug
+### Current State
 
-`/blog/ohio-car-title-transfer-requirements` — the component exists (`src/pages/blog/OhioCarTitleTransferRequirements.tsx`) and is linked from 4 location pages, but was never added to `routes.tsx` or `prerenderRoutes.ts`. This will be fixed as part of this work.
+All 7 pages already have FAQ content and schema injection — but via `useEffect` DOM manipulation in `FAQAccordion` (6 service pages) and directly in `FAQ.tsx`. This approach is fragile for prerendering and may not be picked up by Google's crawler reliably.
 
-### URL Verification
+**Existing FAQ counts from `serviceContent.ts`:**
 
-All requested URLs verified against `routes.tsx`:
+| Page | Service ID | Existing FAQs |
+|------|-----------|---------------|
+| GeneralNotary | `general-notary` | 8 |
+| LoanSignings | `loan-signings` | 8 |
+| EstatePlans | `estate-plans` | 8 |
+| VehiclesDMV | `vehicles-dmv` | 8 |
+| Apostille | `apostille` | 8 |
+| HealthcareNotary | `healthcare-notary` | 8 |
+| FAQ | (hardcoded) | 8 |
 
-| URL | Status |
-|-----|--------|
-| `/blog/what-happens-loan-signing` | Exists (line 199) |
-| `/blog/estate-planning-guides` | Exists (line 176/226) |
-| `/blog/ohio-car-title-transfer-requirements` | **Missing — will add** |
-| `/blog/hcpoa-living-will-guide` | Exists (line 196) |
-| `/blog/how-apostille-works` | Exists (line 200) |
-| `/blog/general-notary-what-to-bring` | Exists (line 194) |
-| `/blog/hospital-notary-what-to-expect` | Exists (line 197) |
-| `/blog/after-hours-emergency-notary` | Exists (line 215) |
-| `/faq` | Exists (line 155) |
-| `/blog/ohio-buyer-seller-loan-signing-checklist` | Exists (line 227) |
-| `/blog/refi-heloc-notary-errors-to-avoid-ohio` | Exists (line 228) |
-| `/blog/wills-trusts-poa-checklist` | Exists (line 198) |
-| `/blog/poa-pitfalls-and-readiness` | Exists (line 220) |
-| `/blog/title-transfer-checklist` | Exists (line 203) |
-| `/blog/apostille-processing-times` | Exists (line 209) |
-| `/blog/apostille-school-docs` | Exists (line 221) |
+All pages already exceed the 3-item minimum. No additional FAQ content is needed.
 
-### Changes
+### Problem
 
-**1. Fix missing route — `routes.tsx`**
-- Add lazy import for `OhioCarTitleTransferRequirements`
-- Add route: `blog/ohio-car-title-transfer-requirements`
+`FAQAccordion` injects schema via `useEffect` + `document.createElement('script')`. This:
+1. Only runs client-side after hydration
+2. May be missed by prerender crawlers
+3. Gets removed on unmount, creating race conditions with crawl timing
 
-**2. Fix missing prerender — `prerenderRoutes.ts`**
-- Add `/blog/ohio-car-title-transfer-requirements`
-- Add `/resources`
+### Solution
 
-**3. Add Resources dropdown to Header — `src/components/Header.tsx`**
-- Add "Resources" as a `NavigationMenuItem` with `NavigationMenuTrigger` + `NavigationMenuContent` between Services and About & Reviews
-- Two sections in dropdown: "Guides by Service" (5 links) and "Helpful Guides" (4 links)
-- Bottom link: "View All Resources →" pointing to `/resources`
-- Add equivalent section in mobile nav (between intent items and More section)
+Replace the `useEffect` DOM injection in `FAQAccordion` with inline `<script>` rendering via `dangerouslySetInnerHTML` in the component's JSX return. This ensures the schema is present in the initial HTML render and picked up by all crawlers.
 
-**4. Create Resources Hub page — `src/pages/Resources.tsx`**
-- SEO: title "Free Notary Guides & Resources | Signed On Time Mobile Notary Ohio", meta description as specified
-- H1 + subtitle
-- Section 1: "Most Popular" — 6 guide cards in responsive grid linking to existing blog posts
-- Section 2: "Browse by Service Type" — 6 category cards linking to blog category pages
-- Section 3: "Browse by County" — 6 county cards linking to `/service-areas` (placeholder until county hubs exist)
-- Section 4: CTA block with Book Now button and Call button
-- Uses Header, Footer, Seo components
+For `FAQ.tsx`, replace its `useEffect` schema injection with the same inline approach.
 
-**5. Add route for Resources — `routes.tsx`**
-- Add lazy import and route for `/resources`
+### Changes — 2 files
 
-**6. Add Resources section to Homepage — `src/pages/Index.tsx`**
-- New `ResourcesPreview` component between `ServicesSection` and `FAQSection`
-- Shows heading, subtitle, 3 featured guide cards, "View All Guides →" link
-- Cards for: What to Bring, What Happens at a Loan Signing, Ohio Car Title Transfer Guide
+**1. `src/components/FAQAccordion.tsx`**
+- Remove the `useEffect` that creates/injects the schema script tag
+- Remove `isBrowser` import (no longer needed)
+- Add inline `<script type="application/ld+json" dangerouslySetInnerHTML={...} />` at the top of the component's return JSX, rendering the same FAQPage schema
+- This single change fixes all 6 service pages at once (GeneralNotary, LoanSignings, EstatePlans, VehiclesDMV, Apostille, HealthcareNotary)
 
-**7. Add Resources column to Footer — `src/components/Footer.tsx`**
-- Add new column "Resources" with 7 links matching the requested list
-- Adjust grid from `lg:grid-cols-4` to `lg:grid-cols-5` to accommodate
+**2. `src/pages/FAQ.tsx`**
+- Remove the `useEffect` block that creates/injects the FAQ schema script tag
+- Add inline `<script type="application/ld+json" dangerouslySetInnerHTML={...} />` in the component return with the same 8 FAQ items
+- Keep the rest of the page unchanged
 
-**8. Add Related Guides sections to service pages**
+### What this achieves
+- FAQ schema is in the DOM on first render, not deferred to useEffect
+- Google's crawler and prerender service will reliably see the structured data
+- All 7 pages get proper FAQPage schema with their real FAQ content (8 items each, 56 total)
+- No visible UI changes — only the schema delivery mechanism changes
 
-Each service page uses `ServiceHubEnhanced` or `ServiceHubTemplate`. Rather than modifying the template (which would affect all service pages), add a `relatedGuides` prop to `ServiceHubEnhanced` and render a "Related Guides" section when provided.
+### JSON-LD example output (GeneralNotary page)
 
-- **`ServiceHubEnhanced.tsx`**: Add optional `relatedGuides` prop (array of `{title, href}`), render as a card grid section before the footer
-- **`LoanSignings.tsx`**: Pass 3 related guides (What Happens at a Loan Signing, Buyer/Seller Checklist, Refinance and HELOC Guide)
-- **`EstatePlans.tsx`**: Pass 3 related guides (Wills Trusts POA Checklist, HCPOA and Living Will Guide, POA Pitfalls Guide)
-- **`VehiclesDMV.tsx`**: Pass 2 related guides (Ohio Car Title Transfer Guide, Title Transfer Checklist)
-- **`Apostille.tsx`**: Needs to switch from `ServiceHubTemplate` to `ServiceHubEnhanced` to support `relatedGuides`, then pass 3 guides (How Apostille Works, Apostille Processing Times, Apostille for School Documents)
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What ID do I need for notarization?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need a current, government-issued photo ID such as a driver's license, passport, or state ID card. The ID must not be expired and must clearly show your photo and signature."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you notarize documents in languages other than English?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, as long as the notarial certificate is in English and you can communicate with the notary in English to confirm your identity and willingness to sign."
+      }
+    }
+    // ... 6 more items
+  ]
+}
+```
 
-### Files changed (10 total)
+### JSON-LD example output (FAQ page)
 
-| File | Change |
-|------|--------|
-| `src/routes.tsx` | Add OhioCarTitleTransferRequirements import + route, add Resources import + route |
-| `src/config/prerenderRoutes.ts` | Add `/blog/ohio-car-title-transfer-requirements` and `/resources` |
-| `src/components/Header.tsx` | Add Resources dropdown (desktop + mobile) |
-| `src/pages/Resources.tsx` | **New file** — Resources hub page |
-| `src/pages/Index.tsx` | Add ResourcesPreview section |
-| `src/components/Footer.tsx` | Add Resources column |
-| `src/components/templates/ServiceHubEnhanced.tsx` | Add `relatedGuides` prop + rendering |
-| `src/pages/LoanSignings.tsx` | Pass relatedGuides prop |
-| `src/pages/EstatePlans.tsx` | Pass relatedGuides prop |
-| `src/pages/VehiclesDMV.tsx` | Pass relatedGuides prop |
-| `src/pages/Apostille.tsx` | Switch to ServiceHubEnhanced, pass relatedGuides prop |
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do you travel to me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! We provide mobile notary services across Cincinnati–Dayton area. We come to your home, office, or any convenient location within our service area."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What IDs do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll need a current, government-issued photo ID such as a driver's license, state ID, passport, or military ID. The ID must be unexpired and clearly show your photo and signature."
+      }
+    }
+    // ... 6 more items
+  ]
+}
+```
 
-### Sitemap
+### Files changed (2 total)
 
-`/resources` will be automatically included in sitemap.xml via the prerenderRoutes addition. The Vite build plugin reads `prerenderRoutes.ts` and generates the sitemap entry with appropriate priority.
+| File | Change | FAQ items |
+|------|--------|-----------|
+| `src/components/FAQAccordion.tsx` | Replace useEffect schema with inline dangerouslySetInnerHTML | Affects 6 pages (8 items each) |
+| `src/pages/FAQ.tsx` | Replace useEffect schema with inline dangerouslySetInnerHTML | 8 items |
 
