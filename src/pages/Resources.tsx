@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { BookOpen, FileText, MapPin, ArrowRight, Phone } from 'lucide-react';
-import QuickTrustBadges from '@/components/landing/QuickTrustBadges';
+import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
 
 const popularGuides = [
   { title: 'Ohio Car Title Transfer Guide', href: '/blog/ohio-car-title-transfer-requirements', description: 'Step-by-step requirements for notarizing vehicle title transfers in Ohio.' },
