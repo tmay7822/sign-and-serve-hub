@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -6,7 +6,6 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { HelpCircle } from 'lucide-react';
-import { isBrowser } from '@/utils/ssg';
 
 interface FAQ {
   question: string;
@@ -30,49 +29,33 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({
   className = "",
   showIcon = true
 }) => {
-  // Inject FAQ Schema for SEO rich snippets
-  useEffect(() => {
-    if (!isBrowser || faqs.length === 0) return;
-
-    const existingSchema = document.querySelector('script[data-type="faq-schema"]');
-    if (existingSchema) existingSchema.remove();
-
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      })),
-      ...(serviceName && {
-        "about": {
-          "@type": "Service",
-          "name": serviceName
-        }
-      })
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.setAttribute('data-type', 'faq-schema');
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
-
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, [faqs, serviceName]);
-
   if (!faqs || faqs.length === 0) return null;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    })),
+    ...(serviceName && {
+      "about": {
+        "@type": "Service",
+        "name": serviceName
+      }
+    })
+  };
 
   return (
     <section className={`py-16 ${className}`} id="faq">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
