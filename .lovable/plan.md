@@ -1,94 +1,113 @@
 
 
-## Consolidate Thin Location Blog Pages into County Hub Redirects
+## Improve Booking Experience Across Site
 
-### Approach
+### Overview
 
-Instead of adding ~200 individual `<Navigate>` route entries (which would make routes.tsx unmanageable), create a redirect map file and generate route objects programmatically. This is cleaner and easier to maintain.
+Redesign the BookNow page, replace the existing mobile CTA bar with a simpler floating "Book Appointment" link button, add a "Book Now" button to the header, create a reusable booking CTA section component, and add it to 7 service pages + 6 county hub pages.
 
-### West Chester Resolution
+### Part 1 — BookNow Page Redesign
 
-The user's redirect list places West Chester city pages under the **Warren County hub**. However, the user also noted West Chester Township is in Butler County and said "if uncertain redirect to Butler County hub." Since the user explicitly listed West Chester under Warren County in their redirect mapping, I will follow that mapping exactly.
+**File: `src/pages/BookNow.tsx`** — Full rewrite
 
-**Correction**: Re-reading the user's list, West Chester city pages appear under the **Warren County** section. I will follow the user's explicit mapping.
+New structure (top to bottom):
+1. `<Seo />` with updated title/description/canonical
+2. `<Header />` (use site-wide header instead of custom minimal header)
+3. BreadcrumbList schema (Home → Book Now) via `dangerouslySetInnerHTML`
+4. Hero: H1 "Book Your Mobile Notary Appointment", subtitle, trust bar (5 items as inline badges)
+5. BookingWidget placed prominently as first interactive element, full-width on mobile
+6. "Prefer to Call or Text?" section — 3 cards (Call/Text, Service Area, Same Day)
+7. "How It Works" — 4 steps in a grid
+8. "Service Pricing" — brief note + link to /pricing
+9. `<Footer />`
 
-### Pages to KEEP live (not redirect)
+Removes: CompactServicesGrid, MiniTestimonials, QuickTrustBadges imports, QuoteCalculatorModal, custom minimal header/footer
 
-- `/blog/loan-signing-guides-mason-ohio` — keep as `LocationBlogPost`
-- `/blog/healthcare-guides-cincinnati-ohio` — keep as `LocationBlogPost`
-- All 6 county hub pages (already protected by explicit routes)
+### Part 2 — Floating Mobile Booking Button
 
-### Files
+**File: `src/components/SmartMobileCtaBar.tsx`** — Rewrite
 
-| File | Change |
+Replace the current 2-button bar (Call + Book Online dialog) with a simpler approach:
+- Keep "Call Now" green button
+- Change "Book Online" from `BookingWidget` dialog trigger to a simple `<Link to="/book-now">` styled button
+- Hide on `/book-now` page using `useLocation().pathname`
+- Keep existing animation, z-index, and spacer behavior
+
+This avoids adding a new component — just modifies the existing one to link to `/book-now` instead of opening the booking dialog inline.
+
+### Part 3 — Header Book Now Button
+
+**File: `src/components/Header.tsx`**
+
+The header currently has a "Get Quote" button. Add a "Book Now" button next to it:
+- Desktop: Add `<Link to="/book-now">` styled as red CTA button (`bg-red-600 text-white`) before the "Get Quote" button
+- Mobile: Add "Book Now" link button in the mobile CTA section at bottom of mobile menu
+
+### Part 4 — Reusable Booking CTA Section
+
+**File: `src/components/BookingCTASection.tsx`** — Create new
+
+A reusable component accepting `serviceName: string` and optional `countyName: string`:
+- Light gray background, generous padding, centered text
+- Heading: "Ready to Schedule Your {serviceName} Appointment?" (or county variant)
+- Subtext about same-day mobile service
+- Two buttons: "Book Online" → `/book-now`, "Call (513) 226-9052" → `tel:5132269052`
+- Small text: "Available Monday-Sunday 7AM-10PM"
+
+### Part 5 — Add BookingCTASection to Service Pages
+
+**7 files modified** — add `<BookingCTASection>` import and render it between content and FAQ:
+
+| File | serviceName |
+|------|------------|
+| `src/pages/LoanSignings.tsx` | "Loan Signing" |
+| `src/pages/EstatePlans.tsx` | "Estate Planning" |
+| `src/pages/GeneralNotary.tsx` | "General Notary" |
+| `src/pages/Apostille.tsx` | "Apostille" |
+| `src/pages/HealthcareNotary.tsx` | "Healthcare Document" |
+| `src/pages/VehiclesDMV.tsx` | "Vehicle Title" |
+| `src/pages/BusinessServices.tsx` | "Business Document" |
+
+These pages use `ServiceHubEnhanced` or `ServiceHubTemplate`. The booking CTA will be added as a prop or by modifying the template to accept and render a `bookingCTAName` prop, which is cleaner than editing each page individually.
+
+**Approach**: Add `bookingServiceName?: string` prop to `ServiceHubEnhanced` and `ServiceHubTemplate`. When provided, render `<BookingCTASection>` before the FAQ section. Then pass the prop from each page component.
+
+### Part 6 — Add BookingCTASection to County Hub Pages
+
+**6 files modified** — add `<BookingCTASection>` with county-specific heading before the bottom CTA section:
+
+| File | countyName |
+|------|-----------|
+| `NotaryGuideHamiltonCounty.tsx` | "Hamilton County" |
+| `NotaryGuideWarrenCounty.tsx` | "Warren County" |
+| `NotaryGuideMontgomeryCounty.tsx` | "Montgomery County" |
+| `NotaryGuideButlerCounty.tsx` | "Butler County" |
+| `NotaryGuideGreeneCounty.tsx` | "Greene County" |
+| `NotaryGuideClintonCounty.tsx` | "Clinton County" |
+
+### Files Summary
+
+| File | Action |
 |------|--------|
-| `src/data/blogRedirects.ts` | **Create** — redirect map: old slug → county hub URL |
-| `src/routes.tsx` | **Modify** — replace ~100 thin location blog route entries with redirect-generating loop; keep 2 city pages live; update undefined redirects to point to `/` |
-| `src/config/prerenderRoutes.ts` | **Modify** — remove all thin county/city blog URLs (lines 115-355), keep only the 6 hub URLs + 2 kept city pages |
+| `src/pages/BookNow.tsx` | Rewrite |
+| `src/components/SmartMobileCtaBar.tsx` | Modify — link to /book-now, hide on /book-now |
+| `src/components/Header.tsx` | Modify — add Book Now button |
+| `src/components/BookingCTASection.tsx` | Create — reusable booking CTA |
+| `src/components/templates/ServiceHubEnhanced.tsx` | Modify — add bookingServiceName prop |
+| `src/components/templates/ServiceHubTemplate.tsx` | Modify — add bookingServiceName prop |
+| `src/pages/LoanSignings.tsx` | Modify — pass bookingServiceName |
+| `src/pages/EstatePlans.tsx` | Modify — pass bookingServiceName |
+| `src/pages/GeneralNotary.tsx` | Modify — pass bookingServiceName |
+| `src/pages/Apostille.tsx` | Modify — pass bookingServiceName |
+| `src/pages/HealthcareNotary.tsx` | Modify — pass bookingServiceName |
+| `src/pages/VehiclesDMV.tsx` | Modify — pass bookingServiceName |
+| `src/pages/BusinessServices.tsx` | Modify — pass bookingServiceName |
+| `src/pages/blog/NotaryGuideHamiltonCounty.tsx` | Modify — add BookingCTASection |
+| `src/pages/blog/NotaryGuideWarrenCounty.tsx` | Modify — add BookingCTASection |
+| `src/pages/blog/NotaryGuideMontgomeryCounty.tsx` | Modify — add BookingCTASection |
+| `src/pages/blog/NotaryGuideButlerCounty.tsx` | Modify — add BookingCTASection |
+| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | Modify — add BookingCTASection |
+| `src/pages/blog/NotaryGuideClintonCounty.tsx` | Modify — add BookingCTASection |
 
-### `src/data/blogRedirects.ts` structure
-
-```ts
-export const BLOG_REDIRECTS: Record<string, string> = {
-  // Hamilton County hub
-  'general-notary-guides-hamilton-county-ohio': '/blog/notary-guide-hamilton-county-ohio',
-  'loan-signing-guides-hamilton-county-ohio': '/blog/notary-guide-hamilton-county-ohio',
-  // ... all Hamilton city slugs
-  // Warren County hub
-  'general-notary-guides-warren-county-ohio': '/blog/notary-guide-warren-county-ohio',
-  // ... etc for all 6 counties + all cities
-  // Undefined → homepage
-  'loan-signing-guides-undefined-ohio': '/',
-  'real-estate-guides-undefined-ohio': '/',
-  'general-notary-guides-undefined-ohio': '/',
-  'estate-planning-guides-undefined-ohio': '/',
-};
-```
-
-Excludes `loan-signing-guides-mason-ohio` and `healthcare-guides-cincinnati-ohio` (kept live).
-
-### `src/routes.tsx` changes
-
-1. Import `BLOG_REDIRECTS` from the new file
-2. Remove all existing thin location blog route entries (lines 259-325 county routes, lines 327-331 undefined redirects, lines 333-343 city routes except the 2 kept)
-3. Keep the 2 live city page routes:
-   - `blog/loan-signing-guides-mason-ohio` → `LocationBlogPost`
-   - `blog/healthcare-guides-cincinnati-ohio` → `LocationBlogPost`
-4. Add redirect routes generated from the map:
-   ```ts
-   ...Object.entries(BLOG_REDIRECTS).map(([slug, target]) => ({
-     path: `blog/${slug}`,
-     element: <Navigate to={target} replace />,
-   })),
-   ```
-5. All redirects placed BEFORE the `blog/:slug` catch-all and BEFORE the county hub routes
-
-### `src/config/prerenderRoutes.ts` changes
-
-Remove all thin location blog URLs (lines 115-355: county guides, city guides, immigration/military/education by county and city). Keep only:
-- 6 county hub URLs (`/blog/notary-guide-*-county-ohio`)
-- 2 kept city pages (`/blog/loan-signing-guides-mason-ohio`, `/blog/healthcare-guides-cincinnati-ohio`)
-
-### Redirect count
-
-| County | County-level | City-level | Total |
-|--------|-------------|------------|-------|
-| Hamilton | ~11 | ~28 (4 cities × 7 cats) minus healthcare-guides-cincinnati kept | ~38 |
-| Warren | ~11 | ~28 (4 cities × 7 cats) minus loan-signing-mason kept | ~38 |
-| Montgomery | ~11 | ~28 (4 cities × 7 cats) | ~39 |
-| Butler | ~11 | ~28 (4 cities × 7 cats) | ~39 |
-| Greene | ~9 | ~28 (4 cities × 7 cats) | ~37 |
-| Clinton | ~11 | ~28 (4 cities × 7 cats) | ~39 |
-| Undefined | 4 | 0 | 4 |
-| **Total** | | | **~234** |
-
-### Verification checks
-
-After execution, confirm:
-- `/blog/healthcare-guides-hamilton-county-ohio` → redirects to Hamilton hub
-- `/blog/loan-signing-guides-mason-ohio` → stays live (no redirect)
-- `/blog/general-notary-guides-dayton-ohio` → redirects to Montgomery hub
-- `/blog/immigration-guides-clinton-county-ohio` → redirects to Clinton hub
-- `/blog/loan-signing-guides-undefined-ohio` → redirects to homepage
-- No redirect chains (all destinations are real pages)
+**Total: 19 files (1 created, 18 modified)**
 
