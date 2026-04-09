@@ -86,7 +86,7 @@ const categorizeRoutes = (routes: string[]): RouteCategory[] => {
         { name: 'Greene County Cities', routes: routes.filter(r => r.startsWith('/service/greene-county/')) },
         { name: 'Clinton County Cities', routes: routes.filter(r => r.startsWith('/service/clinton-county/')) },
         { name: 'Clermont County Cities', routes: routes.filter(r => r.startsWith('/service/clermont-county/')) },
-        { name: 'Brown County Cities', routes: routes.filter(r => r.startsWith('/service/brown-county/')) },
+        
         { name: 'Miami County Cities', routes: routes.filter(r => r.startsWith('/service/miami-county/')) },
       ]
     },
