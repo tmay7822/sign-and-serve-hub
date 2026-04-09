@@ -131,7 +131,7 @@ const POAWarrenLebanon = () => {
                   <Shield className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Identity Verification</h3>
-                    <p className="text-muted-foreground">We verify the identity of all parties and ensure they understand the document's implications.</p>
+                    <p className="text-muted-foreground">We verify the identity of all parties and confirm they are signing willingly.</p>
                   </div>
                 </div>
                 

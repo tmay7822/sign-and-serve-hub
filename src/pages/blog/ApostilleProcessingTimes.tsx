@@ -58,7 +58,7 @@ const ApostilleProcessingTimes = () => {
                 <li>Holiday schedules</li>
               </ul>
 
-              <p>We ensure your notarization meets requirements so there are no delays or rejections.</p>
+              <p>We complete the notarization so your documents are ready for apostille processing.</p>
 
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Start your apostille process</h3>

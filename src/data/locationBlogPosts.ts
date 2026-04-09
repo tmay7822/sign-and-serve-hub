@@ -170,7 +170,7 @@ const COUNTY_CONTENT_TEMPLATES: Record<string, {
       <p>Protect your family with properly executed <strong>estate planning documents in ${county} County, Ohio</strong>. We travel to ${cities.slice(0, 4).join(', ')}, for wills, POAs, and healthcare directives.</p>
       
       <h2>Estate Planning Notary Services</h2>
-      <p>Our notaries understand Ohio's legal requirements for estate documents and witness requirements.</p>
+      <p>Our notaries understand Ohio's witness and signing requirements for estate documents.</p>
       
       <h3>Documents We Help Execute</h3>
       <ul>
@@ -433,7 +433,7 @@ const generateCityContent = (city: { name: string; slug: string; county: string;
       <p>Protect your family's future with properly executed <strong>estate planning documents in ${city.name}, Ohio ${city.zip}</strong>. Our mobile notary travels throughout ${city.name} for wills, powers of attorney, and healthcare directives.</p>
       
       <h2>Estate Planning Notary Services in ${city.name}</h2>
-      <p>Estate planning documents require careful attention to Ohio's legal requirements. Our notaries understand witness requirements and proper execution procedures for ${city.county} County residents.</p>
+      <p>Estate planning documents require proper signing procedures and witnesses. Our notaries understand the witness and signing requirements for ${city.county} County residents.</p>
       
       <h3>Estate Documents We Help Execute in ${city.name}</h3>
       <ul>
@@ -448,7 +448,7 @@ const generateCityContent = (city: { name: string; slug: string; county: string;
       <p>We provide bedside notarization at hospitals, nursing homes, and assisted living facilities in ${city.name}. We understand the urgency these situations require.</p>
       
       <h2>Ohio Estate Planning Requirements</h2>
-      <p>Wills must be witnessed by two disinterested adults. Powers of attorney have different witness requirements. We ensure proper execution for all ${city.name} estate documents.</p>
+      <p>Wills must be witnessed by two disinterested adults. Powers of attorney have different witness requirements. We witness signatures and coordinate witnesses for all ${city.name} estate documents.</p>
     `,
     'apostille-guides': `
       <p>Need documents authenticated for international use? Our <strong>apostille services in ${city.name}, Ohio ${city.zip}</strong> help you prepare documents for use abroad in Hague Convention countries.</p>
@@ -508,7 +508,7 @@ const generateCityContent = (city: { name: string; slug: string; county: string;
       </ul>
       
       <h3>Hospital Visits in ${city.name}</h3>
-      <p>We coordinate with hospital staff and family members for bedside notarization. We understand patient alertness requirements and work efficiently while maintaining proper legal standards.</p>
+      <p>We coordinate with hospital staff and family members for bedside notarization. We understand patient alertness requirements and work efficiently while following proper notary procedures.</p>
       
       <h2>Urgent Healthcare Signings</h2>
       <p>For urgent healthcare situations in ${city.name}, we prioritize availability and can often arrive within 2-4 hours. Same-day service available for most healthcare notarization needs.</p>

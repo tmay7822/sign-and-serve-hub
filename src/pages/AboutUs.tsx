@@ -363,8 +363,8 @@ const AboutUs = () => {
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    Attention to detail is paramount in our work. We ensure every document 
-                    is properly executed according to Ohio notary law and your specific requirements.
+                     Attention to detail is paramount in our work. We witness every signature 
+                     and verify identity according to Ohio notary procedures.
                   </CardDescription>
                 </CardContent>
               </Card>
