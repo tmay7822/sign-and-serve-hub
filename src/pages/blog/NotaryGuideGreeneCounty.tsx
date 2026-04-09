@@ -5,10 +5,6 @@ import Seo from '@/components/Seo';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import BookingCTASection from '@/components/BookingCTASection';
 import { Badge } from '@/components/ui/badge';
-import Footer from '@/components/Footer';
-import Seo from '@/components/Seo';
-import { StandardCTAButtons } from '@/components/StandardCTAButtons';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, User, MapPin } from 'lucide-react';
 
