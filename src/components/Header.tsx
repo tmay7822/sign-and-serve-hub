@@ -116,7 +116,8 @@ const Header = () => {
                         Services
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <div className="w-[340px] p-5 bg-white" role="menu" aria-label="Our services">
+                        <div className="w-[340px] p-5 bg-white max-h-[70vh] overflow-y-auto" role="menu" aria-label="Our services">
+                          <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Popular Services</div>
                           <div className="space-y-1">
                             {topServices.map((service) => (
                               <NavigationMenuLink asChild key={service.href}>
@@ -131,6 +132,20 @@ const Header = () => {
                                   <div className="text-xs text-gray-500 leading-tight mt-0.5">
                                     {service.description}
                                   </div>
+                                </Link>
+                              </NavigationMenuLink>
+                            ))}
+                          </div>
+                          <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mt-4 mb-2">More Services</div>
+                          <div className="space-y-1">
+                            {moreServices.map((service) => (
+                              <NavigationMenuLink asChild key={service.href}>
+                                <Link
+                                  to={service.href}
+                                  role="menuitem"
+                                  className="block p-2.5 rounded-lg hover:bg-blue-50 text-sm font-semibold text-gray-800 hover:text-brand-blue transition-colors"
+                                >
+                                  {service.name}
                                 </Link>
                               </NavigationMenuLink>
                             ))}

@@ -42,6 +42,7 @@ export const PRERENDER_ROUTES = [
   '/back-to-school-documents',
   '/home-buying-season-notary',
   '/year-end-planning-notary',
+  '/white-label-pricing',
   
   // Blog Home & Categories
   '/blog',
