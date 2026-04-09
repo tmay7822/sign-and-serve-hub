@@ -31,13 +31,15 @@ interface ServiceHubEnhancedProps {
   };
   showBooking?: boolean;
   defaultService?: string;
+  relatedGuides?: { title: string; href: string }[];
 }
 
 const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
   service,
   quickAnswer,
   showBooking = false,
-  defaultService
+  defaultService,
+  relatedGuides
 }) => {
   const blogPosts = getPostsByService(service.slug).slice(0, 6);
   const localRoutes = getRoutesByService(service.slug).slice(0, 8);
@@ -399,6 +401,29 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
                     </div>
                   </CardContent>
                 </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Related Guides */}
+      {relatedGuides && relatedGuides.length > 0 && (
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Related Guides</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedGuides.map((guide) => (
+                <Link key={guide.href} to={guide.href} className="group">
+                  <Card className="h-full transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      <FileText className="h-6 w-6 text-primary mb-2" />
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {guide.title}
+                      </h3>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { getServiceBySlug } from '@/data/services';
-import ServiceHubTemplate from '@/components/templates/ServiceHubTemplate';
+import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
 import { Navigate } from 'react-router-dom';
 
 const Apostille = () => {
@@ -9,7 +9,18 @@ const Apostille = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} showBooking={true} defaultService="apostille" />;
+  return (
+    <ServiceHubEnhanced 
+      service={service} 
+      showBooking={true} 
+      defaultService="apostille"
+      relatedGuides={[
+        { title: 'How the Apostille Process Works', href: '/blog/how-apostille-works' },
+        { title: 'Apostille Processing Times', href: '/blog/apostille-processing-times' },
+        { title: 'Apostille for School Documents', href: '/blog/apostille-school-docs' },
+      ]}
+    />
+  );
 };
 
 export default Apostille;
