@@ -56,6 +56,7 @@ const TaxSeasonNotary = lazy(() => import('./pages/TaxSeasonNotary'));
 const BackToSchoolDocuments = lazy(() => import('./pages/BackToSchoolDocuments'));
 const HomeBuyingSeasonNotary = lazy(() => import('./pages/HomeBuyingSeasonNotary'));
 const YearEndPlanningNotary = lazy(() => import('./pages/YearEndPlanningNotary'));
+const WhiteLabelPricing = lazy(() => import('./pages/WhiteLabelPricing'));
 
 // Blog Posts
 const GeneralNotaryWhatToBring = lazy(() => import('./pages/blog/GeneralNotaryWhatToBring'));
@@ -179,6 +180,9 @@ export const routes: RouteObject[] = [
       { path: 'back-to-school-documents', element: <BackToSchoolDocuments /> },
       { path: 'home-buying-season-notary', element: <HomeBuyingSeasonNotary /> },
       { path: 'year-end-planning-notary', element: <YearEndPlanningNotary /> },
+      
+      // White Label
+      { path: 'white-label-pricing', element: <WhiteLabelPricing /> },
       
       // Blog Home & Categories
       { path: 'blog', element: <BlogHome /> },

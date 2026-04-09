@@ -156,6 +156,16 @@ const NotaryGuideGreeneCounty = () => {
         {/* Cross-Links */}
         <section className="py-10">
           <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Cities We Serve in Greene County</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+              <Link to="/service/greene-county/beavercreek-45431" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Beavercreek</Link>
+              <Link to="/service/greene-county/xenia-45385" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Xenia</Link>
+              <Link to="/service/greene-county/fairborn-45324" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Fairborn</Link>
+              <Link to="/service/greene-county/yellow-springs-45387" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Yellow Springs</Link>
+              <Link to="/service/greene-county/bellbrook-45305" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Bellbrook</Link>
+              <Link to="/service/greene-county/jamestown-45335" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Jamestown</Link>
+            </div>
+
             <h2 className="text-2xl font-bold text-foreground mb-4">Other Counties We Serve</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               <Link to="/blog/notary-guide-hamilton-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Hamilton County</Link>

@@ -156,6 +156,13 @@ const NotaryGuideClintonCounty = () => {
         {/* Cross-Links */}
         <section className="py-10">
           <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Cities We Serve in Clinton County</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+              <Link to="/service/clinton-county/wilmington-45177" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Wilmington</Link>
+              <Link to="/service/clinton-county/blanchester-45107" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Blanchester</Link>
+              <Link to="/service/clinton-county/sabina-45169" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Sabina</Link>
+            </div>
+
             <h2 className="text-2xl font-bold text-foreground mb-4">Other Counties We Serve</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               <Link to="/blog/notary-guide-hamilton-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Hamilton County</Link>

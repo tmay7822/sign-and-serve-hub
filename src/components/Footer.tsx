@@ -133,6 +133,19 @@ const Footer = () => {
                 </div>
               ))}
             </div>
+            <h3 className="font-semibold mb-2 mt-4">Seasonal Services</h3>
+            <div className="space-y-1.5 text-sm">
+              {seasonalLinks.map((link) => (
+                <div key={link.name}>
+                  <Link 
+                    to={link.href}
+                    className="text-white/80 hover:text-brand-gold transition-colors duration-300 block"
+                  >
+                    {link.name}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Contact Info */}
@@ -171,8 +184,16 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Certifications */}
+          {/* For Notaries + Certifications */}
           <div>
+            <h3 className="font-semibold mb-3">For Notaries</h3>
+            <div className="space-y-1.5 text-sm mb-4">
+              <div>
+                <Link to="/white-label-pricing" className="text-white/80 hover:text-brand-gold transition-colors duration-300 block">
+                  White Label Website Solution
+                </Link>
+              </div>
+            </div>
             <h3 className="font-semibold mb-3">Certified & Insured</h3>
             <div className="flex flex-wrap gap-2">
               <img 

@@ -101,6 +101,34 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Seasonal Notary Services */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-foreground mb-3">Seasonal Notary Services</h2>
+            <p className="text-muted-foreground text-lg">Time-sensitive documents that need a notary — we have you covered year-round</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Tax Season Documents', season: 'Jan – Apr', href: '/tax-season-notary', desc: 'Affidavits, POA for tax filing, and IRS document notarization.' },
+              { title: 'Home Buying Season', season: 'Mar – Jun', href: '/home-buying-season-notary', desc: 'Loan closings, title transfers, and real estate documents.' },
+              { title: 'Back to School Documents', season: 'Jul – Sep', href: '/back-to-school-documents', desc: 'Guardianship forms, travel consent, and college documents.' },
+              { title: 'Year-End Estate Planning', season: 'Oct – Dec', href: '/year-end-planning-notary', desc: 'Wills, trusts, POA updates before the new year.' },
+            ].map((item) => (
+              <Link key={item.href} to={item.href} className="group">
+                <Card className="h-full transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-1">
+                  <CardContent className="p-6">
+                    <span className="inline-block text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded mb-3">{item.season}</span>
+                    <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <FAQSection />
       <Footer />
     </div>
