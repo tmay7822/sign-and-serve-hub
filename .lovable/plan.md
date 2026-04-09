@@ -1,108 +1,118 @@
 
-## Internal Link Audit and Orphan Page Fixes
 
-### Audit Results
+## Redesign County Hub Pages + Address Security Findings
 
-| Page | Inbound Links | Status |
-|------|--------------|--------|
-| `/tax-season-notary` | Footer (defined but **NOT rendered**) | ORPHANED |
-| `/home-buying-season-notary` | Footer (defined but **NOT rendered**) | ORPHANED |
-| `/back-to-school-documents` | Footer (defined but **NOT rendered**) | ORPHANED |
-| `/year-end-planning-notary` | Footer (defined but **NOT rendered**) | ORPHANED |
-| `/college-18-plus` | BackToSchoolDocuments, NotaryGuideButlerCounty | 2 links — weak |
-| `/personal-family` | Header mobile "More" menu | 1 link only |
-| `/real-estate-notary` | None found in navigation or content | ORPHANED |
-| `/wills-trusts-estates` | WhatToDoNext blog component, YearEndPlanningNotary | 2 links — weak |
-| `/insurance-retirement` | TaxSeasonNotary only | 1 link only |
-| `/other-notary` | No inbound links found | ORPHANED |
-| `/legal-court` | No inbound links found | ORPHANED |
-| `/white-label-pricing` | No route in routes.tsx, no links | ORPHANED + UNROUTED |
-| `/service/brown-county` | Only in gmbServiceAreas data | NOT in core 6 counties |
-| `/service/miami-county/*` | Only in prerenderRoutes.ts | NOT in core 6 counties |
-| `/notary-yellow-springs-45387` | Not in routes.tsx | DOES NOT EXIST as route |
-| `/notary-fairborn-45324` | Not in routes.tsx | DOES NOT EXIST as route |
-| `/notary-sabina-45169` | Not in routes.tsx | DOES NOT EXIST as route |
+### Problem
+All 6 county hub pages render as walls of unstyled prose text. Service sections have no visual separation, FAQs render as static cards instead of interactive accordions, and there is no trust bar between the hero and content.
 
-**Key finding**: The footer defines `seasonalLinks` array but never renders it. This is why all 4 seasonal pages are orphaned.
+### Approach
+Create a shared `CountyHubTemplate` component that all 6 pages use, eliminating duplicated layout code. This template will match the visual quality of the service hub pages.
 
-### Changes
+### Part 1 — Create CountyHubTemplate Component
 
-#### 1. Homepage — Add Seasonal Services Section (`src/pages/Index.tsx`)
+**New file: `src/components/templates/CountyHubTemplate.tsx`**
 
-Insert a new section between County Hubs and FAQ:
-- H2: "Seasonal Notary Services"
-- 4 cards in a responsive grid, each with season label, title, and link
-- Tax Season (Jan-Apr), Home Buying (Mar-Jun), Back to School (Jul-Sep), Year-End Planning (Oct-Dec)
+A reusable template accepting structured data props:
 
-#### 2. Footer — Render Seasonal Links + Add "For Notaries" (`src/components/Footer.tsx`)
+```typescript
+interface CountyHubTemplateProps {
+  county: string;
+  title: string;
+  subtitle: string;
+  introText: string;
+  publishDate: string;
+  readTime: string;
+  canonicalUrl: string;
+  metaTitle: string;
+  metaDescription: string;
+  services: Array<{
+    icon: LucideIcon;
+    title: string;
+    description: string;
+    linkTo: string;
+    linkText: string;
+  }>;
+  faqs: Array<{ question: string; answer: string }>;
+  otherCounties: Array<{ name: string; href: string }>;
+  cityLinks?: Array<{ name: string; href: string }>;
+  bottomHeading: string;
+  bottomText: string;
+}
+```
 
-- The `seasonalLinks` array already exists but is never rendered. Add it to the Resources column or as a sub-section.
-- Add a "For Notaries" section with a link to `/white-label-pricing`.
-- Expand grid from 5 to 6 columns (or merge seasonal into existing column).
+**Template layout:**
 
-#### 3. Routes — Add WhiteLabelPricing Route (`src/routes.tsx`)
+1. **Hero section** — Dark gradient background (`bg-gradient-to-br from-primary via-primary/90 to-primary/80`), white text, breadcrumbs, Badge, H1, subtitle, author/date/read-time badges, StandardCTAButtons inline
+2. **Trust bar** — Four icon+text badges in a horizontal strip: "30-45 Min Response", "6 Counties Served", "7 Days a Week", "25+ Years Experience" — matching the TrustSignals component style
+3. **Intro paragraph** — Styled card with subtle border, proper typography
+4. **Service sections** — Each service rendered as a Card with:
+   - Lucide icon in a colored circle
+   - H2 heading
+   - Body text with proper `leading-relaxed`
+   - Styled arrow-link button to service page
+   - Alternating `bg-background` and `bg-muted/30` backgrounds per section
+5. **Mid-page CTA** — StandardCTAButtons after 3rd service card
+6. **FAQ section** — Use existing `FAQAccordion` component (interactive expand/collapse, includes its own schema)
+7. **City links** (optional) — Grid of styled pill buttons
+8. **County cross-links** — Row of county pill buttons matching current styling
+9. **BookingCTASection** — Existing component
+10. **Bottom CTA** — Final branded section with StandardCTAButtons
 
-- Import and add route: `{ path: 'white-label-pricing', element: <WhiteLabelPricing /> }`
-- The page file exists but has no route entry.
+### Part 2 — Convert All 6 County Pages
 
-#### 4. Header — Add Missing Service Hubs to Desktop Dropdown (`src/components/Header.tsx`)
+Each page becomes a thin data file that imports `CountyHubTemplate` and passes its specific content as props. The FAQ schema `dangerouslySetInnerHTML` scripts are removed since `FAQAccordion` handles its own schema injection. The breadcrumb schema stays via `dangerouslySetInnerHTML` (proven stable on these pages).
 
-Add these orphaned service hubs to the desktop Services dropdown or a "More Services" sub-section:
-- Real Estate Notary (`/real-estate-notary`)
-- Legal & Court (`/legal-court`)
-- Insurance & Retirement (`/insurance-retirement`)
-- Wills, Trusts & Estates (`/wills-trusts-estates`)
-- Other Notary (`/other-notary`)
-- College & 18+ (`/college-18-plus`)
+Files modified:
+- `src/pages/blog/NotaryGuideWarrenCounty.tsx`
+- `src/pages/blog/NotaryGuideHamiltonCounty.tsx`
+- `src/pages/blog/NotaryGuideMontgomeryCounty.tsx`
+- `src/pages/blog/NotaryGuideButlerCounty.tsx`
+- `src/pages/blog/NotaryGuideGreeneCounty.tsx`
+- `src/pages/blog/NotaryGuideClintonCounty.tsx`
 
-Also add to the mobile "More" items list (some are already there, add missing ones).
+Each page will define its data (services array, FAQs, county-specific text) and render `<CountyHubTemplate {...data} />`.
 
-#### 5. Greene County Hub — Add City Links (`src/pages/blog/NotaryGuideGreeneCounty.tsx`)
+### Part 3 — Service Icons Mapping
 
-The user asked to link `/notary-yellow-springs-45387` and `/notary-fairborn-45324` from Greene County hub. However, these specific routes don't exist in routes.tsx. The dynamic routes that DO exist are `/service/greene-county/yellow-springs-45387` and `/service/greene-county/fairborn-45324`. Add links to the correct dynamic city service pages.
+Each service section gets an appropriate Lucide icon:
+- Loan Signings → `Home`
+- Estate Planning → `FileText`
+- Healthcare → `Heart`
+- Vehicle Title → `Car`
+- Apostille → `Globe`
+- Business → `Briefcase`
+- Military → `Shield`
+- College → `GraduationCap`
+- Rural/Farm → `Trees`
 
-#### 6. Clinton County Hub — Add Sabina Link (`src/pages/blog/NotaryGuideClintonCounty.tsx`)
+### Part 4 — Security Findings
 
-Same pattern: link to `/service/clinton-county/sabina-45169`.
+The scan shows 5 findings. Most are pre-existing and outside the scope of this visual redesign. Here is the triage:
 
-#### 7. Brown County + Miami County — Flag for Review
+| Finding | Level | Action |
+|---------|-------|--------|
+| Admin dashboard no auth | error | Pre-existing. User stated they will add auth later. Note for future. |
+| Blog HTML injection (dangerouslySetInnerHTML) | warn | Pre-existing. Requires DOMPurify. Can address separately. |
+| Edge function service role bypass | warn | Intentional design for anonymous chat. Already documented. |
+| AI leads missing admin access | warn/error | Pre-existing RLS gap. Requires migration + admin auth. |
+| Hardcoded anon key | info | Code quality issue. Can fix by importing from supabase client. |
 
-- **Brown County**: Dynamic route `/service/brown-county` is handled by the catch-all `service/:county` route. It is NOT in the core 6 counties. Not in prerenderRoutes except via CSV.
-- **Miami County**: Has 5 cities explicitly in prerenderRoutes (Troy, Piqua, Tipp City, Covington, West Milton). These were intentionally added.
+**Quick fix in this pass**: Fix the hardcoded anon key in `AIChatWidget.tsx` by importing from the Supabase client module instead. This resolves the `info`-level finding with minimal risk.
 
-**Recommendation**: Keep Miami County pages (they were explicitly added to prerenderRoutes). Flag Brown County for the user's decision — it has no dedicated content and only exists as a CSV-generated route.
-
-#### 8. Sitemap Cross-Check (`src/config/prerenderRoutes.ts`)
-
-Add `/white-label-pricing` to prerenderRoutes so it appears in the sitemap.
+The `error`-level findings (admin auth, leads table) require Supabase migrations and authentication implementation — these should be a separate dedicated task.
 
 ### Files Summary
 
 | File | Action |
 |------|--------|
-| `src/pages/Index.tsx` | Add Seasonal Services section |
-| `src/components/Footer.tsx` | Render seasonalLinks, add "For Notaries" with white-label link |
-| `src/routes.tsx` | Add WhiteLabelPricing route |
-| `src/components/Header.tsx` | Add missing service hubs to navigation dropdown |
-| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | Add Yellow Springs + Fairborn city service links |
-| `src/pages/blog/NotaryGuideClintonCounty.tsx` | Add Sabina city service link |
-| `src/config/prerenderRoutes.ts` | Add `/white-label-pricing` |
-| `public/sitemap.xml` | Regenerate with new route |
+| `src/components/templates/CountyHubTemplate.tsx` | Create — shared template |
+| `src/pages/blog/NotaryGuideWarrenCounty.tsx` | Rewrite — use template |
+| `src/pages/blog/NotaryGuideHamiltonCounty.tsx` | Rewrite — use template |
+| `src/pages/blog/NotaryGuideMontgomeryCounty.tsx` | Rewrite — use template |
+| `src/pages/blog/NotaryGuideButlerCounty.tsx` | Rewrite — use template |
+| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | Rewrite — use template |
+| `src/pages/blog/NotaryGuideClintonCounty.tsx` | Rewrite — use template |
+| `src/components/AIChatWidget.tsx` | Modify — import anon key from supabase client |
 
-**Total: 8 files modified, ~25 new internal links added**
+**Total: 8 files (1 created, 7 modified)**
 
-### Orphan Resolution Summary
-
-| Page | Fix |
-|------|-----|
-| 4 seasonal pages | Homepage section + footer rendering |
-| `/college-18-plus` | Header nav addition (already linked from 2 pages) |
-| `/real-estate-notary` | Header nav addition |
-| `/legal-court` | Header nav addition |
-| `/other-notary` | Header nav addition |
-| `/insurance-retirement` | Header nav addition |
-| `/wills-trusts-estates` | Header nav addition |
-| `/white-label-pricing` | Route + footer "For Notaries" link |
-| `/personal-family` | Already in mobile nav, add to desktop dropdown |
-| Brown County | Flag for user review — outside core 6 |
-| Miami County | Keep — explicitly added to prerenderRoutes |
