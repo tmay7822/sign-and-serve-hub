@@ -25,8 +25,8 @@ const BookNow = () => {
         title="Book Your Mobile Notary Appointment | Signed On Time"
         description="Book your mobile notary appointment online. Same-day service available 7 days a week across Southwest Ohio. Instant confirmation. Call (513) 226-9052."
         canonical="https://www.signedontime.com/book-now"
+        jsonLd={breadcrumbSchema}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <Header />
 
