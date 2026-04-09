@@ -1,96 +1,108 @@
 
+## Internal Link Audit and Orphan Page Fixes
 
-## Final Technical Cleanup — Site Health Audit & Fixes
+### Audit Results
 
-### Audit Findings
+| Page | Inbound Links | Status |
+|------|--------------|--------|
+| `/tax-season-notary` | Footer (defined but **NOT rendered**) | ORPHANED |
+| `/home-buying-season-notary` | Footer (defined but **NOT rendered**) | ORPHANED |
+| `/back-to-school-documents` | Footer (defined but **NOT rendered**) | ORPHANED |
+| `/year-end-planning-notary` | Footer (defined but **NOT rendered**) | ORPHANED |
+| `/college-18-plus` | BackToSchoolDocuments, NotaryGuideButlerCounty | 2 links — weak |
+| `/personal-family` | Header mobile "More" menu | 1 link only |
+| `/real-estate-notary` | None found in navigation or content | ORPHANED |
+| `/wills-trusts-estates` | WhatToDoNext blog component, YearEndPlanningNotary | 2 links — weak |
+| `/insurance-retirement` | TaxSeasonNotary only | 1 link only |
+| `/other-notary` | No inbound links found | ORPHANED |
+| `/legal-court` | No inbound links found | ORPHANED |
+| `/white-label-pricing` | No route in routes.tsx, no links | ORPHANED + UNROUTED |
+| `/service/brown-county` | Only in gmbServiceAreas data | NOT in core 6 counties |
+| `/service/miami-county/*` | Only in prerenderRoutes.ts | NOT in core 6 counties |
+| `/notary-yellow-springs-45387` | Not in routes.tsx | DOES NOT EXIST as route |
+| `/notary-fairborn-45324` | Not in routes.tsx | DOES NOT EXIST as route |
+| `/notary-sabina-45169` | Not in routes.tsx | DOES NOT EXIST as route |
 
-#### Part 1 — Sitemap
-- 1,512 URLs total, all using `https://www.signedontime.com` (correct)
-- All required pages present EXCEPT: `/reviews` and `/service` are **missing** from both `prerenderRoutes.ts` and `sitemap.xml`
-- No admin, undefined, or old thin redirected pages found — clean
-- Old thin county blog pages (redirected in Day 5B) are correctly excluded
+**Key finding**: The footer defines `seasonalLinks` array but never renders it. This is why all 4 seasonal pages are orphaned.
 
-#### Part 2 — robots.txt
-- Has `Disallow: /admin/` — good
-- **Missing**: explicit `Disallow: /content-map`, `/gmb-export`, `/site-map-viewer` (partially covered by `/admin/` since routes are `/admin/content-map` etc., but the user requested explicit entries)
-- Sitemap line present and correct
+### Changes
 
-#### Part 3 — Canonical Tags
-- All pages using `<Seo />` component get canonicals via `BUSINESS_CONFIG.website` (correct www domain)
-- County hub pages have explicit `canonical` props — correct
-- No issues found
+#### 1. Homepage — Add Seasonal Services Section (`src/pages/Index.tsx`)
 
-#### Part 4 — Meta Tags
-- **Homepage**: Title is `"Signed On Time | We Come To You Anytime And Anywhere | Mobile Notary Cincinnati"` — acceptable, contains "Mobile Notary Cincinnati"
-- **About**: Title correct — `"About Signed On Time | Certified Mobile Notary Cincinnati-Dayton Ohio"`
-- **Contact**: Title correct — `"Contact Signed On Time Mobile Notary | Southwest Ohio"`, H1 correct
-- **Pricing**: Description is fine, no template variables
-- **WhiteLabelPricing**: Description already updated to the correct text — no change needed
+Insert a new section between County Hubs and FAQ:
+- H2: "Seasonal Notary Services"
+- 4 cards in a responsive grid, each with season label, title, and link
+- Tax Season (Jan-Apr), Home Buying (Mar-Jun), Back to School (Jul-Sep), Year-End Planning (Oct-Dec)
 
-#### Part 5 — Schema
-- Homepage: `LocalBusinessSchema` renders correct `@type` array, GeoCircle, no street address — correct
-- County hubs: FAQPage + BreadcrumbList schemas via `dangerouslySetInnerHTML` — correct
-- **Potential DOM issue**: County hub pages render `<script dangerouslySetInnerHTML>` in JSX body (same pattern that caused the `removeChild` crash on FAQ/Contact/BookNow). These should be moved to Seo `jsonLd` or kept but monitored.
-- ReviewSchema on Reviews page — uses separate component, should be fine
+#### 2. Footer — Render Seasonal Links + Add "For Notaries" (`src/components/Footer.tsx`)
 
-#### Part 6 — Performance
-- No stray `console.log` in modified files (only intentional `console.error` in NotFound for 404 tracking and `console.warn` for GHL webhook)
-- No broken image references in Index.tsx
+- The `seasonalLinks` array already exists but is never rendered. Add it to the Resources column or as a sub-section.
+- Add a "For Notaries" section with a link to `/white-label-pricing`.
+- Expand grid from 5 to 6 columns (or merge seasonal into existing column).
 
-#### Part 7 — Open Graph
-- Homepage: og tags in `index.html` are correct, og:image is `favicon.png`
-- County hubs get og tags via `<Seo />` with default `/hero-notary.jpg` og:image — should work if file exists
-- Future improvement: unique social images per page
+#### 3. Routes — Add WhiteLabelPricing Route (`src/routes.tsx`)
 
-#### Part 8 — Redirects
-- Blog redirects handled via `BLOG_REDIRECTS` map in routes (~158 redirect entries)
-- HTTP→HTTPS and non-www→www redirects must be handled at DNS/CDN level (Cloudflare), not in app
+- Import and add route: `{ path: 'white-label-pricing', element: <WhiteLabelPricing /> }`
+- The page file exists but has no route entry.
 
-#### Part 9 — Bing Verification
-- `index.html` line 44: `content="YOUR_BING_VERIFICATION_CODE"` — placeholder, needs real code
+#### 4. Header — Add Missing Service Hubs to Desktop Dropdown (`src/components/Header.tsx`)
 
-#### Part 10 — File Cleanup
-- `src/pages/Blog.tsx` — already deleted, not found
-- `public/_redirects` — already deleted, not found
-- 3 TODO comments in `LocalBusinessSchema.tsx` (social media URLs) — future work, not blocking
-- No orphaned files detected
+Add these orphaned service hubs to the desktop Services dropdown or a "More Services" sub-section:
+- Real Estate Notary (`/real-estate-notary`)
+- Legal & Court (`/legal-court`)
+- Insurance & Retirement (`/insurance-retirement`)
+- Wills, Trusts & Estates (`/wills-trusts-estates`)
+- Other Notary (`/other-notary`)
+- College & 18+ (`/college-18-plus`)
 
-### Changes Required
+Also add to the mobile "More" items list (some are already there, add missing ones).
 
-#### 1. Add `/reviews` to prerenderRoutes.ts
-Insert `/reviews` in the Static Pages section so the sitemap generator picks it up.
+#### 5. Greene County Hub — Add City Links (`src/pages/blog/NotaryGuideGreeneCounty.tsx`)
 
-#### 2. Add `/service` to prerenderRoutes.ts
-Insert `/service` (the service hub page) so it appears in the sitemap.
+The user asked to link `/notary-yellow-springs-45387` and `/notary-fairborn-45324` from Greene County hub. However, these specific routes don't exist in routes.tsx. The dynamic routes that DO exist are `/service/greene-county/yellow-springs-45387` and `/service/greene-county/fairborn-45324`. Add links to the correct dynamic city service pages.
 
-#### 3. Update robots.txt
-Add explicit disallow rules for `/content-map`, `/gmb-export`, `/site-map-viewer` as requested. These are technically under `/admin/` already but explicit rules ensure coverage.
+#### 6. Clinton County Hub — Add Sabina Link (`src/pages/blog/NotaryGuideClintonCounty.tsx`)
 
-#### 4. Update Bing verification placeholder
-Change `YOUR_BING_VERIFICATION_CODE` to an HTML comment placeholder: leave as-is but the user needs to provide the actual code. Add a clearer comment.
+Same pattern: link to `/service/clinton-county/sabina-45169`.
 
-#### 5. Regenerate sitemap.xml
-The Vite plugin auto-generates at build time. For the static file in `public/`, update it to include `/reviews` and `/service`.
+#### 7. Brown County + Miami County — Flag for Review
 
-### Files to Modify
+- **Brown County**: Dynamic route `/service/brown-county` is handled by the catch-all `service/:county` route. It is NOT in the core 6 counties. Not in prerenderRoutes except via CSV.
+- **Miami County**: Has 5 cities explicitly in prerenderRoutes (Troy, Piqua, Tipp City, Covington, West Milton). These were intentionally added.
 
-| File | Change |
+**Recommendation**: Keep Miami County pages (they were explicitly added to prerenderRoutes). Flag Brown County for the user's decision — it has no dedicated content and only exists as a CSV-generated route.
+
+#### 8. Sitemap Cross-Check (`src/config/prerenderRoutes.ts`)
+
+Add `/white-label-pricing` to prerenderRoutes so it appears in the sitemap.
+
+### Files Summary
+
+| File | Action |
 |------|--------|
-| `src/config/prerenderRoutes.ts` | Add `/reviews` and `/service` routes |
-| `public/robots.txt` | Add 3 explicit admin disallow rules |
-| `public/sitemap.xml` | Add `/reviews` and `/service` entries |
-| `index.html` | Update Bing verification comment for clarity |
+| `src/pages/Index.tsx` | Add Seasonal Services section |
+| `src/components/Footer.tsx` | Render seasonalLinks, add "For Notaries" with white-label link |
+| `src/routes.tsx` | Add WhiteLabelPricing route |
+| `src/components/Header.tsx` | Add missing service hubs to navigation dropdown |
+| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | Add Yellow Springs + Fairborn city service links |
+| `src/pages/blog/NotaryGuideClintonCounty.tsx` | Add Sabina city service link |
+| `src/config/prerenderRoutes.ts` | Add `/white-label-pricing` |
+| `public/sitemap.xml` | Regenerate with new route |
 
-**Total: 4 files modified**
+**Total: 8 files modified, ~25 new internal links added**
 
-### Site Health Report — April 2026
+### Orphan Resolution Summary
 
-| Metric | Value |
-|--------|-------|
-| Pages in sitemap | 1,514 (after adding /reviews and /service) |
-| Schema types active | LocalBusiness, FAQPage, BreadcrumbList, AggregateRating, Review, WebPage, Service |
-| Redirects configured | ~158 blog redirects via BLOG_REDIRECTS map |
-| Known issues resolved | Missing /reviews and /service from sitemap; robots.txt explicit admin disallows |
-| Remaining TODO items | 3 social media URLs in LocalBusinessSchema (future), Bing verification code (needs user input), unique og:image per page (future) |
-| Recommended next steps | 1. Add Bing verification code 2. Update social media URLs in schema 3. Create unique OG images for key pages 4. Set up GHL webhook for contact form 5. Monitor Google Search Console for indexing of new county hubs |
-
+| Page | Fix |
+|------|-----|
+| 4 seasonal pages | Homepage section + footer rendering |
+| `/college-18-plus` | Header nav addition (already linked from 2 pages) |
+| `/real-estate-notary` | Header nav addition |
+| `/legal-court` | Header nav addition |
+| `/other-notary` | Header nav addition |
+| `/insurance-retirement` | Header nav addition |
+| `/wills-trusts-estates` | Header nav addition |
+| `/white-label-pricing` | Route + footer "For Notaries" link |
+| `/personal-family` | Already in mobile nav, add to desktop dropdown |
+| Brown County | Flag for user review — outside core 6 |
+| Miami County | Keep — explicitly added to prerenderRoutes |
