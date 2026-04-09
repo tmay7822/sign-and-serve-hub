@@ -153,6 +153,8 @@ const NotaryGuideWarrenCounty = () => {
           </div>
         </section>
 
+        <BookingCTASection countyName="Warren County" />
+
         <section className="py-12 bg-muted/50">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
