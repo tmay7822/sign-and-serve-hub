@@ -313,6 +313,11 @@ export const routes: RouteObject[] = [
       { path: 'notary-xenia-45385', element: <DynamicLocationPage /> },
       { path: 'notary-beavercreek-45431', element: <DynamicLocationPage /> },
       
+      // Brown County redirects (single-hop 301s)
+      { path: 'service/brown-county', element: <Navigate to="/service" replace /> },
+      { path: 'service/brown-county/georgetown-45121', element: <Navigate to="/service" replace /> },
+      { path: 'service/brown-county/mt-orab-45154', element: <Navigate to="/service" replace /> },
+
       // Dynamic city service pages (from Service Areas directory) - MUST be before :slug catch-all
       { path: 'service/:county/:cityZip', element: <DynamicCityPage /> },
       

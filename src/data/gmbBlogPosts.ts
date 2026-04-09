@@ -374,7 +374,7 @@ Call (513) 226-9052 to book your appointment!`,
     callToAction: "Book Now",
     ctaLink: "https://www.signedontime.com/book-now",
     category: "location",
-    linkedPage: "/service/brown-county",
+    linkedPage: "/service",
     county: "Brown"
   },
 

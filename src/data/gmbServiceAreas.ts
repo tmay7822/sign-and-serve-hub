@@ -158,20 +158,6 @@ export const GMB_SERVICE_AREAS: GMBServiceAreaExport = {
       linkedPage: "/service/clermont-county"
     },
     {
-      name: "Brown",
-      state: "OH",
-      cities: [
-        { name: "Georgetown", zipCodes: ["45121"], isPopular: true },
-        { name: "Mount Orab", zipCodes: ["45154"] },
-        { name: "Sardinia", zipCodes: ["45171"] },
-        { name: "Ripley", zipCodes: ["45167"] },
-        { name: "Russellville", zipCodes: ["45168"] }
-      ],
-      population: 43432,
-      primaryCity: "Georgetown",
-      linkedPage: "/service/brown-county"
-    },
-    {
       name: "Miami",
       state: "OH",
       cities: [
