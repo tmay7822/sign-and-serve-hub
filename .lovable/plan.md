@@ -1,54 +1,47 @@
 
 
-## Protect Admin Pages from Public Access and Search Indexing
+## Redesign NotFound.tsx — Helpful 404 Page
 
-### Current State
+### Overview
+Replace the minimal 404 page with a fully branded, helpful page that guides lost visitors to key services, includes a click-to-call CTA, trust signals, and proper SEO tags. Uses existing components (Header, Footer, Button, Card, QuickTrustBadges) for consistency.
 
-| Check | Status |
-|-------|--------|
-| Route protection (`ProtectedAdminRoute`) | Already applied to all 4 admin routes |
-| `robots.txt` disallows `/admin/` | Already present (line 6) |
-| Admin pages in `sitemap.xml` | Not present — already excluded |
-| `noindex` meta tag | Only `GMBExport.tsx` has it; `ContentMap.tsx` and `SiteMapViewer.tsx` are missing it |
+### Design
 
-### Changes needed
-
-**1. Add `noindex` meta tag to `ContentMap.tsx`**
-Import `Helmet` and add `<Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>` at the top of the component return.
-
-**2. Add `noindex` meta tag to `SiteMapViewer.tsx`**
-Same — import `Helmet` and add the noindex tag.
-
-**3. Update `robots.txt`**
-Add explicit disallow rules for the specific admin sub-paths (belt-and-suspenders alongside the existing `/admin/` rule):
-
-```
-User-agent: *
-Allow: /
-
-Disallow: /*?*
-Disallow: /admin/
-Disallow: /admin/content-map
-Disallow: /admin/gmb-export
-Disallow: /admin/sitemap
-Disallow: /api/
-
-Sitemap: https://www.signedontime.com/sitemap.xml
-
-Crawl-delay: 1
+```text
+┌─────────────────────────────────┐
+│           Header                │
+├─────────────────────────────────┤
+│  H1: Page Not Found            │
+│  Friendly message paragraph     │
+│  [Call (513) 226-9052] red btn  │
+├─────────────────────────────────┤
+│  "What are you looking for?"    │
+│  ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
+│  │Book│ │Loan│ │Est│ │Gen│      │
+│  └───┘ └───┘ └───┘ └───┘      │
+│  ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
+│  │Apo│ │Veh│ │Con│ │All│       │
+│  └───┘ └───┘ └───┘ └───┘      │
+├─────────────────────────────────┤
+│  Trust bar (NNA | BG | Ins | 7d)│
+├─────────────────────────────────┤
+│           Footer                │
+└─────────────────────────────────┘
 ```
 
-### No changes needed for
+### Changes — 1 file
 
-- **Route protection** — all 3 pages already wrapped in `ProtectedAdminRoute` which redirects unauthenticated users to `/auth`
-- **Sitemap exclusion** — no admin URLs exist in `sitemap.xml`
-- **GMBExport noindex** — already has the tag
+**`src/pages/NotFound.tsx`** — Full rewrite:
 
-### Files changed (3 total)
-
-| File | Change |
-|------|--------|
-| `src/pages/admin/ContentMap.tsx` | Add Helmet with noindex meta tag |
-| `src/pages/admin/SiteMapViewer.tsx` | Add Helmet with noindex meta tag |
-| `public/robots.txt` | Add explicit disallow for admin sub-paths |
+- Wrap in `Header` + `Footer` for site consistency
+- `Helmet` with:
+  - `<title>Page Not Found | Signed On Time Mobile Notary</title>`
+  - `<meta name="robots" content="noindex, follow" />`
+  - `<meta name="prerender-status-code" content="404" />` (keep existing)
+- H1: "Page Not Found"
+- Paragraph with friendly message
+- Large red call button using `Button` variant `"cta"` linking to `tel:5132269052`
+- "What are you looking for?" section with 8 link cards in a responsive grid (2 cols mobile, 4 cols desktop), each using `Card` + `Link` from react-router
+- `QuickTrustBadges` component below the links (already exists, shows NNA/BG/Insured/Same Day)
+- Keep the existing `console.error` log for 404 tracking
 
