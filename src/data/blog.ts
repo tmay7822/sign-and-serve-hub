@@ -622,6 +622,103 @@ export const BLOG_POSTS: BlogPost[] = [
       { question: 'Can you notarize documents at the hospital bedside?', answer: 'Yes, bedside notarization is one of our specialties. We work with hospital staff to ensure patient comfort.' }
     ]
   }
+  // County Hub Pages
+  {
+    id: 'notary-guide-hamilton-county',
+    title: 'Mobile Notary Services in Hamilton County, Ohio',
+    slug: 'notary-guide-hamilton-county-ohio',
+    serviceSlug: 'general-notary',
+    categorySlug: 'general-notary-guides',
+    excerpt: 'Complete guide to mobile notary services throughout Hamilton County — serving Cincinnati, Blue Ash, Norwood, Springdale and all communities. Same-day appointments 35-40 minutes from Waynesville.',
+    content: '',
+    metaTitle: 'Mobile Notary Hamilton County Ohio | Signed On Time',
+    metaDescription: 'Mobile notary services throughout Hamilton County Ohio. Serving Cincinnati, Blue Ash, Norwood, Springdale and surrounding areas. Same-day appointments. Call (513) 226-9052.',
+    publishDate: '2026-04-08',
+    author: 'Terry May',
+    tags: ['Hamilton County', 'Cincinnati', 'Mobile Notary', 'County Guide'],
+    featured: false,
+    readTime: 7
+  },
+  {
+    id: 'notary-guide-warren-county',
+    title: 'Mobile Notary Services in Warren County, Ohio',
+    slug: 'notary-guide-warren-county-ohio',
+    serviceSlug: 'general-notary',
+    categorySlug: 'general-notary-guides',
+    excerpt: 'Your Waynesville-based mobile notary for all of Warren County — serving Mason, Lebanon, Springboro and surrounding communities with the fastest response times in the area.',
+    content: '',
+    metaTitle: 'Mobile Notary Warren County Ohio | Signed On Time',
+    metaDescription: 'Mobile notary services throughout Warren County Ohio. Based in Waynesville — fastest response times. Serving Mason, Lebanon, Springboro. Call (513) 226-9052.',
+    publishDate: '2026-04-08',
+    author: 'Terry May',
+    tags: ['Warren County', 'Mason', 'Lebanon', 'Waynesville', 'County Guide'],
+    featured: false,
+    readTime: 7
+  },
+  {
+    id: 'notary-guide-montgomery-county',
+    title: 'Mobile Notary Services in Montgomery County, Ohio',
+    slug: 'notary-guide-montgomery-county-ohio',
+    serviceSlug: 'general-notary',
+    categorySlug: 'general-notary-guides',
+    excerpt: 'Professional mobile notary services throughout Montgomery County — serving Dayton, Kettering, Centerville and military families near Wright-Patterson AFB.',
+    content: '',
+    metaTitle: 'Mobile Notary Montgomery County Ohio | Signed On Time',
+    metaDescription: 'Mobile notary services throughout Montgomery County Ohio. Serving Dayton, Kettering, Centerville. 30-40 minutes from Waynesville. Call (513) 226-9052.',
+    publishDate: '2026-04-08',
+    author: 'Terry May',
+    tags: ['Montgomery County', 'Dayton', 'Kettering', 'Military', 'County Guide'],
+    featured: false,
+    readTime: 7
+  },
+  {
+    id: 'notary-guide-butler-county',
+    title: 'Mobile Notary Services in Butler County, Ohio',
+    slug: 'notary-guide-butler-county-ohio',
+    serviceSlug: 'general-notary',
+    categorySlug: 'general-notary-guides',
+    excerpt: 'Mobile notary services throughout Butler County — serving Hamilton, Fairfield, West Chester, Oxford and Miami University. College student documents and loan signings.',
+    content: '',
+    metaTitle: 'Mobile Notary Butler County Ohio | Signed On Time',
+    metaDescription: 'Mobile notary services throughout Butler County Ohio. Serving Hamilton, Fairfield, West Chester and Oxford. Same-day appointments. Call (513) 226-9052.',
+    publishDate: '2026-04-08',
+    author: 'Terry May',
+    tags: ['Butler County', 'Hamilton', 'West Chester', 'Oxford', 'County Guide'],
+    featured: false,
+    readTime: 7
+  },
+  {
+    id: 'notary-guide-greene-county',
+    title: 'Mobile Notary Services in Greene County, Ohio',
+    slug: 'notary-guide-greene-county-ohio',
+    serviceSlug: 'general-notary',
+    categorySlug: 'general-notary-guides',
+    excerpt: 'Mobile notary services throughout Greene County — serving Beavercreek, Xenia, Fairborn, Yellow Springs and military families at Wright-Patterson AFB.',
+    content: '',
+    metaTitle: 'Mobile Notary Greene County Ohio | Signed On Time',
+    metaDescription: 'Mobile notary services throughout Greene County Ohio. Serving Beavercreek, Xenia, Fairborn. 30-40 minutes from Waynesville via US-35. Call (513) 226-9052.',
+    publishDate: '2026-04-08',
+    author: 'Terry May',
+    tags: ['Greene County', 'Beavercreek', 'Xenia', 'Wright-Patterson', 'County Guide'],
+    featured: false,
+    readTime: 7
+  },
+  {
+    id: 'notary-guide-clinton-county',
+    title: 'Mobile Notary Services in Clinton County, Ohio',
+    slug: 'notary-guide-clinton-county-ohio',
+    serviceSlug: 'general-notary',
+    categorySlug: 'general-notary-guides',
+    excerpt: 'Mobile notary services throughout Clinton County — serving Wilmington, Blanchester, Sabina and rural communities. Just 25-30 minutes from Waynesville via US-68.',
+    content: '',
+    metaTitle: 'Mobile Notary Clinton County Ohio | Signed On Time',
+    metaDescription: 'Mobile notary services throughout Clinton County Ohio. Serving Wilmington, Blanchester, Sabina. Just 25-30 minutes from Waynesville. Call (513) 226-9052.',
+    publishDate: '2026-04-08',
+    author: 'Terry May',
+    tags: ['Clinton County', 'Wilmington', 'Rural', 'Farm Documents', 'County Guide'],
+    featured: false,
+    readTime: 7
+  }
 ];
 
 // Helper functions

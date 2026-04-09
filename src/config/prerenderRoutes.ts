@@ -507,6 +507,14 @@ export const PRERENDER_ROUTES = [
   '/service/brown-county/fayetteville-45118',
   '/service/brown-county/aberdeen-45101',
   
+  // County Hub Pages
+  '/blog/notary-guide-hamilton-county-ohio',
+  '/blog/notary-guide-warren-county-ohio',
+  '/blog/notary-guide-montgomery-county-ohio',
+  '/blog/notary-guide-butler-county-ohio',
+  '/blog/notary-guide-greene-county-ohio',
+  '/blog/notary-guide-clinton-county-ohio',
+
   // Miami County Cities
   '/service/miami-county/troy-45373',
   '/service/miami-county/piqua-45356',

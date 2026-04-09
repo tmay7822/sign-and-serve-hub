@@ -110,6 +110,12 @@ const ImmigrationDocumentsNotaryGuide = lazy(() => import('./pages/blog/Immigrat
 const MilitaryVeteransNotaryGuide = lazy(() => import('./pages/blog/MilitaryVeteransNotaryGuide'));
 const HealthcareDocumentsNotaryGuide = lazy(() => import('./pages/blog/HealthcareDocumentsNotaryGuide'));
 const OhioCarTitleTransferRequirements = lazy(() => import('./pages/blog/OhioCarTitleTransferRequirements'));
+const NotaryGuideHamiltonCounty = lazy(() => import('./pages/blog/NotaryGuideHamiltonCounty'));
+const NotaryGuideWarrenCounty = lazy(() => import('./pages/blog/NotaryGuideWarrenCounty'));
+const NotaryGuideMontgomeryCounty = lazy(() => import('./pages/blog/NotaryGuideMontgomeryCounty'));
+const NotaryGuideButlerCounty = lazy(() => import('./pages/blog/NotaryGuideButlerCounty'));
+const NotaryGuideGreeneCounty = lazy(() => import('./pages/blog/NotaryGuideGreeneCounty'));
+const NotaryGuideClintonCounty = lazy(() => import('./pages/blog/NotaryGuideClintonCounty'));
 const Documents = lazy(() => import('./pages/Documents'));
 const Resources = lazy(() => import('./pages/Resources'));
 const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
@@ -336,6 +342,14 @@ export const routes: RouteObject[] = [
       { path: 'blog/estate-planning-guides-cincinnati-ohio', element: <LocationBlogPost /> },
       { path: 'blog/healthcare-guides-cincinnati-ohio', element: <LocationBlogPost /> },
       
+      // County hub pages
+      { path: 'blog/notary-guide-hamilton-county-ohio', element: <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><NotaryGuideHamiltonCounty /></Suspense> },
+      { path: 'blog/notary-guide-warren-county-ohio', element: <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><NotaryGuideWarrenCounty /></Suspense> },
+      { path: 'blog/notary-guide-montgomery-county-ohio', element: <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><NotaryGuideMontgomeryCounty /></Suspense> },
+      { path: 'blog/notary-guide-butler-county-ohio', element: <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><NotaryGuideButlerCounty /></Suspense> },
+      { path: 'blog/notary-guide-greene-county-ohio', element: <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><NotaryGuideGreeneCounty /></Suspense> },
+      { path: 'blog/notary-guide-clinton-county-ohio', element: <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}><NotaryGuideClintonCounty /></Suspense> },
+
       // Dynamic location blog catch-all (handles remaining city posts)
       { path: 'blog/:slug', element: <LocationBlogPost /> },
       
