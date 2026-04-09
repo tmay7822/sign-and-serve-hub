@@ -1,118 +1,54 @@
 
 
-## Redesign County Hub Pages + Address Security Findings
+## Remove Brown County Pages + Add Redirects
 
-### Problem
-All 6 county hub pages render as walls of unstyled prose text. Service sections have no visual separation, FAQs render as static cards instead of interactive accordions, and there is no trust bar between the hero and content.
+### Current State
+- Brown County has **no routes in `routes.tsx`**, `prerenderRoutes.ts`, `sitemap.xml`, or the CSV file
+- The `/service/brown-county` path only works via the **dynamic catch-all** route `service/:county` → `DynamicCountyPage`
+- `/service/clermont-county/mt-orab-45154` does not exist anywhere — no redirect needed
+- Brown County is referenced in 2 data files: `gmbServiceAreas.ts` (county entry) and `gmbBlogPosts.ts` (one linked page reference)
+- Miami County pages are completely separate and will not be touched
 
-### Approach
-Create a shared `CountyHubTemplate` component that all 6 pages use, eliminating duplicated layout code. This template will match the visual quality of the service hub pages.
+### Changes
 
-### Part 1 — Create CountyHubTemplate Component
+#### 1. Add redirects in `src/routes.tsx`
+Add 3 static redirect routes **before** the dynamic `service/:county` catch-all:
 
-**New file: `src/components/templates/CountyHubTemplate.tsx`**
-
-A reusable template accepting structured data props:
-
-```typescript
-interface CountyHubTemplateProps {
-  county: string;
-  title: string;
-  subtitle: string;
-  introText: string;
-  publishDate: string;
-  readTime: string;
-  canonicalUrl: string;
-  metaTitle: string;
-  metaDescription: string;
-  services: Array<{
-    icon: LucideIcon;
-    title: string;
-    description: string;
-    linkTo: string;
-    linkText: string;
-  }>;
-  faqs: Array<{ question: string; answer: string }>;
-  otherCounties: Array<{ name: string; href: string }>;
-  cityLinks?: Array<{ name: string; href: string }>;
-  bottomHeading: string;
-  bottomText: string;
-}
+```tsx
+{ path: 'service/brown-county', element: <Navigate to="/service" replace /> },
+{ path: 'service/brown-county/georgetown-45121', element: <Navigate to="/service" replace /> },
+{ path: 'service/brown-county/mt-orab-45154', element: <Navigate to="/service" replace /> },
 ```
 
-**Template layout:**
+These are single-hop redirects directly to `/service`. The `replace` prop ensures browser history is clean.
 
-1. **Hero section** — Dark gradient background (`bg-gradient-to-br from-primary via-primary/90 to-primary/80`), white text, breadcrumbs, Badge, H1, subtitle, author/date/read-time badges, StandardCTAButtons inline
-2. **Trust bar** — Four icon+text badges in a horizontal strip: "30-45 Min Response", "6 Counties Served", "7 Days a Week", "25+ Years Experience" — matching the TrustSignals component style
-3. **Intro paragraph** — Styled card with subtle border, proper typography
-4. **Service sections** — Each service rendered as a Card with:
-   - Lucide icon in a colored circle
-   - H2 heading
-   - Body text with proper `leading-relaxed`
-   - Styled arrow-link button to service page
-   - Alternating `bg-background` and `bg-muted/30` backgrounds per section
-5. **Mid-page CTA** — StandardCTAButtons after 3rd service card
-6. **FAQ section** — Use existing `FAQAccordion` component (interactive expand/collapse, includes its own schema)
-7. **City links** (optional) — Grid of styled pill buttons
-8. **County cross-links** — Row of county pill buttons matching current styling
-9. **BookingCTASection** — Existing component
-10. **Bottom CTA** — Final branded section with StandardCTAButtons
+#### 2. Update `src/data/gmbServiceAreas.ts`
+Remove or comment out the entire Brown County object from the counties array so it no longer generates links in the Service Areas page or GMB exports.
 
-### Part 2 — Convert All 6 County Pages
+#### 3. Update `src/data/gmbBlogPosts.ts`
+Change the `linkedPage` for the Brown County GMB post from `/service/brown-county` to `/service` so it doesn't link to a redirected page.
 
-Each page becomes a thin data file that imports `CountyHubTemplate` and passes its specific content as props. The FAQ schema `dangerouslySetInnerHTML` scripts are removed since `FAQAccordion` handles its own schema injection. The breadcrumb schema stays via `dangerouslySetInnerHTML` (proven stable on these pages).
+#### 4. Update `src/pages/admin/SiteMapViewer.tsx`
+Remove the "Brown County Cities" filter line from the admin sitemap viewer categories.
 
-Files modified:
-- `src/pages/blog/NotaryGuideWarrenCounty.tsx`
-- `src/pages/blog/NotaryGuideHamiltonCounty.tsx`
-- `src/pages/blog/NotaryGuideMontgomeryCounty.tsx`
-- `src/pages/blog/NotaryGuideButlerCounty.tsx`
-- `src/pages/blog/NotaryGuideGreeneCounty.tsx`
-- `src/pages/blog/NotaryGuideClintonCounty.tsx`
+#### 5. No sitemap/prerenderRoutes changes needed
+Brown County URLs are already absent from both `prerenderRoutes.ts` and `public/sitemap.xml`. No cleanup required there.
 
-Each page will define its data (services array, FAQs, county-specific text) and render `<CountyHubTemplate {...data} />`.
+### Confirmations
+1. All Brown County redirects are single hop → `/service`
+2. No redirect chains created
+3. Miami County pages completely untouched
+4. Sitemap already clean — no Brown County URLs present
+5. Sitemap URL count unchanged (currently 1,514)
 
-### Part 3 — Service Icons Mapping
-
-Each service section gets an appropriate Lucide icon:
-- Loan Signings → `Home`
-- Estate Planning → `FileText`
-- Healthcare → `Heart`
-- Vehicle Title → `Car`
-- Apostille → `Globe`
-- Business → `Briefcase`
-- Military → `Shield`
-- College → `GraduationCap`
-- Rural/Farm → `Trees`
-
-### Part 4 — Security Findings
-
-The scan shows 5 findings. Most are pre-existing and outside the scope of this visual redesign. Here is the triage:
-
-| Finding | Level | Action |
-|---------|-------|--------|
-| Admin dashboard no auth | error | Pre-existing. User stated they will add auth later. Note for future. |
-| Blog HTML injection (dangerouslySetInnerHTML) | warn | Pre-existing. Requires DOMPurify. Can address separately. |
-| Edge function service role bypass | warn | Intentional design for anonymous chat. Already documented. |
-| AI leads missing admin access | warn/error | Pre-existing RLS gap. Requires migration + admin auth. |
-| Hardcoded anon key | info | Code quality issue. Can fix by importing from supabase client. |
-
-**Quick fix in this pass**: Fix the hardcoded anon key in `AIChatWidget.tsx` by importing from the Supabase client module instead. This resolves the `info`-level finding with minimal risk.
-
-The `error`-level findings (admin auth, leads table) require Supabase migrations and authentication implementation — these should be a separate dedicated task.
-
-### Files Summary
+### Files Modified
 
 | File | Action |
 |------|--------|
-| `src/components/templates/CountyHubTemplate.tsx` | Create — shared template |
-| `src/pages/blog/NotaryGuideWarrenCounty.tsx` | Rewrite — use template |
-| `src/pages/blog/NotaryGuideHamiltonCounty.tsx` | Rewrite — use template |
-| `src/pages/blog/NotaryGuideMontgomeryCounty.tsx` | Rewrite — use template |
-| `src/pages/blog/NotaryGuideButlerCounty.tsx` | Rewrite — use template |
-| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | Rewrite — use template |
-| `src/pages/blog/NotaryGuideClintonCounty.tsx` | Rewrite — use template |
-| `src/components/AIChatWidget.tsx` | Modify — import anon key from supabase client |
+| `src/routes.tsx` | Add 3 redirect routes for Brown County |
+| `src/data/gmbServiceAreas.ts` | Remove Brown County entry |
+| `src/data/gmbBlogPosts.ts` | Update linkedPage reference |
+| `src/pages/admin/SiteMapViewer.tsx` | Remove Brown County filter |
 
-**Total: 8 files (1 created, 7 modified)**
+**Total: 4 files modified**
 
