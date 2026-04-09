@@ -138,13 +138,15 @@ export const AIChatWidget = () => {
     await saveMessage('user', textToSend);
 
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpmYm1iYnNsdWJncndzZ3V4Y3FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NjAzOTMsImV4cCI6MjA3NDIzNjM5M30.cDJW7sgKYSrWhX9D7ACIUKbPQE3kfXu-t_L8kH4VLVk';
       const response = await fetch(
-        `https://jfbmbbslubgrwsguxcqe.supabase.co/functions/v1/ai-chat`,
+        `${import.meta.env.VITE_SUPABASE_URL || 'https://jfbmbbslubgrwsguxcqe.supabase.co'}/functions/v1/ai-chat`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpmYm1iYnNsdWJncndzZ3V4Y3FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NjAzOTMsImV4cCI6MjA3NDIzNjM5M30.cDJW7sgKYSrWhX9D7ACIUKbPQE3kfXu-t_L8kH4VLVk`
+            'Authorization': `Bearer ${session?.access_token || anonKey}`
           },
           body: JSON.stringify({
             messages: [...messages, userMessage].map(m => ({
