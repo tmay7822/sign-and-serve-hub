@@ -1,122 +1,65 @@
 
 
-## Add LocalBusiness, AggregateRating, and Breadcrumb Schema
+## Update Structured Data for Service Area Business
 
-### Part 1 — LocalBusiness Schema on Homepage
+### Problem
 
-**`src/components/SEO/LocalBusinessSchema.tsx`** — Full rewrite from `useEffect` DOM injection to inline `dangerouslySetInnerHTML`. When rendered without `serviceName` prop (homepage case), output the exact user-specified LocalBusiness JSON-LD with:
-- `@type: "LocalBusiness"`, name, alternateName, full description
-- address: Waynesville, OH 45068
-- geo: 39.5318, -84.0955
-- openingHours: 7 days, 07:00-22:00
-- 6 areaServed County entries
-- hasOfferCatalog with 6 services (Loan Signing, Estate Planning, Apostille, Healthcare, Vehicle Title, General Notary) — each with descriptions
-- founder: Terry May with credentials
-- sameAs array with TODO comments for GMB, Facebook, LinkedIn URLs
-- Dynamic `aggregateRating` pulled from `useGoogleReviews` hook
+The current `LocalBusinessSchema.tsx` includes a physical `address` (Waynesville, OH 45068) and `geo` coordinates as if clients visit a storefront. This is incorrect — Signed On Time is a Service Area Business (SAB) that travels to clients. Google may penalize or misrepresent SABs that expose a physical address in schema.
 
-When rendered with `serviceName` prop (service pages), keep existing Service schema but also switch to inline rendering.
+Additionally, `ReviewSchema.tsx` on the homepage also outputs a `LocalBusiness` schema with a physical address (Cincinnati, OH 45202), creating the same SAB conflict.
 
-**`src/pages/Index.tsx`** — No changes needed; already renders `<LocalBusinessSchema />`.
+### Changes — 2 files
 
-### Part 2 — AggregateRating on Reviews Page
+**1. `src/components/SEO/LocalBusinessSchema.tsx`**
 
-**`src/pages/Reviews.tsx`** — Already renders `<ReviewSchema />` which already uses inline `dangerouslySetInnerHTML` and pulls dynamic `averageRating`/`totalReviews` from `useGoogleReviews`, including the first 5 individual reviews. This already satisfies the requirement. No changes needed.
+Update the homepage (no `serviceName`) branch:
 
-### Part 3 — Breadcrumb Schema on Service Pages
+- Change `@type` from `"LocalBusiness"` to `["LocalBusiness", "ProfessionalService", "LegalService"]`
+- Remove `address` object (lines 67-73) — SABs should not expose a street address
+- Remove `geo` object (lines 74-78) — replaced by serviceArea
+- Remove `foundingDate` (line 54)
+- Add `serviceArea` with GeoCircle (midpoint 39.5318, -84.0955, radius 80467 meters = ~50 miles)
+- Keep existing `areaServed` array (6 counties)
+- Update offer descriptions to include geographic context (e.g. "throughout Southwest Ohio", "at your home or care facility")
+- Keep `aggregateRating`, `founder`, `sameAs`, `hasOfferCatalog`, `openingHours` unchanged
 
-**`src/components/SEO/BreadcrumbSchema.tsx`** — Rewrite from `useEffect` DOM injection to inline `dangerouslySetInnerHTML`. Keep the same `generateBreadcrumbsFromPath` logic but render the schema inline. This fixes all 6 service pages at once since `ServiceHubEnhanced` already renders `<BreadcrumbSchema />`.
+**2. `src/components/SEO/ReviewSchema.tsx`**
 
-The breadcrumb output for e.g. `/loan-signings` will be:
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.signedontime.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Loan Signings", "item": "https://www.signedontime.com/loan-signings" }
-  ]
-}
-```
+- Remove `address` object (lines 38-44) — same SAB reason; this schema should not contradict the main LocalBusiness schema
+- This is a secondary LocalBusiness node for reviews; removing the address keeps it consistent
 
-### Complete JSON-LD for Part 1 (Homepage LocalBusiness)
+### No other files change
+
+`Index.tsx`, `BreadcrumbSchema.tsx`, and service pages are unaffected — they already render these components correctly.
+
+### Final homepage LocalBusiness schema output
 
 ```json
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "ProfessionalService", "LegalService"],
   "name": "Signed On Time Mobile Notary Services",
   "alternateName": "Signed On Time",
-  "description": "Certified mobile notary serving Southwest Ohio including Hamilton, Warren, Butler, Montgomery, Greene and Clinton counties. Loan signings, estate planning, apostille, healthcare directives, vehicle titles and general notary services. Same-day appointments available 7 days a week.",
+  "description": "Certified mobile notary serving Southwest Ohio...",
   "url": "https://www.signedontime.com",
   "telephone": "+15132269052",
   "email": "Terry@SignedOnTime.com",
-  "foundingDate": "1999",
   "priceRange": "$$",
   "currenciesAccepted": "USD",
   "paymentAccepted": "Cash, Credit Card, Check, Venmo, Zelle",
-  "openingHours": ["Mo 07:00-22:00","Tu 07:00-22:00","We 07:00-22:00","Th 07:00-22:00","Fr 07:00-22:00","Sa 07:00-22:00","Su 07:00-22:00"],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Waynesville",
-    "addressRegion": "OH",
-    "postalCode": "45068",
-    "addressCountry": "US"
+  "openingHours": ["Mo 07:00-22:00", ...],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 39.5318, "longitude": -84.0955 },
+    "geoRadius": "80467"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 39.5318,
-    "longitude": -84.0955
-  },
-  "areaServed": [
-    {"@type": "County", "name": "Hamilton County", "containedIn": "Ohio"},
-    {"@type": "County", "name": "Warren County", "containedIn": "Ohio"},
-    {"@type": "County", "name": "Butler County", "containedIn": "Ohio"},
-    {"@type": "County", "name": "Montgomery County", "containedIn": "Ohio"},
-    {"@type": "County", "name": "Greene County", "containedIn": "Ohio"},
-    {"@type": "County", "name": "Clinton County", "containedIn": "Ohio"}
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Mobile Notary Services",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Loan Signing Services", "description": "Certified loan signing agent for mortgage closings, refinances, HELOCs and purchase transactions"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estate Planning Notarization", "description": "Mobile notary for wills, trusts, powers of attorney and healthcare directives"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Apostille Services", "description": "Document authentication and apostille preparation for international use"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Healthcare Document Notarization", "description": "Bedside notarization at hospitals, rehab facilities and senior communities"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vehicle Title Notarization", "description": "Ohio car title transfer notarization and bill of sale notary services"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "General Notary Services", "description": "Acknowledgments, jurats, oaths and affirmations for all document types"}}
-    ]
-  },
-  "sameAs": [
-    "https://www.google.com/maps?cid=YOUR_GMB_CID",
-    "https://www.facebook.com/signedontime",
-    "https://www.linkedin.com/company/signedontime"
-  ],
-  "founder": {
-    "@type": "Person",
-    "name": "Terry May",
-    "jobTitle": "Certified Notary Public and Loan Signing Agent",
-    "description": "25+ years experience in commercial and residential lending. NNA certified, background screened and fully insured."
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "bestRating": "5",
-    "worstRating": "1",
-    "reviewCount": "[dynamic from useGoogleReviews]"
-  }
+  "areaServed": [ ... 6 counties ... ],
+  "hasOfferCatalog": { ... 6 services with updated descriptions ... },
+  "sameAs": [ ... 3 URLs with TODO comments ... ],
+  "founder": { ... Terry May ... },
+  "aggregateRating": { ... dynamic from useGoogleReviews ... }
 }
 ```
 
-### Files changed (2 total)
-
-| File | Change |
-|------|--------|
-| `src/components/SEO/LocalBusinessSchema.tsx` | Rewrite to inline dangerouslySetInnerHTML with full user-specified schema |
-| `src/components/SEO/BreadcrumbSchema.tsx` | Rewrite from useEffect to inline dangerouslySetInnerHTML |
-
-`src/pages/Reviews.tsx` — no changes needed (ReviewSchema already inline with dynamic data).
-`src/pages/Index.tsx` — no changes needed (already renders LocalBusinessSchema).
-Service pages — no changes needed (already render BreadcrumbSchema via ServiceHubEnhanced).
+No physical address. No geo coordinates as a pin. The `serviceArea` GeoCircle tells Google this is a mobile service covering a 50-mile radius.
 
