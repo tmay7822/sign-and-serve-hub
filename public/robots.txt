@@ -4,9 +4,6 @@ Allow: /
 # Disallow query parameters and admin pages
 Disallow: /*?*
 Disallow: /admin/
-Disallow: /admin/content-map
-Disallow: /admin/gmb-export
-Disallow: /admin/sitemap
 Disallow: /api/
 
 # Sitemap location
