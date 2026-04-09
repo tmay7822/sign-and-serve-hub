@@ -1,54 +1,71 @@
 
 
-## Remove Brown County Pages + Add Redirects
+## Reusable Need-Based Navigation Component
 
-### Current State
-- Brown County has **no routes in `routes.tsx`**, `prerenderRoutes.ts`, `sitemap.xml`, or the CSV file
-- The `/service/brown-county` path only works via the **dynamic catch-all** route `service/:county` → `DynamicCountyPage`
-- `/service/clermont-county/mt-orab-45154` does not exist anywhere — no redirect needed
-- Brown County is referenced in 2 data files: `gmbServiceAreas.ts` (county entry) and `gmbBlogPosts.ts` (one linked page reference)
-- Miami County pages are completely separate and will not be touched
+### Summary
+Create a `NeedBasedNavigation` component with 10 intent-based buttons and deploy it across 10 pages: Homepage, BookNow, FAQ, 404, Resources, and 6 county hub pages.
 
-### Changes
+### Component Design
 
-#### 1. Add redirects in `src/routes.tsx`
-Add 3 static redirect routes **before** the dynamic `service/:county` catch-all:
+**File**: `src/components/NeedBasedNavigation.tsx`
 
-```tsx
-{ path: 'service/brown-county', element: <Navigate to="/service" replace /> },
-{ path: 'service/brown-county/georgetown-45121', element: <Navigate to="/service" replace /> },
-{ path: 'service/brown-county/mt-orab-45154', element: <Navigate to="/service" replace /> },
-```
+**Props**:
+- `heading: string`
+- `subtext?: string`
+- `variant: 'full' | 'services' | 'guides' | 'compact'`
+- `county?: string` (for county hub headings)
+- `onButtonClick?: (serviceId: string) => void` (for BookNow scroll behavior)
 
-These are single-hop redirects directly to `/service`. The `replace` prop ensures browser history is clean.
+**Button data** — 10 buttons total, stored as arrays inside the component:
 
-#### 2. Update `src/data/gmbServiceAreas.ts`
-Remove or comment out the entire Brown County object from the counties array so it no longer generates links in the Service Areas page or GMB exports.
+| # | Headline | Icon | Service Link | Guide Link | Urgent? |
+|---|----------|------|-------------|------------|---------|
+| 1 | I Need a Document Notarized | FileText | /general-notary | /blog/general-notary-what-to-bring | No |
+| 2 | I'm Buying or Selling a Car | Car | /vehicles-dmv | /blog/ohio-car-title-transfer-requirements | No |
+| 3 | I Have a Real Estate Closing | Home | /loan-signings | /blog/what-happens-loan-signing | No |
+| 4 | I Need Hospital or Bedside Notary | Heart | /healthcare-notary | /blog/hospital-notary-what-to-expect | No |
+| 5 | I Need a Will or Trust Notarized | ScrollText | /estate-plans | /blog/wills-trusts-poa-checklist | No |
+| 6 | I Need Power of Attorney | Shield | /estate-plans | /blog/poa-pitfalls | No |
+| 7 | I Need Documents for International Use | Globe | /apostille | — | No |
+| 8 | My Student is Turning 18 | GraduationCap | /college-18-plus | — | No |
+| 9 | I Need a Notary Today | Clock | /book-now | — | YES (red) |
+| 10 | I Need a Notary After Hours | Moon | /book-now | — | YES (red) |
 
-#### 3. Update `src/data/gmbBlogPosts.ts`
-Change the `linkedPage` for the Brown County GMB post from `/service/brown-county` to `/service` so it doesn't link to a redirected page.
+**Variant logic**:
+- `full` = all 10 buttons (Homepage, BookNow)
+- `services` = buttons 1-8, no urgent buttons (County hubs)
+- `guides` = buttons 1-6 with guide links instead of service links (Resources)
+- `compact` = buttons 1-6 only (FAQ, 404)
 
-#### 4. Update `src/pages/admin/SiteMapViewer.tsx`
-Remove the "Brown County Cities" filter line from the admin sitemap viewer categories.
+**Styling**: Identical to existing homepage cards — white bg, rounded-xl, border-2, gradient icon box, bold headline, subtitle, ArrowRight. Urgent buttons get `bg-destructive text-white` with white icon box.
 
-#### 5. No sitemap/prerenderRoutes changes needed
-Brown County URLs are already absent from both `prerenderRoutes.ts` and `public/sitemap.xml`. No cleanup required there.
+**Grid**: `grid-cols-1 sm:grid-cols-2 gap-4` (2-col on tablet/desktop per requirement).
 
-### Confirmations
-1. All Brown County redirects are single hop → `/service`
-2. No redirect chains created
-3. Miami County pages completely untouched
-4. Sitemap already clean — no Brown County URLs present
-5. Sitemap URL count unchanged (currently 1,514)
+### Page Integration
 
-### Files Modified
-
-| File | Action |
+| File | Change |
 |------|--------|
-| `src/routes.tsx` | Add 3 redirect routes for Brown County |
-| `src/data/gmbServiceAreas.ts` | Remove Brown County entry |
-| `src/data/gmbBlogPosts.ts` | Update linkedPage reference |
-| `src/pages/admin/SiteMapViewer.tsx` | Remove Brown County filter |
+| `src/components/NeedBasedNavigation.tsx` | **CREATE** — reusable component |
+| `src/components/HeroSection.tsx` | Replace inline `intentOptions` grid with `<NeedBasedNavigation variant="full" heading="What Do You Need Notarized?" />` |
+| `src/pages/BookNow.tsx` | Add component above BookingWidget section with `onButtonClick` that scrolls to booking widget and pre-selects service via query param or ref |
+| `src/pages/FAQ.tsx` | Add component above `<FAQSection />` with heading "Find your answer faster", variant `compact` |
+| `src/pages/NotFound.tsx` | Replace `quickLinks` grid with component, heading "What were you looking for?", variant `compact` |
+| `src/pages/Resources.tsx` | Add component above "Most Popular" section with heading "Find the right guide for your situation", variant `guides` |
+| `src/components/templates/CountyHubTemplate.tsx` | Add optional `county` prop rendering, insert component after intro card and before service sections, variant `services` |
+| `src/pages/blog/NotaryGuideWarrenCounty.tsx` | No change needed — template handles it |
+| `src/pages/blog/NotaryGuideHamiltonCounty.tsx` | No change needed |
+| `src/pages/blog/NotaryGuideMontgomeryCounty.tsx` | No change needed |
+| `src/pages/blog/NotaryGuideButlerCounty.tsx` | No change needed |
+| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | No change needed |
+| `src/pages/blog/NotaryGuideClintonCounty.tsx` | No change needed |
 
-**Total: 4 files modified**
+### BookNow Scroll Behavior
+When a button is clicked on the BookNow page, the `onButtonClick` callback will:
+1. Scroll smoothly to the booking widget section (via `id="booking-widget"`)
+2. The service name mapping will be passed to enable future pre-selection
+
+### Files Created/Modified
+- **1 file created**: `NeedBasedNavigation.tsx`
+- **6 files modified**: `HeroSection.tsx`, `BookNow.tsx`, `FAQ.tsx`, `NotFound.tsx`, `Resources.tsx`, `CountyHubTemplate.tsx`
+- **Total: 7 files**
 
