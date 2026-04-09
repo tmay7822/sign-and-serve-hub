@@ -46,6 +46,15 @@ const Footer = () => {
     { name: 'Year-End Planning', href: '/year-end-planning-notary' }
   ];
 
+  const countyGuideLinks = [
+    { name: 'Hamilton County', href: '/blog/notary-guide-hamilton-county-ohio' },
+    { name: 'Warren County', href: '/blog/notary-guide-warren-county-ohio' },
+    { name: 'Montgomery County', href: '/blog/notary-guide-montgomery-county-ohio' },
+    { name: 'Butler County', href: '/blog/notary-guide-butler-county-ohio' },
+    { name: 'Greene County', href: '/blog/notary-guide-greene-county-ohio' },
+    { name: 'Clinton County', href: '/blog/notary-guide-clinton-county-ohio' },
+  ];
+
   return (
     <footer className="bg-brand-navy text-white">
       <div className="container mx-auto px-4 py-8">
@@ -109,11 +118,11 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Seasonal Links */}
+          {/* County Guides */}
           <div>
-            <h3 className="font-semibold mb-3">Seasonal Services</h3>
+            <h3 className="font-semibold mb-3">County Guides</h3>
             <div className="space-y-1.5 text-sm">
-              {seasonalLinks.map((link) => (
+              {countyGuideLinks.map((link) => (
                 <div key={link.name}>
                   <Link 
                     to={link.href}

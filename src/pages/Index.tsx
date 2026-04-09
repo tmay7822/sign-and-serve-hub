@@ -8,7 +8,7 @@ import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight, MapPin } from 'lucide-react';
 
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import ReviewSchema from '@/components/SEO/ReviewSchema';
@@ -67,6 +67,36 @@ const Index = () => {
             <Link to="/resources" className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
               View All Guides <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* County Hubs */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-foreground mb-3">Serving 6 Southwest Ohio Counties</h2>
+            <p className="text-muted-foreground text-lg">Same-day mobile notary service from our central Waynesville location</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { name: 'Hamilton County', cities: 'Cincinnati, Blue Ash, Indian Hill', href: '/blog/notary-guide-hamilton-county-ohio' },
+              { name: 'Warren County', cities: 'Mason, Lebanon, Springboro', href: '/blog/notary-guide-warren-county-ohio' },
+              { name: 'Montgomery County', cities: 'Dayton, Kettering, Centerville', href: '/blog/notary-guide-montgomery-county-ohio' },
+              { name: 'Butler County', cities: 'West Chester, Fairfield, Oxford', href: '/blog/notary-guide-butler-county-ohio' },
+              { name: 'Greene County', cities: 'Beavercreek, Xenia, Fairborn', href: '/blog/notary-guide-greene-county-ohio' },
+              { name: 'Clinton County', cities: 'Wilmington, Blanchester, Sabina', href: '/blog/notary-guide-clinton-county-ohio' },
+            ].map((county) => (
+              <Link key={county.href} to={county.href} className="group">
+                <Card className="h-full text-center transition-all duration-200 hover:shadow-lg hover:border-primary/30 group-hover:-translate-y-1">
+                  <CardContent className="p-4">
+                    <MapPin className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">{county.name}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{county.cities}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

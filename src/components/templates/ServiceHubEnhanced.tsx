@@ -438,6 +438,28 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
         </section>
       )}
 
+      {/* County Links */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Available Across Southwest Ohio</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {[
+              { name: 'Hamilton County', href: '/blog/notary-guide-hamilton-county-ohio' },
+              { name: 'Warren County', href: '/blog/notary-guide-warren-county-ohio' },
+              { name: 'Montgomery County', href: '/blog/notary-guide-montgomery-county-ohio' },
+              { name: 'Butler County', href: '/blog/notary-guide-butler-county-ohio' },
+              { name: 'Greene County', href: '/blog/notary-guide-greene-county-ohio' },
+              { name: 'Clinton County', href: '/blog/notary-guide-clinton-county-ohio' },
+            ].map((county) => (
+              <Link key={county.href} to={county.href} className="text-center p-3 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-colors">
+                <MapPin className="h-5 w-5 text-primary mx-auto mb-1" />
+                <span className="text-sm font-medium text-foreground">{county.name}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-primary/5">
         <div className="container mx-auto px-4 max-w-4xl text-center">
