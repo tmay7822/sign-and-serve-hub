@@ -30,8 +30,8 @@ const FAQ = () => {
         title="Frequently Asked Questions | Mobile Notary Services | Signed On Time"
         description="Common questions about mobile notary services in Cincinnati-Dayton area. Same-day service, pricing, and service area information."
         canonical="https://www.signedontime.com/faq"
+        jsonLd={faqSchema}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Header />
 
       {/* Hero */}
