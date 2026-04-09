@@ -35,13 +35,6 @@ const ReviewSchema = ({ includeIndividualReviews = true, maxReviews = 5 }: Revie
     "telephone": BUSINESS_CONFIG.phone,
     "email": BUSINESS_CONFIG.email,
     "url": BUSINESS_CONFIG.website,
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": BUSINESS_CONFIG.address?.city || "Lebanon",
-      "addressRegion": BUSINESS_CONFIG.address?.state || "OH",
-      "postalCode": BUSINESS_CONFIG.address?.zip || "45036",
-      "addressCountry": "US"
-    },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": averageRating.toString(),
