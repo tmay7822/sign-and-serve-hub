@@ -9,7 +9,7 @@ const BusinessServices = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} showBooking={true} defaultService="business-docs" />;
+  return <ServiceHubTemplate service={service} showBooking={true} defaultService="business-docs" bookingServiceName="Business Document" />;
 };
 
 export default BusinessServices;

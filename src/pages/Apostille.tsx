@@ -14,6 +14,7 @@ const Apostille = () => {
       service={service} 
       showBooking={true} 
       defaultService="apostille"
+      bookingServiceName="Apostille"
       relatedGuides={[
         { title: 'How the Apostille Process Works', href: '/blog/how-apostille-works' },
         { title: 'Apostille Processing Times', href: '/blog/apostille-processing-times' },

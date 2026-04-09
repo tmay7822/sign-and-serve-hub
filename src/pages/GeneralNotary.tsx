@@ -13,6 +13,7 @@ const GeneralNotary: React.FC = () => {
     service={service} 
     showBooking={true} 
     defaultService="general-notary"
+    bookingServiceName="General Notary"
     quickAnswer={{
       question: "What does a mobile notary do?",
       answer: "A mobile notary comes to your location to witness signatures, verify identities, and notarize important documents. We provide convenient, professional notary services at your home, office, or any location in the Cincinnati-Dayton metro area."

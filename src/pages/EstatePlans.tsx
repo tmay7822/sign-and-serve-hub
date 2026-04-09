@@ -13,6 +13,7 @@ const EstatePlans = () => {
     service={service} 
     showBooking={true} 
     defaultService="estate-plans"
+    bookingServiceName="Estate Planning"
     quickAnswer={{
       question: "How do I get estate planning documents notarized?",
       answer: "We notarize wills, powers of attorney, healthcare directives, and trust documents. Our mobile notary comes to your location with proper witnesses when required. We understand Ohio estate planning requirements and ensure documents meet legal standards."
