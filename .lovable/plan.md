@@ -1,111 +1,94 @@
 
 
-## Create 6 County Hub Pages with Unique Local Content
+## Consolidate Thin Location Blog Pages into County Hub Redirects
 
-### Overview
+### Approach
 
-Create 6 standalone page components with hand-crafted, county-specific content (600-800 words each). Each page has unique H1, meta tags, FAQ schema + BreadcrumbList schema via `dangerouslySetInnerHTML`, CTAs, and internal links. Every paragraph is unique per county — no shared content across pages.
+Instead of adding ~200 individual `<Navigate>` route entries (which would make routes.tsx unmanageable), create a redirect map file and generate route objects programmatically. This is cleaner and easier to maintain.
 
-### Files Created (6)
+### West Chester Resolution
 
-| File | URL |
-|------|-----|
-| `src/pages/blog/NotaryGuideHamiltonCounty.tsx` | `/blog/notary-guide-hamilton-county-ohio` |
-| `src/pages/blog/NotaryGuideWarrenCounty.tsx` | `/blog/notary-guide-warren-county-ohio` |
-| `src/pages/blog/NotaryGuideMontgomeryCounty.tsx` | `/blog/notary-guide-montgomery-county-ohio` |
-| `src/pages/blog/NotaryGuideButlerCounty.tsx` | `/blog/notary-guide-butler-county-ohio` |
-| `src/pages/blog/NotaryGuideGreeneCounty.tsx` | `/blog/notary-guide-greene-county-ohio` |
-| `src/pages/blog/NotaryGuideClintonCounty.tsx` | `/blog/notary-guide-clinton-county-ohio` |
+The user's redirect list places West Chester city pages under the **Warren County hub**. However, the user also noted West Chester Township is in Butler County and said "if uncertain redirect to Butler County hub." Since the user explicitly listed West Chester under Warren County in their redirect mapping, I will follow that mapping exactly.
 
-### Files Modified (3)
+**Correction**: Re-reading the user's list, West Chester city pages appear under the **Warren County** section. I will follow the user's explicit mapping.
+
+### Pages to KEEP live (not redirect)
+
+- `/blog/loan-signing-guides-mason-ohio` — keep as `LocationBlogPost`
+- `/blog/healthcare-guides-cincinnati-ohio` — keep as `LocationBlogPost`
+- All 6 county hub pages (already protected by explicit routes)
+
+### Files
 
 | File | Change |
 |------|--------|
-| `src/routes.tsx` | Add 6 lazy imports + 6 routes BEFORE `blog/:slug` catch-all (before line 340) |
-| `src/config/prerenderRoutes.ts` | Add 6 URLs for sitemap inclusion |
-| `src/data/blog.ts` | Add 6 entries to `BLOG_POSTS` array so they appear on `/blog` index |
+| `src/data/blogRedirects.ts` | **Create** — redirect map: old slug → county hub URL |
+| `src/routes.tsx` | **Modify** — replace ~100 thin location blog route entries with redirect-generating loop; keep 2 city pages live; update undefined redirects to point to `/` |
+| `src/config/prerenderRoutes.ts` | **Modify** — remove all thin county/city blog URLs (lines 115-355), keep only the 6 hub URLs + 2 kept city pages |
 
-### Page Structure (every page)
+### `src/data/blogRedirects.ts` structure
 
-1. `<Seo />` — unique meta title, description, canonical (`https://www.signedontime.com/blog/notary-guide-{county}-county-ohio`), OG tags
-2. Inline BreadcrumbList JSON-LD: Home → Blog → [County] County Guide
-3. Inline FAQPage JSON-LD with 4 county-specific Q&As (exact text from user spec)
-4. `<Header />` + hero section with breadcrumb nav, H1, author "Terry May", date "April 8, 2026", reading time badge
-5. Positioning statement in intro (shared concept but woven into unique county-specific paragraphs)
-6. Prose article with 6 H2 service sections, county-specific content, internal `<Link>` to service pages
-7. FAQ accordion section with `<Card>` components
-8. Top + bottom CTA sections using `<StandardCTAButtons />` plus inline call link `tel:5132269052`
-9. `<Footer />`
+```ts
+export const BLOG_REDIRECTS: Record<string, string> = {
+  // Hamilton County hub
+  'general-notary-guides-hamilton-county-ohio': '/blog/notary-guide-hamilton-county-ohio',
+  'loan-signing-guides-hamilton-county-ohio': '/blog/notary-guide-hamilton-county-ohio',
+  // ... all Hamilton city slugs
+  // Warren County hub
+  'general-notary-guides-warren-county-ohio': '/blog/notary-guide-warren-county-ohio',
+  // ... etc for all 6 counties + all cities
+  // Undefined → homepage
+  'loan-signing-guides-undefined-ohio': '/',
+  'real-estate-guides-undefined-ohio': '/',
+  'general-notary-guides-undefined-ohio': '/',
+  'estate-planning-guides-undefined-ohio': '/',
+};
+```
 
-### Blog Index Entries
+Excludes `loan-signing-guides-mason-ohio` and `healthcare-guides-cincinnati-ohio` (kept live).
 
-Each page gets a `BlogPost` entry in `blog.ts` with `categorySlug: 'general-notary-guides'`, `serviceSlug: 'general-notary'`, correct slug, title, excerpt, and `featured: false`. This makes them appear on `/blog`.
+### `src/routes.tsx` changes
 
----
+1. Import `BLOG_REDIRECTS` from the new file
+2. Remove all existing thin location blog route entries (lines 259-325 county routes, lines 327-331 undefined redirects, lines 333-343 city routes except the 2 kept)
+3. Keep the 2 live city page routes:
+   - `blog/loan-signing-guides-mason-ohio` → `LocationBlogPost`
+   - `blog/healthcare-guides-cincinnati-ohio` → `LocationBlogPost`
+4. Add redirect routes generated from the map:
+   ```ts
+   ...Object.entries(BLOG_REDIRECTS).map(([slug, target]) => ({
+     path: `blog/${slug}`,
+     element: <Navigate to={target} replace />,
+   })),
+   ```
+5. All redirects placed BEFORE the `blog/:slug` catch-all and BEFORE the county hub routes
 
-### Content Outline — Hamilton County (~700 words)
+### `src/config/prerenderRoutes.ts` changes
 
-**H1:** Mobile Notary Services in Hamilton County, Ohio
+Remove all thin location blog URLs (lines 115-355: county guides, city guides, immigration/military/education by county and city). Keep only:
+- 6 county hub URLs (`/blog/notary-guide-*-county-ohio`)
+- 2 kept city pages (`/blog/loan-signing-guides-mason-ohio`, `/blog/healthcare-guides-cincinnati-ohio`)
 
-**Intro (~130 words):** Signed On Time is centrally located in Waynesville Ohio — positioned between Cincinnati and Dayton along the US-35 and I-71 corridors. This means faster response times across all six counties than any notary based in either city alone. Hamilton County is the most densely populated county in Southwest Ohio, anchored by Cincinnati and extending through Blue Ash, Norwood, Springdale, Montgomery, Madeira, Indian Hill, Cleves, and Harrison. From our Waynesville base we reach most Hamilton County locations within 35-40 minutes, bringing professional mobile notary services to your home, office, hospital room, or care facility. We specifically serve smaller Hamilton County communities that Cincinnati-based notaries overlook — not just downtown, but every neighborhood and suburb across the county.
+### Redirect count
 
-**H2: Loan Signing Services in Hamilton County (~80 words):** Cincinnati metro active real estate market context. I-71 and I-275 corporate corridor. Purchase closings, refinances, HELOCs. Title company offices, law firms, kitchen tables. Certified loan signing agent. → Link to /loan-signings
+| County | County-level | City-level | Total |
+|--------|-------------|------------|-------|
+| Hamilton | ~11 | ~28 (4 cities × 7 cats) minus healthcare-guides-cincinnati kept | ~38 |
+| Warren | ~11 | ~28 (4 cities × 7 cats) minus loan-signing-mason kept | ~38 |
+| Montgomery | ~11 | ~28 (4 cities × 7 cats) | ~39 |
+| Butler | ~11 | ~28 (4 cities × 7 cats) | ~39 |
+| Greene | ~9 | ~28 (4 cities × 7 cats) | ~37 |
+| Clinton | ~11 | ~28 (4 cities × 7 cats) | ~39 |
+| Undefined | 4 | 0 | 4 |
+| **Total** | | | **~234** |
 
-**H2: Estate Planning Notarization in Hamilton County (~80 words):** Hamilton County Probate Court processes thousands of estate filings. Wills, trusts, POA, healthcare directives. Indian Hill, Madeira, Montgomery family coordination with attorneys. → Link to /estate-plans
+### Verification checks
 
-**H2: Healthcare Document Notarization in Hamilton County (~80 words):** UC Health, Christ Hospital, TriHealth Good Samaritan, rehab/senior care. Highest concentration of healthcare notarization needs. Bedside notarization same-day. Living wills, healthcare POA, HIPAA. → Link to /healthcare-notary
-
-**H2: Vehicle Title Notarization in Hamilton County (~60 words):** Ohio car title transfers, bills of sale, lien releases. No BMV lines. → Link to /vehicles-dmv
-
-**H2: Apostille Services in Hamilton County (~60 words):** International business community, immigrant population. Ohio Secretary of State authentication, Hague Convention countries. → Link to /apostille
-
-**H2: Business Notary Services in Hamilton County (~60 words):** Corporate corridor I-71 downtown through Blue Ash and Springdale. Contract notarization, corporate resolutions, vendor affidavits. → Link to /general-notary
-
-**FAQ (4 items):** Exact Q&A text from user spec (travel time 35-40 min, all communities including Cleves/Harrison/Indian Hill/Madeira, hospital bedside at UC/Christ/TriHealth, service fee with call CTA).
-
----
-
-### Content Outline — Warren County (~700 words)
-
-**H1:** Mobile Notary Services in Warren County, Ohio
-
-**Intro (~140 words):** Signed On Time is centrally located in Waynesville Ohio — positioned between Cincinnati and Dayton along the US-35 and I-71 corridors. Warren County sits at the heart of our service area — the rural and suburban communities between Waynesville and Mason represent the geographic center of Southwest Ohio notary demand. Having served Warren County for nearly 30 years Terry brings genuine local knowledge to every appointment — knowing not just the roads but the communities, the growth patterns, and the families who have called this area home for generations. We serve Mason, Lebanon, Springboro, Waynesville, Morrow, Maineville, Franklin, Corwin, Harveysburg, and every rural community in between — including areas that larger notary services based in Cincinnati or Dayton do not reach.
-
-**H2: Loan Signing Services in Warren County (~80 words):** Mason and Springboro fastest-growing in Ohio. Deerfield Township, Kings Mills new construction. Purchase closings, refinances, HELOCs. → Link to /loan-signings
-
-**H2: Estate Planning Notarization in Warren County (~80 words):** Warren County Probate Court in Lebanon. Growing population aging, evening/weekend scheduling. Wills, trusts, POA, advance directives. → Link to /estate-plans
-
-**H2: Healthcare Document Notarization in Warren County (~80 words):** Atrium Medical Center, urgent care, senior living along Mason-Lebanon corridor. Bedside notarization, healthcare POA, living wills, HIPAA. → Link to /healthcare-notary
-
-**H2: Vehicle Title Notarization in Warren County (~60 words):** Private car sales Mason/Lebanon, title transfers, bills of sale. No BMV lines. → Link to /vehicles-dmv
-
-**H2: Apostille Services in Warren County (~60 words):** Local preparation saves trip to Columbus or Cincinnati. → Link to /apostille
-
-**H2: Business Notary Services in Warren County (~60 words):** Mason business corridor, Lebanon commercial district. Contract notarization, corporate documents, vendor packets. → Link to /general-notary
-
-**FAQ (4 items):** Exact Q&A text from user spec (Mason/Lebanon 20-30 min, all communities including Morrow/Maineville/Harveysburg/Corwin, Terry lives in Waynesville 30 years, senior communities for POA/healthcare).
-
----
-
-### Remaining 4 Counties (unique content angles)
-
-- **Montgomery (~700 words):** US-35 corridor as frequently traveled route, Dayton primary, Kettering/Centerville/Miamisburg/Huber Heights/Vandalia/Oakwood/Trotwood/West Carrollton. Miami Valley Hospital, Kettering Health, Dayton VA Medical Center. Wright-Patterson AFB military POA. Manufacturing/defense community. Rural communities beyond Dayton. H2 includes "Military and Veterans Notary Services" instead of "Apostille."
-- **Butler (~700 words):** I-75 corridor 35-45 min from Waynesville. Hamilton/Fairfield primary, West Chester/Oxford/Middletown/Monroe/Trenton/Millville. Fort Hamilton Hospital, UC Health West Chester. Miami University college-18-plus docs (FERPA/HIPAA). West Chester growth corridor. Rural Butler County. H2 includes "College Student Documents" instead of "Apostille." Links include /college-18-plus.
-- **Greene (~700 words):** US-35 and I-675 corridor 30-40 min. Beavercreek/Xenia primary, Fairborn/Yellow Springs/Bellbrook/Jamestown/Cedarville/Spring Valley. Greene Memorial Hospital. Wright-Patterson AFB largest employer — military families, deployment POA. Cedarville University, Antioch College. Rural Greene County. H2 includes "Military and Veterans Notary Services."
-- **Clinton (~700 words):** US-68 direct route 25-30 min — one of closer county seats. Wilmington primary, Blanchester/Sabina/New Vienna/Clarksville/Lynchburg/Midland/Port William. Clinton Memorial Hospital. Rural/agricultural — land transfers, farm estate planning. Wilmington College. Underserved by larger services. H2 includes "Rural Property and Farm Documents." Same-day service standard, no advance booking emphasis.
-
-Each county uses completely unique prose — no paragraph repeated across any two pages.
-
-### Summary
-
-| County | Est. Words | FAQ Items | Unique H2s |
-|--------|-----------|-----------|------------|
-| Hamilton | ~700 | 4 | 6 |
-| Warren | ~700 | 4 | 6 |
-| Montgomery | ~700 | 4 | 6 |
-| Butler | ~700 | 4 | 6 |
-| Greene | ~700 | 4 | 6 |
-| Clinton | ~700 | 4 | 6 |
-
-**Total: 9 files (6 created, 3 modified), ~4,200 words of unique content, 24 FAQ items, 36 H2 sections**
+After execution, confirm:
+- `/blog/healthcare-guides-hamilton-county-ohio` → redirects to Hamilton hub
+- `/blog/loan-signing-guides-mason-ohio` → stays live (no redirect)
+- `/blog/general-notary-guides-dayton-ohio` → redirects to Montgomery hub
+- `/blog/immigration-guides-clinton-county-ohio` → redirects to Clinton hub
+- `/blog/loan-signing-guides-undefined-ohio` → redirects to homepage
+- No redirect chains (all destinations are real pages)
 
