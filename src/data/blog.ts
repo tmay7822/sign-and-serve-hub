@@ -621,7 +621,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { question: 'What\'s the difference between a Healthcare POA and Living Will?', answer: 'A Healthcare POA designates someone to make decisions. A Living Will specifies your end-of-life care wishes.' },
       { question: 'Can you notarize documents at the hospital bedside?', answer: 'Yes, bedside notarization is one of our specialties. We work with hospital staff to ensure patient comfort.' }
     ]
-  }
+  },
   // County Hub Pages
   {
     id: 'notary-guide-hamilton-county',
