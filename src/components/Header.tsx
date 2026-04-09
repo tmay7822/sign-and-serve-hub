@@ -217,6 +217,9 @@ const Header = () => {
 
             {/* CTA Section */}
             <div className="flex items-center gap-4">
+              <Button size="lg" className="hidden sm:flex bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold px-7 py-3 text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full" asChild>
+                <Link to="/book-now">Book Now</Link>
+              </Button>
               <QuoteButton 
                 variant="outline" 
                 size="lg" 
@@ -309,6 +312,12 @@ const Header = () => {
 
                 {/* CTAs */}
                 <div className="px-4 pt-4 pb-2 border-t border-gray-100 mt-3 space-y-3">
+                  <Button 
+                    className="w-full font-semibold py-3 shadow-md bg-destructive hover:bg-destructive/90 text-destructive-foreground" 
+                    asChild
+                  >
+                    <Link to="/book-now" onClick={() => setIsMenuOpen(false)}>Book Now</Link>
+                  </Button>
                   <QuoteButton 
                     variant="cta" 
                     className="w-full font-semibold py-3 shadow-md"
