@@ -1,23 +1,12 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Phone, Calendar, FileText, Home, Shield, Car, Mail, LayoutGrid } from "lucide-react";
+import { Phone } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { QuickTrustBadges } from "@/components/landing/QuickTrustBadges";
-
-const quickLinks = [
-  { label: "Book an Appointment", href: "/book-now", icon: Calendar },
-  { label: "Loan Signings", href: "/loan-signings", icon: FileText },
-  { label: "Estate Planning", href: "/estate-plans", icon: Home },
-  { label: "General Notary", href: "/general-notary", icon: Shield },
-  { label: "Apostille Services", href: "/apostille", icon: FileText },
-  { label: "Vehicle Title Notary", href: "/vehicles-dmv", icon: Car },
-  { label: "Contact Us", href: "/contact", icon: Mail },
-  { label: "View All Services", href: "/service", icon: LayoutGrid },
-];
+import NeedBasedNavigation from "@/components/NeedBasedNavigation";
 
 const NotFound = () => {
   const location = useLocation();
@@ -61,30 +50,13 @@ const NotFound = () => {
           </div>
         </section>
 
-        {/* Quick links */}
+        {/* Need-Based Navigation */}
         <section className="py-12">
           <div className="container mx-auto max-w-5xl px-4">
-            <h2 className="text-2xl font-semibold text-foreground text-center mb-8">
-              What are you looking for?
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {quickLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <Card key={link.href} className="hover:shadow-md transition-shadow">
-                    <Link
-                      to={link.href}
-                      className="flex flex-col items-center gap-3 p-6 text-center group"
-                    >
-                      <Icon className="h-7 w-7 text-primary group-hover:text-primary/80 transition-colors" />
-                      <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {link.label}
-                      </span>
-                    </Link>
-                  </Card>
-                );
-              })}
-            </div>
+            <NeedBasedNavigation
+              heading="What were you looking for?"
+              variant="compact"
+            />
           </div>
         </section>
 

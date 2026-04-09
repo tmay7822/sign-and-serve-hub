@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import Seo from '@/components/Seo';
 import { BookingWidget } from '@/components/BookingWidget';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,7 @@ import Footer from '@/components/Footer';
 import { Phone, MapPin, Clock, Calendar, CheckCircle, ArrowRight, Shield, Award } from 'lucide-react';
 import AvailabilityIndicator from '@/components/AvailabilityIndicator';
 import { Link } from 'react-router-dom';
+import NeedBasedNavigation from '@/components/NeedBasedNavigation';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -19,6 +21,12 @@ const breadcrumbSchema = {
 };
 
 const BookNow = () => {
+  const bookingRef = useRef<HTMLDivElement>(null);
+
+  const handleNavClick = (_serviceId: string) => {
+    bookingRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <>
       <Seo
@@ -58,8 +66,20 @@ const BookNow = () => {
           </div>
         </section>
 
+        {/* Need-Based Navigation */}
+        <section className="py-10">
+          <div className="container mx-auto px-4">
+            <NeedBasedNavigation
+              heading="What do you need notarized?"
+              subtext="Select your service to get started"
+              variant="full"
+              onButtonClick={handleNavClick}
+            />
+          </div>
+        </section>
+
         {/* Booking Widget */}
-        <section className="py-8 md:py-12">
+        <section className="py-8 md:py-12" ref={bookingRef} id="booking-widget">
           <div className="container mx-auto px-4 max-w-2xl">
             <div className="bg-card border-2 border-primary/20 rounded-xl shadow-xl p-6 md:p-8">
               <h2 className="text-2xl font-bold text-foreground mb-6 text-center">

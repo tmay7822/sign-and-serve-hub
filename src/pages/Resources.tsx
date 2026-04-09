@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { BookOpen, FileText, MapPin, ArrowRight, Phone } from 'lucide-react';
 import { QuickTrustBadges } from '@/components/landing/QuickTrustBadges';
+import NeedBasedNavigation from '@/components/NeedBasedNavigation';
 
 const popularGuides = [
   { title: 'Ohio Car Title Transfer Guide', href: '/blog/ohio-car-title-transfer-requirements', description: 'Step-by-step requirements for notarizing vehicle title transfers in Ohio.' },
@@ -53,6 +54,16 @@ const Resources = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Expert guides from Southwest Ohio's trusted mobile notary service
           </p>
+        </div>
+      </section>
+
+      {/* Need-Based Navigation */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <NeedBasedNavigation
+            heading="Find the right guide for your situation"
+            variant="guides"
+          />
         </div>
       </section>
 
