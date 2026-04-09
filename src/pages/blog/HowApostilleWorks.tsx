@@ -44,7 +44,7 @@ const HowApostilleWorks = () => {
               <p>Birth and marriage certificates, school transcripts/diplomas, POA, corporate documents.</p>
 
               <h2>Timing & tips</h2>
-              <p>Processing time varies. Rush options may exist. We help ensure the notarization meets state requirements so your apostille isn't rejected.</p>
+              <p>Processing time varies. Rush options may exist. We complete the notarization correctly so your apostille isn't rejected.</p>
 
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Start your apostille today</h3>

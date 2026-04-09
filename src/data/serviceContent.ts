@@ -225,7 +225,7 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       steps: [
         {
           title: 'Document Preparation',
-          description: 'Ensure all estate planning documents are properly prepared'
+          description: 'Confirm all documents are complete and ready for signing'
         },
         {
           title: 'Witness Coordination',
@@ -1128,7 +1128,7 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
     faqs: [
       {
         question: 'Can you notarize unusual or specialized documents?',
-        answer: 'Yes, we handle many types of specialized documents. We research requirements to ensure proper notarization.'
+        answer: 'Yes, we handle many types of specialized documents and complete the notarization professionally.'
       },
       {
         question: 'Do you provide notarization for immigration documents?',
@@ -1136,7 +1136,7 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       },
       {
         question: 'Can you help with documents I\'ve never seen before?',
-        answer: 'Absolutely. We research unfamiliar documents to ensure we provide the correct notarial service.'
+        answer: 'Absolutely. We handle unfamiliar documents and determine the correct notarial act needed.'
       },
       {
         question: 'Can you notarize documents for someone in jail or prison?',
@@ -1222,7 +1222,7 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
       },
       {
         question: 'Can you coordinate with family court requirements?',
-        answer: 'Yes, we ensure documents meet family court standards and can coordinate with court schedules when needed.'
+        answer: 'Yes, we complete notarizations for family court documents and can coordinate with court schedules when needed.'
       },
       {
         question: 'Can you notarize documents for child custody matters?',
@@ -1372,7 +1372,7 @@ export const SERVICE_CONTENT: { [key: string]: ServiceContent } = {
         },
         {
           title: 'Document Preservation',
-          description: 'Ensure proper execution for legal validity'
+          description: 'Complete notarization with proper signatures and witnessing'
         }
       ]
     },

@@ -123,7 +123,7 @@ const WillsEstatesWarrenMason = () => {
                   <FileText className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Ohio Estate Laws</h3>
-                    <p className="text-muted-foreground">Estate planning documents must comply with Ohio Revised Code requirements for proper execution and validity.</p>
+                    <p className="text-muted-foreground">Estate planning documents have specific signing and witness requirements under Ohio law — consult your attorney for preparation.</p>
                   </div>
                 </div>
                 
@@ -139,7 +139,7 @@ const WillsEstatesWarrenMason = () => {
                   <Clock className="h-6 w-6 text-brand-blue mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Capacity Verification</h3>
-                    <p className="text-muted-foreground">We ensure signers understand the documents and are signing voluntarily without coercion.</p>
+                    <p className="text-muted-foreground">We confirm signers are aware and willing, and that they are signing voluntarily without coercion.</p>
                   </div>
                 </div>
               </div>

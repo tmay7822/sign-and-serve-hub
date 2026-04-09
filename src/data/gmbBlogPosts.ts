@@ -675,7 +675,7 @@ Why mobile estate document notarization?
 • Same-day service for urgent situations
 • We Come To You Anytime And Anywhere
 
-Our certified notary understands estate documents and ensures proper execution.
+Our certified notary understands estate documents and witnesses signatures and coordinates witnesses when needed.
 
 Serving Cincinnati, Dayton, and surrounding areas.
 
