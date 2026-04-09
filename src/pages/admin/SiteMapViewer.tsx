@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { PRERENDER_ROUTES } from '@/config/prerenderRoutes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -258,6 +259,9 @@ export default function SiteMapViewer() {
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl print:py-2 print:px-0">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       {/* Header - hidden in print */}
       <div className="print:hidden mb-8">
         <div className="flex items-center justify-between mb-4">
