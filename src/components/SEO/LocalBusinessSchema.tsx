@@ -1,4 +1,3 @@
-import { BUSINESS_CONFIG } from '@/config/business';
 import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import { getHref } from '@/utils/ssg';
 
@@ -18,7 +17,6 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
   let schema: Record<string, unknown>;
 
   if (serviceName) {
-    // Service page schema
     schema = {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -26,9 +24,9 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
       "description": serviceDescription,
       "provider": {
         "@type": "LocalBusiness",
-        "name": BUSINESS_CONFIG.name,
-        "telephone": BUSINESS_CONFIG.phone,
-        "url": BUSINESS_CONFIG.website,
+        "name": "Signed On Time Mobile Notary Services",
+        "telephone": "+15132269052",
+        "url": "https://www.signedontime.com",
       },
       "areaServed": [
         { "@type": "County", "name": "Hamilton County", "containedIn": "Ohio" },
@@ -41,17 +39,15 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
       "url": getHref(url),
     };
   } else {
-    // Homepage full LocalBusiness schema
     schema = {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "ProfessionalService", "LegalService"],
       "name": "Signed On Time Mobile Notary Services",
       "alternateName": "Signed On Time",
       "description": "Certified mobile notary serving Southwest Ohio including Hamilton, Warren, Butler, Montgomery, Greene and Clinton counties. Loan signings, estate planning, apostille, healthcare directives, vehicle titles and general notary services. Same-day appointments available 7 days a week.",
       "url": "https://www.signedontime.com",
       "telephone": "+15132269052",
       "email": "Terry@SignedOnTime.com",
-      "foundingDate": "1999",
       "priceRange": "$$",
       "currenciesAccepted": "USD",
       "paymentAccepted": "Cash, Credit Card, Check, Venmo, Zelle",
@@ -64,17 +60,14 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
         "Sa 07:00-22:00",
         "Su 07:00-22:00",
       ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Waynesville",
-        "addressRegion": "OH",
-        "postalCode": "45068",
-        "addressCountry": "US",
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 39.5318,
-        "longitude": -84.0955,
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 39.5318,
+          "longitude": -84.0955,
+        },
+        "geoRadius": "80467",
       },
       "areaServed": [
         { "@type": "County", "name": "Hamilton County", "containedIn": "Ohio" },
@@ -88,12 +81,12 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
         "@type": "OfferCatalog",
         "name": "Mobile Notary Services",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Loan Signing Services", "description": "Certified loan signing agent for mortgage closings, refinances, HELOCs and purchase transactions" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estate Planning Notarization", "description": "Mobile notary for wills, trusts, powers of attorney and healthcare directives" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apostille Services", "description": "Document authentication and apostille preparation for international use" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Healthcare Document Notarization", "description": "Bedside notarization at hospitals, rehab facilities and senior communities" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vehicle Title Notarization", "description": "Ohio car title transfer notarization and bill of sale notary services" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General Notary Services", "description": "Acknowledgments, jurats, oaths and affirmations for all document types" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Loan Signing Services", "description": "Certified loan signing agent for mortgage closings, refinances, HELOCs and purchase transactions throughout Southwest Ohio" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estate Planning Notarization", "description": "Mobile notary for wills, trusts, powers of attorney and healthcare directives at your home or care facility" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apostille Services", "description": "Document authentication and apostille preparation for international use from Ohio" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Healthcare Document Notarization", "description": "Bedside notarization at hospitals, rehab facilities and senior communities throughout Southwest Ohio" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vehicle Title Notarization", "description": "Ohio car title transfer notarization and bill of sale notary services at your location" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General Notary Services", "description": "Acknowledgments, jurats, oaths and affirmations for all document types — we come to you" } },
         ],
       },
       "sameAs": [
