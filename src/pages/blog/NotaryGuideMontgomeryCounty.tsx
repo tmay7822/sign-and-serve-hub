@@ -153,6 +153,21 @@ const NotaryGuideMontgomeryCounty = () => {
           </div>
         </section>
 
+        {/* Cross-Links */}
+        <section className="py-10">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Other Counties We Serve</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <Link to="/blog/notary-guide-hamilton-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Hamilton County</Link>
+              <Link to="/blog/notary-guide-warren-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Warren County</Link>
+              <Link to="/blog/notary-guide-butler-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Butler County</Link>
+              <Link to="/blog/notary-guide-greene-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Greene County</Link>
+              <Link to="/blog/notary-guide-clinton-county-ohio" className="p-3 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-colors text-sm font-medium text-foreground text-center">Clinton County</Link>
+            </div>
+            <p className="mt-4 text-muted-foreground">Looking for guides and checklists? Visit our <Link to="/resources" className="text-primary font-semibold hover:underline">Free Notary Guides & Resources</Link> page.</p>
+          </div>
+        </section>
+
         <BookingCTASection countyName="Montgomery County" />
 
         <section className="py-12 bg-muted/50">

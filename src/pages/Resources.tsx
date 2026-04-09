@@ -27,12 +27,12 @@ const serviceCategories = [
 ];
 
 const counties = [
-  { name: 'Hamilton County', href: '/service/hamilton-county' },
-  { name: 'Warren County', href: '/service/warren-county' },
-  { name: 'Montgomery County', href: '/service/montgomery-county' },
-  { name: 'Butler County', href: '/service/butler-county' },
-  { name: 'Greene County', href: '/service/greene-county' },
-  { name: 'Clinton County', href: '/service/clinton-county' },
+  { name: 'Hamilton County', href: '/blog/notary-guide-hamilton-county-ohio' },
+  { name: 'Warren County', href: '/blog/notary-guide-warren-county-ohio' },
+  { name: 'Montgomery County', href: '/blog/notary-guide-montgomery-county-ohio' },
+  { name: 'Butler County', href: '/blog/notary-guide-butler-county-ohio' },
+  { name: 'Greene County', href: '/blog/notary-guide-greene-county-ohio' },
+  { name: 'Clinton County', href: '/blog/notary-guide-clinton-county-ohio' },
 ];
 
 const Resources = () => {
