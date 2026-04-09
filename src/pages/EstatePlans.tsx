@@ -17,6 +17,11 @@ const EstatePlans = () => {
       question: "How do I get estate planning documents notarized?",
       answer: "We notarize wills, powers of attorney, healthcare directives, and trust documents. Our mobile notary comes to your location with proper witnesses when required. We understand Ohio estate planning requirements and ensure documents meet legal standards."
     }}
+    relatedGuides={[
+      { title: 'Wills, Trusts & POA Checklist', href: '/blog/wills-trusts-poa-checklist' },
+      { title: 'HCPOA & Living Will Guide', href: '/blog/hcpoa-living-will-guide' },
+      { title: 'POA Pitfalls to Avoid', href: '/blog/poa-pitfalls-and-readiness' },
+    ]}
   />;
 };
 

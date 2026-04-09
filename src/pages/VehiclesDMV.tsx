@@ -16,6 +16,10 @@ const VehiclesDMV = () => {
         question: "Do I need a notary for a car title transfer in Ohio?",
         answer: "Yes, Ohio requires the seller's signature on the vehicle title to be notarized. The buyer's signature typically does not need notarization. We provide mobile notary service and can meet you at your home, office, or even the parking lot where the vehicle is located."
       }}
+      relatedGuides={[
+        { title: 'Ohio Car Title Transfer Guide', href: '/blog/ohio-car-title-transfer-requirements' },
+        { title: 'Title Transfer Checklist', href: '/blog/title-transfer-checklist' },
+      ]}
     />
   );
 };

@@ -109,7 +109,9 @@ const HospitalNotaryIDProblemsOhio = lazy(() => import('./pages/blog/HospitalNot
 const ImmigrationDocumentsNotaryGuide = lazy(() => import('./pages/blog/ImmigrationDocumentsNotaryGuide'));
 const MilitaryVeteransNotaryGuide = lazy(() => import('./pages/blog/MilitaryVeteransNotaryGuide'));
 const HealthcareDocumentsNotaryGuide = lazy(() => import('./pages/blog/HealthcareDocumentsNotaryGuide'));
+const OhioCarTitleTransferRequirements = lazy(() => import('./pages/blog/OhioCarTitleTransferRequirements'));
 const Documents = lazy(() => import('./pages/Documents'));
+const Resources = lazy(() => import('./pages/Resources'));
 const LocationBlogPost = lazy(() => import('./pages/LocationBlogPost'));
 const Reviews = lazy(() => import('./pages/Reviews'));
 export const routes: RouteObject[] = [
@@ -150,6 +152,9 @@ export const routes: RouteObject[] = [
       { path: 'insurance-retirement', element: <InsuranceRetirement /> },
       { path: 'wills-trusts-estates', element: <WillsTrustsEstates /> },
       { path: 'other-notary', element: <OtherNotary /> },
+      
+      // Resources Hub
+      { path: 'resources', element: <Resources /> },
       
       // Static Pages
       { path: 'faq', element: <FAQ /> },
@@ -240,6 +245,7 @@ export const routes: RouteObject[] = [
       { path: 'blog/senior-communities-notary-poa-healthcare-ohio', element: <SeniorCommunitiesNotaryPOAHealthcareOhio /> },
       { path: 'blog/urgent-notary-same-day-ohio-hospitals', element: <UrgentNotarySameDayOhioHospitals /> },
       { path: 'blog/hospital-notary-id-problems-ohio', element: <HospitalNotaryIDProblemsOhio /> },
+      { path: 'blog/ohio-car-title-transfer-requirements', element: <OhioCarTitleTransferRequirements /> },
       { path: 'blog/immigration-documents-notary-guide', element: <ImmigrationDocumentsNotaryGuide /> },
       { path: 'blog/military-veterans-notary-guide', element: <MilitaryVeteransNotaryGuide /> },
       { path: 'blog/healthcare-documents-notary-guide', element: <HealthcareDocumentsNotaryGuide /> },

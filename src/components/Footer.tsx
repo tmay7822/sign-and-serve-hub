@@ -29,6 +29,16 @@ const Footer = () => {
     { name: 'Blog', href: '/blog' }
   ];
 
+  const resourceLinks = [
+    { name: 'Loan Signing Guide', href: '/blog/what-happens-loan-signing' },
+    { name: 'Estate Planning Guide', href: '/blog/estate-planning-guides' },
+    { name: 'Vehicle Title Guide', href: '/blog/ohio-car-title-transfer-requirements' },
+    { name: 'Healthcare Guide', href: '/blog/hcpoa-living-will-guide' },
+    { name: 'Apostille Guide', href: '/blog/how-apostille-works' },
+    { name: 'What to Bring', href: '/blog/general-notary-what-to-bring' },
+    { name: 'View All Resources →', href: '/resources' },
+  ];
+
   const seasonalLinks = [
     { name: 'Tax Season Documents', href: '/tax-season-notary' },
     { name: 'Back to School', href: '/back-to-school-documents' },
@@ -39,7 +49,7 @@ const Footer = () => {
   return (
     <footer className="bg-brand-navy text-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <p className="text-brand-gold font-semibold text-sm mb-2">
@@ -70,6 +80,23 @@ const Footer = () => {
                 </div>
               ))}
               {quickLinks.slice(0, 3).map((link) => (
+                <div key={link.name}>
+                  <Link 
+                    to={link.href}
+                    className="text-white/80 hover:text-brand-gold transition-colors duration-300 block"
+                  >
+                    {link.name}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h3 className="font-semibold mb-3">Resources</h3>
+            <div className="space-y-1.5 text-sm">
+              {resourceLinks.map((link) => (
                 <div key={link.name}>
                   <Link 
                     to={link.href}

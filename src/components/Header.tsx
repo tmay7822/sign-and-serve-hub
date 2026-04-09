@@ -137,6 +137,56 @@ const Header = () => {
                       </NavigationMenuContent>
                     </NavigationMenuItem>
 
+                    {/* Resources dropdown */}
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger 
+                        className="px-5 py-2.5 text-[15px] font-bold text-gray-700 hover:text-brand-navy bg-transparent hover:bg-white data-[state=open]:bg-white data-[state=open]:text-brand-navy h-auto rounded-full transition-all duration-200 shadow-none data-[state=open]:shadow-sm"
+                        aria-label="Resources menu"
+                      >
+                        Resources
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <div className="w-[380px] p-5 bg-white" role="menu" aria-label="Guides and resources">
+                          <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Guides by Service</div>
+                          <div className="space-y-1">
+                            {[
+                              { name: 'Loan Signing Guide', href: '/blog/what-happens-loan-signing' },
+                              { name: 'Estate Planning Guide', href: '/blog/estate-planning-guides' },
+                              { name: 'Vehicle Title Guide', href: '/blog/ohio-car-title-transfer-requirements' },
+                              { name: 'Healthcare Directives', href: '/blog/hcpoa-living-will-guide' },
+                              { name: 'Apostille Guide', href: '/blog/how-apostille-works' },
+                            ].map((item) => (
+                              <NavigationMenuLink asChild key={item.href}>
+                                <Link to={item.href} role="menuitem" className="block p-2.5 rounded-lg hover:bg-blue-50 text-sm font-semibold text-gray-800 hover:text-brand-blue transition-colors">
+                                  {item.name}
+                                </Link>
+                              </NavigationMenuLink>
+                            ))}
+                          </div>
+                          <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mt-4 mb-2">Helpful Guides</div>
+                          <div className="space-y-1">
+                            {[
+                              { name: 'What to Bring', href: '/blog/general-notary-what-to-bring' },
+                              { name: 'Hospital Notarizations', href: '/blog/hospital-notary-what-to-expect' },
+                              { name: 'After Hours Service', href: '/blog/after-hours-emergency-notary' },
+                              { name: 'FAQ', href: '/faq' },
+                            ].map((item) => (
+                              <NavigationMenuLink asChild key={item.href}>
+                                <Link to={item.href} role="menuitem" className="block p-2.5 rounded-lg hover:bg-blue-50 text-sm font-semibold text-gray-800 hover:text-brand-blue transition-colors">
+                                  {item.name}
+                                </Link>
+                              </NavigationMenuLink>
+                            ))}
+                          </div>
+                          <div className="mt-4 pt-3 border-t border-gray-100">
+                            <Link to="/resources" className="text-sm font-semibold text-brand-blue hover:text-brand-navy hover:underline">
+                              View All Resources →
+                            </Link>
+                          </div>
+                        </div>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+
                     {/* About & Reviews — single link */}
                     <NavigationMenuItem>
                       <NavigationMenuLink asChild>
@@ -207,6 +257,28 @@ const Header = () => {
                       {item.name}
                     </Link>
                   ))}
+                </div>
+
+                {/* Resources in mobile */}
+                <div className="border-t border-gray-100 pt-3 mx-4 mb-3">
+                  <div className="px-2 py-2 text-sm font-semibold text-muted-foreground">Resources</div>
+                  <div className="space-y-1">
+                    {[
+                      { name: 'Loan Signing Guide', href: '/blog/what-happens-loan-signing' },
+                      { name: 'Vehicle Title Guide', href: '/blog/ohio-car-title-transfer-requirements' },
+                      { name: 'What to Bring', href: '/blog/general-notary-what-to-bring' },
+                      { name: 'View All Resources', href: '/resources' },
+                    ].map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="block px-4 py-3 text-sm font-medium text-gray-600 hover:text-primary hover:bg-blue-50 transition-colors rounded-lg"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
 
                 {/* More section */}
