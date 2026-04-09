@@ -31,6 +31,8 @@ export const PRERENDER_ROUTES = [
   '/pricing',
   '/documents',
   '/service-areas',
+  '/reviews',
+  '/service',
   '/book-now',
   '/privacy-policy',
   '/terms-of-service',

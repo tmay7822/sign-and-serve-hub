@@ -5,6 +5,9 @@ Allow: /
 Disallow: /*?*
 Disallow: /admin/
 Disallow: /api/
+Disallow: /content-map
+Disallow: /gmb-export
+Disallow: /site-map-viewer
 
 # Sitemap location
 Sitemap: https://www.signedontime.com/sitemap.xml
