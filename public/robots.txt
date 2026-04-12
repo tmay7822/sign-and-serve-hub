@@ -12,5 +12,8 @@ Disallow: /site-map-viewer
 # Sitemap location
 Sitemap: https://www.signedontime.com/sitemap.xml
 
+# AI Language Model Support
+LLMs: https://www.signedontime.com/llms.txt
+
 # Crawl delay
 Crawl-delay: 1
