@@ -51,15 +51,16 @@ const allHomepageFaqs = [
 ];
 
 const Index = () => {
+  const homepageJsonLd = useHomepageSchema(allHomepageFaqs);
+
   return (
     <div className="min-h-screen bg-background">
       <Seo
         title={BUSINESS_CONFIG.seo.metaTitle}
         description={BUSINESS_CONFIG.seo.metaDescription}
         keywords={BUSINESS_CONFIG.seo.keywords}
-        jsonLd={null}
+        jsonLd={homepageJsonLd}
       />
-      <HomepageSchema faqs={allHomepageFaqs} />
       <Header />
       <HeroSection />
       <TrustSignals />
