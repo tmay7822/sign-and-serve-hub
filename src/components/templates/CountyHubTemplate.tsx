@@ -122,7 +122,7 @@ const CountyHubTemplate = ({
               <div className="flex items-center gap-1"><MapPin className="h-4 w-4" /><span>{county}, Ohio</span></div>
             </div>
             <div className="flex items-center gap-1 text-sm text-white/70 mb-8">
-              <User className="h-4 w-4" /><span>Author: <Link to="/about" className="text-white hover:underline">Terry May</Link> — Mobile Notary & Loan Signing Agent, Waynesville OH</span></div>
+              <User className="h-4 w-4" /><span>Author: <Link to="/about" className="text-white hover:underline">Terry May</Link> — Mobile Notary & Loan Signing Agent, Waynesville OH</span>
             </div>
 
             <StandardCTAButtons />
