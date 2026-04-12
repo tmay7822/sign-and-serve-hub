@@ -3,7 +3,7 @@ import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 const POAPitfalls = () => {
   const faqs = [
     {
-      question: "What happens if the signer shows signs of confusion during Power of Attorney (POA) signing?",
+      question: "What happens if the signer shows signs of confusion during POA signing?",
       answer: "We cannot proceed with notarization if there are concerns about the signer's capacity. We may suggest rescheduling or consulting with healthcare providers."
     },
     {
@@ -15,7 +15,7 @@ const POAPitfalls = () => {
   return (
     <BlogPostTemplate
       title="POA Pitfalls—Capacity, Witnesses, and Acceptance"
-      subtitle="To be accepted, a POA must be executed correctly."
+      subtitle="To be accepted, a Power of Attorney (POA) must be executed correctly."
       metaDescription="Avoid POA rejections: capacity, ID, witnesses, and signatures for better acceptance."
       publishDate="2024-01-20"
       lastUpdated="2026-02-25"
