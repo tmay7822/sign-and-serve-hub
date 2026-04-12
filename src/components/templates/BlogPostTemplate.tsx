@@ -62,8 +62,16 @@ const BlogPostTemplate = ({
     "headline": title,
     "datePublished": publishDate || new Date().toISOString().split('T')[0],
     "author": {
-      "@type": "Organization",
-      "name": BUSINESS_CONFIG.name
+      "@type": "Person",
+      "name": "Terry May",
+      "sameAs": "https://www.wikidata.org/wiki/Q139255055",
+      "jobTitle": "Certified Notary Public and Loan Signing Agent",
+      "worksFor": {
+        "@type": "LocalBusiness",
+        "name": "Signed On Time Mobile Notary Services",
+        "url": "https://www.signedontime.com",
+        "@id": "https://www.wikidata.org/wiki/Q139254455"
+      }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
