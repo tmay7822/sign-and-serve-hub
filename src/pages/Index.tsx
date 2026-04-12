@@ -10,7 +10,7 @@ import Seo from '@/components/Seo';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ArrowRight, MapPin } from 'lucide-react';
 
-import HomepageSchema from '@/components/SEO/HomepageSchema';
+import { useHomepageSchema } from '@/components/SEO/HomepageSchema';
 
 import { BUSINESS_CONFIG } from '@/config/business';
 
