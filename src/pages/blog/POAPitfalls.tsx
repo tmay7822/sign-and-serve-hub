@@ -15,9 +15,10 @@ const POAPitfalls = () => {
   return (
     <BlogPostTemplate
       title="POA Pitfalls—Capacity, Witnesses, and Acceptance"
-      subtitle="To be accepted, a POA must be executed correctly."
+      subtitle="To be accepted, a Power of Attorney (POA) must be executed correctly."
       metaDescription="Avoid POA rejections: capacity, ID, witnesses, and signatures for better acceptance."
       publishDate="2024-01-20"
+      lastUpdated="2026-02-25"
       readTime={3}
       tags={['Power of Attorney', 'Estate Planning']}
       faqs={faqs}

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const AffidavitJuratAcknowledgment = () => {
 
@@ -25,6 +26,7 @@ const AffidavitJuratAcknowledgment = () => {
             <p className="text-xl mb-8">
               Courts and agencies ask for specific notarial acts. Here's the simple breakdown.
             </p>
+            <BlogMeta publishDate="2025-11-10" lastUpdated="2026-03-10" />
           </div>
         </div>
       </section>

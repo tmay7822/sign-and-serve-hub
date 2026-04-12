@@ -3,7 +3,7 @@ import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 const OhioWillsPOAWhatNotariesCanAndCantDo = () => {
   const faqs = [
     {
-      question: "Can a notary help me choose the right POA form?",
+      question: "Can a notary help me choose the right Power of Attorney (POA) form?",
       answer: "No, notaries cannot provide legal advice or recommend specific forms. We recommend consulting with an attorney for document selection and legal guidance."
     },
     {
@@ -18,6 +18,7 @@ const OhioWillsPOAWhatNotariesCanAndCantDo = () => {
       subtitle="Clear up confusion: what Ohio notaries can and can't do for wills and powers of attorney—IDs, witnesses, and limits."
       metaDescription="Clear up confusion: what Ohio notaries can and can't do for wills and powers of attorney—IDs, witnesses, and limits."
       publishDate="2025-09-25"
+      lastUpdated="2026-02-08"
       readTime={5}
       tags={['Estate Docs', 'Wills', 'POA', 'Hospital Notary']}
       faqs={faqs}

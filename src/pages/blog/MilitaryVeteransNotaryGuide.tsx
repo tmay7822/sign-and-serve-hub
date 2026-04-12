@@ -6,7 +6,7 @@ const MilitaryVeteransNotaryGuide = () => {
   const faqs = [
     {
       question: "What is a Deployment Power of Attorney?",
-      answer: "A Deployment POA grants a trusted person (usually a spouse or family member) authority to handle legal, financial, and personal matters while you're deployed. It's critical for military families to have this in place before deployment."
+      answer: "A Deployment Power of Attorney (POA) grants a trusted person (usually a spouse or family member) authority to handle legal, financial, and personal matters while you're deployed. It's critical for military families to have this in place before deployment."
     },
     {
       question: "Can I get documents notarized on base?",
@@ -32,6 +32,7 @@ const MilitaryVeteransNotaryGuide = () => {
       subtitle="Essential notarization guide for active duty, reserves, veterans, and military families"
       metaDescription="Complete guide to military document notarization including deployment POAs, VA benefits applications, and family care plans. Mobile notary service in Ohio."
       publishDate="2025-01-14"
+      lastUpdated="2026-04-08"
       readTime={8}
       tags={['Military', 'Veterans', 'POA', 'VA Benefits']}
       faqs={faqs}

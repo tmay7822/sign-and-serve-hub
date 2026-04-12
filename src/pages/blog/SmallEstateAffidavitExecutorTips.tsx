@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const SmallEstateAffidavitExecutorTips = () => {
 
@@ -25,6 +26,7 @@ const SmallEstateAffidavitExecutorTips = () => {
             <p className="text-xl mb-8">
               A small estate affidavit can be faster than probate—but details matter.
             </p>
+            <BlogMeta publishDate="2026-01-04" lastUpdated="2026-04-09" />
           </div>
         </div>
       </section>

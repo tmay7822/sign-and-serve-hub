@@ -25,6 +25,7 @@ interface CountyHubTemplateProps {
   subtitle: string;
   introText: string;
   publishDate: string;
+  lastUpdated?: string;
   readTime: string;
   canonicalUrl: string;
   metaTitle: string;
@@ -51,6 +52,7 @@ const CountyHubTemplate = ({
   subtitle,
   introText,
   publishDate,
+  lastUpdated,
   readTime,
   canonicalUrl,
   metaTitle,
@@ -70,6 +72,8 @@ const CountyHubTemplate = ({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
+        "datePublished": publishDate,
+        ...(lastUpdated && { "dateModified": lastUpdated }),
         "author": {
           "@type": "Person",
           "name": "Terry May",
@@ -111,11 +115,14 @@ const CountyHubTemplate = ({
               {subtitle}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-white/70 mb-8">
-              <div className="flex items-center gap-1"><Calendar className="h-4 w-4" /><time dateTime={publishDate}>{new Date(publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time></div>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white/70 mb-2">
+              <div className="flex items-center gap-1"><Calendar className="h-4 w-4" /><span>Published: <time dateTime={publishDate}>{new Date(publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time></span></div>
+              {lastUpdated && <div className="flex items-center gap-1"><span>| Last Updated: <time dateTime={lastUpdated}>{new Date(lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time></span></div>}
               <div className="flex items-center gap-1"><Clock className="h-4 w-4" /><span>{readTime}</span></div>
-              <div className="flex items-center gap-1"><User className="h-4 w-4" /><span>Terry May</span></div>
               <div className="flex items-center gap-1"><MapPin className="h-4 w-4" /><span>{county}, Ohio</span></div>
+            </div>
+            <div className="flex items-center gap-1 text-sm text-white/70 mb-8">
+              <User className="h-4 w-4" /><span>Author: <Link to="/about" className="text-white hover:underline">Terry May</Link> — Mobile Notary & Loan Signing Agent, Waynesville OH</span>
             </div>
 
             <StandardCTAButtons />

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const College18PlusStarterPack = () => {
 
@@ -25,6 +26,7 @@ const College18PlusStarterPack = () => {
             <p className="text-xl mb-8">
               When a student turns 18, parents lose automatic access to records. Here's what restores it—fast.
             </p>
+            <BlogMeta publishDate="2025-10-30" lastUpdated="2026-03-02" />
           </div>
         </div>
       </section>
@@ -35,9 +37,9 @@ const College18PlusStarterPack = () => {
             <article className="prose prose-lg max-w-none">
               <h2>What each form does</h2>
               <ul>
-                <li><strong>FERPA Release:</strong> Lets schools share education records and speak with parents.</li>
-                <li><strong>HIPAA Authorization:</strong> Allows doctors to share medical info with named people.</li>
-                <li><strong>Medical POA:</strong> Names someone to make health decisions if the student can't.</li>
+                <li><strong>Family Educational Rights and Privacy Act (FERPA) Release:</strong> Lets schools share education records and speak with parents.</li>
+                <li><strong>Health Insurance Portability and Accountability Act (HIPAA) Authorization:</strong> Allows doctors to share medical info with named people.</li>
+                <li><strong>Medical Power of Attorney (POA):</strong> Names someone to make health decisions if the student can't.</li>
                 <li><strong>Financial/Durable POA:</strong> Lets a trusted person handle banking and admin tasks.</li>
               </ul>
 

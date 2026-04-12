@@ -18,6 +18,7 @@ const HospitalNotaryChecklistOhio = () => {
       subtitle="Quick bedside notarization checklist—ID, alertness, witnesses, and room logistics for hospitals and rehab."
       metaDescription="Quick bedside notarization checklist—ID, alertness, witnesses, and room logistics for hospitals and rehab."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-20"
       readTime={5}
       tags={['Hospital Notary', 'Estate Docs', 'Loan Signings']}
       faqs={faqs}

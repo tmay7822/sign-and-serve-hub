@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const HospitalNotaryWhatToExpect = () => {
 
@@ -25,6 +26,7 @@ const HospitalNotaryWhatToExpect = () => {
             <p className="text-xl mb-8">
               We routinely meet patients and families on-site. Here's how to keep it smooth:
             </p>
+            <BlogMeta publishDate="2025-10-08" lastUpdated="2026-02-10" />
           </div>
         </div>
       </section>

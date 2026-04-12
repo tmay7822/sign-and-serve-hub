@@ -18,6 +18,7 @@ const CertificationOfTrustNotaryOhio = () => {
       subtitle="Banks often ask for a Certification of Trust. Here's what to prepare so the notarization is quick and accepted."
       metaDescription="Banks often ask for a Certification of Trust. Here's what to prepare so the notarization is quick and accepted."
       publishDate="2025-09-25"
+      lastUpdated="2026-02-20"
       readTime={4}
       tags={['Estate Docs', 'Banking', 'Business Notary']}
       faqs={faqs}

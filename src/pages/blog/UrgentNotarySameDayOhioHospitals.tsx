@@ -18,6 +18,7 @@ const UrgentNotarySameDayOhioHospitals = () => {
       subtitle="Time-sensitive notarization? How same-day hospital notary visits work and what to prepare."
       metaDescription="Time-sensitive notarization? How same-day hospital notary visits work and what to prepare."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-27"
       readTime={4}
       tags={['Hospital Notary', 'Estate Docs', 'Loan Signings']}
       faqs={faqs}

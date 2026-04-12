@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const AfterHoursEmergencyNotary = () => {
 
@@ -25,6 +26,7 @@ const AfterHoursEmergencyNotary = () => {
             <p className="text-xl mb-8">
               Documents don't keep office hours. We offer flexible, after-hours appointments.
             </p>
+            <BlogMeta publishDate="2026-01-16" lastUpdated="2026-02-16" />
           </div>
         </div>
       </section>

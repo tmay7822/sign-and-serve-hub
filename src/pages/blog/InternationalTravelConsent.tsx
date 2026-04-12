@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const InternationalTravelConsent = () => {
 
@@ -25,6 +26,7 @@ const InternationalTravelConsent = () => {
             <p className="text-xl mb-8">
               Border agents and airlines may ask for a notarized consent letter.
             </p>
+            <BlogMeta publishDate="2025-12-27" lastUpdated="2026-04-07" />
           </div>
         </div>
       </section>

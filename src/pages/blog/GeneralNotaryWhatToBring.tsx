@@ -1,5 +1,6 @@
 import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const GeneralNotaryWhatToBring = () => {
   const faqs = [
@@ -19,6 +20,7 @@ const GeneralNotaryWhatToBring = () => {
       subtitle="Getting a document notarized is simple when you know what to bring. Use this short checklist to save time and avoid re-signs."
       metaDescription="A quick checklist for a smooth notarization—IDs, witnesses, signatures, and common mistakes to avoid."
       publishDate="2024-01-08"
+      lastUpdated="2026-02-05"
       readTime={3}
       tags={['General Notary', 'Preparation']}
       faqs={faqs}
@@ -30,6 +32,40 @@ const GeneralNotaryWhatToBring = () => {
       }}
     >
       <article className="prose prose-lg max-w-none">
+        <h2>What to Bring — Summary Table</h2>
+        <div className="not-prose mb-8">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="font-semibold">Item</TableHead>
+                <TableHead className="font-semibold">Details</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-medium">Valid Photo ID</TableCell>
+                <TableCell>Current driver's license, passport, or state ID</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Your Document</TableCell>
+                <TableCell>Completed but NOT signed</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Additional Signers</TableCell>
+                <TableCell>All must appear in person with their own ID</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Witnesses</TableCell>
+                <TableCell>1–2 disinterested witnesses if required by your form</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Payment</TableCell>
+                <TableCell>Fee varies by document type and travel</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+
         <h2>Your quick checklist</h2>
         <ul>
           <li><strong>Valid photo ID:</strong> driver's license, passport, or state ID. Must be current and legible.</li>

@@ -18,6 +18,7 @@ const ScanbacksPrintingMobileLoanClosingsOhio = () => {
       subtitle="Title needs scanbacks or printed sets? How mobile notaries handle printing, scanbacks, and delivery with clear expectations."
       metaDescription="Title needs scanbacks or printed sets? How mobile notaries handle printing, scanbacks, and delivery with clear expectations."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-18"
       readTime={4}
       tags={['Loan Signings', 'Title/Escrow', 'Business Notary']}
       faqs={faqs}

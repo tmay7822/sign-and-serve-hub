@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const JailNotarizationProcess = () => {
 
@@ -25,6 +26,7 @@ const JailNotarizationProcess = () => {
             <p className="text-xl mb-8">
               We routinely perform notarizations at jails, detention centers, and prisons.
             </p>
+            <BlogMeta publishDate="2026-01-10" lastUpdated="2026-02-09" />
           </div>
         </div>
       </section>

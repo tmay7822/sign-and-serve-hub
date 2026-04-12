@@ -39,6 +39,7 @@ const OhioCarTitleTransferRequirements = () => {
       subtitle="Step-by-step guide to notarizing vehicle title transfers in Ohio, plus 7 common mistakes to avoid"
       metaDescription="Complete guide to Ohio car title transfer notary requirements. Learn what signatures need notarization, what documents to bring, and 7 mistakes to avoid."
       publishDate="2026-01-16"
+      lastUpdated="2026-04-02"
       readTime={8}
       tags={['Car Title', 'Bill of Sale', 'Ohio DMV', 'Vehicle Notary']}
       faqs={faqs}

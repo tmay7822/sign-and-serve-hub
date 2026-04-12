@@ -18,6 +18,7 @@ const NotaryGuideButlerCounty = () => (
     subtitle="Serving Hamilton, Fairfield, West Chester, Oxford, and all Butler County communities — from Miami University to the I-75 growth corridor."
     introText="Signed On Time is centrally located in Waynesville, Ohio — positioned between Cincinnati and Dayton along the US-35 and I-71 corridors. This means faster response times across all six counties than any notary based in either city alone. Butler County communities along the I-75 corridor are comfortable same-day service territory — typically 35-45 minutes from our Waynesville base via I-71 and I-75. We serve Hamilton, Fairfield, West Chester, Oxford, Middletown, Monroe, Trenton, Millville, and the rural communities throughout Butler County that larger notary services routinely overlook."
     publishDate="2026-04-08"
+    lastUpdated="2026-03-28"
     readTime="7 min read"
     canonicalUrl="https://www.signedontime.com/blog/notary-guide-butler-county-ohio"
     metaTitle="Mobile Notary Butler County Ohio | Signed On Time"

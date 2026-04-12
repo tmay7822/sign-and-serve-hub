@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const HCPOALivingWillGuide = () => {
 
@@ -25,6 +26,7 @@ const HCPOALivingWillGuide = () => {
             <p className="text-xl mb-8">
               Healthcare decisions matter. Two documents help your family act with clarity:
             </p>
+            <BlogMeta publishDate="2025-10-03" lastUpdated="2026-02-06" />
           </div>
         </div>
       </section>

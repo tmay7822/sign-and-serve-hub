@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const ApostilleSchoolDocs = () => {
 
@@ -25,6 +26,7 @@ const ApostilleSchoolDocs = () => {
             <p className="text-xl mb-8">
               Using school documents overseas? You may need an apostille.
             </p>
+            <BlogMeta publishDate="2026-02-10" lastUpdated="2026-03-17" />
           </div>
         </div>
       </section>

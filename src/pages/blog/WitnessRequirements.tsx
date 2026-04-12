@@ -18,6 +18,7 @@ const WitnessRequirements = () => {
       subtitle="Some forms need one or two disinterested witnesses."
       metaDescription="When witnesses are required, who can qualify, and how we help arrange them."
       publishDate="2024-01-20"
+      lastUpdated="2026-03-03"
       readTime={4}
       tags={['witnesses', 'notary requirements', 'document signing']}
       faqs={faqs}

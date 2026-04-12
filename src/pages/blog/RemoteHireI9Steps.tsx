@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const RemoteHireI9Steps = () => {
 
@@ -23,8 +24,9 @@ const RemoteHireI9Steps = () => {
               Remote Hire I-9—Simple Steps for Employers & Employees
             </h1>
             <p className="text-xl mb-8">
-              When teams work hybrid or fully remote, you can appoint an <strong>authorized representative</strong> to complete Section 2 of the I-9.
+              When teams work hybrid or fully remote, you can appoint an <strong>authorized representative</strong> to complete Section 2 of the Employment Eligibility Verification (I-9).
             </p>
+            <BlogMeta publishDate="2025-10-25" lastUpdated="2026-02-24" />
           </div>
         </div>
       </section>

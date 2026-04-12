@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const NotaryVsRONRIN = () => {
 
@@ -25,6 +26,7 @@ const NotaryVsRONRIN = () => {
             <p className="text-xl mb-8">
               Multiple notarization options exist. Here's when to use each.
             </p>
+            <BlogMeta publishDate="2025-12-15" lastUpdated="2026-04-01" />
           </div>
         </div>
       </section>
