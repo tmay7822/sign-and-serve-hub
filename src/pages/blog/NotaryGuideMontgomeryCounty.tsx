@@ -18,6 +18,7 @@ const NotaryGuideMontgomeryCounty = () => (
     subtitle="Serving Dayton, Kettering, Centerville, and all Montgomery County communities along the US-35 corridor from Waynesville."
     introText="Signed On Time is centrally located in Waynesville, Ohio — positioned between Cincinnati and Dayton along the US-35 and I-71 corridors. This means faster response times across all six counties than any notary based in either city alone. The communities along US-35 between Waynesville and Dayton are some of our most frequently served areas — same-day appointments throughout Montgomery County are standard. We serve Dayton, Kettering, Centerville, Miamisburg, Huber Heights, Vandalia, Oakwood, Trotwood, West Carrollton, and the rural communities beyond the city limits that other notaries rarely reach."
     publishDate="2026-04-08"
+    lastUpdated="2026-03-08"
     readTime="7 min read"
     canonicalUrl="https://www.signedontime.com/blog/notary-guide-montgomery-county-ohio"
     metaTitle="Mobile Notary Montgomery County Ohio | Signed On Time"

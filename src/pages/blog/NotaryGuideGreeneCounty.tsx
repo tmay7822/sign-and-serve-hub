@@ -18,6 +18,7 @@ const NotaryGuideGreeneCounty = () => (
     subtitle="Serving Beavercreek, Xenia, Fairborn, Yellow Springs, and all Greene County communities — including military families at Wright-Patterson AFB."
     introText="Signed On Time is centrally located in Waynesville, Ohio — positioned between Cincinnati and Dayton along the US-35 and I-71 corridors. This means faster response times across all six counties than any notary based in either city alone. Greene County communities along US-35 and I-675 are some of our most accessible service areas — Beavercreek and Xenia are typically 30-40 minutes from our Waynesville base along a route we travel regularly. We serve Beavercreek, Xenia, Fairborn, Yellow Springs, Bellbrook, Jamestown, Cedarville, Spring Valley, and the rural communities throughout the county that other notaries based in Dayton or Cincinnati rarely reach."
     publishDate="2026-04-08"
+    lastUpdated="2026-04-03"
     readTime="7 min read"
     canonicalUrl="https://www.signedontime.com/blog/notary-guide-greene-county-ohio"
     metaTitle="Mobile Notary Greene County Ohio | Signed On Time"
