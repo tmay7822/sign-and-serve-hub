@@ -10,7 +10,7 @@ import Seo from '@/components/Seo';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ArrowRight, MapPin } from 'lucide-react';
 
-import HomepageSchema from '@/components/SEO/HomepageSchema';
+import { useHomepageSchema } from '@/components/SEO/HomepageSchema';
 
 import { BUSINESS_CONFIG } from '@/config/business';
 
@@ -51,15 +51,16 @@ const allHomepageFaqs = [
 ];
 
 const Index = () => {
+  const homepageJsonLd = useHomepageSchema(allHomepageFaqs);
+
   return (
     <div className="min-h-screen bg-background">
       <Seo
         title={BUSINESS_CONFIG.seo.metaTitle}
         description={BUSINESS_CONFIG.seo.metaDescription}
         keywords={BUSINESS_CONFIG.seo.keywords}
-        jsonLd={null}
+        jsonLd={homepageJsonLd}
       />
-      <HomepageSchema faqs={allHomepageFaqs} />
       <Header />
       <HeroSection />
       <TrustSignals />
