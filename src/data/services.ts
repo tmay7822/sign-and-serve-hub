@@ -29,7 +29,7 @@ export const SERVICES: Service[] = [
     category: 'primary',
     keywords: ['car title notary', 'vehicle bill of sale', 'DMV notary', 'title transfer', 'auto notary', 'car sale notarization', 'vehicle notary Ohio'],
     metaTitle: 'Car Title & Bill of Sale Notary | Vehicle Title Transfers Ohio',
-    metaDescription: 'Professional notary for car title transfers, vehicle bills of sale, and DMV documents. Mobile service throughout Cincinnati-Dayton. Same-day available.'
+    metaDescription: 'Ohio car title transfer notarization at your location throughout Southwest Ohio. No BMV lines, no waiting. Bills of sale, lien releases. Same-day service available.'
   },
   {
     id: 'healthcare-notary',
@@ -43,7 +43,7 @@ export const SERVICES: Service[] = [
     category: 'primary',
     keywords: ['hospital notary', 'healthcare notary', 'nursing home notary', 'medical documents'],
     metaTitle: 'Healthcare & Hospital Notary Services',
-    metaDescription: 'Specialized healthcare notarization in hospitals, nursing homes, and care facilities. Experienced with medical documents and patient needs.'
+    metaDescription: 'Bedside notarization at hospitals, nursing homes and care facilities throughout Southwest Ohio. Same-day urgent visits available. Compassionate service for patients and families.'
   },
   {
     id: 'estate-plans',
@@ -57,7 +57,7 @@ export const SERVICES: Service[] = [
     category: 'primary',
     keywords: ['estate planning notary', 'will notarization', 'trust documents', 'power of attorney', 'healthcare directive'],
     metaTitle: 'Estate Planning Notary | Wills, Trusts & POA Services',
-    metaDescription: 'Professional estate planning document notarization including wills, trusts, powers of attorney, and healthcare directives. Mobile service with witness coordination.'
+    metaDescription: 'Mobile notary for wills, trusts, powers of attorney and healthcare directives throughout Southwest Ohio. Witness coordination included. Evening and weekend appointments available.'
   },
   {
     id: 'loan-signings',
@@ -71,7 +71,7 @@ export const SERVICES: Service[] = [
     category: 'primary',
     keywords: ['loan signing agent', 'mortgage closing', 'refinance signing', 'HELOC', 'reverse mortgage'],
     metaTitle: 'Loan Signing Agent Services | Mortgage Closings',
-    metaDescription: 'Certified Loan Signing Agent for mortgage closings, refinances, and HELOCs. Mobile service with same-day availability throughout Ohio.'
+    metaDescription: 'Certified loan signing agent serving Southwest Ohio. Mortgage closings, refinances and HELOCs. 25+ years lending experience. Same-day closings available.'
   },
   {
     id: 'real-estate',
@@ -99,7 +99,7 @@ export const SERVICES: Service[] = [
     category: 'primary',
     keywords: ['notary public', 'document notarization', 'acknowledgment', 'jurat', 'oath', 'affirmation'],
     metaTitle: 'General Notary Services | Mobile Notary Public',
-    metaDescription: 'Professional mobile notary services for all document types. Certified, insured, and available same-day throughout the Cincinnati-Dayton metro area.'
+    metaDescription: 'Professional mobile notary services throughout Southwest Ohio. Acknowledgments, jurats, oaths and affidavits. NNA certified, insured. Same-day available — we come to you.'
   },
   {
     id: 'personal-family',
@@ -211,7 +211,7 @@ export const SERVICES: Service[] = [
     category: 'specialized',
     keywords: ['apostille service', 'document authentication', 'international documents', 'birth certificate apostille'],
     metaTitle: 'Apostille Services | International Document Authentication',
-    metaDescription: 'Professional apostille and document authentication services for international use. Fast processing for birth certificates, diplomas, and business documents.'
+    metaDescription: 'Ohio apostille services for international document authentication. Birth certificates, diplomas, business documents. Secretary of State submission preparation.'
   },
   {
     id: 'international-apostille',

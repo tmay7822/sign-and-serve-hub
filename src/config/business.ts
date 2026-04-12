@@ -133,9 +133,9 @@ export const BUSINESS_CONFIG = {
   
   // SEO Information
   seo: {
-    metaTitle: "Signed On Time | We Come To You Anytime And Anywhere | Mobile Notary Cincinnati", 
-    metaDescription: "Signed On Time - We Come To You Anytime And Anywhere. Same-day mobile notary in Cincinnati-Dayton. NNA certified, insured. Loan signings, POA, wills, apostille. Call (513) 226-9052!", 
-    keywords: "Signed On Time, mobile notary, we come to you, loan signing agent, Cincinnati notary, Dayton notary, power of attorney, notary public Ohio, Hamilton County, Warren County, Montgomery County", 
+    metaTitle: "Mobile Notary Southwest Ohio | Signed On Time", 
+    metaDescription: "Certified mobile notary based in Waynesville — serving Warren, Greene, Clinton, Butler and surrounding Southwest Ohio counties. Same day appointments 7 days a week. We come to you.", 
+    keywords: "mobile notary Southwest Ohio, Waynesville notary, Warren County notary, Greene County notary, Clinton County notary, Butler County notary, Signed On Time, loan signing agent, notary public Ohio", 
   }
 };
 
