@@ -25,6 +25,7 @@ interface CountyHubTemplateProps {
   subtitle: string;
   introText: string;
   publishDate: string;
+  lastUpdated?: string;
   readTime: string;
   canonicalUrl: string;
   metaTitle: string;
