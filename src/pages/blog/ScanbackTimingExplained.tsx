@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const ScanbackTimingExplained = () => {
 
@@ -25,6 +26,7 @@ const ScanbackTimingExplained = () => {
             <p className="text-xl mb-8">
               After you sign, documents move quickly through the funding pipeline.
             </p>
+            <BlogMeta publishDate="2025-12-03" lastUpdated="2026-03-26" />
           </div>
         </div>
       </section>

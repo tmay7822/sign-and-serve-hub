@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const BeneficiaryChangeForms = () => {
 
@@ -25,6 +26,7 @@ const BeneficiaryChangeForms = () => {
             <p className="text-xl mb-8">
               Carriers reject forms for small errors. Fix them before you sign.
             </p>
+            <BlogMeta publishDate="2025-11-16" lastUpdated="2026-03-15" />
           </div>
         </div>
       </section>

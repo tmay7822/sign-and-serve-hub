@@ -7,6 +7,7 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
 import { BookingWidget } from '@/components/BookingWidget';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const ExpiredIDOptions = () => {
 
@@ -27,6 +28,7 @@ const ExpiredIDOptions = () => {
             <p className="text-xl mb-8">
               Most notarizations require a <strong>current, government photo ID</strong>. If yours is expired:
             </p>
+            <BlogMeta publishDate="2026-01-22" lastUpdated="2026-02-23" />
           </div>
         </div>
       </section>

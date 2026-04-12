@@ -6,6 +6,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const WhatHappensLoanSigning = () => {
 
@@ -26,6 +27,7 @@ const WhatHappensLoanSigning = () => {
             <p className="text-xl mb-8">
               Whether you're buying, selling, or refinancing, here's the basic flow. Loan signings typically require 100–150 pages of documents and take 30–45 minutes to complete with an experienced signing agent.
             </p>
+            <BlogMeta publishDate="2025-10-14" lastUpdated="2026-02-14" />
           </div>
         </div>
       </section>

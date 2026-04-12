@@ -7,6 +7,7 @@ import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 import { QuoteButton } from '@/components/QuoteButton';
 import { BookingWidget } from '@/components/BookingWidget';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const ApostilleProcessingTimes = () => {
 
@@ -27,6 +28,7 @@ const ApostilleProcessingTimes = () => {
             <p className="text-xl mb-8">
               Planning ahead saves stress. Here's what to expect for timing.
             </p>
+            <BlogMeta publishDate="2025-12-09" lastUpdated="2026-03-29" />
           </div>
         </div>
       </section>

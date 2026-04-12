@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const NameMismatchAffidavit = () => {
 
@@ -25,6 +26,7 @@ const NameMismatchAffidavit = () => {
             <p className="text-xl mb-8">
               Name differences cause delays.
             </p>
+            <BlogMeta publishDate="2026-01-28" lastUpdated="2026-03-04" />
           </div>
         </div>
       </section>

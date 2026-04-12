@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const College18PlusStarterPack = () => {
 
@@ -25,6 +26,7 @@ const College18PlusStarterPack = () => {
             <p className="text-xl mb-8">
               When a student turns 18, parents lose automatic access to records. Here's what restores it—fast.
             </p>
+            <BlogMeta publishDate="2025-10-30" lastUpdated="2026-03-02" />
           </div>
         </div>
       </section>

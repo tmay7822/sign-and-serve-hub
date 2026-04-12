@@ -6,6 +6,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';  
 import { QuoteButton } from '@/components/QuoteButton';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const TranslatorAffidavits = () => {
 
@@ -26,6 +27,7 @@ const TranslatorAffidavits = () => {
             <p className="text-xl mb-8 text-muted-foreground">
               Some agencies require a translator's signed <strong>certificate of accuracy</strong>.
             </p>
+            <BlogMeta publishDate="2026-02-17" lastUpdated="2026-03-23" />
           </div>
         </div>
       </section>

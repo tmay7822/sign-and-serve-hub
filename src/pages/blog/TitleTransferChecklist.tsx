@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { BUSINESS_CONFIG } from '@/config/business';
 import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
 
 const TitleTransferChecklist = () => {
 
@@ -25,6 +26,7 @@ const TitleTransferChecklist = () => {
             <p className="text-xl mb-8">
               Get the title done right the first time. Here's what causes most rejections.
             </p>
+            <BlogMeta publishDate="2025-11-05" lastUpdated="2026-03-06" />
           </div>
         </div>
       </section>
