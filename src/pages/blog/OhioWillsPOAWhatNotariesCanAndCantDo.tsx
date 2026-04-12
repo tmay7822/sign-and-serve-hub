@@ -3,7 +3,7 @@ import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 const OhioWillsPOAWhatNotariesCanAndCantDo = () => {
   const faqs = [
     {
-      question: "Can a notary help me choose the right POA form?",
+      question: "Can a notary help me choose the right Power of Attorney (POA) form?",
       answer: "No, notaries cannot provide legal advice or recommend specific forms. We recommend consulting with an attorney for document selection and legal guidance."
     },
     {

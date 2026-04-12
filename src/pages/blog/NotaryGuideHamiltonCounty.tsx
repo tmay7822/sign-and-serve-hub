@@ -41,7 +41,7 @@ const NotaryGuideHamiltonCounty = () => (
       {
         icon: Heart,
         title: 'Healthcare Document Notarization in Hamilton County',
-        description: 'With UC Health, Christ Hospital, TriHealth Good Samaritan, and dozens of rehabilitation and senior care facilities, Hamilton County has the highest concentration of healthcare notarization needs in our entire service area. We provide bedside notarization for living wills, healthcare powers of attorney, and HIPAA authorization forms — often on the same day you call. When a loved one is admitted unexpectedly, getting critical healthcare documents notarized quickly can make all the difference for the family.',
+        description: 'With UC Health, Christ Hospital, TriHealth Good Samaritan, and dozens of rehabilitation and senior care facilities, Hamilton County has the highest concentration of healthcare notarization needs in our entire service area. We provide bedside notarization for living wills, healthcare powers of attorney, and Health Insurance Portability and Accountability Act (HIPAA) authorization forms — often on the same day you call. When a loved one is admitted unexpectedly, getting critical healthcare documents notarized quickly can make all the difference for the family.',
         linkTo: '/healthcare-notary',
         linkText: 'Learn more about healthcare notarization',
       },

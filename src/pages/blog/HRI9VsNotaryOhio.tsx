@@ -14,7 +14,7 @@ const HRI9VsNotaryOhio = () => {
 
   return (
     <BlogPostTemplate
-      title="Notarizing for HR—I-9 vs. Notary Work"
+      title="Notarizing for HR—Employment Eligibility Verification (I-9) vs. Notary Work"
       subtitle="HR teams: I-9 verification isn't a notarization. Here's what a notary can do, and what is strictly an employer duty."
       metaDescription="HR teams: I-9 verification isn't a notarization. Here's what a notary can do, and what is strictly an employer duty."
       publishDate="2025-09-25"

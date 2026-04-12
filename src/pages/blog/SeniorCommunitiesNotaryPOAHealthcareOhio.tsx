@@ -14,7 +14,7 @@ const SeniorCommunitiesNotaryPOAHealthcareOhio = () => {
 
   return (
     <BlogPostTemplate
-      title="Senior Communities—POA & Healthcare Docs"
+      title="Senior Communities—Power of Attorney (POA) & Healthcare Docs"
       subtitle="We come to senior communities for POA and healthcare documents—how we work with staff and families."
       metaDescription="We come to senior communities for POA and healthcare documents—how we work with staff and families."
       publishDate="2025-09-25"

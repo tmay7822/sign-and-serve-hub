@@ -14,7 +14,7 @@ const WitnessesForWillsPOAOhioLocalNorms = () => {
 
   return (
     <BlogPostTemplate
-      title="Witnesses for Wills/POA—Local Norms Explained"
+      title="Witnesses for Wills/Power of Attorney (POA)—Local Norms Explained"
       subtitle="Do you need witnesses for wills or POA? Local norms, who can serve, and how to avoid delays at signing time."
       metaDescription="Do you need witnesses for wills or POA? Local norms, who can serve, and how to avoid delays at signing time."
       publishDate="2025-09-25"

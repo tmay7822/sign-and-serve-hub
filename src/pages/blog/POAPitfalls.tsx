@@ -3,7 +3,7 @@ import BlogPostTemplate from '@/components/templates/BlogPostTemplate';
 const POAPitfalls = () => {
   const faqs = [
     {
-      question: "What happens if the signer shows signs of confusion during POA signing?",
+      question: "What happens if the signer shows signs of confusion during Power of Attorney (POA) signing?",
       answer: "We cannot proceed with notarization if there are concerns about the signer's capacity. We may suggest rescheduling or consulting with healthcare providers."
     },
     {

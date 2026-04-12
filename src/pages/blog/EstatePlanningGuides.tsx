@@ -37,7 +37,7 @@ const EstatePlanningGuides = () => {
       link: "/blog/trust-certification-banking"
     },
     {
-      title: "POA Pitfalls to Avoid",
+      title: "Power of Attorney (POA) Pitfalls to Avoid",
       description: "Common mistakes that can invalidate power of attorney documents",
       icon: <FileText className="w-6 h-6" />,
       link: "/blog/poa-pitfalls"

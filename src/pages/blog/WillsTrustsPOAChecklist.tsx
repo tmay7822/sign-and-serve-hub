@@ -48,7 +48,7 @@ const WillsTrustsPOAChecklist = () => {
         <ul>
           <li>Last Will & Testament and Codicils</li>
           <li>Revocable/Irrevocable Trusts and Certifications</li>
-          <li>Financial and Medical POA</li>
+          <li>Financial and Medical Power of Attorney (POA)</li>
           <li>Small Estate Affidavits and Executor Oaths</li>
         </ul>
 

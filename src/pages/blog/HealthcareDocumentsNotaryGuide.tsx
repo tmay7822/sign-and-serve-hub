@@ -9,7 +9,7 @@ const HealthcareDocumentsNotaryGuide = () => {
       answer: "Yes, DNR (Do Not Resuscitate) orders can be notarized in Ohio. The signer must be alert, understand what they're signing, and sign voluntarily in the notary's presence with valid ID."
     },
     {
-      question: "What's the difference between a Healthcare POA and Living Will?",
+      question: "What's the difference between a Healthcare Power of Attorney (POA) and Living Will?",
       answer: "A Healthcare Power of Attorney designates someone to make medical decisions for you if you can't. A Living Will specifies your wishes for end-of-life care. Many people have both documents."
     },
     {

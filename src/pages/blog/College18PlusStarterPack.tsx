@@ -21,7 +21,7 @@ const College18PlusStarterPack = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              The 18+ Starter Pack: FERPA, HIPAA & POA
+              The 18+ Starter Pack: Family Educational Rights and Privacy Act (FERPA), Health Insurance Portability and Accountability Act (HIPAA) & Power of Attorney (POA)
             </h1>
             <p className="text-xl mb-8">
               When a student turns 18, parents lose automatic access to records. Here's what restores it—fast.
