@@ -146,6 +146,19 @@ export const useHomepageSchema = (faqs: FAQ[]) => {
           }
         },
         {
+          "@type": "WebPage",
+          "@id": "https://www.signedontime.com/#webpage",
+          "url": "https://www.signedontime.com",
+          "name": "Mobile Notary Southwest Ohio | Signed On Time",
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".speakable-answer"]
+          },
+          "isPartOf": {
+            "@id": "https://www.signedontime.com/#website"
+          }
+        },
+        {
           "@type": "BreadcrumbList",
           "@id": "https://www.signedontime.com/#breadcrumb",
           "itemListElement": [

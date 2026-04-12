@@ -1,5 +1,6 @@
 import { getServiceBySlug } from '@/data/services';
 import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
+import ServiceSummaryBlock from '@/components/ServiceSummaryBlock';
 import { Navigate } from 'react-router-dom';
 
 const EstatePlans = () => {
@@ -23,6 +24,12 @@ const EstatePlans = () => {
       { title: 'HCPOA & Living Will Guide', href: '/blog/hcpoa-living-will-guide' },
       { title: 'POA Pitfalls to Avoid', href: '/blog/poa-pitfalls-and-readiness' },
     ]}
+    summaryBlock={
+      <ServiceSummaryBlock
+        text="Need a will, trust, or power of attorney notarized? We come to your home, attorney's office, or care facility. Same-day and evening appointments available."
+        buttons={[{ type: 'book' }, { type: 'call', label: 'Call Now' }]}
+      />
+    }
   />;
 };
 

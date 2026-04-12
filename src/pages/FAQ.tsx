@@ -33,6 +33,20 @@ const FAQ = () => {
         canonical="https://www.signedontime.com/faq"
         jsonLd={faqSchema}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "url": "https://www.signedontime.com/faq",
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": [".speakable-answer"]
+            }
+          })
+        }}
+      />
       <Header />
 
       {/* Hero */}

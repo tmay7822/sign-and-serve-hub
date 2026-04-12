@@ -67,6 +67,23 @@ const CountyHubTemplate = ({
     <>
       <Seo title={metaTitle} description={metaDescription} canonical={canonicalUrl} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "author": {
+          "@type": "Person",
+          "name": "Terry May",
+          "@id": "https://www.wikidata.org/wiki/Q139255055",
+          "sameAs": "https://www.wikidata.org/wiki/Q139255055",
+          "jobTitle": "Certified Notary Public and Loan Signing Agent",
+          "worksFor": {
+            "@type": "LocalBusiness",
+            "name": "Signed On Time",
+            "url": "https://www.signedontime.com",
+            "@id": "https://www.wikidata.org/wiki/Q139254455"
+          }
+        }
+      }) }} />
 
       <Header />
 

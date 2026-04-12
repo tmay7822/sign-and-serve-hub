@@ -101,7 +101,7 @@ const HeroSection = () => {
                 <h3 className="text-base lg:text-lg font-semibold text-foreground mb-2">
                   {item.question}
                 </h3>
-                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+                <p className={`text-sm lg:text-base text-muted-foreground leading-relaxed${index === 0 || index === 2 ? ' speakable-answer' : ''}`}>
                   {item.answer}
                 </p>
               </div>

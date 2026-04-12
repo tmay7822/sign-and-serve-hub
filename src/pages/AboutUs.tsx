@@ -327,6 +327,29 @@ const AboutUs = () => {
           </div>
         </section>
 
+        {/* Credentials and Certifications */}
+        <section className="mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8">Credentials and Certifications</h2>
+            <div className="bg-card rounded-xl border border-border p-8 shadow-sm">
+              <ul className="grid md:grid-cols-2 gap-4">
+                {[
+                  "NNA Certified Notary Public",
+                  "NNA Certified Loan Signing Agent",
+                  "Background Screened and Verified",
+                  "Errors and Omissions Insurance",
+                  "25+ Years Commercial and Residential Lending Experience",
+                ].map((credential, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">{credential}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Values */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">

@@ -1,5 +1,6 @@
 import { getServiceBySlug } from '@/data/services';
 import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
+import ServiceSummaryBlock from '@/components/ServiceSummaryBlock';
 import { Navigate } from 'react-router-dom';
 
 const VehiclesDMV = () => {
@@ -21,6 +22,12 @@ const VehiclesDMV = () => {
         { title: 'Ohio Car Title Transfer Guide', href: '/blog/ohio-car-title-transfer-requirements' },
         { title: 'Title Transfer Checklist', href: '/blog/title-transfer-checklist' },
       ]}
+      summaryBlock={
+        <ServiceSummaryBlock
+          text="Selling a car in Ohio? The title needs to be notarized. We come to your location — no BMV lines, no waiting. Same-day available."
+          buttons={[{ type: 'book' }, { type: 'call', label: 'Call Now' }]}
+        />
+      }
     />
   );
 };
