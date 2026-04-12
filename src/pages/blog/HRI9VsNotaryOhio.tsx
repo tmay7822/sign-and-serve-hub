@@ -18,6 +18,7 @@ const HRI9VsNotaryOhio = () => {
       subtitle="HR teams: I-9 verification isn't a notarization. Here's what a notary can do, and what is strictly an employer duty."
       metaDescription="HR teams: I-9 verification isn't a notarization. Here's what a notary can do, and what is strictly an employer duty."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-16"
       readTime={5}
       tags={['Business Notary', 'HR', 'Compliance']}
       faqs={faqs}

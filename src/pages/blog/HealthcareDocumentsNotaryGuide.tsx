@@ -32,6 +32,7 @@ const HealthcareDocumentsNotaryGuide = () => {
       subtitle="Expert guide to notarizing DNR orders, medical POAs, and healthcare directives—including bedside hospital service"
       metaDescription="Expert guide to healthcare document notarization including DNR orders, medical POAs, and hospital bedside signings. Same-day service in Ohio."
       publishDate="2025-01-14"
+      lastUpdated="2026-04-10"
       readTime={9}
       tags={['Healthcare', 'Hospital Notary', 'Medical POA', 'DNR']}
       faqs={faqs}

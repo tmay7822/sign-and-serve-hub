@@ -18,6 +18,7 @@ const NotaryFeesExplained = () => {
       subtitle="There are two parts to mobile service pricing:"
       metaDescription="Understand standard notarization fees vs mobile travel charges with transparent pricing."
       publishDate="2024-01-10"
+      lastUpdated="2026-02-27"
       readTime={2}
       tags={['Pricing', 'Mobile Notary']}
       faqs={faqs}

@@ -18,6 +18,7 @@ const HospitalNotaryIDProblemsOhio = () => {
       subtitle="Missing or expired ID during a hospital signing? Practical options and what's allowed."
       metaDescription="Missing or expired ID during a hospital signing? Practical options and what's allowed."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-30"
       readTime={5}
       tags={['Hospital Notary', 'IDs', 'Estate Docs']}
       faqs={faqs}

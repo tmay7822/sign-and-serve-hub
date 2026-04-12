@@ -18,6 +18,7 @@ const WillsTrustsPOAChecklist = () => {
       subtitle="Estate documents need clean execution. Use this quick checklist:"
       metaDescription="A practical checklist for notarizing estate documents—IDs, witnesses, readiness, and signing tips."
       publishDate="2024-01-18"
+      lastUpdated="2026-02-18"
       readTime={4}
       tags={['Estate Planning', 'Wills', 'Power of Attorney']}
       faqs={faqs}

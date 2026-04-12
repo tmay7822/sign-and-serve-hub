@@ -18,6 +18,7 @@ const RefiHelocNotaryErrorsToAvoidOhio = () => {
       subtitle="Refi or HELOC? Avoid five common signing errors—dates, initials, NORTC timing, and ID mismatches—so funding isn't delayed."
       metaDescription="Refi or HELOC? Avoid five common signing errors—dates, initials, NORTC timing, and ID mismatches—so funding isn't delayed."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-14"
       readTime={4}
       tags={['Loan Signings', 'Refinance', 'HELOC']}
       faqs={faqs}

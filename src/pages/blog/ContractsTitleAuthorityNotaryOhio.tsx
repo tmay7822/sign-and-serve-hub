@@ -18,6 +18,7 @@ const ContractsTitleAuthorityNotaryOhio = () => {
       subtitle="When signing as an officer/owner, the notary checks ID and your stated capacity—here's how to avoid re-signs."
       metaDescription="When signing as an officer/owner, the notary checks ID and your stated capacity—here's how to avoid re-signs."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-09"
       readTime={5}
       tags={['Business Notary', 'Contracts', 'Loan Signings']}
       faqs={faqs}

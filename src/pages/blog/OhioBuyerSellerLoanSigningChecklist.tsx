@@ -18,6 +18,7 @@ const OhioBuyerSellerLoanSigningChecklist = () => {
       subtitle="A simple checklist for Ohio buyer/seller loan signings—IDs, timing, scanbacks, and common pitfalls so closing day runs smoothly."
       metaDescription="A simple checklist for Ohio buyer/seller loan signings—IDs, timing, scanbacks, and common pitfalls so closing day runs smoothly."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-11"
       readTime={5}
       tags={['Loan Signings', 'Real Estate', 'Hospital Notary']}
       faqs={faqs}

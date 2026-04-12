@@ -50,6 +50,7 @@ const EstatePlanningGuides = () => {
       subtitle="Professional guidance for wills, trusts, power of attorney, and healthcare directives in Ohio"
       metaDescription="Comprehensive guides for wills, trusts, power of attorney, and healthcare directives. Professional notary services for all estate planning documents."
       publishDate="2024-01-15"
+      lastUpdated="2026-03-07"
       readTime={8}
       tags={['estate planning', 'wills', 'trusts', 'power of attorney']}
     >

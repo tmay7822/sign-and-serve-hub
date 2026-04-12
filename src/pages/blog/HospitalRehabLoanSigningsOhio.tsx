@@ -18,6 +18,7 @@ const HospitalRehabLoanSigningsOhio = () => {
       subtitle="Bedside loan signings in hospitals or rehab facilities—ID rules, witness options, and how we coordinate with staff."
       metaDescription="Bedside loan signings in hospitals or rehab facilities—ID rules, witness options, and how we coordinate with staff."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-21"
       readTime={5}
       tags={['Loan Signings', 'Hospital Notary', 'Estate Docs']}
       faqs={faqs}

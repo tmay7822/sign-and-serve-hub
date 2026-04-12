@@ -18,6 +18,7 @@ const MobileVsShippingStore = () => {
       subtitle="Both options work. The right choice depends on your document and your schedule."
       metaDescription="Compare mobile notary vs shipping store. Cost, convenience, privacy, witnesses, and turnaround explained."
       publishDate="2024-01-15"
+      lastUpdated="2026-02-12"
       readTime={3}
       tags={['Mobile Notary', 'Comparison Guide']}
       faqs={faqs}

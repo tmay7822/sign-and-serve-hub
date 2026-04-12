@@ -18,6 +18,7 @@ const HealthcareDirectivesNotaryOhioBedside = () => {
       subtitle="How bedside notarization for healthcare directives works: ID rules, alertness, witnesses, and staff coordination."
       metaDescription="How bedside notarization for healthcare directives works: ID rules, alertness, witnesses, and staff coordination."
       publishDate="2025-09-25"
+      lastUpdated="2026-02-15"
       readTime={4}
       tags={['Estate Docs', 'Hospital Notary']}
       faqs={faqs}

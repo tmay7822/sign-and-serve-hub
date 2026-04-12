@@ -18,6 +18,7 @@ const WitnessesForWillsPOAOhioLocalNorms = () => {
       subtitle="Do you need witnesses for wills or POA? Local norms, who can serve, and how to avoid delays at signing time."
       metaDescription="Do you need witnesses for wills or POA? Local norms, who can serve, and how to avoid delays at signing time."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-01"
       readTime={5}
       tags={['Estate Docs', 'Witnesses', 'Hospital Notary']}
       faqs={faqs}

@@ -18,6 +18,7 @@ const PermitsLicensingNotarySameDayOhio = () => {
       subtitle="Need a permit or license notarized today? Mobile notary comes to your office, jobsite, or city counter meet-up."
       metaDescription="Need a permit or license notarized today? Mobile notary comes to your office, jobsite, or city counter meet-up."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-13"
       readTime={3}
       tags={['Business Notary', 'Permits', 'Mobile']}
       faqs={faqs}

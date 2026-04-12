@@ -19,6 +19,7 @@ const GeneralNotaryWhatToBring = () => {
       subtitle="Getting a document notarized is simple when you know what to bring. Use this short checklist to save time and avoid re-signs."
       metaDescription="A quick checklist for a smooth notarization—IDs, witnesses, signatures, and common mistakes to avoid."
       publishDate="2024-01-08"
+      lastUpdated="2026-02-05"
       readTime={3}
       tags={['General Notary', 'Preparation']}
       faqs={faqs}

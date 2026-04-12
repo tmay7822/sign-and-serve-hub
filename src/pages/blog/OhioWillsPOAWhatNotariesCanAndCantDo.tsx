@@ -18,6 +18,7 @@ const OhioWillsPOAWhatNotariesCanAndCantDo = () => {
       subtitle="Clear up confusion: what Ohio notaries can and can't do for wills and powers of attorney—IDs, witnesses, and limits."
       metaDescription="Clear up confusion: what Ohio notaries can and can't do for wills and powers of attorney—IDs, witnesses, and limits."
       publishDate="2025-09-25"
+      lastUpdated="2026-02-08"
       readTime={5}
       tags={['Estate Docs', 'Wills', 'POA', 'Hospital Notary']}
       faqs={faqs}

@@ -18,6 +18,7 @@ const WhatNotariesCannotDo = () => {
       subtitle="We protect signers and documents by staying neutral."
       metaDescription="Notaries can't give legal advice or draft docs. Learn the boundaries and how we help."
       publishDate="2024-01-12"
+      lastUpdated="2026-02-22"
       readTime={3}
       tags={['Notary Rules', 'Legal Boundaries']}
       faqs={faqs}

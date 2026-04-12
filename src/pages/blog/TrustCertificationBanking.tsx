@@ -19,6 +19,7 @@ const TrustCertificationBanking = () => {
       subtitle="A trust certification summarizes key facts without exposing the full trust."
       metaDescription="What banks look for in a trust certification and how to notarize it properly."
       publishDate="2024-01-25"
+      lastUpdated="2026-03-25"
       readTime={5}
       tags={['trust certification', 'banking', 'estate planning']}
       faqs={faqs}

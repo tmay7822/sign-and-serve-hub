@@ -32,6 +32,7 @@ const ImmigrationDocumentsNotaryGuide = () => {
       subtitle="Expert guidance for notarizing Affidavits of Support, visa applications, citizenship paperwork, and USCIS forms"
       metaDescription="Expert guide to notarizing immigration documents including I-864 Affidavit of Support, visa applications, and citizenship paperwork. Mobile notary service in Ohio."
       publishDate="2025-01-14"
+      lastUpdated="2026-04-05"
       readTime={10}
       tags={['Immigration', 'Apostille', 'USCIS', 'Citizenship']}
       faqs={faqs}

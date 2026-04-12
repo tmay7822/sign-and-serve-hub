@@ -18,6 +18,7 @@ const VendorPacketsAffidavitsNotaryOhio = () => {
       subtitle="On-site notarization for vendor packets and affidavits—what to prep and how to finish in one visit."
       metaDescription="On-site notarization for vendor packets and affidavits—what to prep and how to finish in one visit."
       publishDate="2025-09-25"
+      lastUpdated="2026-03-05"
       readTime={4}
       tags={['Business Notary', 'Affidavits', 'Contracts']}
       faqs={faqs}
