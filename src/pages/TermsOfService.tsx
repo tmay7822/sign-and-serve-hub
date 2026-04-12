@@ -194,7 +194,7 @@ const TermsOfService: React.FC = () => {
                 <h2 className="text-2xl font-semibold mb-4">Governing Law</h2>
                 <p className="mb-4">
                   These Terms of Service are governed by the laws of the State of Ohio. All notarial acts are performed in accordance with 
-                  the Ohio Revised Code and regulations of the Ohio Secretary of State.
+                  the <a href="https://codes.ohio.gov/ohio-revised-code/section-147.08" target="_blank" rel="noopener" className="text-primary underline hover:no-underline">Ohio Revised Code</a> and regulations of the <a href="https://www.ohiosos.gov/notary/" target="_blank" rel="noopener" className="text-primary underline hover:no-underline">Ohio Secretary of State</a>.
                 </p>
               </section>
 

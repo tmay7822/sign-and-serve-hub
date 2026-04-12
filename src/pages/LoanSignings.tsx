@@ -17,7 +17,7 @@ const LoanSignings = () => {
     bookingServiceName="Loan Signing"
     quickAnswer={{
       question: "What happens during a loan signing?",
-      answer: "A certified loan signing agent guides you through signing mortgage documents, reviews key terms, ensures proper notarization, and returns completed documents to your lender. We handle refinances, purchases, HELOCs, and reverse mortgages throughout Ohio."
+      answer: "A certified loan signing agent guides you through signing mortgage documents, reviews key terms, ensures proper notarization, and returns completed documents to your lender. We handle refinances, purchases, HELOCs, and reverse mortgages throughout Ohio. Loan signings typically require 100–150 pages of documents and take 30–45 minutes to complete with an experienced signing agent."
     }}
     relatedGuides={[
       { title: 'What Happens at a Loan Signing', href: '/blog/what-happens-loan-signing' },
@@ -26,7 +26,7 @@ const LoanSignings = () => {
     ]}
     summaryBlock={
       <ServiceSummaryBlock
-        text="Buying a home or refinancing? We come to you — same-day closings available throughout Southwest Ohio. Call or book online."
+        text={<>Buying a home or refinancing? We come to you — same-day closings available throughout Southwest Ohio. For more on the closing process, the <a href="https://www.consumerfinance.gov" target="_blank" rel="noopener" className="text-primary underline hover:no-underline">Consumer Financial Protection Bureau</a> offers helpful guides. Call or book online.</>}
         buttons={[{ type: 'book' }, { type: 'call', label: 'Call Now' }]}
       />
     }
