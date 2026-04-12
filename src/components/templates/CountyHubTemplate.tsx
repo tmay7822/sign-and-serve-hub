@@ -52,6 +52,7 @@ const CountyHubTemplate = ({
   subtitle,
   introText,
   publishDate,
+  lastUpdated,
   readTime,
   canonicalUrl,
   metaTitle,
