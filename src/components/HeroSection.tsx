@@ -31,7 +31,7 @@ const HeroSection = () => {
               Notary Public & Mobile Notary Service
             </span>
             <span className="block text-2xl sm:text-3xl lg:text-4xl mt-1">
-              in Cincinnati & Dayton, Ohio
+              in Southwest Ohio
             </span>
             <span className="block text-xl sm:text-2xl lg:text-3xl text-primary mt-3 font-semibold">
               Signed On Time — We Come To You Anytime And Anywhere
@@ -49,10 +49,10 @@ const HeroSection = () => {
             </p>
             
             <h3 className="text-base font-semibold text-foreground mb-2">
-              Serving Hamilton, Butler, Warren, Montgomery & 5 More Ohio Counties
+              Based in Waynesville — Serving Warren, Greene, Clinton, Butler & All Surrounding Counties
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-              Fast, professional mobile notary service — we come to your home, office, hospital, or anywhere you need us.
+              Southwest Ohio's local mobile notary — we come to your home, office, hospital, or anywhere you need us.
             </p>
 
             <div className="mb-4">

@@ -9,6 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import BreadcrumbSchema from '@/components/SEO/BreadcrumbSchema';
+import Seo from '@/components/Seo';
 import { StandardCTAButtons } from '@/components/StandardCTAButtons';
 import QuickAnswerSection from '@/components/SEO/QuickAnswerSection';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
@@ -81,6 +82,11 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={service.metaTitle ? `${service.metaTitle} | ${BUSINESS_CONFIG.name}` : `${service.serviceName} | ${BUSINESS_CONFIG.name}`}
+        description={service.metaDescription || service.summary}
+        keywords={service.keywords?.join(', ')}
+      />
       <LocalBusinessSchema 
         serviceName={service.serviceName}
         serviceDescription={service.summary}
