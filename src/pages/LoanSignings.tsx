@@ -1,5 +1,6 @@
 import { getServiceBySlug } from '@/data/services';
 import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
+import ServiceSummaryBlock from '@/components/ServiceSummaryBlock';
 import { Navigate } from 'react-router-dom';
 
 const LoanSignings = () => {
@@ -23,6 +24,12 @@ const LoanSignings = () => {
       { title: 'Buyer/Seller Signing Checklist', href: '/blog/ohio-buyer-seller-loan-signing-checklist' },
       { title: 'Refinance & HELOC Guide', href: '/blog/refi-heloc-notary-errors-to-avoid-ohio' },
     ]}
+    summaryBlock={
+      <ServiceSummaryBlock
+        text="Buying a home or refinancing? We come to you — same-day closings available throughout Southwest Ohio. Call or book online."
+        buttons={[{ type: 'book' }, { type: 'call', label: 'Call Now' }]}
+      />
+    }
   />;
 };
 

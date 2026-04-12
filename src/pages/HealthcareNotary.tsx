@@ -1,5 +1,6 @@
 import { getServiceBySlug } from '@/data/services';
-import ServiceHubTemplate from '@/components/templates/ServiceHubTemplate';
+import ServiceHubEnhanced from '@/components/templates/ServiceHubEnhanced';
+import ServiceSummaryBlock from '@/components/ServiceSummaryBlock';
 import { Navigate } from 'react-router-dom';
 
 const HealthcareNotary = () => {
@@ -9,7 +10,18 @@ const HealthcareNotary = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <ServiceHubTemplate service={service} bookingServiceName="Healthcare Document" />;
+  return (
+    <ServiceHubEnhanced
+      service={service}
+      bookingServiceName="Healthcare Document"
+      summaryBlock={
+        <ServiceSummaryBlock
+          text="We can be there today. Call or text (513) 226-9052 and we will come to your hospital, nursing home, or care facility anywhere in Southwest Ohio."
+          buttons={[{ type: 'call' }]}
+        />
+      }
+    />
+  );
 };
 
 export default HealthcareNotary;
