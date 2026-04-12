@@ -8,7 +8,7 @@ interface SummaryButton {
 }
 
 interface ServiceSummaryBlockProps {
-  text: string;
+  text: React.ReactNode;
   buttons: SummaryButton[];
 }
 
