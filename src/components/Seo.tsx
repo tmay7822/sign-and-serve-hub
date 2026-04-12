@@ -8,7 +8,7 @@ interface SeoProps {
   keywords?: string;
   canonical?: string;
   ogImage?: string;
-  jsonLd?: object;
+  jsonLd?: object | null;
 }
 
 const Seo: React.FC<SeoProps> = ({
@@ -66,9 +66,11 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="twitter:image" content={ogImage} />
       
       {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(baseJsonLd)}
-      </script>
+      {jsonLd !== null && (
+        <script type="application/ld+json">
+          {JSON.stringify(baseJsonLd)}
+        </script>
+      )}
     </Helmet>
   );
 };
