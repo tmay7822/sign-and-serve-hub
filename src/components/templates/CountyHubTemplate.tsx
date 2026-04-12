@@ -72,6 +72,8 @@ const CountyHubTemplate = ({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
+        "datePublished": publishDate,
+        ...(lastUpdated && { "dateModified": lastUpdated }),
         "author": {
           "@type": "Person",
           "name": "Terry May",
