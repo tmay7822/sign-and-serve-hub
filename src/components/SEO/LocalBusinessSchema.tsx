@@ -42,6 +42,7 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
     schema = {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "ProfessionalService", "LegalService"],
+      "@id": "https://www.wikidata.org/wiki/Q139254455",
       "name": "Signed On Time Mobile Notary Services",
       "alternateName": "Signed On Time",
       "description": "Certified mobile notary serving Southwest Ohio including Hamilton, Warren, Butler, Montgomery, Greene and Clinton counties. Loan signings, estate planning, apostille, healthcare directives, vehicle titles and general notary services. Same-day appointments available 7 days a week.",
@@ -90,18 +91,23 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
         ],
       },
       "sameAs": [
-        // TODO: Replace with actual Google Business Profile URL
+        "https://www.wikidata.org/wiki/Q139254455",
         "https://www.google.com/maps?cid=YOUR_GMB_CID",
-        // TODO: Replace with actual Facebook URL
         "https://www.facebook.com/signedontime",
-        // TODO: Replace with actual LinkedIn URL
         "https://www.linkedin.com/company/signedontime",
       ],
       "founder": {
         "@type": "Person",
         "name": "Terry May",
+        "sameAs": "https://www.wikidata.org/wiki/Q139255055",
         "jobTitle": "Certified Notary Public and Loan Signing Agent",
         "description": "25+ years experience in commercial and residential lending. NNA certified, background screened and fully insured.",
+        "worksFor": {
+          "@type": "LocalBusiness",
+          "name": "Signed On Time Mobile Notary Services",
+          "url": "https://www.signedontime.com",
+          "@id": "https://www.wikidata.org/wiki/Q139254455"
+        }
       },
       "aggregateRating": {
         "@type": "AggregateRating",

@@ -44,7 +44,18 @@ const DynamicBlogPostTemplate = ({ post }: DynamicBlogPostTemplateProps) => {
     "@type": "Article",
     "headline": post.title,
     "datePublished": post.publishDate,
-    "author": { "@type": "Organization", "name": BUSINESS_CONFIG.name },
+    "author": {
+      "@type": "Person",
+      "name": "Terry May",
+      "sameAs": "https://www.wikidata.org/wiki/Q139255055",
+      "jobTitle": "Certified Notary Public and Loan Signing Agent",
+      "worksFor": {
+        "@type": "LocalBusiness",
+        "name": "Signed On Time Mobile Notary Services",
+        "url": "https://www.signedontime.com",
+        "@id": "https://www.wikidata.org/wiki/Q139254455"
+      }
+    },
     "publisher": { "@type": "Organization", "name": BUSINESS_CONFIG.name },
     "mainEntityOfPage": {
       "@type": "WebPage",
