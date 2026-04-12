@@ -1,30 +1,33 @@
 
 
-## Add NNA Profile Link to Homepage Footer
+## Add Profile URLs to Organization sameAs Array
 
-### Location found
-`src/components/Footer.tsx`, line 235 — the legal disclaimer paragraph contains:
+### File: `src/components/SEO/HomepageSchema.tsx` (lines 127-131)
 
-> "...background screening verification, and National Notary Association (NNA) membership. All notarial acts..."
-
-### Change
-Wrap "National Notary Association" in that sentence with an anchor tag:
-
-**Before:**
-```
-...and National Notary Association (NNA) membership.
+**Current sameAs (3 entries):**
+```json
+"sameAs": [
+  "https://www.google.com/maps/place/Signed+On+Time/...",
+  "https://www.facebook.com/profile.php?id=61581017254420",
+  "https://www.wikidata.org/wiki/Q139254455"
+]
 ```
 
-**After:**
-```
-...and <a href="https://www.signingagent.com/profile/160496873" target="_blank" rel="noopener" className="underline hover:text-white">National Notary Association</a> (NNA) membership.
+**Updated sameAs (7 entries — 4 new added):**
+```json
+"sameAs": [
+  "https://www.google.com/maps/place/Signed+On+Time/...",
+  "https://www.facebook.com/profile.php?id=61581017254420",
+  "https://www.wikidata.org/wiki/Q139254455",
+  "https://www.signingagent.com/profile/160496873",
+  "https://notary.snapdocs.com/notary-public/ohio/waynesville/terry-may?source=edit_notary_profile",
+  "https://www.notarystars.com/united-states/waynesville/notary-public-1/terry-may",
+  "https://www.gotary.com/united-states/waynesville/credentialed-professional/terry-may"
+]
 ```
 
 ### Not touched
-- TrustSignals "NNA Certified" badge title/description — unchanged
-- No other text, headings, or page structure modified
-- Only one link added, on the exact "National Notary Association" text in the footer disclaimer
-
-### File modified
-- `src/components/Footer.tsx` (line 235 only)
+- LocalBusiness sameAs array unchanged
+- No other files modified
+- No headings, text, or page structure changed
 
