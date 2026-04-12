@@ -232,7 +232,7 @@ const Footer = () => {
             
             <p>
               <strong className="text-white">Professional Credentials:</strong> {BUSINESS_CONFIG.name} is a commissioned Ohio notary public with professional liability insurance (E&O), 
-              background screening verification, and National Notary Association (NNA) membership. All notarial acts performed in accordance with Ohio Revised Code 
+              background screening verification, and <a href="https://www.signingagent.com/profile/160496873" target="_blank" rel="noopener" className="underline hover:text-white">National Notary Association</a> (NNA) membership. All notarial acts performed in accordance with Ohio Revised Code 
               and Secretary of State regulations. Notary records maintained for minimum 5 years as required by law.
             </p>
             
