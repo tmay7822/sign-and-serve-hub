@@ -127,7 +127,11 @@ export const useHomepageSchema = (faqs: FAQ[]) => {
           "sameAs": [
             "https://www.google.com/maps/place/Signed+On+Time/@39.4723167,-84.5279299,10z/data=!3m1!4b1!4m6!3m5!1s0x898eda0c8281792b:0x6ceef3ddd2cd891d!8m2!3d39.472252!4d-84.1982955!16s%2Fg%2F11y5pbg0pl?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D",
             "https://www.facebook.com/profile.php?id=61581017254420",
-            "https://www.wikidata.org/wiki/Q139254455"
+            "https://www.wikidata.org/wiki/Q139254455",
+            "https://www.signingagent.com/profile/160496873",
+            "https://notary.snapdocs.com/notary-public/ohio/waynesville/terry-may?source=edit_notary_profile",
+            "https://www.notarystars.com/united-states/waynesville/notary-public-1/terry-may",
+            "https://www.gotary.com/united-states/waynesville/credentialed-professional/terry-may"
           ]
         },
         {
