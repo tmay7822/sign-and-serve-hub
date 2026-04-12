@@ -6,15 +6,15 @@ import NeedBasedNavigation from '@/components/NeedBasedNavigation';
 export const aeoQuestions = [
   {
     question: "What does a mobile notary do?",
-    answer: "A mobile notary travels to your location — home, office, hospital, or anywhere — to notarize documents in person. This saves you time and is especially helpful for people who can't easily travel to a notary office."
+    answer: "A mobile notary comes to you — home, office, hospital, or anywhere — to notarize your documents in person. This is especially helpful when you can't get to a notary office on your own schedule."
   },
   {
     question: "How much does a mobile notary cost in Ohio?",
-    answer: "Ohio notary fees start at $5 per notarization by law, plus a travel fee that typically ranges from $25–$75 depending on distance. Loan signing appointments may cost $100–$200 depending on the package size."
+    answer: "A travel fee applies based on distance, plus Ohio's per-notarization fee. Loan signing appointments vary by package size. Call for an exact quote — no hidden fees."
   },
   {
     question: "Do you offer same-day notary service?",
-    answer: "Yes, Signed On Time offers same-day and emergency mobile notary service across the Cincinnati and Dayton metro areas. Call or book online and we can often be there within 1–2 hours."
+    answer: "Yes, we offer same-day and emergency service across the Cincinnati and Dayton metro areas. Call or book online and we can often be there within 1–2 hours."
   },
 ];
 

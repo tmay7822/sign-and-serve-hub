@@ -18,35 +18,35 @@ const allHomepageFaqs = [
   ...aeoQuestions,
   {
     question: "Do you travel to me?",
-    answer: "Yes! We provide mobile notary services across Cincinnati–Dayton area. We come to your home, office, or any convenient location within our service area."
+    answer: "Yes, we come to you anywhere in our 6-county Cincinnati–Dayton service area. That includes your home, office, hospital, or any location that works for you."
   },
   {
     question: "What IDs do I need?",
-    answer: "You'll need a current, government-issued photo ID such as a driver's license, state ID, passport, or military ID. The ID must be unexpired and clearly show your photo and signature."
+    answer: "Bring one current, unexpired government-issued photo ID. A driver's license, state ID, passport, or military ID all work — it must clearly show your photo and signature."
   },
   {
     question: "Do you offer after-hours service?",
-    answer: "Absolutely! We offer evening and weekend appointments to accommodate your schedule. Emergency and rush services are available for urgent document needs."
+    answer: "Yes, we offer evening, weekend, and holiday appointments. Emergency and rush services are also available for urgent document needs."
   },
   {
     question: "What are your fees?",
-    answer: "Our fees include travel within our service area plus per-signature notarization. We provide instant quotes over the phone or through our contact form. No hidden fees, transparent pricing."
+    answer: "A travel fee applies based on distance, plus Ohio's per-signature notarization fee. Call or use our contact form for an exact quote — no hidden fees, no surprises."
   },
   {
     question: "Which loan packages do you handle?",
-    answer: "We handle all types: buyer packages, seller packages, refinances, HELOCs, reverse mortgages, and investor/commercial loan documents. Fully trained in all major loan document types."
+    answer: "We handle all loan package types — buyer, seller, refinance, HELOC, reverse mortgage, and investor/commercial closings. Every signing is handled by a trained loan signing agent."
   },
   {
     question: "How far in advance should I schedule?",
-    answer: "We often accommodate same-day requests, but we recommend scheduling 24-48 hours in advance for best availability, especially for loan signings and complex document packages."
+    answer: "Same-day appointments are often available. For best availability — especially loan signings and large document packages — schedule 24–48 hours in advance."
   },
   {
     question: "Are you insured and bonded?",
-    answer: "Yes, we carry comprehensive Errors & Omissions insurance and are fully bonded. We're also NNA (National Notary Association) certified and background-checked for your peace of mind."
+    answer: "Yes, we carry Errors & Omissions insurance and are fully bonded. We are also background-checked and professionally certified for your peace of mind."
   },
   {
     question: "Can you notarize documents in languages other than English?",
-    answer: "We can notarize documents in any language, but the signer must be able to communicate directly with the notary in English, or a qualified translator must be present during the signing."
+    answer: "Yes, we can notarize documents written in any language. The signer must communicate with the notary in English, or bring a qualified translator to the appointment."
   }
 ];
 
