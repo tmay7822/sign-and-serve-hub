@@ -40,6 +40,13 @@ const HomepageSchema = ({ faqs }: HomepageSchemaProps) => {
         "url": "https://www.signedontime.com",
         "telephone": "+15132269052",
         "email": "Terry@SignedOnTime.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.signedontime.com/favicon.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://www.signedontime.com/favicon.png",
         "priceRange": "$$",
         "currenciesAccepted": "USD",
         "paymentAccepted": "Cash, Credit Card, Check, Venmo, Zelle",
