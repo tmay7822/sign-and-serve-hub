@@ -10,11 +10,45 @@ import Seo from '@/components/Seo';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ArrowRight, MapPin } from 'lucide-react';
 
-import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
-import ReviewSchema from '@/components/SEO/ReviewSchema';
-import EnhancedFAQSchema from '@/components/SEO/EnhancedFAQSchema';
+import HomepageSchema from '@/components/SEO/HomepageSchema';
 
 import { BUSINESS_CONFIG } from '@/config/business';
+
+const allHomepageFaqs = [
+  ...aeoQuestions,
+  {
+    question: "Do you travel to me?",
+    answer: "Yes! We provide mobile notary services across Cincinnati–Dayton area. We come to your home, office, or any convenient location within our service area."
+  },
+  {
+    question: "What IDs do I need?",
+    answer: "You'll need a current, government-issued photo ID such as a driver's license, state ID, passport, or military ID. The ID must be unexpired and clearly show your photo and signature."
+  },
+  {
+    question: "Do you offer after-hours service?",
+    answer: "Absolutely! We offer evening and weekend appointments to accommodate your schedule. Emergency and rush services are available for urgent document needs."
+  },
+  {
+    question: "What are your fees?",
+    answer: "Our fees include travel within our service area plus per-signature notarization. We provide instant quotes over the phone or through our contact form. No hidden fees, transparent pricing."
+  },
+  {
+    question: "Which loan packages do you handle?",
+    answer: "We handle all types: buyer packages, seller packages, refinances, HELOCs, reverse mortgages, and investor/commercial loan documents. Fully trained in all major loan document types."
+  },
+  {
+    question: "How far in advance should I schedule?",
+    answer: "We often accommodate same-day requests, but we recommend scheduling 24-48 hours in advance for best availability, especially for loan signings and complex document packages."
+  },
+  {
+    question: "Are you insured and bonded?",
+    answer: "Yes, we carry comprehensive Errors & Omissions insurance and are fully bonded. We're also NNA (National Notary Association) certified and background-checked for your peace of mind."
+  },
+  {
+    question: "Can you notarize documents in languages other than English?",
+    answer: "We can notarize documents in any language, but the signer must be able to communicate directly with the notary in English, or a qualified translator must be present during the signing."
+  }
+];
 
 const Index = () => {
   return (
@@ -23,16 +57,9 @@ const Index = () => {
         title={BUSINESS_CONFIG.seo.metaTitle}
         description={BUSINESS_CONFIG.seo.metaDescription}
         keywords={BUSINESS_CONFIG.seo.keywords}
+        jsonLd={null}
       />
-      <LocalBusinessSchema />
-      <ReviewSchema />
-      <EnhancedFAQSchema 
-        faqs={aeoQuestions} 
-        mainEntity={{ 
-          name: "Signed On Time Mobile Notary", 
-          description: "Mobile notary public and loan signing agent serving Cincinnati, Dayton, and surrounding Ohio counties." 
-        }} 
-      />
+      <HomepageSchema faqs={allHomepageFaqs} />
       <Header />
       <HeroSection />
       <TrustSignals />
