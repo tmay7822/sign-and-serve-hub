@@ -334,15 +334,18 @@ const AboutUs = () => {
             <div className="bg-card rounded-xl border border-border p-8 shadow-sm">
               <ul className="grid md:grid-cols-2 gap-4">
                 {[
-                  "NNA Certified Notary Public",
-                  "NNA Certified Loan Signing Agent",
-                  "Background Screened and Verified",
-                  "Errors and Omissions Insurance",
-                  "25+ Years Commercial and Residential Lending Experience",
+                  { title: "NNA Certified Notary Public", description: "Trained and tested to the highest national standard for notary practice" },
+                  { title: "NNA Certified Loan Signing Agent", description: "Specialized training for mortgage closings — your loan documents handled correctly every time" },
+                  { title: "Background Screened and Verified", description: "Cleared through national background screening — you know exactly who is coming to your home" },
+                  { title: "Errors and Omissions Insurance", description: "Fully insured against errors — your documents and transaction are protected" },
+                  { title: "25+ Years Commercial and Residential Lending Experience", description: "Two and a half decades in commercial and residential lending means we have seen every situation and know how to handle it" },
                 ].map((credential, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">{credential}</span>
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <span className="font-semibold text-foreground">{credential.title}</span>
+                      <p className="text-sm text-muted-foreground mt-0.5">{credential.description}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
