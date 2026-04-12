@@ -3,8 +3,8 @@ import { Shield, Award, CheckCircle, Clock } from 'lucide-react';
 export const QuickTrustBadges = () => {
   const badges = [
     { icon: Shield, text: "Background Checked" },
-    { icon: Award, text: "NNA Certified" },
-    { icon: CheckCircle, text: "Fully Insured" },
+    { icon: Award, text: "Documents Done Right" },
+    { icon: CheckCircle, text: "Fully Insured and Verified" },
     { icon: Clock, text: "Same Day Availability" }
   ];
 

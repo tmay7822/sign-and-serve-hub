@@ -16,7 +16,7 @@ const HealthcareNotary = () => {
       bookingServiceName="Healthcare Document"
       summaryBlock={
         <ServiceSummaryBlock
-          text="We can be there today. Call or text (513) 226-9052 and we will come to your hospital, nursing home, or care facility anywhere in Southwest Ohio."
+          text="We can be there today. Call or text (513) 226-9052 and we will come to your hospital, nursing home, or care facility anywhere in Southwest Ohio. No appointment needed for urgent situations."
           buttons={[{ type: 'call' }]}
         />
       }
