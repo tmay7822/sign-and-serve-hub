@@ -1,72 +1,60 @@
 
 
-## Client-Focused Language and Credential Placement Updates
+## Consolidate Homepage @graph with Two Corrections
 
-### PART 1 — Trust Bar Badges
+### Only file changed: `src/components/SEO/HomepageSchema.tsx`
 
-**File: `src/components/landing/QuickTrustBadges.tsx`**
+### Changes
 
-| Current | New |
-|---------|-----|
-| "Background Checked" | "Background Checked" (no change) |
-| "NNA Certified" | "Documents Done Right" |
-| "Fully Insured" | "Fully Insured and Verified" |
-| "Same Day Availability" | "Same Day Availability" (no change) |
+**1. Keep `LegalService`** — already present on line 33. No change needed.
 
-Lines 6-7 updated. No other hero content touched.
+**2. Update coordinates** — lines 63-65: `39.5318, -84.0955` → `39.5296, -84.0846`
 
----
+**3. Update LocalBusiness `sameAs`** — lines 95-98: replace with the 3 exact URLs provided (GMB, Facebook, Wikidata)
 
-### PART 2 — Healthcare Page Opener
+**4. Add Organization node** — insert new entity into the `@graph` array with name, url, logo, contactPoint, and matching `sameAs` array
 
-**File: `src/pages/HealthcareNotary.tsx`**
+### Final `sameAs` on LocalBusiness (lines 95-98):
+```json
+"sameAs": [
+  "https://www.google.com/maps/place/Signed+On+Time/@39.4723167,-84.5279299,10z/data=!3m1!4b1!4m6!3m5!1s0x898eda0c8281792b:0x6ceef3ddd2cd891d!8m2!3d39.472252!4d-84.1982955!16s%2Fg%2F11y5pbg0pl?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D",
+  "https://www.facebook.com/profile.php?id=61581017254420",
+  "https://www.wikidata.org/wiki/Q139254455"
+]
+```
 
-Current summary block text: "We can be there today. Call or text (513) 226-9052 and we will come to your hospital, nursing home, or care facility anywhere in Southwest Ohio."
+### New Organization node (added to @graph):
+```json
+{
+  "@type": "Organization",
+  "@id": "https://www.signedontime.com/#organization",
+  "name": "Signed On Time",
+  "url": "https://www.signedontime.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.signedontime.com/favicon.png",
+    "width": 512,
+    "height": 512
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+15132269052",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://www.google.com/maps/place/Signed+On+Time/@39.4723167,-84.5279299,10z/data=!3m1!4b1!4m6!3m5!1s0x898eda0c8281792b:0x6ceef3ddd2cd891d!8m2!3d39.472252!4d-84.1982955!16s%2Fg%2F11y5pbg0pl?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D",
+    "https://www.facebook.com/profile.php?id=61581017254420",
+    "https://www.wikidata.org/wiki/Q139254455"
+  ]
+}
+```
 
-Updated to add the urgency line: "We can be there today. Call or text (513) 226-9052 and we will come to your hospital, nursing home, or care facility anywhere in Southwest Ohio. No appointment needed for urgent situations."
+### What stays the same
+- `@type` array keeps `LegalService` ✅
+- All existing entities (FAQPage, Person, WebSite, WebPage, BreadcrumbList) unchanged
+- No other files touched
 
-Buttons remain `[{ type: 'call' }]` which renders "Call (513) 226-9052".
-
-**Current content order after H1** (confirmed from ServiceHubEnhanced lines 108-120):
-1. H1: service name
-2. Summary paragraph (service.summary)
-3. `summaryBlock` (the ServiceSummaryBlock with call button)
-4. StandardCTAButtons
-
-The summary block IS the first prominent callout after H1. No credential language appears above it. The `service.summary` is a brief descriptive line from the service data — not credentials.
-
----
-
-### PART 3 — Verify Service Page Order
-
-All 5 pages use `ServiceHubEnhanced` which renders in this order: H1 → service.summary → summaryBlock → CTA buttons. No credential language above the summary block on any page. **No changes needed** — just confirming the order is correct.
-
----
-
-### PART 4 — About Page Credential Explanations
-
-**File: `src/pages/AboutUs.tsx`** (lines 336-347)
-
-Convert the simple string list into objects with credential name + plain-language explanation:
-
-1. "NNA Certified Notary Public" → "Trained and tested to the highest national standard for notary practice"
-2. "NNA Certified Loan Signing Agent" → "Specialized training for mortgage closings — your loan documents handled correctly every time"
-3. "Background Screened and Verified" → "Cleared through national background screening — you know exactly who is coming to your home"
-4. "Errors and Omissions Insurance" → "Fully insured against errors — your documents and transaction are protected"
-5. "25+ Years Commercial and Residential Lending Experience" → "Two and a half decades in commercial and residential lending means we have seen every situation and know how to handle it"
-
-Each item renders the credential name in bold with the explanation as smaller muted text below.
-
----
-
-### Confirmations
-
-1. Trust bar badges: "NNA Certified" → "Documents Done Right", "Fully Insured" → "Fully Insured and Verified"
-2. Healthcare page: summary block is first visible callout after H1, Call Now button immediately after, no credentials above
-3. **No schema markup modified** — zero changes to HomepageSchema, LocalBusinessSchema, BreadcrumbSchema, CountyHubTemplate, or FAQ page schema
-
-### Files Modified
-- `src/components/landing/QuickTrustBadges.tsx`
-- `src/pages/HealthcareNotary.tsx`
-- `src/pages/AboutUs.tsx`
+### Files modified
+- `src/components/SEO/HomepageSchema.tsx`
 
