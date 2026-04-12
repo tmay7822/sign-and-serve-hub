@@ -334,10 +334,10 @@ const AboutUs = () => {
             <div className="bg-card rounded-xl border border-border p-8 shadow-sm">
               <ul className="grid md:grid-cols-2 gap-4">
                 {[
-                  { title: "NNA Certified Notary Public", description: "Trained and tested to the highest national standard for notary practice" },
+                  { title: "NNA Certified Notary Public", description: <span>Trained and tested to the highest standard by the <a href="https://www.signingagent.com/profile/160496873" target="_blank" rel="noopener" className="text-primary underline hover:no-underline">National Notary Association</a></span> },
                   { title: "NNA Certified Loan Signing Agent", description: "Specialized training for mortgage closings — your loan documents handled correctly every time" },
                   { title: "Background Screened and Verified", description: "Cleared through national background screening — you know exactly who is coming to your home" },
-                  { title: "Errors and Omissions Insurance", description: "Fully insured against errors — your documents and transaction are protected" },
+                  { title: "Errors and Omissions Insurance", description: <span>Fully insured with <a href="https://www.nationalnotary.org/knowledge-center/about-notaries/notary-basics/e-o-insurance" target="_blank" rel="noopener" className="text-primary underline hover:no-underline">Errors and Omissions insurance</a> — your documents and transaction are protected</span> },
                   { title: "25+ Years Commercial and Residential Lending Experience", description: "Two and a half decades in commercial and residential lending means we have seen every situation and know how to handle it" },
                 ].map((credential, index) => (
                   <li key={index} className="flex items-start gap-3">

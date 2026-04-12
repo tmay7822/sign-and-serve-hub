@@ -41,7 +41,7 @@ const RefiHelocNotaryErrorsToAvoidOhio = () => {
         </ol>
 
         <h2>Our process</h2>
-        <p>We verify names/IDs first, mark your initial pages, pace the signing so you never feel rushed, and do a final flip-through. That's how packages fund on time.</p>
+        <p>We verify names/IDs first, mark your initial pages, pace the signing so you never feel rushed, and do a final flip-through. That's how packages fund on time. The <a href="https://www.consumerfinance.gov" target="_blank" rel="noopener">Consumer Financial Protection Bureau</a> has additional guidance on refinance and HELOC rights.</p>
 
         <div className="mt-8 p-6 bg-accent/10 border-l-4 border-primary rounded-r-lg">
           <h3 className="text-lg font-semibold mb-4">What next:</h3>

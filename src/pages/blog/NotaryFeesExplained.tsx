@@ -34,6 +34,8 @@ const NotaryFeesExplained = () => {
           <li><strong>Mobile travel:</strong> Time and distance to come to you (market-based).</li>
         </ol>
 
+        <p>Ohio notaries may charge up to $5 per notarized signature under <a href="https://codes.ohio.gov/ohio-revised-code/section-147.08" target="_blank" rel="noopener">Ohio Revised Code Section 147.08</a>.</p>
+
         <p>You'll get a clear quote before we schedule.</p>
       </article>
     </BlogPostTemplate>

@@ -29,7 +29,7 @@ const OhioBuyerSellerLoanSigningChecklist = () => {
       }}
     >
       <article className="prose prose-lg max-w-none">
-        <p>Buying or selling a home is hectic. A clean loan signing keeps closing day calm and on time. Here's a quick checklist we use across Southwest Ohio.</p>
+        <p>Buying or selling a home is hectic. A clean loan signing keeps closing day calm and on time. Loan signings typically require 100–150 pages of documents and take 30–45 minutes to complete with an experienced signing agent. Here's a quick checklist we use across Southwest Ohio.</p>
 
         <h2>IDs & names</h2>
         <p>Bring a current government photo ID. Make sure the name on your documents matches the ID (middle initials matter).</p>

@@ -44,6 +44,8 @@ const WhatNotariesCannotDo = () => {
           <li>Coordinate witnesses</li>
           <li>Travel to your location</li>
         </ul>
+
+        <p>According to the <a href="https://www.ohiosos.gov/notary/" target="_blank" rel="noopener">Ohio Secretary of State</a>, notary commissions in Ohio are valid for 5-year terms.</p>
       </article>
     </BlogPostTemplate>
   );

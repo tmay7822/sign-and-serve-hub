@@ -24,7 +24,7 @@ const WhatHappensLoanSigning = () => {
               What Happens at a Loan Signing?
             </h1>
             <p className="text-xl mb-8">
-              Whether you're buying, selling, or refinancing, here's the basic flow:
+              Whether you're buying, selling, or refinancing, here's the basic flow. Loan signings typically require 100–150 pages of documents and take 30–45 minutes to complete with an experienced signing agent.
             </p>
           </div>
         </div>
@@ -50,7 +50,7 @@ const WhatHappensLoanSigning = () => {
                 <li>Allow quiet time and avoid distractions</li>
               </ul>
 
-              <p>We coordinate with title, lenders, and agents to hit funding timelines.</p>
+              <p>We coordinate with title, lenders, and agents to hit funding timelines. The <a href="https://www.consumerfinance.gov" target="_blank" rel="noopener">Consumer Financial Protection Bureau</a> provides additional resources on the mortgage closing process.</p>
 
               <div className="bg-brand-light p-6 rounded-lg mt-8">
                 <h3 className="text-brand-navy font-bold mb-4">Need a flexible appointment?</h3>
