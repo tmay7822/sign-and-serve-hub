@@ -35,6 +35,7 @@ interface ServiceHubEnhancedProps {
   defaultService?: string;
   relatedGuides?: { title: string; href: string }[];
   bookingServiceName?: string;
+  summaryBlock?: React.ReactNode;
 }
 
 const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
@@ -43,7 +44,8 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
   showBooking = false,
   defaultService,
   relatedGuides,
-  bookingServiceName
+  bookingServiceName,
+  summaryBlock
 }) => {
   const blogPosts = getPostsByService(service.slug).slice(0, 6);
   const localRoutes = getRoutesByService(service.slug).slice(0, 8);
@@ -109,8 +111,10 @@ const ServiceHubEnhanced: React.FC<ServiceHubEnhancedProps> = ({
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
               {service.summary}
             </p>
+
+            {summaryBlock}
             
-            <StandardCTAButtons 
+            <StandardCTAButtons
               defaultService={defaultService}
               className="text-lg"
             />
