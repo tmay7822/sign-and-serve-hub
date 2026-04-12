@@ -135,7 +135,7 @@ export const BUSINESS_CONFIG = {
   seo: {
     metaTitle: "Mobile Notary Southwest Ohio | Signed On Time", 
     metaDescription: "Certified mobile notary based in Waynesville — serving Warren, Greene, Clinton, Butler and surrounding Southwest Ohio counties. Same day appointments 7 days a week. We come to you.", 
-    keywords: "mobile notary Southwest Ohio, Waynesville notary, Warren County notary, Greene County notary, Clinton County notary, Butler County notary, Signed On Time, loan signing agent, notary public Ohio", 
+    keywords: "mobile notary Southwest Ohio, mobile notary Waynesville Ohio, notary Warren County Ohio, notary Greene County Ohio, notary Clinton County Ohio, notary Butler County Ohio, loan signing agent Cincinnati Dayton, mobile notary same day Ohio", 
   }
 };
 
