@@ -21,7 +21,7 @@ const College18PlusStarterPack = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              The 18+ Starter Pack: Family Educational Rights and Privacy Act (FERPA), Health Insurance Portability and Accountability Act (HIPAA) & Power of Attorney (POA)
+              The 18+ Starter Pack: FERPA, HIPAA & POA
             </h1>
             <p className="text-xl mb-8">
               When a student turns 18, parents lose automatic access to records. Here's what restores it—fast.
@@ -37,9 +37,9 @@ const College18PlusStarterPack = () => {
             <article className="prose prose-lg max-w-none">
               <h2>What each form does</h2>
               <ul>
-                <li><strong>FERPA Release:</strong> Lets schools share education records and speak with parents.</li>
-                <li><strong>HIPAA Authorization:</strong> Allows doctors to share medical info with named people.</li>
-                <li><strong>Medical POA:</strong> Names someone to make health decisions if the student can't.</li>
+                <li><strong>Family Educational Rights and Privacy Act (FERPA) Release:</strong> Lets schools share education records and speak with parents.</li>
+                <li><strong>Health Insurance Portability and Accountability Act (HIPAA) Authorization:</strong> Allows doctors to share medical info with named people.</li>
+                <li><strong>Medical Power of Attorney (POA):</strong> Names someone to make health decisions if the student can't.</li>
                 <li><strong>Financial/Durable POA:</strong> Lets a trusted person handle banking and admin tasks.</li>
               </ul>
 
