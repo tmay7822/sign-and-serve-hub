@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
@@ -17,6 +18,7 @@ interface BlogPostTemplateProps {
   children: ReactNode;
   metaDescription?: string;
   publishDate?: string;
+  lastUpdated?: string;
   readTime?: number;
   tags?: string[];
   relatedPost?: {
@@ -41,6 +43,7 @@ const BlogPostTemplate = ({
   children, 
   metaDescription,
   publishDate,
+  lastUpdated,
   readTime,
   tags,
   relatedPost,
@@ -55,12 +58,21 @@ const BlogPostTemplate = ({
   const pathname = getPathname();
   const postSlug = pathname.split('/').pop() || '';
 
+  const formatDate = (dateStr: string) => {
+    return new Date(dateStr).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  };
+
   // Generate Article schema
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": title,
     "datePublished": publishDate || new Date().toISOString().split('T')[0],
+    ...(lastUpdated && { "dateModified": lastUpdated }),
     "author": {
       "@type": "Person",
       "name": "Terry May",
@@ -105,15 +117,35 @@ const BlogPostTemplate = ({
                 {subtitle}
               </p>
             )}
-            {(publishDate || readTime) && (
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                {publishDate && <span>Published {new Date(publishDate).toLocaleDateString()}</span>}
-                {readTime && <span>• {readTime} min read</span>}
-                {tags && tags.length > 0 && (
-                  <span>• {tags.slice(0, 2).join(', ')}</span>
-                )}
-              </div>
-            )}
+            {/* Published / Last Updated / Author */}
+            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-2">
+              {publishDate && <span>Published: {formatDate(publishDate)}</span>}
+              {lastUpdated && (
+                <>
+                  <span>|</span>
+                  <span>Last Updated: {formatDate(lastUpdated)}</span>
+                </>
+              )}
+              {readTime && (
+                <>
+                  <span>|</span>
+                  <span>{readTime} min read</span>
+                </>
+              )}
+              {tags && tags.length > 0 && (
+                <>
+                  <span>|</span>
+                  <span>{tags.slice(0, 2).join(', ')}</span>
+                </>
+              )}
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Author:{' '}
+              <Link to="/about" className="text-primary hover:underline font-medium">
+                Terry May
+              </Link>
+              {' — Mobile Notary & Loan Signing Agent, Waynesville OH'}
+            </p>
           </div>
         </div>
       </section>
