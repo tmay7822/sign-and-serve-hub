@@ -61,8 +61,8 @@ export const useHomepageSchema = (faqs: FAQ[]) => {
             "@type": "GeoCircle",
             "geoMidpoint": {
               "@type": "GeoCoordinates",
-              "latitude": 39.5318,
-              "longitude": -84.0955
+              "latitude": 39.5296,
+              "longitude": -84.0846
             },
             "geoRadius": "80467"
           },
@@ -93,8 +93,9 @@ export const useHomepageSchema = (faqs: FAQ[]) => {
             "sameAs": "https://www.wikidata.org/wiki/Q139255055"
           },
           "sameAs": [
-            "https://www.wikidata.org/wiki/Q139254455",
-            "https://www.google.com/maps/place/Signed+On+Time/@39.4723167,-84.5279299,10z/data=!3m1!4b1!4m6!3m5!1s0x898eda0c8281792b:0x6ceef3ddd2cd891d!8m2!3d39.472252!4d-84.1982955!16s%2Fg%2F11y5pbg0pl?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D"
+            "https://www.google.com/maps/place/Signed+On+Time/@39.4723167,-84.5279299,10z/data=!3m1!4b1!4m6!3m5!1s0x898eda0c8281792b:0x6ceef3ddd2cd891d!8m2!3d39.472252!4d-84.1982955!16s%2Fg%2F11y5pbg0pl?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D",
+            "https://www.facebook.com/profile.php?id=61581017254420",
+            "https://www.wikidata.org/wiki/Q139254455"
           ],
           "aggregateRating": {
             "@type": "AggregateRating",
@@ -105,6 +106,29 @@ export const useHomepageSchema = (faqs: FAQ[]) => {
             "ratingCount": totalReviews.toString()
           },
           ...(individualReviews.length > 0 && { "review": individualReviews })
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.signedontime.com/#organization",
+          "name": "Signed On Time",
+          "url": "https://www.signedontime.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.signedontime.com/favicon.png",
+            "width": 512,
+            "height": 512
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+15132269052",
+            "contactType": "customer service",
+            "availableLanguage": "English"
+          },
+          "sameAs": [
+            "https://www.google.com/maps/place/Signed+On+Time/@39.4723167,-84.5279299,10z/data=!3m1!4b1!4m6!3m5!1s0x898eda0c8281792b:0x6ceef3ddd2cd891d!8m2!3d39.472252!4d-84.1982955!16s%2Fg%2F11y5pbg0pl?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D",
+            "https://www.facebook.com/profile.php?id=61581017254420",
+            "https://www.wikidata.org/wiki/Q139254455"
+          ]
         },
         {
           "@type": "FAQPage",
