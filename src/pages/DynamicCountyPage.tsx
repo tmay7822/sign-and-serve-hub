@@ -68,7 +68,19 @@ const DynamicCountyPage: React.FC = () => {
       meta.content = description;
       document.head.appendChild(meta);
     }
-  }, [county]);
+
+    // Set canonical URL using production domain
+    const canonicalUrl = `${BUSINESS_CONFIG.website}/service/${countyParam}`;
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', canonicalUrl);
+    } else {
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = canonicalUrl;
+      document.head.appendChild(link);
+    }
+  }, [county, countyParam]);
 
   // If no data found, redirect to service areas
   if (!county) {

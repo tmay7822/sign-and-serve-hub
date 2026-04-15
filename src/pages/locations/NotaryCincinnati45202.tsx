@@ -1,70 +1,50 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
+import Seo from '@/components/Seo';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { FileText, Clock, Shield, MapPin, Users, Building } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const NotaryCincinnati45202 = () => {
-  useEffect(() => {
-    const title = "General Notary in Cincinnati, OH 45202 | Signed On Time";
-    const metaDescription = "Mobile General Notary in Cincinnati (45202), Hamilton County, OH. Same-day, certified & insured. Call (513) 226-9052.";
-    
-    document.title = title;
-    
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', metaDescription);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = metaDescription;
-      document.head.appendChild(meta);
+  const title = "General Notary in Cincinnati, OH 45202 | Signed On Time";
+  const metaDescription = "Mobile General Notary in Cincinnati (45202), Hamilton County, OH. Same-day, certified & insured. Call (513) 226-9052.";
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": BUSINESS_CONFIG.name,
+    "image": BUSINESS_CONFIG.logo.url,
+    "telephone": BUSINESS_CONFIG.phone,
+    "email": BUSINESS_CONFIG.email,
+    "url": BUSINESS_CONFIG.website,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cincinnati",
+      "addressRegion": "OH",
+      "postalCode": "45202",
+      "addressCountry": "US"
+    },
+    "description": metaDescription,
+    "areaServed": {
+      "@type": "City",
+      "name": "Cincinnati",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Ohio"
+      }
     }
-
-    // Add local business schema
-    const localBusinessSchema = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": BUSINESS_CONFIG.name,
-      "image": BUSINESS_CONFIG.logo.url,
-      "telephone": BUSINESS_CONFIG.phone,
-      "email": BUSINESS_CONFIG.email,
-      "url": BUSINESS_CONFIG.website,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Cincinnati",
-        "addressRegion": "OH",
-        "postalCode": "45202",
-        "addressCountry": "US"
-      },
-      "description": metaDescription,
-      "areaServed": {
-        "@type": "City",
-        "name": "Cincinnati",
-        "containedInPlace": {
-          "@type": "State",
-          "name": "Ohio"
-        }
-      }
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(localBusinessSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, []);
+  };
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={title}
+        description={metaDescription}
+        canonical={`${BUSINESS_CONFIG.website}/notary-cincinnati-45202`}
+        jsonLd={localBusinessSchema}
+      />
       <Header />
       
       {/* Hero Section */}
