@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
+import Seo from '@/components/Seo';
 import TrustSignals from '@/components/TrustSignals';
 import { Button } from '@/components/ui/button';
 import { FileText, Clock, Shield, MapPin, Users, Building } from 'lucide-react';

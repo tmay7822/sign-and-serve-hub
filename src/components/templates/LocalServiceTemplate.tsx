@@ -50,9 +50,9 @@ const LocalServiceTemplate: React.FC<LocalServiceTemplateProps> = ({
       document.head.appendChild(meta);
     }
 
-    // Set canonical URL
+    // Set canonical URL using production domain
     const canonical = document.querySelector('link[rel="canonical"]');
-    const currentUrl = `${window.location.origin}${route.path}`;
+    const currentUrl = `${BUSINESS_CONFIG.website}${route.path}`;
     
     if (canonical) {
       canonical.setAttribute('href', currentUrl);
