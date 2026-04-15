@@ -39,6 +39,12 @@ const NotaryCincinnati45202 = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={title}
+        description={metaDescription}
+        canonical={`${BUSINESS_CONFIG.website}/notary-cincinnati-45202`}
+        jsonLd={localBusinessSchema}
+      />
       <Header />
       
       {/* Hero Section */}
